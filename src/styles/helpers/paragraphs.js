@@ -7,17 +7,16 @@ export const B1Base = css`
   ${fontSizer(1.6, 2, 76.8, 150, 1.8)};
   font-family: ${fonts.fontPrimary};
   font-weight: normal;
-  font-stretch: condensed;
+  font-stretch: normal;
   font-style: normal;
-  line-height: 1.4;
+  line-height: 1.5;
   letter-spacing: normal;
 `
 
-export const B1Slate = css`
+export const B1Black = css`
   ${B1Base};
-  color: ${colors.colorShad};
+  color: ${colors.black};
 `
-
 export const B1White = css`
   ${B1Base};
   color: ${colors.white};
@@ -30,6 +29,19 @@ export const B2Base = css`
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.5;
+  line-height: 1.75;
   letter-spacing: normal;
+`
+
+export const B2Black = css`
+  ${B2Base};
+  color: ${colors.black};
+`
+export const B2White = css`
+  ${B2Base};
+  color: ${colors.white};
+`
+export const B2Navy = css`
+  ${B2Base};
+  color: ${colors.colorPrimary};
 `
