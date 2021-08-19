@@ -3,13 +3,14 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import { B1Black, B2White, B2Black, colors } from "../../../styles/helpers"
 
-import frontDrive from "../../../images/icons/front-drive-homes.png"
-import lanedHomes from "../../../images/icons/laned-homes.png"
-import townhomes from "../../../images/icons/townhomes.png"
-import allHomes from "../../../images/icons/all-homes.png"
+import HomeTypes from "./HomeTypes"
+import Communities from "./Communities"
 
 const TopNav = () => {
   const [homePlanSubActive, setHomePlanSubActive] = useState(false)
+  const [quickSubActive, setQuickSubActive] = useState(false)
+  const [communitiesSubActive, setCommunitiesSubActive] = useState(false)
+  const [showSubActive, setShowSubActive] = useState(false)
 
   return (
     <TopNavStyled>
@@ -23,61 +24,45 @@ const TopNav = () => {
             <Link className="top-nav-item__link" to="/">
               Home Plans
             </Link>
-            <SubMenu activesub={homePlanSubActive} className="main-sub-nav">
-              <p>Home Plans</p>
-              <li>
-                <Link to="/">
-                  <span className="nav-icon">
-                    <img src={frontDrive} alt="Logo" />
-                  </span>
-                  <span className="nav-label">Front Drive</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="">
-                  <span className="nav-icon">
-                    <img src={lanedHomes} alt="Logo" />
-                  </span>
-                  <span className="nav-label">Laned Homes</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="">
-                  <span className="nav-icon">
-                    <img src={townhomes} alt="Logo" />
-                  </span>
-                  <span className="nav-label">Townhomes</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="">
-                  <span className="nav-icon nav-icon__all-homes">
-                    <img src={allHomes} alt="Logo" />
-                  </span>
-                  <span className="nav-label">All Homes</span>
-                </Link>
-              </li>
-            </SubMenu>
+            <HomeTypes activesubstate={homePlanSubActive} title="Home Plans" />
           </li>
-          <li className="nav-item top-nav-item">
+          <li
+            onMouseEnter={() => setQuickSubActive(true)}
+            onMouseLeave={() => setQuickSubActive(false)}
+            className="nav-item top-nav-item"
+          >
             <Link className="top-nav-item__link" to="/">
               Quick Possessions
             </Link>
+            <HomeTypes
+              activesubstate={quickSubActive}
+              title="Quick Possessions"
+            />
           </li>
-          <li className="nav-item top-nav-item">
+          <li
+            onMouseEnter={() => setCommunitiesSubActive(true)}
+            onMouseLeave={() => setCommunitiesSubActive(false)}
+            className="nav-item top-nav-item"
+          >
             <Link className="top-nav-item__link" to="/">
               Communities
             </Link>
+            <Communities activesubstate={communitiesSubActive} />
           </li>
           <li className="nav-item top-nav-item">
             <Link className="top-nav-item__link" to="/">
               Building With McKee
             </Link>
           </li>
-          <li className="nav-item top-nav-item">
+          <li
+            onMouseEnter={() => setShowSubActive(true)}
+            onMouseLeave={() => setShowSubActive(false)}
+            className="nav-item top-nav-item"
+          >
             <Link className="top-nav-item__link" to="/">
               Visit A Show Home
             </Link>
+            <HomeTypes activesubstate={showSubActive} title="Show Homes" />
           </li>
         </ul>
       </nav>
@@ -125,8 +110,7 @@ const TopNavStyled = styled.div`
 const SubMenu = styled.ul`
   position: absolute;
   top: 100%;
-  right: -50%;
-  left: -50%;
+  left: -5rem;
   width: 30rem;
   background-color: #efefef;
   padding: 2.5rem 4.5rem;
