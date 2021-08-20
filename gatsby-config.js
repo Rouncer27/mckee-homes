@@ -3,10 +3,10 @@ dotenv.config({ path: ".env" })
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `McKee Homes`,
+    description: `McKee Homes`,
+    author: `@switchback4ever`,
+    siteUrl: `https://switchbackcreative.ca`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
