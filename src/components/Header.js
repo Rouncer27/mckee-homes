@@ -1,15 +1,32 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
+import { graphql, useStaticQuery } from "gatsby"
 
 import TopNav from "./Navigation/TopNav/TopNav"
 import Login from "./Navigation/Login/Login"
 import MainLogo from "./Logos/MainLogo"
 import Vertical from "./SocialMedia/Vertical"
+import TopBanner from "./Header/TopBanner"
+
+const getData = graphql`
+  {
+    banner: wp {
+      acfOptionsSiteWideSettings {
+        acfSiteWideSettings {
+          bannerActive
+        }
+      }
+    }
+  }
+`
 
 const Header = ({ siteTitle }) => {
+  const data = useStaticQuery(getData)
+  const bannerActive =
+    data.banner.acfOptionsSiteWideSettings.acfSiteWideSettings.bannerActive
   return (
-    <HeaderStyled>
+    <HeaderStyled banneractive={bannerActive}>
       <div className="headerLogo">
         <h1>
           <Link to="/">
@@ -21,12 +38,15 @@ const Header = ({ siteTitle }) => {
       <Login />
       <TopNav />
       <Vertical />
+      <TopBanner />
     </HeaderStyled>
   )
 }
 
 const HeaderStyled = styled.header`
   position: relative;
+  padding-top: ${props => (props.banneractive ? "4rem" : "0rem")};
+
   .headerLogo {
     align-self: center;
     margin: auto;
