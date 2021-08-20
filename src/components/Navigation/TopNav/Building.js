@@ -14,7 +14,7 @@ import homeTools from "../../../images/icons/home-tools.png"
 
 const Building = ({ activesubstate }) => {
   return (
-    <SubMenu activesub={true}>
+    <SubMenu activesub={activesubstate}>
       <p>Building With McKee</p>
       <ul>
         <li>
