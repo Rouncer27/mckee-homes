@@ -3,6 +3,8 @@ import { graphql, useStaticQuery, Link } from "gatsby"
 import styled from "styled-components"
 import { B2White, colors, medWrapper } from "../styles/helpers"
 
+import Horizontal from "./SocialMedia/Horizontal"
+
 const getData = graphql`
   {
     quickLinks: wpMenu(name: { eq: "Quick Links Menu" }) {
@@ -28,7 +30,9 @@ const Footer = () => {
   return (
     <FooterStyled>
       <div className="wrapper">
-        <div className="foot-social"></div>
+        <div className="foot-social">
+          <Horizontal />
+        </div>
         <div className="foot-quick-links">
           <nav>
             <ul>
