@@ -5,11 +5,13 @@ import { B1Black, B2White, B2Black, colors } from "../../../styles/helpers"
 
 import HomeTypes from "./HomeTypes"
 import Communities from "./Communities"
+import Building from "./Building"
 
 const TopNav = () => {
   const [homePlanSubActive, setHomePlanSubActive] = useState(false)
   const [quickSubActive, setQuickSubActive] = useState(false)
   const [communitiesSubActive, setCommunitiesSubActive] = useState(false)
+  const [buildSubActive, setBuildSubActive] = useState(false)
   const [showSubActive, setShowSubActive] = useState(false)
 
   return (
@@ -50,9 +52,15 @@ const TopNav = () => {
             <Communities activesubstate={communitiesSubActive} />
           </li>
           <li className="nav-item top-nav-item">
-            <Link className="top-nav-item__link" to="/">
+            <Link
+              onMouseEnter={() => setBuildSubActive(true)}
+              onMouseLeave={() => setBuildSubActive(false)}
+              className="top-nav-item__link"
+              to="/"
+            >
               Building With McKee
             </Link>
+            <Building activesubstate={buildSubActive} />
           </li>
           <li
             onMouseEnter={() => setShowSubActive(true)}
