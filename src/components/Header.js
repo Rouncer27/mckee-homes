@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 
 import TopNav from "./Navigation/TopNav/TopNav"
+import Login from "./Navigation/Login/Login"
 import MainLogo from "./Logos/MainLogo"
 
 const Header = ({ siteTitle }) => {
@@ -16,6 +17,7 @@ const Header = ({ siteTitle }) => {
           </Link>
         </h1>
       </div>
+      <Login />
       <TopNav />
     </HeaderStyled>
   )
