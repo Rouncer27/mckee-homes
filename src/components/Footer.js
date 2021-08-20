@@ -50,7 +50,11 @@ const Footer = () => {
             </ul>
           </nav>
         </div>
-        <div className="foot-mail"></div>
+        <div className="foot-mail">
+          <p>
+            <a href="#">Join our mailing list</a>
+          </p>
+        </div>
       </div>
       <div className="foot-bottom">
         <ul>
@@ -71,6 +75,7 @@ const FooterStyled = styled.footer`
 
   .wrapper {
     ${medWrapper};
+    align-items: center;
   }
 
   .foot-social {
@@ -82,13 +87,26 @@ const FooterStyled = styled.footer`
 
     ul {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
 
       li {
         a {
           ${B2White};
+          padding-right: 3rem;
+          padding-left: 3rem;
+          border-right: solid 0.1rem ${colors.white};
           text-align: center;
           text-transform: uppercase;
+
+          &:hover {
+            color: ${colors.colorSecondary};
+          }
+        }
+      }
+
+      li:last-of-type {
+        a {
+          border-right: solid 0 ${colors.white};
         }
       }
     }
@@ -96,6 +114,23 @@ const FooterStyled = styled.footer`
 
   .foot-mail {
     width: calc(15%);
+
+    p {
+      margin: 0;
+      text-align: right;
+
+      a {
+        ${B2White};
+        transition: all 0.3s ease-out;
+        font-weight: bold;
+        text-decoration: underline;
+        text-transform: uppercase;
+
+        &:hover {
+          color: ${colors.colorSecondary};
+        }
+      }
+    }
   }
 
   .foot-bottom {
@@ -111,8 +146,21 @@ const FooterStyled = styled.footer`
       li {
         a {
           ${B2White};
+          padding-right: 1rem;
+          padding-left: 1rem;
           text-align: center;
           text-transform: uppercase;
+          border-right: solid 0.1rem ${colors.white};
+
+          &:hover {
+            color: ${colors.colorPrimary};
+          }
+        }
+      }
+
+      li:last-of-type {
+        a {
+          border-right: solid 0 ${colors.white};
         }
       }
     }
