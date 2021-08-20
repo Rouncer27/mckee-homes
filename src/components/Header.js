@@ -5,6 +5,7 @@ import styled from "styled-components"
 import TopNav from "./Navigation/TopNav/TopNav"
 import Login from "./Navigation/Login/Login"
 import MainLogo from "./Logos/MainLogo"
+import Vertical from "./SocialMedia/Vertical"
 
 const Header = ({ siteTitle }) => {
   return (
@@ -19,16 +20,19 @@ const Header = ({ siteTitle }) => {
       </div>
       <Login />
       <TopNav />
+      <Vertical />
     </HeaderStyled>
   )
 }
 
 const HeaderStyled = styled.header`
+  position: relative;
   .headerLogo {
     align-self: center;
     margin: auto;
     width: 100%;
-    margin: 1rem auto;
+    margin: 0 auto;
+    padding: 2rem 0;
     text-align: center;
 
     @media (min-width: 768px) {
