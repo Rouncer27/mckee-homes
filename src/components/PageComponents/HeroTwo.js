@@ -1,11 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { B1Black, Btn1Grey, H3Grey } from "../../styles/helpers"
+import { Btn1Grey, H3Grey } from "../../styles/helpers"
 import { Link } from "gatsby"
 
 const HeroTwo = ({ data }) => {
-  console.log(data)
   const imageDisplay = getImage(
     data.image.localFile.childImageSharp.gatsbyImageData
   )

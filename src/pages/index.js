@@ -52,6 +52,59 @@ export const homeQuery = graphql`
             }
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_HeroThree {
+            fieldGroupName
+            buttonText
+            buttonSlug
+            title
+            content
+            image {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 2500)
+                }
+              }
+            }
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_ContentWithImage7525 {
+            fieldGroupName
+            buttonText
+            buttonSlug
+            buttonPosition
+            title
+            content
+            imageSide
+            image {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1500)
+                }
+              }
+            }
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_ContentImageBgPattern {
+            fieldGroupName
+            buttonText
+            buttonSlug
+            title
+            content
+            image {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentWithLogo {
             content
             fieldGroupName
