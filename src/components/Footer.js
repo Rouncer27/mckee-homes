@@ -26,7 +26,6 @@ const getData = graphql`
 const Footer = () => {
   const data = useStaticQuery(getData)
   const { quickLinks } = data
-  console.log(quickLinks)
   return (
     <FooterStyled>
       <div className="wrapper">
@@ -92,8 +91,8 @@ const FooterStyled = styled.footer`
       li {
         a {
           ${B2White};
-          padding-right: 3rem;
-          padding-left: 3rem;
+          padding-right: 1rem;
+          padding-left: 1rem;
           border-right: solid 0.1rem ${colors.white};
           text-align: center;
           text-transform: uppercase;

@@ -56,6 +56,10 @@ export const H3Grey = css`
   ${H3Base};
   color: ${colors.colorSecondary};
 `
+export const H3Black = css`
+  ${H3Base};
+  color: ${colors.black};
+`
 
 // Headline Styles #4 //
 export const H4Base = css`
