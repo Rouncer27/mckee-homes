@@ -1,6 +1,7 @@
 import React from "react"
 
 import HeroOne from "./PageComponents/HeroOne"
+import HeroTwo from "./PageComponents/HeroTwo"
 import ContentWithLogo from "./PageComponents/ContentWithLogo"
 import ContentSlider from "./PageComponents/ContentSlider"
 
@@ -14,6 +15,9 @@ const PageComponentGroups = props => {
             switch (component?.fieldGroupName) {
               case "Page_Acfmaintemplatefields_PageComponents_HeroOne":
                 return <HeroOne key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_HeroTwo":
+                return <HeroTwo key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_ContentWithLogo":
                 return <ContentWithLogo key={index} data={component} />

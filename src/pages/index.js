@@ -36,6 +36,23 @@ export const homeQuery = graphql`
             }
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_HeroTwo {
+            fieldGroupName
+            buttonText
+            buttonSlug
+            content
+            image {
+              altText
+              sourceUrl
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 2500)
+                }
+              }
+            }
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentWithLogo {
             content
             fieldGroupName

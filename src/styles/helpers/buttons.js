@@ -11,7 +11,7 @@ const Btn1Base = css`
   border-radius: 0.25rem;
   transition: all 0.3s ease;
   font-family: ${fonts.fontPrimary};
-  font-weight: bold;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 2.14;
@@ -38,6 +38,31 @@ export const Btn1Green = css`
 
   &:hover {
     background: ${colors.colorSecondary};
+    color: ${colors.white};
+  }
+
+  &:focus {
+    outline: 0.4rem solid #003b49;
+    transition: all 0.35s ease-in-out;
+  }
+
+  &:disabled {
+    &:hover {
+      background: ${colors.colorTertiary};
+      color: ${colors.colorPrimary};
+    }
+  }
+`
+
+export const Btn1Grey = css`
+  ${Btn1Base};
+  background: ${colors.colorAccent};
+  border: solid 0.2rem ${colors.colorAccent};
+  color: ${colors.white};
+
+  &:hover {
+    background: ${colors.colorPrimary};
+    border-color: ${colors.colorPrimary};
     color: ${colors.white};
   }
 
