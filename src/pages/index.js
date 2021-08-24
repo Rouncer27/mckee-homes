@@ -43,7 +43,6 @@ export const homeQuery = graphql`
             content
             image {
               altText
-              sourceUrl
               localFile {
                 url
                 childImageSharp {
@@ -57,6 +56,41 @@ export const homeQuery = graphql`
             content
             fieldGroupName
             logoSide
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_ContentThreeImages {
+            fieldGroupName
+            title
+            content
+            buttonText
+            buttonSlug
+            topImage {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1500)
+                }
+              }
+            }
+            bottomLeft {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+            bottomRight {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
           }
 
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentSlider {

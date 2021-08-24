@@ -81,6 +81,7 @@ const HeroTwoStyled = styled.section`
 
     &__link {
       margin-top: 1rem;
+
       a {
         ${Btn1Grey};
       }

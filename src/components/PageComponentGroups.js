@@ -3,6 +3,7 @@ import React from "react"
 import HeroOne from "./PageComponents/HeroOne"
 import HeroTwo from "./PageComponents/HeroTwo"
 import ContentWithLogo from "./PageComponents/ContentWithLogo"
+import ContentThreeImages from "./PageComponents/ContentThreeImages"
 import ContentSlider from "./PageComponents/ContentSlider"
 
 const PageComponentGroups = props => {
@@ -21,6 +22,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_ContentWithLogo":
                 return <ContentWithLogo key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_ContentThreeImages":
+                return <ContentThreeImages key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_ContentSlider":
                 return <ContentSlider key={index} data={component} />

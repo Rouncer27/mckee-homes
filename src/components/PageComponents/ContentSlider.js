@@ -33,7 +33,6 @@ const ContentSlider = ({ data }) => {
       <div className="wrapper">
         <Slider {...settings}>
           {data.slides.map((slide, index) => {
-            console.log(slide)
             const imageDisplay = getImage(
               slide.image.localFile.childImageSharp.gatsbyImageData
             )
