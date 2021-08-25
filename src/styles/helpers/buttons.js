@@ -30,6 +30,31 @@ const Btn1Base = css`
   }
 `
 
+export const Btn1Navy = css`
+  ${Btn1Base};
+  background: ${colors.colorPrimary};
+  border: solid 0.2rem ${colors.colorPrimary};
+  color: ${colors.white};
+
+  &:hover {
+    border-color: ${colors.colorSecondary};
+    background: ${colors.colorSecondary};
+    color: ${colors.white};
+  }
+
+  &:focus {
+    outline: 0.4rem solid #003b49;
+    transition: all 0.35s ease-in-out;
+  }
+
+  &:disabled {
+    &:hover {
+      background: ${colors.colorTertiary};
+      color: ${colors.colorPrimary};
+    }
+  }
+`
+
 export const Btn1GreyBlue = css`
   ${Btn1Base};
   background: ${colors.colorTertiary};
