@@ -30,13 +30,14 @@ const Btn1Base = css`
   }
 `
 
-export const Btn1Green = css`
+export const Btn1GreyBlue = css`
   ${Btn1Base};
-  background: ${colors.white};
-  border: solid 0.2rem ${colors.colorSecondary};
-  color: ${colors.colorSecondary};
+  background: ${colors.colorTertiary};
+  border: solid 0.2rem ${colors.colorTertiary};
+  color: ${colors.white};
 
   &:hover {
+    border-color: ${colors.colorSecondary};
     background: ${colors.colorSecondary};
     color: ${colors.white};
   }
