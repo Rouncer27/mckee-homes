@@ -4,7 +4,6 @@ import styled from "styled-components"
 import {
   B1Black,
   Btn1Grey,
-  colors,
   H1Navy,
   H3Grey,
   medWrapper,
@@ -12,7 +11,6 @@ import {
 import { Link } from "gatsby"
 
 const HeroFour = ({ data }) => {
-  console.log("HeroFour: ", data)
   const imageDisplay = getImage(
     data.image.localFile.childImageSharp.gatsbyImageData
   )

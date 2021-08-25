@@ -43,6 +43,11 @@ export const H2White = css`
   color: ${colors.white};
 `
 
+export const H2Black = css`
+  ${H2Base};
+  color: ${colors.colorSecondary};
+`
+
 // Headline Styles #3 //
 export const H3Base = css`
   ${fontSizer(2.2, 2.5, 76.8, 150, 2)}
