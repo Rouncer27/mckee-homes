@@ -169,6 +169,7 @@ export const pageTempQuery = graphql`
             content
             buttonText
             buttonSlug
+            reversed
             image {
               altText
               localFile {
@@ -186,6 +187,7 @@ export const pageTempQuery = graphql`
             content
             buttonText
             buttonSlug
+            reversed
             image {
               altText
               localFile {
