@@ -6,7 +6,6 @@ import { B1Black, H2Navy, medWrapper, Btn1Grey } from "../../styles/helpers"
 import BgPatternOne from "../Graphics/BgPatternOne"
 
 const ContentImage5050 = ({ data }) => {
-  console.log("ContentImage5050: ", data)
   const imageDisplay = getImage(
     data.image.localFile.childImageSharp.gatsbyImageData
   )
