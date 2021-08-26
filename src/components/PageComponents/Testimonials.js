@@ -6,8 +6,6 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
-// import TestimonialsSlider from "./TestimonialsSlider"
-
 const getData = graphql`
   {
     testimonials: allWpTestimonial {
@@ -40,7 +38,6 @@ const settings = {
 const Testimonials = ({ data }) => {
   const testData = useStaticQuery(getData)
   const testimonials = testData.testimonials.edges
-  console.log("Testimonials", testimonials)
 
   if (!data.displayTestimonialSlider) return null
 

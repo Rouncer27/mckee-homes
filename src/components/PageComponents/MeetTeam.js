@@ -1,10 +1,38 @@
 import React from "react"
 import styled from "styled-components"
+import { graphql, useStaticQuery } from "gatsby"
 import { Link } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { B1White, Btn1Grey, colors, medWrapper } from "../../styles/helpers"
 import { H2White } from "../../../../019arbi/src/styles/helpers"
 
+const getData = graphql`
+  {
+    team: allWpOurTeam {
+      edges {
+        node {
+          acfOurTeam {
+            bio
+            department
+            image {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
 const MeetTeam = ({ data }) => {
+  const teamData = useStaticQuery(getData)
+  const team = teamData.team.edges
   if (!data.displayMeetTeam) return null
   return (
     <SectionStyled>
@@ -21,6 +49,27 @@ const MeetTeam = ({ data }) => {
             <Link to={`/${data.buttonSlug}`}>{data.buttonText}</Link>
           </div>
         </div>
+        <div className="team">
+          {team.map((team, index) => {
+            const imageDisplay = getImage(
+              team.node.acfOurTeam.image.localFile.childImageSharp
+                .gatsbyImageData
+            )
+            const imageAlt = team.node.acfOurTeam.image.altText
+            return (
+              <Team key={index}>
+                <div className="image">
+                  <GatsbyImage
+                    image={imageDisplay}
+                    alt={imageAlt}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
+                  />
+                </div>
+              </Team>
+            )
+          })}
+        </div>
       </div>
     </SectionStyled>
   )
@@ -28,7 +77,13 @@ const MeetTeam = ({ data }) => {
 
 const SectionStyled = styled.section`
   padding: 5rem 0;
-  background-color: ${colors.colorPrimary};
+  background: linear-gradient(
+    to bottom,
+    ${colors.colorPrimary} 0%,
+    ${colors.colorPrimary} 80%,
+    #fff 80%,
+    #fff 0%
+  );
 
   .wrapper {
     ${medWrapper};
@@ -65,6 +120,18 @@ const SectionStyled = styled.section`
       }
     }
   }
+
+  .team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5rem;
+  }
+`
+
+const Team = styled.div`
+  width: calc((100% / 4) - 2rem);
+  margin: auto 1rem;
 `
 
 export default MeetTeam
