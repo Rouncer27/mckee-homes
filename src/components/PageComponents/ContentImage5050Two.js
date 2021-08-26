@@ -53,7 +53,7 @@ const SectionStyled = styled.section`
   .wrapper {
     ${medWrapper};
     align-items: center;
-    flex-direction: ${props => (props.reversed ? "row-reverse" : "row")};
+    flex-direction: ${props => (props.reversed ? "row" : "row-reverse")};
   }
 
   .content {
