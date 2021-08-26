@@ -5,7 +5,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { medWrapper } from "../../styles/helpers"
 
 const Logos = ({ data }) => {
-  console.log("Logos", data)
   return (
     <SectionStyled>
       <div className="wrapper">
