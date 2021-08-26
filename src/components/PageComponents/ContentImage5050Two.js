@@ -11,7 +11,6 @@ import {
 } from "../../styles/helpers"
 
 const ContentImage5050Two = ({ data }) => {
-  console.log("ContentImage5050Two: ", data)
   const imageDisplay = getImage(
     data.image.localFile.childImageSharp.gatsbyImageData
   )

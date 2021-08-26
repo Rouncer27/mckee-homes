@@ -5,7 +5,6 @@ import { Btn1GreyBlue, B1White, H2White } from "../../styles/helpers"
 import { Link } from "gatsby"
 
 const HeroThree = ({ data }) => {
-  console.log("HeroThree: ", data)
   const imageDisplay = getImage(
     data.image.localFile.childImageSharp.gatsbyImageData
   )

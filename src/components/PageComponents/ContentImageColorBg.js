@@ -5,8 +5,6 @@ import styled from "styled-components"
 import { B1Black, Btn1Grey, H2Black, medWrapper } from "../../styles/helpers"
 
 const ContentImageColorBg = ({ data }) => {
-  console.log("ContentImageColorBg", data)
-
   const imageTopDisplay = getImage(
     data.imageTop.localFile.childImageSharp.gatsbyImageData
   )

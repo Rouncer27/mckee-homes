@@ -3,16 +3,13 @@ import React from "react"
 import styled from "styled-components"
 import {
   Btn1Grey,
-  H1Navy,
   H2Black,
   H3Black,
-  medWrapper,
   standardWrapper,
 } from "../../styles/helpers"
 import Wysiwyg from "./Wysiwyg"
 
 const WysiwygButton = ({ data }) => {
-  console.log("WysiwygButton: ", data)
   return (
     <SectionStyled>
       <div className="wrapper">

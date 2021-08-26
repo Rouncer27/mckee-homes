@@ -5,7 +5,7 @@ import { B1White, Btn1Grey, colors, medWrapper } from "../../styles/helpers"
 import { H2White } from "../../../../019arbi/src/styles/helpers"
 
 const MeetTeam = ({ data }) => {
-  console.log("MeetTeam", data)
+  if (!data.displayMeetTeam) return null
   return (
     <SectionStyled>
       <div className="wrapper">
