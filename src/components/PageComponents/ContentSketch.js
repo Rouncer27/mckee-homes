@@ -5,7 +5,6 @@ import { medWrapper, H3Black, H2Black } from "../../styles/helpers"
 import HouseBlueprint from "../Images/HouseBlueprint"
 
 const ContentSketch = ({ data }) => {
-  console.log("ContentSketch", data)
   return (
     <ContentSketchSection>
       <div className="wrapper">
@@ -29,7 +28,7 @@ const ContentSketch = ({ data }) => {
 }
 
 const ContentSketchSection = styled.section`
-  padding: 2.5rem 0;
+  padding: 2.5rem 0 0 0;
 
   .wrapper {
     ${medWrapper};
@@ -38,7 +37,6 @@ const ContentSketchSection = styled.section`
   .images {
     position: relative;
     width: calc(10%);
-    height: 50rem;
 
     &__blueprint {
       position: absolute;
