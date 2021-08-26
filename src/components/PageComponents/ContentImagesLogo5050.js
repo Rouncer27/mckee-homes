@@ -4,7 +4,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { medWrapper } from "../../styles/helpers"
 
 const ContentImagesLogo5050 = ({ data }) => {
-  console.log("ContentImagesLogo5050", data)
   const botImg = getImage(
     data.bottomImage.localFile.childImageSharp.gatsbyImageData
   )
