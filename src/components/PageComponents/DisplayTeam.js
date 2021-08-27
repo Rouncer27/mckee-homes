@@ -3,8 +3,7 @@ import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { B2White, colors, medWrapper } from "../../styles/helpers"
-import { B1White } from "../../../../019arbi/src/styles/helpers"
+import { B2White, colors, medWrapper, B1White } from "../../styles/helpers"
 
 const getData = graphql`
   {
