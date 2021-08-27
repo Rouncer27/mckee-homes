@@ -58,6 +58,7 @@ const SubMenu = styled.ul`
   transition: all 0.3s ease-out;
   opacity: ${props => (props.activesub ? 1 : 0)};
   visibility: ${props => (props.activesub ? "visable" : "hidden")};
+  z-index: 10000;
 
   p {
     ${B1Black};

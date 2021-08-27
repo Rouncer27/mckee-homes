@@ -18,7 +18,7 @@ const Building = ({ activesubstate }) => {
       <p>Building With McKee</p>
       <ul>
         <li>
-          <Link to="">
+          <Link to="/building-with-mckee">
             <span className="nav-icon">
               <img src={homeLove} alt="Logo" />
             </span>
@@ -26,7 +26,7 @@ const Building = ({ activesubstate }) => {
           </Link>
         </li>
         <li>
-          <Link to="">
+          <Link to="/building-with-mckee/our-team">
             <span className="nav-icon">
               <img src={homeTeam} alt="Logo" />
             </span>
@@ -101,6 +101,7 @@ const SubMenu = styled.div`
   transition: all 0.3s ease-out;
   opacity: ${props => (props.activesub ? 1 : 0)};
   visibility: ${props => (props.activesub ? "visable" : "hidden")};
+  z-index: 10000;
 
   p {
     ${B1Black};

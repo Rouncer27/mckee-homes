@@ -50,6 +50,7 @@ const SubMenu = styled.div`
   transition: all 0.3s ease-out;
   opacity: ${props => (props.activesub ? 1 : 0)};
   visibility: ${props => (props.activesub ? "visable" : "hidden")};
+  z-index: 10000;
 
   ul {
     position: relative;

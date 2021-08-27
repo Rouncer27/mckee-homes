@@ -51,13 +51,12 @@ const TopNav = () => {
             </Link>
             <Communities activesubstate={communitiesSubActive} />
           </li>
-          <li className="nav-item top-nav-item">
-            <Link
-              onMouseEnter={() => setBuildSubActive(true)}
-              onMouseLeave={() => setBuildSubActive(false)}
-              className="top-nav-item__link"
-              to="/"
-            >
+          <li
+            className="nav-item top-nav-item"
+            onMouseEnter={() => setBuildSubActive(true)}
+            onMouseLeave={() => setBuildSubActive(false)}
+          >
+            <Link className="top-nav-item__link" to="/building-with-mckee">
               Building With McKee
             </Link>
             <Building activesubstate={buildSubActive} />
