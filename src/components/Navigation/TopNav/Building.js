@@ -26,7 +26,7 @@ const Building = ({ activesubstate }) => {
           </Link>
         </li>
         <li>
-          <Link to="/building-with-mckee/our-team">
+          <Link to="/our-team">
             <span className="nav-icon">
               <img src={homeTeam} alt="Logo" />
             </span>

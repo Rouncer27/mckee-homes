@@ -12,6 +12,7 @@ const getData = graphql`
       edges {
         node {
           title
+          slug
           acfOurTeam {
             bio
             department
@@ -59,7 +60,7 @@ const DisplayTeam = ({ data }) => {
                 <h2>{team.node.title}</h2>
                 <h3>{team.node.acfOurTeam.department}</h3>
                 <div className="read-more">
-                  <Link to="/building-with-mckee/our-team">Read More</Link>
+                  <Link to={`/our-team/${team.node.slug}`}>Read More</Link>
                 </div>
               </div>
             </Team>
