@@ -90,6 +90,11 @@ export const H4Grey = css`
   color: ${colors.colorSecondary};
 `
 
+export const H4White = css`
+  ${H4Base};
+  color: ${colors.white};
+`
+
 // Headline Styles #5 //
 export const HCalloutBase = css`
   ${fontSizer(2.4, 3.4, 76.8, 160, 2.2)};

@@ -137,6 +137,22 @@ export const pageTempQuery = graphql`
             }
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_HeroSix {
+            fieldGroupName
+            topTitle
+            mainTitle
+            content
+            image {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 2500)
+                }
+              }
+            }
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentWithImage7525 {
             fieldGroupName
             buttonText
@@ -485,6 +501,25 @@ export const pageTempQuery = graphql`
           ... on WpPage_Acfmaintemplatefields_PageComponents_CustomerStories {
             fieldGroupName
             displayCustomerStories
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_BlueBlockContent {
+            fieldGroupName
+            block {
+              title
+              content
+              buttonText
+              icon {
+                altText
+                sourceUrl
+                localFile {
+                  url
+                  childImageSharp {
+                    gatsbyImageData(width: 1000)
+                  }
+                }
+              }
+            }
           }
         }
       }
