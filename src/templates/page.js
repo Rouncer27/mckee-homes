@@ -472,6 +472,15 @@ export const pageTempQuery = graphql`
             content
             backgroundColour
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_ContentCenterButton {
+            fieldGroupName
+            title
+            content
+            buttonText
+            buttonSlug
+            bottomContent
+          }
         }
       }
     }

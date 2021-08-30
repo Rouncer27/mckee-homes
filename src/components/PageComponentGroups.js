@@ -15,6 +15,7 @@ import ContentSlider from "./PageComponents/ContentSlider"
 import ContentSketch from "./PageComponents/ContentSketch"
 import ContentImagesLogo5050 from "./PageComponents/ContentImagesLogo5050"
 import ContentSimpleTitle from "./PageComponents/ContentSimpleTitle"
+import ContentCenterButton from "./PageComponents/ContentCenterButton"
 import MeetTeam from "./PageComponents/MeetTeam"
 import WysiwygButton from "./PageComponents/WysiwygButton"
 import Logos from "./PageComponents/Logos"
@@ -76,6 +77,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_ContentSimpleTitle":
                 return <ContentSimpleTitle key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_ContentCenterButton":
+                return <ContentCenterButton key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_MeetTeam":
                 return <MeetTeam key={index} data={component} />

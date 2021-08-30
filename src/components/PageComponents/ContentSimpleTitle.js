@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { B1Black, colors, H2Black, standardWrapper } from "../../styles/helpers"
 
 const ContentSimpleTitle = ({ data }) => {
-  console.log("ContentSimpleTitle", data)
   return (
     <StyledSection bgcolor={data.backgroundColour}>
       <div className="wrapper">
