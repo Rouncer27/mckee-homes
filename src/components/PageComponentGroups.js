@@ -20,6 +20,8 @@ import Logos from "./PageComponents/Logos"
 import ContentImageColorBg from "./PageComponents/ContentImageColorBg"
 import Testimonials from "./PageComponents/Testimonials"
 import DisplayTeam from "./PageComponents/DisplayTeam"
+import ThreeImagesContent from "./PageComponents/ThreeImagesContent"
+import ThreeImagesRow from "./PageComponents/ThreeImagesRow"
 
 const PageComponentGroups = props => {
   const { components } = props
@@ -88,6 +90,12 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_DisplayTeam":
                 return <DisplayTeam key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_ThreeImagesContent":
+                return <ThreeImagesContent key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_ThreeImagesRow":
+                return <ThreeImagesRow key={index} data={component} />
 
               default:
                 return (

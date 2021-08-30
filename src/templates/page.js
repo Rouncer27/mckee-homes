@@ -394,6 +394,77 @@ export const pageTempQuery = graphql`
             fieldGroupName
             displayAllTeam
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_ThreeImagesContent {
+            fieldGroupName
+            topTitle
+            imageLeft {
+              altText
+              sourceUrl
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+            imageCenter {
+              altText
+              sourceUrl
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+            imageRight {
+              altText
+              sourceUrl
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+            bottomTitle
+            bottomContent
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_ThreeImagesRow {
+            fieldGroupName
+            imageLeft {
+              altText
+              sourceUrl
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+            imageCenter {
+              altText
+              sourceUrl
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+            imageRight {
+              altText
+              sourceUrl
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+          }
         }
       }
     }
