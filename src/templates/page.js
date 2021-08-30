@@ -481,6 +481,11 @@ export const pageTempQuery = graphql`
             buttonSlug
             bottomContent
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_CustomerStories {
+            fieldGroupName
+            displayCustomerStories
+          }
         }
       }
     }
