@@ -489,6 +489,22 @@ export const pageTempQuery = graphql`
             backgroundColour
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_ContentSimpleTitleIcon {
+            fieldGroupName
+            title
+            content
+            backgroundColour
+            icon {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentCenterButton {
             fieldGroupName
             title
