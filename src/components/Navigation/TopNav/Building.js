@@ -34,7 +34,7 @@ const Building = ({ activesubstate }) => {
           </Link>
         </li>
         <li>
-          <Link to="">
+          <Link to="/">
             <span className="nav-icon">
               <img src={homeNews} alt="Logo" />
             </span>
@@ -52,7 +52,7 @@ const Building = ({ activesubstate }) => {
       </ul>
       <ul>
         <li>
-          <Link to="">
+          <Link to="/">
             <span className="nav-icon">
               <img src={homeBuildings} alt="Logo" />
             </span>
@@ -60,7 +60,7 @@ const Building = ({ activesubstate }) => {
           </Link>
         </li>
         <li>
-          <Link to="">
+          <Link to="/building-futures">
             <span className="nav-icon">
               <img src={homeTools} alt="Logo" />
             </span>
@@ -68,7 +68,7 @@ const Building = ({ activesubstate }) => {
           </Link>
         </li>
         <li>
-          <Link to="">
+          <Link to="/">
             <span className="nav-icon">
               <img src={homeBook} alt="Logo" />
             </span>
@@ -76,7 +76,7 @@ const Building = ({ activesubstate }) => {
           </Link>
         </li>
         <li>
-          <Link to="">
+          <Link to="/">
             <span className="nav-icon">
               <img src={homeLadder} alt="Logo" />
             </span>

@@ -465,6 +465,13 @@ export const pageTempQuery = graphql`
               }
             }
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_ContentSimpleTitle {
+            fieldGroupName
+            title
+            content
+            backgroundColour
+          }
         }
       }
     }
