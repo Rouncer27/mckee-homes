@@ -153,6 +153,22 @@ export const pageTempQuery = graphql`
             }
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_HeroSeven {
+            fieldGroupName
+            topTitle
+            mainTitle
+            content
+            image {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 2500)
+                }
+              }
+            }
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentWithImage7525 {
             fieldGroupName
             buttonText
@@ -409,6 +425,11 @@ export const pageTempQuery = graphql`
           ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayTeam {
             fieldGroupName
             displayAllTeam
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayPosts {
+            fieldGroupName
+            displayPosts
           }
 
           ... on WpPage_Acfmaintemplatefields_PageComponents_ThreeImagesContent {

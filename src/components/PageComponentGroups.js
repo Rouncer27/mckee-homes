@@ -6,6 +6,7 @@ import HeroThree from "./PageComponents/HeroThree"
 import HeroFour from "./PageComponents/HeroFour"
 import HeroFive from "./PageComponents/HeroFive"
 import HeroSix from "./PageComponents/HeroSix"
+import HeroSeven from "./PageComponents/HeroSeven"
 import ContentWithLogo from "./PageComponents/ContentWithLogo"
 import ContentThreeImages from "./PageComponents/ContentThreeImages"
 import ContentImage5050 from "./PageComponents/ContentImage5050"
@@ -24,6 +25,7 @@ import Logos from "./PageComponents/Logos"
 import ContentImageColorBg from "./PageComponents/ContentImageColorBg"
 import Testimonials from "./PageComponents/Testimonials"
 import DisplayTeam from "./PageComponents/DisplayTeam"
+import DisplayPosts from "./PageComponents/DisplayPosts"
 import ThreeImagesContent from "./PageComponents/ThreeImagesContent"
 import ThreeImagesRow from "./PageComponents/ThreeImagesRow"
 import CustomerStories from "./PageComponents/CustomerStories"
@@ -54,6 +56,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_HeroSix":
                 return <HeroSix key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_HeroSeven":
+                return <HeroSeven key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_ContentWithLogo":
                 return <ContentWithLogo key={index} data={component} />
@@ -108,6 +113,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_DisplayTeam":
                 return <DisplayTeam key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_DisplayPosts":
+                return <DisplayPosts key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_ThreeImagesContent":
                 return <ThreeImagesContent key={index} data={component} />
