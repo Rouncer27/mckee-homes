@@ -1,16 +1,13 @@
 import React from "react"
 import styled from "styled-components"
-import { B1Black, H1Navy } from "../../styles/helpers"
+import { B1Black, H1Navy, H3Black } from "../../styles/helpers"
 
 const PostHeader = ({ title, date, categories }) => {
   const options = { year: "numeric", month: "long", day: "numeric" }
   const postDate = new Date(date).toLocaleDateString(undefined, options)
   return (
     <PostHeaderStyled>
-      <h1>{title}</h1>
       <p>
-        <span>{postDate}</span>
-        <span> &gt; </span>
         {categories.nodes.map((cat, index) => {
           return (
             <span key={index}>
@@ -20,21 +17,24 @@ const PostHeader = ({ title, date, categories }) => {
           )
         })}
       </p>
+      <h1>{title}</h1>
     </PostHeaderStyled>
   )
 }
 
 const PostHeaderStyled = styled.header`
   width: 100%;
+  margin-top: 5rem;
   text-align: left;
 
   h1 {
     ${H1Navy};
-    margin-bottom: 1rem;
+    margin: 0;
+    font-weight: 500;
   }
 
   p {
-    ${B1Black};
+    ${H3Black};
     margin: 0;
     text-transform: uppercase;
   }

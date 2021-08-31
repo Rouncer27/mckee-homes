@@ -9,23 +9,46 @@ const PostFeaturedImage = ({ image }) => {
   return (
     <PostFeaturedImageStyled>
       <div className="imageWrap">
-        <GatsbyImage
-          image={imageDisplay}
-          alt={imageAltText ? imageAltText : ""}
-          layout="fixed"
-        />
+        <div className="hero-image">
+          <GatsbyImage
+            image={imageDisplay}
+            alt={imageAltText ? imageAltText : ""}
+            layout="fixed"
+          />
+        </div>
       </div>
     </PostFeaturedImageStyled>
   )
 }
 
 const PostFeaturedImageStyled = styled.div`
-  width: 100%;
-
   .imageWrap {
-    width: 100%;
-    max-width: 70rem;
-    margin: 1rem 0;
+    position: relative;
+    height: 30rem;
+
+    @media (min-width: 768px) {
+      height: 40rem;
+    }
+
+    @media (min-width: 1025px) {
+      height: 47rem;
+    }
+  }
+
+  .hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 101%;
+    height: 100%;
+
+    .gatsby-image-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 `
 

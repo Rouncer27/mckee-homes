@@ -11,13 +11,13 @@ const PostSingle = ({ post, allPosts, prevPost, nextPost }) => {
   return (
     <>
       <PostSingleArticle>
+        <PostFeaturedImage image={post.acfPosts.featuredImage} />
         <div className="wrapper">
           <PostHeader
             title={post.title}
             date={post.date}
             categories={post.categories}
           />
-          <PostFeaturedImage image={post.acfPosts.featuredImage} />
           <PostWysiwyg content={post.acfPosts.article} />
         </div>
       </PostSingleArticle>
