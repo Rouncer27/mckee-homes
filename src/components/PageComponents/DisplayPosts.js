@@ -304,6 +304,14 @@ const DisplayNewsEventsSection = styled.section`
     z-index: 100;
 
     button {
+      ${B2Black};
+      background-color: transparent;
+      border: none;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
     }
   }
 `
