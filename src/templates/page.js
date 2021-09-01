@@ -169,6 +169,52 @@ export const pageTempQuery = graphql`
             }
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_HeroEight {
+            fieldGroupName
+            topTitle
+            mainTitle
+            content
+            image {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 2500)
+                }
+              }
+            }
+
+            smallImageTop {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1500)
+                }
+              }
+            }
+
+            smallImageLeft {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+
+            smallImageRight {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentWithImage7525 {
             fieldGroupName
             buttonText
@@ -430,6 +476,11 @@ export const pageTempQuery = graphql`
           ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayPosts {
             fieldGroupName
             displayPosts
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayHomePlans {
+            fieldGroupName
+            displayHomePlans
           }
 
           ... on WpPage_Acfmaintemplatefields_PageComponents_ThreeImagesContent {

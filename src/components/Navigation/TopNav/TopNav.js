@@ -23,7 +23,7 @@ const TopNav = () => {
             onMouseLeave={() => setHomePlanSubActive(false)}
             className="nav-item top-nav-item"
           >
-            <Link className="top-nav-item__link" to="/">
+            <Link className="top-nav-item__link" to="/home-plans">
               Home Plans
             </Link>
             <HomeTypes activesubstate={homePlanSubActive} title="Home Plans" />
