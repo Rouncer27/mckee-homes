@@ -10,7 +10,7 @@ const HomeDisplay = ({ home }) => {
   )
   const imgAlt = home.acfHomePlans.mainImage.altText
   return (
-    <HomePlanStyled to={`/home-plans`}>
+    <HomePlanStyled to={`/home-plans/${home.slug}`}>
       <div className="image">
         <div className="image__wrap">
           <GatsbyImage

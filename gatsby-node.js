@@ -25,6 +25,16 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
 
+        homes: allWpHomePlan {
+          edges {
+            node {
+              id
+              slug
+              uri
+            }
+          }
+        }
+
         posts: allWpPost {
           edges {
             node {
@@ -70,6 +80,20 @@ exports.createPages = async ({ graphql, actions }) => {
           slug: node.slug,
           next: index === 0 ? null : team[index - 1].node.slug,
           prev: index === team.length - 1 ? null : team[index + 1].node.slug,
+        },
+      })
+    })
+
+    const homes = data.homes.edges
+    homes.forEach(({ node }, index) => {
+      createPage({
+        path: `/home-plans/${node.slug}/`,
+        component: path.resolve("./src/templates/home.js"),
+        context: {
+          id: node.id,
+          slug: node.slug,
+          next: index === 0 ? null : homes[index - 1].node.slug,
+          prev: index === homes.length - 1 ? null : homes[index + 1].node.slug,
         },
       })
     })
