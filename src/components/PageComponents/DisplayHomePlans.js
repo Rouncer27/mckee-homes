@@ -106,8 +106,6 @@ const DisplayHomePlans = ({ data }) => {
   const [sqftFilter, setSqftFilter] = useState(500)
   const [bedroomFilter, setBedroomFilter] = useState([])
 
-  console.log("bedroomFilter: ", bedroomFilter)
-
   return (
     <SectionStyled filteractive={filterActive !== ""}>
       <div className="wrapper-filters">
@@ -134,6 +132,7 @@ const DisplayHomePlans = ({ data }) => {
           let typeMatch = true
           let styleMatch = true
           let communityMatch = true
+          let sqftMatch = true
           let bedroomMatch = true
           console.log("home", home)
 
@@ -165,6 +164,11 @@ const DisplayHomePlans = ({ data }) => {
             })
           }
 
+          // Does this house match the Square Footage filter
+          if (sqftFilter > 500) {
+            sqftMatch = home.node.acfHomePlans.squareFootage >= sqftFilter
+          }
+
           // Does this house match the bedroom filter
           if (bedroomFilter.length > 0) {
             bedroomMatch = bedroomFilter.some(
@@ -173,7 +177,11 @@ const DisplayHomePlans = ({ data }) => {
           }
 
           const displayHome =
-            typeMatch && styleMatch && communityMatch && bedroomMatch
+            typeMatch &&
+            styleMatch &&
+            communityMatch &&
+            bedroomMatch &&
+            sqftMatch
 
           if (!displayHome) return null
           return <HomeDisplay key={home.node.slug} home={home.node} />

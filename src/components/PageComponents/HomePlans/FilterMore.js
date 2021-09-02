@@ -6,6 +6,8 @@ const FilterMore = ({
   filterId,
   setFilterActive,
   filterActive,
+  sqftFilter,
+  setSqftFilter,
   bedroomFilter,
   setBedroomFilter,
 }) => {
@@ -40,38 +42,64 @@ const FilterMore = ({
       </p>
 
       <div className="filter-wrap">
-        <p>Square Feet</p>
+        <div className="sqft-filter">
+          <p>Square Feet</p>
+          <div>
+            <input readOnly type="text" step={500} value={sqftFilter} />
+            <span
+              className={`plus${sqftFilter === 4000 ? " disabled" : ""}`}
+              onClick={() => {
+                if (sqftFilter === 4000) return
+                setSqftFilter(sqftFilter + 500)
+              }}
+            >
+              +
+            </span>
+            <span className="value">{sqftFilter}+</span>
+            <span
+              className={`minus${sqftFilter === 500 ? " disabled" : ""}`}
+              onClick={() => {
+                if (sqftFilter === 500) return
+                setSqftFilter(sqftFilter - 500)
+              }}
+            >
+              -
+            </span>
+          </div>
+        </div>
 
-        <p>Bedrooms</p>
-        <ul className="items">
-          <li value="1">
-            <label>
-              <input onChange={() => handleAddItem("1")} type="checkbox" />1
-              Bedroom
-            </label>
-          </li>
+        <div>
+          <p>Bedrooms</p>
+          <ul className="items">
+            <li value="1">
+              <label>
+                <input onChange={() => handleAddItem("1")} type="checkbox" />1
+                Bedroom
+              </label>
+            </li>
 
-          <li value="2">
-            <label>
-              <input onChange={() => handleAddItem("2")} type="checkbox" />2
-              Bedrooms
-            </label>
-          </li>
+            <li value="2">
+              <label>
+                <input onChange={() => handleAddItem("2")} type="checkbox" />2
+                Bedrooms
+              </label>
+            </li>
 
-          <li value="3">
-            <label>
-              <input onChange={() => handleAddItem("3")} type="checkbox" />3
-              Bedrooms
-            </label>
-          </li>
+            <li value="3">
+              <label>
+                <input onChange={() => handleAddItem("3")} type="checkbox" />3
+                Bedrooms
+              </label>
+            </li>
 
-          <li value="4">
-            <label>
-              <input onChange={() => handleAddItem("4")} type="checkbox" />4
-              Bedrooms
-            </label>
-          </li>
-        </ul>
+            <li value="4">
+              <label>
+                <input onChange={() => handleAddItem("4")} type="checkbox" />4
+                Bedrooms
+              </label>
+            </li>
+          </ul>
+        </div>
       </div>
     </DivStyled>
   )
@@ -81,6 +109,49 @@ const DivStyled = styled.div`
   position: relative;
   width: 20rem;
   border: solid 0.2rem ${colors.colorAccent};
+
+  .sqft-filter {
+    margin-bottom: 2.5rem;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      top: -200%;
+      right: -999999999%;
+    }
+
+    .value {
+      ${B1Black};
+    }
+
+    .plus,
+    .minus {
+      display: inline-block;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      border: 1px solid #000;
+      background: #154290;
+      color: #fff;
+      cursor: pointer;
+      text-align: center;
+      padding: 4px 0px 0px 2px;
+      transition: opacity 0.35s;
+    }
+
+    .plus {
+      margin-right: 2rem;
+    }
+
+    .minus {
+      margin-left: 2rem;
+    }
+
+    .disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
 
   p {
     ${B1Black};

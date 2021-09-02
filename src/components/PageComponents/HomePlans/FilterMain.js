@@ -16,6 +16,8 @@ const FilterMain = ({
   communities,
   communityFilter,
   setCommunityFilter,
+  sqftFilter,
+  setSqftFilter,
   bedroomFilter,
   setBedroomFilter,
 }) => {
@@ -52,6 +54,8 @@ const FilterMain = ({
         filterId="filterMore"
         filterActive={filterActive === "filterMore"}
         setFilterActive={setFilterActive}
+        sqftFilter={sqftFilter}
+        setSqftFilter={setSqftFilter}
         bedroomFilter={bedroomFilter}
         setBedroomFilter={setBedroomFilter}
       />
