@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 
 import FilterMain from "./HomePlans/FilterMain"
+import HomeDisplay from "./HomePlans/HomeDisplay"
 
 import { medWrapper } from "../../styles/helpers"
 
@@ -17,6 +18,15 @@ const getData = graphql`
             squareFootage
             numberOfBedrooms
             numberOfBathrooms
+            mainImage {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1500)
+                }
+              }
+            }
           }
           homeStyles {
             nodes {
@@ -143,14 +153,7 @@ const DisplayHomePlans = ({ data }) => {
           const displayHome = typeMatch && styleMatch && communityMatch
 
           if (!displayHome) return null
-
-          return (
-            <HomePlanStyled key={home.node.slug}>
-              <div>
-                <h2>{home.node.title}</h2>
-              </div>
-            </HomePlanStyled>
-          )
+          return <HomeDisplay key={home.node.slug} home={home.node} />
         })}
       </div>
     </SectionStyled>
@@ -160,12 +163,8 @@ const DisplayHomePlans = ({ data }) => {
 const SectionStyled = styled.section`
   .wrapper {
     ${medWrapper};
+    justify-content: flex-start;
   }
-`
-
-const HomePlanStyled = styled.div`
-  width: 100%;
-  margin-bottom: 5rem;
 `
 
 export default DisplayHomePlans
