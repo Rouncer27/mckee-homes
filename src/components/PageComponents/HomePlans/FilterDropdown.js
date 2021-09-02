@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { B1Base, B2Black } from "../../../styles/helpers"
+import { B1Base, B2Black, colors } from "../../../styles/helpers"
 
 const FilterDropDown = ({
   filterId,
@@ -80,12 +80,15 @@ const FilterStyled = styled.div`
   display: block;
   width: 20rem;
   position: relative;
+  margin-right: 0.5rem;
+  border: solid 0.2rem ${colors.colorAccent};
 
   .anchor {
     ${B1Base};
     display: block;
     position: relative;
     padding: 0.5rem 5rem 0.5rem 1rem;
+    background-color: #fff;
     cursor: pointer;
   }
 

@@ -103,10 +103,14 @@ const DisplayHomePlans = ({ data }) => {
   const [homeTypesFilter, setHomeTypesFilter] = useState([])
   const [homeStylesFilter, setHomeStylesFilter] = useState([])
   const [communityFilter, setCommunityFilter] = useState([])
+  const [sqftFilter, setSqftFilter] = useState(500)
+  const [bedroomFilter, setBedroomFilter] = useState([])
+
+  console.log("bedroomFilter: ", bedroomFilter)
 
   return (
-    <SectionStyled>
-      <div className="wrapper">
+    <SectionStyled filteractive={filterActive !== ""}>
+      <div className="wrapper-filters">
         <FilterMain
           filterActive={filterActive}
           setFilterActive={setFilterActive}
@@ -119,13 +123,21 @@ const DisplayHomePlans = ({ data }) => {
           communities={communities}
           communityFilter={communityFilter}
           setCommunityFilter={setCommunityFilter}
+          sqftFilter={sqftFilter}
+          setSqftFilter={setSqftFilter}
+          bedroomFilter={bedroomFilter}
+          setBedroomFilter={setBedroomFilter}
         />
+      </div>
+      <div className="wrapper">
         {homePlans.map(home => {
           let typeMatch = true
           let styleMatch = true
           let communityMatch = true
+          let bedroomMatch = true
           console.log("home", home)
 
+          // Does this home match the home types filter?
           if (homeTypesFilter.length > 0) {
             typeMatch = homeTypesFilter.some(type => {
               const matchFound = home.node.homeTypes.nodes.find(
@@ -134,7 +146,7 @@ const DisplayHomePlans = ({ data }) => {
               if (matchFound !== undefined) return true
             })
           }
-
+          // Does this home match the home styles filter?
           if (homeStylesFilter.length > 0) {
             styleMatch = homeStylesFilter.some(style => {
               const matchFound = home.node.homeStyles.nodes.find(
@@ -143,7 +155,7 @@ const DisplayHomePlans = ({ data }) => {
               if (matchFound !== undefined) return true
             })
           }
-
+          // Does this home match the communities filter?
           if (communityFilter.length > 0) {
             communityMatch = communityFilter.some(community => {
               const matchFound = home.node.communities.nodes.find(
@@ -153,20 +165,51 @@ const DisplayHomePlans = ({ data }) => {
             })
           }
 
-          const displayHome = typeMatch && styleMatch && communityMatch
+          // Does this house match the bedroom filter
+          if (bedroomFilter.length > 0) {
+            bedroomMatch = bedroomFilter.some(
+              bedrooms => bedrooms === home.node.acfHomePlans.numberOfBedrooms
+            )
+          }
+
+          const displayHome =
+            typeMatch && styleMatch && communityMatch && bedroomMatch
 
           if (!displayHome) return null
           return <HomeDisplay key={home.node.slug} home={home.node} />
         })}
       </div>
+      <div className="filters-background" onClick={() => setFilterActive("")} />
     </SectionStyled>
   )
 }
 
 const SectionStyled = styled.section`
+  ${props => console.log(props)};
   .wrapper {
     ${medWrapper};
+    position: relative;
     justify-content: flex-start;
+  }
+
+  .wrapper-filters {
+    ${medWrapper};
+    position: relative;
+    justify-content: flex-start;
+    z-index: 9999999;
+  }
+
+  .filters-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #154290;
+    transition: all 0.2s ease-out;
+    opacity: ${props => (props.filteractive ? 0.75 : 0)};
+    visibility: ${props => (props.filteractive ? "visible" : "hidden")};
+    z-index: 999999;
   }
 `
 

@@ -16,6 +16,8 @@ const FilterMain = ({
   communities,
   communityFilter,
   setCommunityFilter,
+  bedroomFilter,
+  setBedroomFilter,
 }) => {
   return (
     <DivStyled>
@@ -50,6 +52,8 @@ const FilterMain = ({
         filterId="filterMore"
         filterActive={filterActive === "filterMore"}
         setFilterActive={setFilterActive}
+        bedroomFilter={bedroomFilter}
+        setBedroomFilter={setBedroomFilter}
       />
     </DivStyled>
   )
