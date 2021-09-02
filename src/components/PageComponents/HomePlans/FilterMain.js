@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import FilterDropDown from "./FilterDropDown"
+import FilterDropdown from "./FilterDropdown"
 import FilterMore from "./FilterMore"
 
 const FilterMain = ({
@@ -19,7 +19,7 @@ const FilterMain = ({
 }) => {
   return (
     <DivStyled>
-      <FilterDropDown
+      <FilterDropdown
         filterId="homeTypes"
         filterActive={filterActive === "homeTypes"}
         setFilterActive={setFilterActive}
@@ -28,7 +28,7 @@ const FilterMain = ({
         itemsSelected={homeTypesFilter}
         setItemsSelected={setHomeTypesFilter}
       />
-      <FilterDropDown
+      <FilterDropdown
         filterId="homeStyles"
         filterActive={filterActive === "homeStyles"}
         setFilterActive={setFilterActive}
@@ -37,7 +37,7 @@ const FilterMain = ({
         itemsSelected={homeStylesFilter}
         setItemsSelected={setHomeStylesFilter}
       />
-      <FilterDropDown
+      <FilterDropdown
         filterId="homeCommunities"
         filterActive={filterActive === "homeCommunities"}
         setFilterActive={setFilterActive}
