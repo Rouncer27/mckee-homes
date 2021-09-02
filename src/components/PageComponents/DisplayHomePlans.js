@@ -98,7 +98,8 @@ const DisplayHomePlans = ({ data }) => {
   const homeTypes = allData.homeTypes.edges
   const homeStyles = allData.homeStyles.edges
   const communities = allData.communities.edges
-  // Load up the filters. //
+  // Load up the filters states. //
+  const [filterActive, setFilterActive] = useState("")
   const [homeTypesFilter, setHomeTypesFilter] = useState([])
   const [homeStylesFilter, setHomeStylesFilter] = useState([])
   const [communityFilter, setCommunityFilter] = useState([])
@@ -107,6 +108,8 @@ const DisplayHomePlans = ({ data }) => {
     <SectionStyled>
       <div className="wrapper">
         <FilterMain
+          filterActive={filterActive}
+          setFilterActive={setFilterActive}
           homeTypes={homeTypes}
           homeTypesFilter={homeTypesFilter}
           setHomeTypesFilter={setHomeTypesFilter}

@@ -1,16 +1,16 @@
-import React, { useRef, useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import { B1Base, B2Black } from "../../../styles/helpers"
 
 const FilterDropDown = ({
+  filterId,
+  filterActive,
+  setFilterActive,
   title,
   options,
   itemsSelected,
   setItemsSelected,
 }) => {
-  const checkList = useRef()
-  const [dropdownActive, setDropdownActive] = useState(false)
-
   const handleAddItem = slug => {
     // Copy the state so we can safly chage it.
     const copyArray = [...itemsSelected]
@@ -29,13 +29,15 @@ const FilterDropDown = ({
   }
 
   return (
-    <FilterStyled
-      ref={checkList}
-      className={`dropdown-check-list${dropdownActive ? " visible" : ""}`}
-    >
+    <FilterStyled className={`dropdown-check-list`} filteractive={filterActive}>
       <span
-        onClick={() => setDropdownActive(!dropdownActive)}
         className="anchor"
+        onClick={() => {
+          if (filterActive) {
+            return setFilterActive("")
+          }
+          return setFilterActive(filterId)
+        }}
       >
         {title}:
       </span>
@@ -118,8 +120,8 @@ const FilterStyled = styled.div`
     transition: 0.4s all ease-out;
     border: 0.1rem solid #c7b2a1;
     background-color: #efefef;
-    opacity: 0;
-    visibility: hidden;
+    opacity: ${props => (props.filteractive ? 1 : 0)};
+    visibility: ${props => (props.filteractive ? "visible" : "hidden")};
     z-index: 10000;
   }
 
@@ -133,11 +135,6 @@ const FilterStyled = styled.div`
 
   &.visible .anchor {
     font-weight: bold;
-  }
-
-  &.visible .items {
-    opacity: 1;
-    visibility: visible;
   }
 `
 
