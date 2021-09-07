@@ -35,11 +35,58 @@ export const query = graphql`
             publicURL
           }
         }
+        gallery {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 2000)
+            }
+          }
+        }
         mainImage {
           altText
           localFile {
             childImageSharp {
               gatsbyImageData(width: 2000)
+            }
+          }
+        }
+
+        salesPersonName
+        salesPersonPhone
+        salesPersonEmail
+        salesPersonCell
+        googleMapLink
+        showHomeHours
+        salesPersonImage {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 1000)
+            }
+          }
+        }
+
+        floorPlanImage {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 1500)
+            }
+          }
+        }
+      }
+
+      communities {
+        nodes {
+          acfCommunities {
+            logo {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
             }
           }
         }
