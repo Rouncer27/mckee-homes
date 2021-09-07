@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import FilterMain from "./HomePlans/FilterMain"
 import HomeDisplay from "./HomePlans/HomeDisplay"
 
-import { medWrapper } from "../../styles/helpers"
+import { B1Black, colors, medWrapper } from "../../styles/helpers"
 
 const getData = graphql`
   {
@@ -109,23 +109,28 @@ const DisplayHomePlans = ({ data }) => {
   return (
     <SectionStyled filteractive={filterActive !== ""}>
       <div className="wrapper-filters">
-        <FilterMain
-          filterActive={filterActive}
-          setFilterActive={setFilterActive}
-          homeTypes={homeTypes}
-          homeTypesFilter={homeTypesFilter}
-          setHomeTypesFilter={setHomeTypesFilter}
-          homeStyles={homeStyles}
-          homeStylesFilter={homeStylesFilter}
-          setHomeStylesFilter={setHomeStylesFilter}
-          communities={communities}
-          communityFilter={communityFilter}
-          setCommunityFilter={setCommunityFilter}
-          sqftFilter={sqftFilter}
-          setSqftFilter={setSqftFilter}
-          bedroomFilter={bedroomFilter}
-          setBedroomFilter={setBedroomFilter}
-        />
+        <div className="title">
+          <h3>Expore By Filters:</h3>
+        </div>
+        <div className="filter">
+          <FilterMain
+            filterActive={filterActive}
+            setFilterActive={setFilterActive}
+            homeTypes={homeTypes}
+            homeTypesFilter={homeTypesFilter}
+            setHomeTypesFilter={setHomeTypesFilter}
+            homeStyles={homeStyles}
+            homeStylesFilter={homeStylesFilter}
+            setHomeStylesFilter={setHomeStylesFilter}
+            communities={communities}
+            communityFilter={communityFilter}
+            setCommunityFilter={setCommunityFilter}
+            sqftFilter={sqftFilter}
+            setSqftFilter={setSqftFilter}
+            bedroomFilter={bedroomFilter}
+            setBedroomFilter={setBedroomFilter}
+          />
+        </div>
       </div>
       <div className="wrapper">
         {homePlans.map(home => {
@@ -205,6 +210,24 @@ const SectionStyled = styled.section`
     position: relative;
     justify-content: flex-start;
     z-index: 9999999;
+
+    .title {
+      width: 100%;
+      margin-bottom: 2rem;
+      padding: 0 4rem 1.5rem;
+      border-bottom: solid 0.3rem ${colors.colorTertiary};
+
+      h3 {
+        ${B1Black};
+        margin: 0;
+        text-transform: uppercase;
+      }
+    }
+
+    .filter {
+      width: 100%;
+      padding: 0 4rem;
+    }
   }
 
   .filters-background {

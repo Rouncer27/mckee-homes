@@ -17,6 +17,12 @@ export const B1Black = css`
   ${B1Base};
   color: ${colors.black};
 `
+
+export const B1Grey = css`
+  ${B1Base};
+  color: ${colors.colorSecondary};
+`
+
 export const B1White = css`
   ${B1Base};
   color: ${colors.white};
@@ -37,6 +43,12 @@ export const B2Black = css`
   ${B2Base};
   color: ${colors.black};
 `
+
+export const B2Grey = css`
+  ${B2Base};
+  color: ${colors.colorSecondary};
+`
+
 export const B2White = css`
   ${B2Base};
   color: ${colors.white};

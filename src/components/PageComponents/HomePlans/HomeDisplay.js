@@ -2,7 +2,11 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { B1Black, B2Black, colors, H4Navy } from "../../../styles/helpers"
+import { B1Grey, colors, H4Navy, B2Grey } from "../../../styles/helpers"
+
+import sqft from "../../../images/icons/sqft.png"
+import bed from "../../../images/icons/bed.png"
+import bath from "../../../images/icons/bath.png"
 
 const HomeDisplay = ({ home }) => {
   const imgSrc = getImage(
@@ -27,19 +31,31 @@ const HomeDisplay = ({ home }) => {
         </div>
         <div className="content__details">
           <p>
-            <span></span>
-            {home.acfHomePlans.squareFootage} <br />
-            SQFT
+            <span className="icon icon-sqft">
+              <img src={sqft} alt="Logo" />
+            </span>
+            <span>
+              {home.acfHomePlans.squareFootage} <br />
+              SQFT
+            </span>
           </p>
           <p>
-            <span></span>
-            {home.acfHomePlans.numberOfBedrooms} <br />
-            BEDROOM
+            <span className="icon icon-bed">
+              <img src={bed} alt="Logo" />
+            </span>
+            <span>
+              {home.acfHomePlans.numberOfBedrooms} <br />
+              BEDROOM
+            </span>
           </p>
           <p>
-            <span></span>
-            {home.acfHomePlans.numberOfBathrooms} <br />
-            BATHROOM
+            <span className="icon icon-bath">
+              <img src={bath} alt="Logo" />
+            </span>
+            <span>
+              {home.acfHomePlans.numberOfBathrooms} <br />
+              BATHROOM
+            </span>
           </p>
         </div>
         <div className="content__type">
@@ -111,6 +127,8 @@ const HomePlanStyled = styled(Link)`
     &__title {
       h2 {
         ${H4Navy};
+        margin-bottom: 2rem;
+        font-weight: bold;
       }
     }
 
@@ -118,9 +136,13 @@ const HomePlanStyled = styled(Link)`
       display: flex;
 
       p {
-        ${B2Black};
+        ${B2Grey};
+        width: 100%;
+        display: flex;
+        align-items: center;
         padding: 0 1rem;
         border-right: 0.1rem solid ${colors.colorAlt};
+        line-height: 1;
 
         &:first-of-type {
           padding-left: 0;
@@ -129,12 +151,18 @@ const HomePlanStyled = styled(Link)`
         &:last-of-type {
           border-right: none;
         }
+
+        .icon {
+          display: inline-block;
+          width: 2.5rem;
+          margin-right: 1rem;
+        }
       }
     }
 
     &__type {
       p {
-        ${B1Black};
+        ${B1Grey};
         margin: 0;
       }
     }
