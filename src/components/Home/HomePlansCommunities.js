@@ -1,0 +1,76 @@
+import React from "react"
+import styled from "styled-components"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import {
+  B2Black,
+  Btn1Grey,
+  Btn1Navy,
+  colors,
+  standardWrapper,
+  B1Black,
+} from "../../styles/helpers"
+
+const HomePlansCommunities = ({ communities }) => {
+  return (
+    <SectionStyled>
+      <div className="wrapper-communities">
+        <div className="wrapper-communities__title">
+          <h2>Available In These Communities</h2>
+        </div>
+        <div className="wrapper-communities__logos">
+          {communities.map(community => {
+            const logoImg = getImage(
+              community.acfCommunities.logo.localFile.childImageSharp
+                .gatsbyImageData
+            )
+            const logoImgAlt = community.acfCommunities.logo.altText
+            return (
+              <div className="wrapper-communities__logos--logo">
+                <GatsbyImage
+                  image={logoImg}
+                  alt={logoImgAlt}
+                  layout="fullWidth"
+                  formats={["auto", "webp", "avif"]}
+                />
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </SectionStyled>
+  )
+}
+
+const SectionStyled = styled.section`
+  .wrapper-communities {
+    ${standardWrapper};
+
+    &__title {
+      width: 100%;
+      margin-bottom: 3rem;
+      padding-top: 5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 0.25rem solid ${colors.colorTertiary};
+
+      h2 {
+        ${B1Black};
+        margin: 0;
+      }
+    }
+
+    &__logos {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      width: 100%;
+
+      &--logo {
+        width: calc((100% / 7) - 2rem);
+        margin-right: 2rem;
+      }
+    }
+  }
+`
+
+export default HomePlansCommunities
