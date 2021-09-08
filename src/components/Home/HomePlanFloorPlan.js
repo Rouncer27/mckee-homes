@@ -3,12 +3,14 @@ import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import {
   B2Black,
+  B1White,
   B2Grey,
   Btn1Grey,
   colors,
   H1Navy,
   standardWrapper,
 } from "../../styles/helpers"
+import { Link } from "gatsby"
 
 const HomePlanFloorPlan = ({ home }) => {
   const floorImg = getImage(
@@ -17,6 +19,9 @@ const HomePlanFloorPlan = ({ home }) => {
   const floorImgAlt = home.acfHomePlans.floorPlanImage.altText
   return (
     <SectionStyled>
+      <div className="back-btn">
+        <Link to="/home-plans">Back To Listings</Link>
+      </div>
       <div className="floorplan-wrapper">
         <div className="floorplan-wrapper__inner">
           <div className="floorplan-wrapper__title">
@@ -57,6 +62,17 @@ const HomePlanFloorPlan = ({ home }) => {
 }
 
 const SectionStyled = styled.section`
+  .back-btn {
+    padding: 4.5rem 2rem;
+    background-color: #a5b6ba;
+    text-align: center;
+    text-transform: uppercase;
+
+    a {
+      ${B1White};
+    }
+  }
+
   .floorplan-wrapper {
     background-color: #efefef;
 
