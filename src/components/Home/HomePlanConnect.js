@@ -9,11 +9,18 @@ import {
   B1Black,
 } from "../../styles/helpers"
 
-const HomePlanConnect = ({ home }) => {
-  const salesImg = getImage(
-    home.acfHomePlans.salesPersonImage.localFile.childImageSharp.gatsbyImageData
-  )
-  const salesImgAlt = home.acfHomePlans.salesPersonImage.altText
+const HomePlanConnect = ({
+  salesImg,
+  salesImgAlt,
+  salesPersonName,
+  salesPersonEmail,
+  salesPersonCell,
+  showHomeHours,
+  salesPersonPhone,
+  googleMapLink,
+}) => {
+  const displayImage = getImage(salesImg)
+
   return (
     <SectionStyled>
       <div className="connect-wrapper">
@@ -26,51 +33,38 @@ const HomePlanConnect = ({ home }) => {
             <div className="connect-wrapper__content--sales">
               <div className="image">
                 <GatsbyImage
-                  image={salesImg}
+                  image={displayImage}
                   alt={salesImgAlt}
                   layout="fullWidth"
                   formats={["auto", "webp", "avif"]}
                 />
               </div>
               <div className="contact">
-                <p className="sales-name">
-                  {home.acfHomePlans.salesPersonName}
-                </p>
+                <p className="sales-name">{salesPersonName}</p>
                 <p>
-                  <a href={`mailto:${home.acfHomePlans.salesPersonEmail}`}>
-                    {home.acfHomePlans.salesPersonEmail}
-                  </a>
+                  <a href={`mailto:${salesPersonEmail}`}>{salesPersonEmail}</a>
                 </p>
                 <p>
                   T:{" "}
-                  <a href={`tel:+1${home.acfHomePlans.salesPersonPhone}`}>
-                    {home.acfHomePlans.salesPersonPhone}
-                  </a>
+                  <a href={`tel:+1${salesPersonPhone}`}>{salesPersonPhone}</a>
                 </p>
                 <p>
-                  C:{" "}
-                  <a href={`tel:+1${home.acfHomePlans.salesPersonCell}`}>
-                    {home.acfHomePlans.salesPersonCell}
-                  </a>
+                  C: <a href={`tel:+1${salesPersonCell}`}>{salesPersonCell}</a>
                 </p>
 
                 <div className="sales-btn">
-                  <a href={`mailto:${home.acfHomePlans.salesPersonEmail}`}>
-                    Email Sales Person
-                  </a>
+                  <a href={`mailto:${salesPersonEmail}`}>Email Sales Person</a>
                 </div>
               </div>
             </div>
             <div className="connect-wrapper__content--hours">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: home.acfHomePlans.showHomeHours,
+                  __html: showHomeHours,
                 }}
               />
               <div className="directions-btn">
-                <a href={`mailto:${home.acfHomePlans.salesPersonEmail}`}>
-                  Email Sales Person
-                </a>
+                <a href={`mailto:${googleMapLink}`}>Directions To Show Home</a>
               </div>
             </div>
           </div>

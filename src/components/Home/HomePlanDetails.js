@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { colors, standardWrapper, B1Black } from "../../styles/helpers"
 
-const HomePlanDetails = ({ home }) => {
+const HomePlanDetails = ({ details }) => {
   return (
     <SectionStyled>
       <div className="wrapper-details">
@@ -11,7 +11,7 @@ const HomePlanDetails = ({ home }) => {
         </div>
         <div
           className="wrapper-details__content"
-          dangerouslySetInnerHTML={{ __html: home.acfHomePlans.details }}
+          dangerouslySetInnerHTML={{ __html: details }}
         />
       </div>
     </SectionStyled>

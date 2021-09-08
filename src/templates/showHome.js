@@ -2,28 +2,29 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
-import HomePlan from "../components/Home/HomePlan"
+import ShowHome from "../components/Home/ShowHome"
 
-const home = props => {
-  const { home, allHomePlans } = props.data
+const showHome = props => {
+  const { showHome, allWpShowHome } = props.data
   const prevPlan = props.pageContext.prev
   const nextPlan = props.pageContext.next
-
   return (
-    <Layout>
-      <HomePlan home={home} />
-    </Layout>
+    <div>
+      <Layout>
+        <ShowHome home={showHome} />
+      </Layout>
+    </div>
   )
 }
 
 export const query = graphql`
-  query homePlanQuery($slug: String!) {
-    home: wpHomePlan(slug: { eq: $slug }) {
+  query showHomePlanQuery($slug: String!) {
+    showHome: wpShowHome(slug: { eq: $slug }) {
       title
       id
       date
       slug
-      acfHomePlans {
+      acfShowHomes {
         details
         numberOfBathrooms
         numberOfBedrooms
@@ -60,25 +61,25 @@ export const query = graphql`
             }
           }
         }
-      }
 
-      communities {
-        nodes {
-          acfCommunities {
-            logo {
-              altText
-              localFile {
-                childImageSharp {
-                  gatsbyImageData(width: 1000)
-                }
-              }
+        salesPersonName
+        salesPersonPhone
+        salesPersonEmail
+        salesPersonCell
+        googleMapLink
+        showHomeHours
+        salesPersonImage {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 1000)
             }
           }
         }
       }
     }
 
-    allHomePlans: allWpHomePlan {
+    allWpShowHome: allWpShowHome {
       edges {
         node {
           title
@@ -89,4 +90,4 @@ export const query = graphql`
   }
 `
 
-export default home
+export default showHome

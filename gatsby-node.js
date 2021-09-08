@@ -35,6 +35,16 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
 
+        showHomes: allWpShowHome {
+          edges {
+            node {
+              id
+              slug
+              uri
+            }
+          }
+        }
+
         posts: allWpPost {
           edges {
             node {
@@ -94,6 +104,23 @@ exports.createPages = async ({ graphql, actions }) => {
           slug: node.slug,
           next: index === 0 ? null : homes[index - 1].node.slug,
           prev: index === homes.length - 1 ? null : homes[index + 1].node.slug,
+        },
+      })
+    })
+
+    const showHomes = data.showHomes.edges
+    showHomes.forEach(({ node }, index) => {
+      createPage({
+        path: `/show-homes/${node.slug}/`,
+        component: path.resolve("./src/templates/showHome.js"),
+        context: {
+          id: node.id,
+          slug: node.slug,
+          next: index === 0 ? null : showHomes[index - 1].node.slug,
+          prev:
+            index === showHomes.length - 1
+              ? null
+              : showHomes[index + 1].node.slug,
         },
       })
     })

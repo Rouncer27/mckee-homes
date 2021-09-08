@@ -10,29 +10,22 @@ import {
   H1Navy,
   standardWrapper,
 } from "../../styles/helpers"
-import { Link } from "gatsby"
 
-const HomePlanFloorPlan = ({ home }) => {
-  const floorImg = getImage(
-    home.acfHomePlans.floorPlanImage.localFile?.childImageSharp?.gatsbyImageData
-  )
-  const floorImgAlt = home.acfHomePlans.floorPlanImage.altText
+const HomePlanFloorPlan = ({ floorImg, floorImgAlt, floorPlanPdf, title }) => {
+  const displayImg = getImage(floorImg)
   return (
     <SectionStyled>
-      <div className="back-btn">
-        <Link to="/home-plans">Back To Listings</Link>
-      </div>
       <div className="floorplan-wrapper">
         <div className="floorplan-wrapper__inner">
           <div className="floorplan-wrapper__title">
             <h2>Floor Plan</h2>
           </div>
           <div className="floorplan-wrapper__plan">
-            <p>{home.title}</p>
+            <p>{title}</p>
 
             <div className="floorplan-wrapper__plan--image">
               <GatsbyImage
-                image={floorImg}
+                image={displayImg}
                 alt={floorImgAlt}
                 layout="fullWidth"
                 formats={["auto", "webp", "avif"]}
@@ -44,7 +37,7 @@ const HomePlanFloorPlan = ({ home }) => {
               className="floorplan-wrapper__like--download"
               target="_blank"
               rel="noreferrer"
-              href={home.acfHomePlans.floorPlanPdf.localFile.publicURL}
+              href={floorPlanPdf}
             >
               Download Floor Plan
             </a>
@@ -62,17 +55,6 @@ const HomePlanFloorPlan = ({ home }) => {
 }
 
 const SectionStyled = styled.section`
-  .back-btn {
-    padding: 4.5rem 2rem;
-    background-color: #a5b6ba;
-    text-align: center;
-    text-transform: uppercase;
-
-    a {
-      ${B1White};
-    }
-  }
-
   .floorplan-wrapper {
     background-color: #efefef;
 

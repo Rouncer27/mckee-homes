@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
+import { Link } from "gatsby"
 import {
   B1White,
   B2White,
@@ -180,12 +181,26 @@ const MoreInformation = () => {
           </form>
         </div>
       </div>
+      <div className="back-btn">
+        <Link to="/home-plans">Back To Listings</Link>
+      </div>
     </SectionStyled>
   )
 }
 
 const SectionStyled = styled.div`
   background-color: ${colors.colorPrimary};
+
+  .back-btn {
+    padding: 4.5rem 2rem;
+    background-color: #a5b6ba;
+    text-align: center;
+    text-transform: uppercase;
+
+    a {
+      ${B1White};
+    }
+  }
 
   .wrapper {
     ${standardWrapper};

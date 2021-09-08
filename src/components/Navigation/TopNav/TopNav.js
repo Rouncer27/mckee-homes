@@ -66,7 +66,7 @@ const TopNav = () => {
             onMouseLeave={() => setShowSubActive(false)}
             className="nav-item top-nav-item"
           >
-            <Link className="top-nav-item__link" to="/">
+            <Link className="top-nav-item__link" to="/show-homes">
               Visit A Show Home
             </Link>
             <HomeTypes activesubstate={showSubActive} title="Show Homes" />
