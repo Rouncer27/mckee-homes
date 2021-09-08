@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef } from "react"
 import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
@@ -29,26 +29,6 @@ const HomePlanGallery = ({ gallery }) => {
   const [lightboxActive, setLightboxActive] = useState(false)
   const [indexActive, setIndexActive] = useState(0)
 
-  let settingslightbox = {
-    initialSlide: 0,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    fade: true,
-    draggable: true,
-    infinite: true,
-    speed: 500,
-    autoplay: false,
-    autoplaySpeed: 15000,
-    centerPadding: "0",
-    centerMode: false,
-    arrows: true,
-    dots: false,
-  }
-
-  useEffect(() => {
-    console.log("slickSlider", slickSlider.current.innerSlider)
-  }, [])
-
   const handleSetLightboxActive = event => {
     const currentSlideIndex = event.target.classList.contains("slick-slide")
       ? event.target.dataset.index
@@ -75,19 +55,10 @@ const HomePlanGallery = ({ gallery }) => {
       : 1
 
     setIndexActive(currentSlideIndex)
-
-    console.log(currentSlideIndex)
-
-    console.dir(
-      event.target.parentElement.parentElement.parentElement.parentElement
-        .parentElement
-    )
-
     setLightboxActive(!lightboxActive)
   }
 
   const handleCloseLightBox = () => {
-    console.log("CLOSED THE LIGHTBOX!!!")
     setLightboxActive(false)
   }
 
