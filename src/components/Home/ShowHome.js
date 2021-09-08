@@ -1,5 +1,6 @@
 import React from "react"
 
+import ShowHomeHeader from "./ShowHomeHeader"
 import HomePlanDetails from "./HomePlanDetails"
 import HomePlanGallery from "./HomePlanGallery"
 import HomePlanConnect from "./HomePlanConnect"
@@ -9,6 +10,7 @@ import HomePlanFloorPlan from "./HomePlanFloorPlan"
 const ShowHome = ({ home }) => {
   return (
     <article>
+      <ShowHomeHeader home={home} />
       <HomePlanDetails details={home.acfShowHomes.details} />
       <HomePlanGallery gallery={home.acfShowHomes.gallery} />
       <HomePlanConnect
