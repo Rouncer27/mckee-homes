@@ -33,10 +33,7 @@ const HomePlanLightbox = ({
   }, [lightboxActive])
 
   return (
-    <LightboxStyled
-      onClick={() => handleCloseLightBox()}
-      lightboxactive={lightboxActive}
-    >
+    <LightboxStyled lightboxactive={lightboxActive}>
       <div className="wrapper">
         <Slider ref={lightboxSlider} {...settings}>
           {gallery.map(gal => {
@@ -49,13 +46,16 @@ const HomePlanLightbox = ({
                 <GatsbyImage
                   image={galImg}
                   alt={galImgAlt}
-                  layout="fullWidth"
+                  layout="constrained"
                   formats={["auto", "webp", "avif"]}
                 />
               </div>
             )
           })}
         </Slider>
+      </div>
+      <div className="btn-close">
+        <button onClick={() => handleCloseLightBox()}>Close</button>
       </div>
     </LightboxStyled>
   )
@@ -80,11 +80,32 @@ const LightboxStyled = styled.div`
     left: 0;
     height: 100%;
     width: 100%;
+    max-height: 80%;
     margin: auto !important;
   }
 
   .slick-slider {
     width: 100%;
+  }
+
+  .slick-slide {
+    overflow: hidden;
+
+    .gatsby-image-wrapper {
+      width: 100% !important;
+    }
+
+    img {
+      width: auto !important;
+      max-height: 80vh !important;
+      margin: auto !important;
+    }
+  }
+
+  .btn-close {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
   }
 `
 
