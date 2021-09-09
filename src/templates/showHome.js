@@ -26,6 +26,7 @@ export const query = graphql`
       slug
       acfShowHomes {
         details
+        address
         numberOfBathrooms
         numberOfBedrooms
         squareFootage

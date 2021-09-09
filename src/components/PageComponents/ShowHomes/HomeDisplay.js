@@ -58,6 +58,9 @@ const HomeDisplay = ({ home }) => {
             </span>
           </p>
         </div>
+        <div className="content__address">
+          <p>{home.acfShowHomes.address}</p>
+        </div>
       </div>
     </ShowHomeStyled>
   )
@@ -145,6 +148,13 @@ const ShowHomeStyled = styled(Link)`
           width: 2.5rem;
           margin-right: 1rem;
         }
+      }
+    }
+
+    &__address {
+      p {
+        ${B1Grey};
+        margin: 0;
       }
     }
 

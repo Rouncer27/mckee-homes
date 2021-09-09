@@ -57,6 +57,9 @@ const ShowHomeHeader = ({ home }) => {
               <span>{home.acfShowHomes.numberOfBathrooms}BATHROOM</span>
             </p>
           </div>
+          <div className="header__address">
+            <p>{home.acfShowHomes.address}</p>
+          </div>
 
           <div className="header__plans">
             <a
@@ -140,6 +143,16 @@ const StyledSection = styled.section`
       .icon {
         width: 2.5rem;
         margin-right: 1rem;
+      }
+    }
+
+    &__address {
+      width: 100%;
+      margin: 2rem auto 4rem;
+
+      p {
+        ${B2Grey};
+        margin: 0;
       }
     }
 

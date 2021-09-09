@@ -13,6 +13,7 @@ const getData = graphql`
           title
           slug
           acfShowHomes {
+            address
             squareFootage
             numberOfBedrooms
             numberOfBathrooms
