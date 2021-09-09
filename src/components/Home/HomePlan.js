@@ -11,7 +11,10 @@ const HomePlan = ({ home }) => {
   return (
     <article>
       <HomePlanHeader home={home} />
-      <HomePlanDetails details={home.acfHomePlans.details} />
+      <HomePlanDetails
+        details={home.acfHomePlans.details}
+        title={`BEST IS BUILT IN WITH MCKEE HOMES:`}
+      />
       <HomePlansCommunities communities={home.communities.nodes} />
       <HomePlanGallery gallery={home.acfHomePlans.gallery} />
       <HomePlanFloorPlan

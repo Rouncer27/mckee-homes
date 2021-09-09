@@ -74,8 +74,6 @@ const DisplayQuickPossessions = ({ data }) => {
   // Plans Post Types
   const quickPossessions = allData.quickPossessions.edges
   if (!data.displayQuickPossessions) return null
-  console.log("quickPossessions", quickPossessions)
-
   return (
     <SectionStyled>
       <div className="wrapper">

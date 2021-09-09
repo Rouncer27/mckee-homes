@@ -25,6 +25,10 @@ export const query = graphql`
       date
       slug
       acfQuickPossessions {
+        address
+        homeFeatures
+        price
+        possessionTimeline
         details
         numberOfBathrooms
         numberOfBedrooms
@@ -67,6 +71,20 @@ export const query = graphql`
         salesPersonEmail
         salesPersonCell
         salesPersonImage {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 1000)
+            }
+          }
+        }
+
+        twoSalesPersonRequired
+        twoSalesPersonCell
+        twoSalesPersonEmail
+        twoSalesPersonName
+        twoSalesPersonPhone
+        twoSalesPersonImage {
           altText
           localFile {
             childImageSharp {

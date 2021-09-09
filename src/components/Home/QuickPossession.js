@@ -3,17 +3,21 @@ import React from "react"
 import QuickPossessionHeader from "./QuickPossessionHeader"
 import HomePlanDetails from "./HomePlanDetails"
 import HomePlanGallery from "./HomePlanGallery"
-import HomePlanConnect from "./HomePlanConnect"
-import MoreInformation from "../PageComponents/Forms/MoreInformation"
+import QuickConnect from "./QuickConnect"
+import SeeThisHome from "../PageComponents/Forms/SeeThisHome"
 import HomePlanFloorPlan from "./HomePlanFloorPlan"
 
 const QuickPossesion = ({ home }) => {
+  console.log("home", home)
   return (
     <article>
       <QuickPossessionHeader home={home} />
-      <HomePlanDetails details={home.acfQuickPossessions.details} />
+      <HomePlanDetails
+        details={home.acfQuickPossessions.details}
+        title={`HOME SPECIFICATIONS AND FEATURES:`}
+      />
       <HomePlanGallery gallery={home.acfQuickPossessions.gallery} />
-      <HomePlanConnect
+      <QuickConnect
         salesImg={
           home.acfQuickPossessions.salesPersonImage.localFile.childImageSharp
             .gatsbyImageData
@@ -25,8 +29,9 @@ const QuickPossesion = ({ home }) => {
         salesPersonPhone={home.acfQuickPossessions.salesPersonPhone}
         showHomeHours={home.acfQuickPossessions.showHomeHours}
         googleMapLink={home.acfQuickPossessions.googleMapLink}
+        home={home}
       />
-      <MoreInformation />
+      <SeeThisHome />
       <HomePlanFloorPlan
         title={home.title}
         floorImg={

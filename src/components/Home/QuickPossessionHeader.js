@@ -10,6 +10,7 @@ import {
   H1Navy,
   H3Black,
   B2Grey,
+  B1Black,
 } from "../../styles/helpers"
 
 import sqft from "../../images/icons/sqft.png"
@@ -21,6 +22,29 @@ const QuickPossessionHeader = ({ home }) => {
     home.acfQuickPossessions.mainImage.localFile.childImageSharp.gatsbyImageData
   )
   const mainImgAlt = home.acfQuickPossessions.mainImage.altText
+
+  const priceComma = home.acfQuickPossessions.price
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  const possessionDate = Date.parse(
+    new Date(
+      home.acfQuickPossessions.possessionTimeline.split("/")[2],
+      home.acfQuickPossessions.possessionTimeline.split("/")[1],
+      home.acfQuickPossessions.possessionTimeline.split("/")[0]
+    )
+  )
+  const dateNow = Date.parse(new Date())
+  const difference = (possessionDate - dateNow) / (1000 * 3600 * 24) / 30
+
+  const timeframe =
+    difference > 3
+      ? "> 3 Months"
+      : difference > 0 && difference < 3
+      ? "< 3 Months"
+      : difference < 0
+      ? "Immediate"
+      : ""
+
   return (
     <StyledSection>
       <div className="wrapper">
@@ -34,8 +58,9 @@ const QuickPossessionHeader = ({ home }) => {
         </div>
         <div className="header">
           <div className="header__title">
-            <p>Home Plans</p>
+            <p>Quick Possessions</p>
             <h1>{home.title}</h1>
+            <p className="price">&#36;{priceComma}</p>
           </div>
           <div className="header__sizes">
             <p>
@@ -55,6 +80,27 @@ const QuickPossessionHeader = ({ home }) => {
                 <img src={bath} alt="Logo" />
               </span>
               <span>{home.acfQuickPossessions.numberOfBathrooms}BATHROOM</span>
+            </p>
+          </div>
+          <div className="header__address">
+            <p className="header__address--details">
+              {home.acfQuickPossessions.address}
+            </p>
+            <p className="header__address--features">
+              Home Features: <br />{" "}
+              {home.acfQuickPossessions.homeFeatures.map((feature, index) => {
+                const isLast =
+                  index >= home.acfQuickPossessions.homeFeatures.length - 1
+                return (
+                  <>
+                    {feature}
+                    {isLast ? "" : ", "}
+                  </>
+                )
+              })}
+            </p>
+            <p className="header__address--possession">
+              Time to possession: {timeframe}
             </p>
           </div>
 
@@ -114,6 +160,11 @@ const StyledSection = styled.section`
       p {
         ${H3Black};
         margin: 0;
+        text-transform: uppercase;
+      }
+
+      p.price {
+        ${B1Black};
       }
 
       h1 {
@@ -154,6 +205,17 @@ const StyledSection = styled.section`
 
       &--tour {
         ${Btn1Navy};
+      }
+    }
+
+    &__address {
+      p {
+        ${B1Black};
+      }
+
+      &--details {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
       }
     }
 

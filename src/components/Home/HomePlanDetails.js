@@ -1,13 +1,13 @@
 import React from "react"
 import styled from "styled-components"
-import { colors, standardWrapper, B1Black } from "../../styles/helpers"
+import { colors, standardWrapper, B1Black, B2Black } from "../../styles/helpers"
 
-const HomePlanDetails = ({ details }) => {
+const HomePlanDetails = ({ title, details }) => {
   return (
     <SectionStyled>
       <div className="wrapper-details">
         <div className="wrapper-details__title">
-          <h2>Best is built in with McKee Homes:</h2>
+          <h2>{title}</h2>
         </div>
         <div
           className="wrapper-details__content"
@@ -19,6 +19,8 @@ const HomePlanDetails = ({ details }) => {
 }
 
 const SectionStyled = styled.section`
+  margin-bottom: 2.5rem;
+
   .wrapper-details {
     ${standardWrapper};
 
@@ -43,6 +45,7 @@ const SectionStyled = styled.section`
         width: 100%;
 
         li {
+          ${B2Black};
           margin-bottom: 1rem;
         }
       }
