@@ -10,7 +10,7 @@ import {
   standardWrapper,
 } from "../../../styles/helpers"
 
-const SeeThisHome = () => {
+const SeeThisHome = ({ homeSlug }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -182,7 +182,7 @@ const SeeThisHome = () => {
         </div>
       </div>
       <div className="back-btn">
-        <Link to="/home-plans">Back To Listings</Link>
+        <Link to={`/${homeSlug}`}>Back To Listings</Link>
       </div>
     </SectionStyled>
   )

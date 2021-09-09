@@ -31,7 +31,7 @@ const QuickPossesion = ({ home }) => {
         googleMapLink={home.acfQuickPossessions.googleMapLink}
         home={home}
       />
-      <SeeThisHome />
+      <SeeThisHome homeSlug="quick-possessions" />
       <HomePlanFloorPlan
         title={home.title}
         floorImg={

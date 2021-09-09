@@ -26,7 +26,7 @@ const HomePlan = ({ home }) => {
         floorImgAlt={home.acfHomePlans.floorPlanImage.altText}
         floorPlanPdf={home.acfHomePlans.floorPlanPdf.localFile.publicURL}
       />
-      <MoreInformation />
+      <MoreInformation homeSlug="home-plans" />
     </article>
   )
 }

@@ -26,7 +26,7 @@ const ShowHome = ({ home }) => {
         showHomeHours={home.acfShowHomes.showHomeHours}
         googleMapLink={home.acfShowHomes.googleMapLink}
       />
-      <MoreInformation />
+      <MoreInformation homeSlug="show-homes" />
       <HomePlanFloorPlan
         title={home.title}
         floorImg={
