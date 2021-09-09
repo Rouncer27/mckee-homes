@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
+import QuickPossession from "../components/Home/QuickPossession"
 
 const quickPossession = props => {
   const { quickPossession, quickPossessions } = props.data
@@ -10,7 +11,7 @@ const quickPossession = props => {
   return (
     <div>
       <Layout>
-        <h2>quick Possession</h2>
+        <QuickPossession home={quickPossession} />
       </Layout>
     </div>
   )

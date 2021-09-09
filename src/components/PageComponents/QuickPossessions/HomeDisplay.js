@@ -13,6 +13,28 @@ const HomeDisplay = ({ home }) => {
     home.acfQuickPossessions.mainImage.localFile.childImageSharp.gatsbyImageData
   )
   const imgAlt = home.acfQuickPossessions.mainImage.altText
+  const priceComma = home.acfQuickPossessions.price
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  const possessionDate = Date.parse(
+    new Date(
+      home.acfQuickPossessions.possessionTimeline.split("/")[2],
+      home.acfQuickPossessions.possessionTimeline.split("/")[1],
+      home.acfQuickPossessions.possessionTimeline.split("/")[0]
+    )
+  )
+  const dateNow = Date.parse(new Date())
+  const difference = (possessionDate - dateNow) / (1000 * 3600 * 24) / 30
+
+  const timeframe =
+    difference > 3
+      ? "> 3 Months"
+      : difference > 0 && difference < 3
+      ? "< 3 Months"
+      : difference < 0
+      ? "Immediate"
+      : ""
+
   return (
     <ShowHomeStyled to={`/quick-possessions/${home.slug}`}>
       <div className="image">
@@ -57,6 +79,13 @@ const HomeDisplay = ({ home }) => {
               BATHROOM
             </span>
           </p>
+        </div>
+        <div className="content__meta">
+          <p className="content__meta--address">
+            {home.acfQuickPossessions.address}
+          </p>
+          <p>{timeframe} possession</p>
+          <p>&#36;{priceComma}</p>
         </div>
       </div>
     </ShowHomeStyled>
@@ -145,6 +174,17 @@ const ShowHomeStyled = styled(Link)`
           width: 2.5rem;
           margin-right: 1rem;
         }
+      }
+    }
+
+    &__meta {
+      p {
+        ${B1Grey};
+        margin: 0;
+      }
+
+      &--address {
+        margin-bottom: 2.5rem !important;
       }
     }
 

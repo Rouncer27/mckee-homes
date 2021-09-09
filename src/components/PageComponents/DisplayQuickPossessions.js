@@ -13,6 +13,10 @@ const getData = graphql`
           title
           slug
           acfQuickPossessions {
+            address
+            homeFeatures
+            price
+            possessionTimeline
             squareFootage
             numberOfBedrooms
             numberOfBathrooms
