@@ -29,6 +29,7 @@ import DisplayTeam from "./PageComponents/DisplayTeam"
 import DisplayPosts from "./PageComponents/DisplayPosts"
 import DisplayHomePlans from "./PageComponents/DisplayHomePlans"
 import DisplayShowHomes from "./PageComponents/DisplayShowHomes"
+import DisplayQuickPossessions from "./PageComponents/DisplayQuickPossessions"
 import ThreeImagesContent from "./PageComponents/ThreeImagesContent"
 import ThreeImagesRow from "./PageComponents/ThreeImagesRow"
 import CustomerStories from "./PageComponents/CustomerStories"
@@ -128,6 +129,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_DisplayShowHomes":
                 return <DisplayShowHomes key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_DisplayQuickPossessions":
+                return <DisplayQuickPossessions key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_ThreeImagesContent":
                 return <ThreeImagesContent key={index} data={component} />

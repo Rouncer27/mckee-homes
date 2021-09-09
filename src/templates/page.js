@@ -478,6 +478,11 @@ export const pageTempQuery = graphql`
             displayPosts
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayQuickPossessions {
+            fieldGroupName
+            displayQuickPossessions
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayHomePlans {
             fieldGroupName
             displayHomePlans

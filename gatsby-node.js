@@ -45,6 +45,16 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
 
+        quickPossessions: allWpQuickPossession {
+          edges {
+            node {
+              id
+              slug
+              uri
+            }
+          }
+        }
+
         posts: allWpPost {
           edges {
             node {
@@ -121,6 +131,23 @@ exports.createPages = async ({ graphql, actions }) => {
             index === showHomes.length - 1
               ? null
               : showHomes[index + 1].node.slug,
+        },
+      })
+    })
+
+    const quickPossessions = data.quickPossessions.edges
+    quickPossessions.forEach(({ node }, index) => {
+      createPage({
+        path: `/quick-possessions/${node.slug}/`,
+        component: path.resolve("./src/templates/quickPossession.js"),
+        context: {
+          id: node.id,
+          slug: node.slug,
+          next: index === 0 ? null : quickPossessions[index - 1].node.slug,
+          prev:
+            index === quickPossessions.length - 1
+              ? null
+              : quickPossessions[index + 1].node.slug,
         },
       })
     })
