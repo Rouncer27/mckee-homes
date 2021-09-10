@@ -7,7 +7,9 @@ const Communities = ({ activesubstate }) => {
   return (
     <SubMenu activesub={activesubstate}>
       <ul>
-        <p>Airdrie</p>
+        <p>
+          <Link to="/airdrie">Airdrie</Link>
+        </p>
         <li>
           <Link to="/">Bayside Estates</Link>
         </li>
@@ -28,7 +30,9 @@ const Communities = ({ activesubstate }) => {
         </li>
       </ul>
       <ul>
-        <p>Crossfiled</p>
+        <p>
+          <Link to="/crossfield">Crossfield</Link>
+        </p>
         <li>
           <Link to="/">Vista Crossing</Link>
         </li>
@@ -73,6 +77,12 @@ const SubMenu = styled.div`
       ${B1Black};
       text-align: center;
       text-transform: uppercase;
+
+      a {
+        ${B1Black};
+        text-align: center;
+        text-transform: uppercase;
+      }
     }
 
     li {

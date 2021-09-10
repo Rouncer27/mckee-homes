@@ -46,7 +46,7 @@ const TopNav = () => {
             onMouseLeave={() => setCommunitiesSubActive(false)}
             className="nav-item top-nav-item"
           >
-            <Link className="top-nav-item__link" to="/communities">
+            <Link className="top-nav-item__link" to="/airdrie">
               Communities
             </Link>
             <Communities activesubstate={communitiesSubActive} />
