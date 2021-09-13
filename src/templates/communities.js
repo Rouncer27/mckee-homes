@@ -7,7 +7,7 @@ import Details from "../components/Communities/Details"
 import ShowHomes from "../components/Communities/ShowHomes"
 
 const communities = props => {
-  const { community } = props.data
+  const { community, allWpShowHome } = props.data
   console.log(community)
 
   return (
@@ -19,8 +19,9 @@ const communities = props => {
           title={community.title}
           details={community.acfCommunity.content}
           logo={community.acfCommunity.logo}
+          url={community.acfCommunity.communityUrl}
         />
-        <ShowHomes />
+        <ShowHomes currentSlug={community.slug} showHomes={allWpShowHome} />
       </Layout>
     </div>
   )
@@ -44,6 +45,7 @@ export const query = graphql`
         showHomeHours
         directions
         lotPickerEmbed
+        communityUrl
         logo {
           altText
           localFile {
@@ -84,6 +86,36 @@ export const query = graphql`
           localFile {
             childImageSharp {
               gatsbyImageData(width: 1000)
+            }
+          }
+        }
+      }
+    }
+
+    allWpShowHome: allWpShowHome {
+      edges {
+        node {
+          title
+          slug
+          acfShowHomes {
+            community {
+              ... on WpCommunityPost {
+                id
+                slug
+              }
+            }
+            address
+            squareFootage
+            numberOfBedrooms
+            numberOfBathrooms
+            mainImage {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1500)
+                }
+              }
             }
           }
         }

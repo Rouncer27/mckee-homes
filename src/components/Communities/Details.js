@@ -9,7 +9,7 @@ import {
   standardWrapper,
 } from "../../styles/helpers"
 
-const Details = ({ city, title, details, logo }) => {
+const Details = ({ city, title, details, logo, url }) => {
   const imageDisplay = getImage(logo.localFile.childImageSharp.gatsbyImageData)
   const imageAlt = logo.altText
   return (
@@ -34,10 +34,13 @@ const Details = ({ city, title, details, logo }) => {
               formats={["auto", "webp", "avif"]}
             />
           </div>
-
-          <div className="logo__btn">
-            <a href="#">Explore Community</a>
-          </div>
+          {url && (
+            <div className="logo__btn">
+              <a rel="noreferrer" target="_blank" href={url}>
+                Explore Community
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </SectionStyled>
