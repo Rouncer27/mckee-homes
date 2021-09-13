@@ -25,6 +25,16 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
 
+        communities: allWpCommunityPost {
+          edges {
+            node {
+              id
+              slug
+              uri
+            }
+          }
+        }
+
         homes: allWpHomePlan {
           edges {
             node {
@@ -148,6 +158,23 @@ exports.createPages = async ({ graphql, actions }) => {
             index === quickPossessions.length - 1
               ? null
               : quickPossessions[index + 1].node.slug,
+        },
+      })
+    })
+
+    const communities = data.communities.edges
+    communities.forEach(({ node }, index) => {
+      createPage({
+        path: `/communities/${node.slug}/`,
+        component: path.resolve("./src/templates/communities.js"),
+        context: {
+          id: node.id,
+          slug: node.slug,
+          next: index === 0 ? null : communities[index - 1].node.slug,
+          prev:
+            index === communities.length - 1
+              ? null
+              : communities[index + 1].node.slug,
         },
       })
     })

@@ -11,22 +11,22 @@ const Communities = ({ activesubstate }) => {
           <Link to="/airdrie">Airdrie</Link>
         </p>
         <li>
-          <Link to="/">Bayside Estates</Link>
+          <Link to="/communities/bayside-estates">Bayside Estates</Link>
         </li>
         <li>
-          <Link to="/">Chinook Gate</Link>
+          <Link to="/communities/chinook-gate">Chinook Gate</Link>
         </li>
         <li>
-          <Link to="/">Cooper's Crossing</Link>
+          <Link to="/communities/coopers-crossing">Cooper's Crossing</Link>
         </li>
         <li>
-          <Link to="/">King's Heights</Link>
+          <Link to="/communities/kings-heights">King's Heights</Link>
         </li>
         <li>
-          <Link to="/">Lanark Landing</Link>
+          <Link to="/communities/lanark-landing">Lanark Landing</Link>
         </li>
         <li>
-          <Link to="/">Ravenswood</Link>
+          <Link to="/communities/ravenswood">Ravenswood</Link>
         </li>
       </ul>
       <ul>
@@ -34,7 +34,7 @@ const Communities = ({ activesubstate }) => {
           <Link to="/crossfield">Crossfield</Link>
         </p>
         <li>
-          <Link to="/">Vista Crossing</Link>
+          <Link to="/communities/vista-crossing">Vista Crossing</Link>
         </li>
       </ul>
     </SubMenu>
