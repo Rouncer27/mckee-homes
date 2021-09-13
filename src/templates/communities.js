@@ -2,15 +2,25 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
+import Header from "../components/Communities/Header"
+import Details from "../components/Communities/Details"
+import ShowHomes from "../components/Communities/ShowHomes"
 
 const communities = props => {
-  const { community, allCommunities } = props.data
-  const prevPlan = props.pageContext.prev
-  const nextPlan = props.pageContext.next
+  const { community } = props.data
+  console.log(community)
+
   return (
     <div>
       <Layout>
-        <h2>{community.title}</h2>
+        <Header hero={community.acfCommunity.heroImage} />
+        <Details
+          city={community.cities.nodes[0].name}
+          title={community.title}
+          details={community.acfCommunity.content}
+          logo={community.acfCommunity.logo}
+        />
+        <ShowHomes />
       </Layout>
     </div>
   )
@@ -23,6 +33,11 @@ export const query = graphql`
       id
       date
       slug
+      cities {
+        nodes {
+          name
+        }
+      }
       acfCommunity {
         content
         mapPin
@@ -71,15 +86,6 @@ export const query = graphql`
               gatsbyImageData(width: 1000)
             }
           }
-        }
-      }
-    }
-
-    allCommunities: allWpCommunityPost {
-      edges {
-        node {
-          title
-          slug
         }
       }
     }
