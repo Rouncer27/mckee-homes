@@ -8,6 +8,7 @@ import HeroFive from "./PageComponents/HeroFive"
 import HeroSix from "./PageComponents/HeroSix"
 import HeroSeven from "./PageComponents/HeroSeven"
 import HeroEight from "./PageComponents/HeroEight"
+import HeroNine from "./PageComponents/HeroNine"
 import ContentWithLogo from "./PageComponents/ContentWithLogo"
 import ContentThreeImages from "./PageComponents/ContentThreeImages"
 import ContentImage5050 from "./PageComponents/ContentImage5050"
@@ -19,6 +20,7 @@ import ContentSketch from "./PageComponents/ContentSketch"
 import ContentImagesLogo5050 from "./PageComponents/ContentImagesLogo5050"
 import ContentSimpleTitle from "./PageComponents/ContentSimpleTitle"
 import ContentSimpleTitleIcon from "./PageComponents/ContentSimpleTitleIcon"
+import ContentSimpleTitleSub from "./PageComponents/ContentSimpleTitleSub"
 import ContentCenterButton from "./PageComponents/ContentCenterButton"
 import MeetTeam from "./PageComponents/MeetTeam"
 import WysiwygButton from "./PageComponents/WysiwygButton"
@@ -34,6 +36,8 @@ import ThreeImagesContent from "./PageComponents/ThreeImagesContent"
 import ThreeImagesRow from "./PageComponents/ThreeImagesRow"
 import CustomerStories from "./PageComponents/CustomerStories"
 import BlueBlockContent from "./PageComponents/BlueBlockContent"
+import Map from "./PageComponents/Map"
+import ContactForm from "./PageComponents/Forms/ContactForm"
 
 const PageComponentGroups = props => {
   const { components } = props
@@ -67,6 +71,9 @@ const PageComponentGroups = props => {
               case "Page_Acfmaintemplatefields_PageComponents_HeroEight":
                 return <HeroEight key={index} data={component} />
 
+              case "Page_Acfmaintemplatefields_PageComponents_HeroNine":
+                return <HeroNine key={index} data={component} />
+
               case "Page_Acfmaintemplatefields_PageComponents_ContentWithLogo":
                 return <ContentWithLogo key={index} data={component} />
 
@@ -99,6 +106,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_ContentSimpleTitleIcon":
                 return <ContentSimpleTitleIcon key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_ContentSimpleTitleSub":
+                return <ContentSimpleTitleSub key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_ContentCenterButton":
                 return <ContentCenterButton key={index} data={component} />
@@ -144,6 +154,12 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_BlueBlockContent":
                 return <BlueBlockContent key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_Map":
+                return <Map key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_ContactForm":
+                return <ContactForm key={index} data={component} />
 
               default:
                 return (
