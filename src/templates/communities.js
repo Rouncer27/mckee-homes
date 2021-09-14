@@ -5,6 +5,11 @@ import Layout from "../components/Layout"
 import Header from "../components/Communities/Header"
 import Details from "../components/Communities/Details"
 import ShowHomes from "../components/Communities/ShowHomes"
+import Connect from "../components/Communities/Connect"
+import ShowHours from "../components/Communities/ShowHours"
+import CommunityForm from "../components/PageComponents/Forms/CommunityForm"
+import LotPicker from "../components/Communities/LotPicker"
+import RelatedPosts from "../components/Communities/RelatedPosts"
 
 const communities = props => {
   const { community, allWpShowHome } = props.data
@@ -22,6 +27,22 @@ const communities = props => {
           url={community.acfCommunity.communityUrl}
         />
         <ShowHomes currentSlug={community.slug} showHomes={allWpShowHome} />
+        <Connect
+          salesImg={
+            community.acfCommunity.salesPersonImage.localFile.childImageSharp
+              .gatsbyImageData
+          }
+          salesImgAlt={community.acfCommunity.salesPersonImage.altText}
+          salesPersonName={community.acfCommunity.salesPersonName}
+          salesPersonEmail={community.acfCommunity.twoSalesPersonEmail}
+          salesPersonCell={community.acfCommunity.salesPersonCell}
+          salesPersonPhone={community.acfCommunity.salesPersonPhone}
+          community={community}
+        />
+        <ShowHours />
+        <CommunityForm />
+        <LotPicker />
+        <RelatedPosts />
       </Layout>
     </div>
   )
