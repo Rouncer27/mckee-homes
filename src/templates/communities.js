@@ -39,7 +39,10 @@ const communities = props => {
           salesPersonPhone={community.acfCommunity.salesPersonPhone}
           community={community}
         />
-        <ShowHours />
+        <ShowHours
+          hours={community.acfCommunity.showHomeHours}
+          map={community.acfCommunity.mapPin}
+        />
         <CommunityForm />
         <LotPicker />
         <RelatedPosts />

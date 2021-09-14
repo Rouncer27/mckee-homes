@@ -18,6 +18,11 @@ export const H1Navy = css`
   color: ${colors.colorPrimary};
 `
 
+export const H1Black = css`
+  ${H1Base};
+  color: ${colors.colorSecondary};
+`
+
 // Headline Styles #2 //
 export const H2Base = css`
   ${fontSizer(2.6, 3.5, 76.8, 150, 2.6)}

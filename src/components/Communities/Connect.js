@@ -142,7 +142,7 @@ const SectionStyled = styled.section`
 
     &__content {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       width: 100%;
 
       &--sales {

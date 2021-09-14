@@ -38,7 +38,6 @@ const SectionStyled = styled.section`
 
   .title {
     width: 100%;
-    width: 100%;
     margin-bottom: 3rem;
     padding-top: 5rem;
     border-bottom: 0.25rem solid ${colors.colorTertiary};
