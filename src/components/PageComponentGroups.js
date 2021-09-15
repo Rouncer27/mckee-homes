@@ -153,7 +153,13 @@ const PageComponentGroups = props => {
                 )
 
               case "Page_Acfmaintemplatefields_PageComponents_DisplayQuickPossessions":
-                return <DisplayQuickPossessions key={index} data={component} />
+                return (
+                  <DisplayQuickPossessions
+                    location={location}
+                    key={index}
+                    data={component}
+                  />
+                )
 
               case "Page_Acfmaintemplatefields_PageComponents_ThreeImagesContent":
                 return <ThreeImagesContent key={index} data={component} />

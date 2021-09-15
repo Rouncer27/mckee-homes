@@ -204,7 +204,6 @@ const DisplayHomePlans = props => {
 }
 
 const SectionStyled = styled.section`
-  ${props => console.log(props)};
   .wrapper {
     ${medWrapper};
     position: relative;

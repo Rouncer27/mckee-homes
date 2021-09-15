@@ -204,8 +204,6 @@ const DisplayShowHomes = props => {
 }
 
 const SectionStyled = styled.section`
-  position: relative;
-
   .wrapper {
     ${medWrapper};
     position: relative;

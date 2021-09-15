@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 
-import { medWrapper } from "../../styles/helpers"
+import FilterMain from "./HomePlans/FilterMain"
+import { B1Black, colors, medWrapper } from "../../styles/helpers"
 import HomeDisplay from "./QuickPossessions/HomeDisplay"
 
 const getData = graphql`
@@ -28,6 +29,29 @@ const getData = graphql`
                   gatsbyImageData(width: 1500)
                 }
               }
+            }
+          }
+          homeStyles {
+            nodes {
+              databaseId
+              slug
+              name
+            }
+          }
+
+          homeTypes {
+            nodes {
+              databaseId
+              slug
+              name
+            }
+          }
+
+          communities {
+            nodes {
+              databaseId
+              slug
+              name
             }
           }
         }
@@ -69,18 +93,118 @@ const getData = graphql`
   }
 `
 
-const DisplayQuickPossessions = ({ data }) => {
+const DisplayQuickPossessions = props => {
   const allData = useStaticQuery(getData)
   // Plans Post Types
   const quickPossessions = allData.quickPossessions.edges
-  if (!data.displayQuickPossessions) return null
+  // Filters Information
+  const homeTypes = allData.homeTypes.edges
+  const homeStyles = allData.homeStyles.edges
+  const communities = allData.communities.edges
+  // Load up the filters states. //
+  const [filterActive, setFilterActive] = useState("")
+  const [homeTypesFilter, setHomeTypesFilter] = useState([])
+  const [homeStylesFilter, setHomeStylesFilter] = useState([])
+  const [communityFilter, setCommunityFilter] = useState([])
+  const [sqftFilter, setSqftFilter] = useState(500)
+  const [bedroomFilter, setBedroomFilter] = useState([])
+
+  useEffect(() => {
+    const params = new URLSearchParams(props.location.search)
+    const param = params.get("homeType")
+    if (param === "AllHomes" || param === null) return
+    setHomeTypesFilter([param])
+  }, [props.location.search])
+
+  if (!props.data.displayQuickPossessions) return null
   return (
-    <SectionStyled>
-      <div className="wrapper">
-        {quickPossessions.map(home => (
-          <HomeDisplay home={home.node} />
-        ))}
+    <SectionStyled filteractive={filterActive !== ""}>
+      <div className="wrapper-filters">
+        <div className="title">
+          <h3>Expore By Filters:</h3>
+        </div>
+        <div className="filter">
+          <FilterMain
+            filterActive={filterActive}
+            setFilterActive={setFilterActive}
+            homeTypes={homeTypes}
+            homeTypesFilter={homeTypesFilter}
+            setHomeTypesFilter={setHomeTypesFilter}
+            homeStyles={homeStyles}
+            homeStylesFilter={homeStylesFilter}
+            setHomeStylesFilter={setHomeStylesFilter}
+            communities={communities}
+            communityFilter={communityFilter}
+            setCommunityFilter={setCommunityFilter}
+            sqftFilter={sqftFilter}
+            setSqftFilter={setSqftFilter}
+            bedroomFilter={bedroomFilter}
+            setBedroomFilter={setBedroomFilter}
+          />
+        </div>
       </div>
+      <div className="wrapper">
+        {quickPossessions.map(home => {
+          let typeMatch = true
+          let styleMatch = true
+          let communityMatch = true
+          let sqftMatch = true
+          let bedroomMatch = true
+
+          // Does this home match the home types filter?
+          if (homeTypesFilter.length > 0) {
+            typeMatch = homeTypesFilter.some(type => {
+              const matchFound = home.node.homeTypes.nodes.find(
+                homeType => homeType.slug === type
+              )
+              if (matchFound !== undefined) return true
+            })
+          }
+          // Does this home match the home styles filter?
+          if (homeStylesFilter.length > 0) {
+            styleMatch = homeStylesFilter.some(style => {
+              const matchFound = home.node.homeStyles.nodes.find(
+                homeStyle => homeStyle.slug === style
+              )
+              if (matchFound !== undefined) return true
+            })
+          }
+          // Does this home match the communities filter?
+          if (communityFilter.length > 0) {
+            communityMatch = communityFilter.some(community => {
+              const matchFound = home.node.communities.nodes.find(
+                homeCommunity => homeCommunity.slug === community
+              )
+              if (matchFound !== undefined) return true
+            })
+          }
+
+          // Does this house match the Square Footage filter
+          if (sqftFilter > 500) {
+            sqftMatch =
+              home.node.acfQuickPossessions.squareFootage >= sqftFilter
+          }
+
+          // Does this house match the bedroom filter
+          if (bedroomFilter.length > 0) {
+            bedroomMatch = bedroomFilter.some(
+              bedrooms =>
+                bedrooms === home.node.acfQuickPossessions.numberOfBedrooms
+            )
+          }
+
+          const displayHome =
+            typeMatch &&
+            styleMatch &&
+            communityMatch &&
+            bedroomMatch &&
+            sqftMatch
+
+          if (!displayHome) return null
+          return <HomeDisplay key={home.node.slug} home={home.node} />
+        })}
+      </div>
+      <div className="filters-background" onClick={() => setFilterActive("")} />
     </SectionStyled>
   )
 }
@@ -88,7 +212,45 @@ const DisplayQuickPossessions = ({ data }) => {
 const SectionStyled = styled.section`
   .wrapper {
     ${medWrapper};
+    position: relative;
     justify-content: flex-start;
+  }
+
+  .wrapper-filters {
+    ${medWrapper};
+    position: relative;
+    justify-content: flex-start;
+    z-index: 9999999;
+
+    .title {
+      width: 100%;
+      margin-bottom: 2rem;
+      padding: 0 4rem 1.5rem;
+      border-bottom: solid 0.3rem ${colors.colorTertiary};
+
+      h3 {
+        ${B1Black};
+        margin: 0;
+        text-transform: uppercase;
+      }
+    }
+
+    .filter {
+      width: 100%;
+      padding: 0 4rem;
+    }
+  }
+  .filters-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #154290;
+    transition: all 0.2s ease-out;
+    opacity: ${props => (props.filteractive ? 0.75 : 0)};
+    visibility: ${props => (props.filteractive ? "visible" : "hidden")};
+    z-index: 999999;
   }
 `
 
