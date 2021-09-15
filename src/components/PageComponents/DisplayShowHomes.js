@@ -177,13 +177,13 @@ const DisplayShowHomes = props => {
 
           // Does this house match the Square Footage filter
           if (sqftFilter > 500) {
-            sqftMatch = home.node.acfHomePlans.squareFootage >= sqftFilter
+            sqftMatch = home.node.acfShowHomes.squareFootage >= sqftFilter
           }
 
           // Does this house match the bedroom filter
           if (bedroomFilter.length > 0) {
             bedroomMatch = bedroomFilter.some(
-              bedrooms => bedrooms === home.node.acfHomePlans.numberOfBedrooms
+              bedrooms => bedrooms === home.node.acfShowHomes.numberOfBedrooms
             )
           }
 
