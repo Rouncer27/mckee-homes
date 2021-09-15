@@ -20,6 +20,12 @@ const FilterMain = ({
   setSqftFilter,
   bedroomFilter,
   setBedroomFilter,
+  price,
+  priceFilter,
+  setPriceFilter,
+  timeline,
+  timelineFilter,
+  setTimelineFilter,
 }) => {
   return (
     <DivStyled id="filters">
@@ -58,6 +64,12 @@ const FilterMain = ({
         setSqftFilter={setSqftFilter}
         bedroomFilter={bedroomFilter}
         setBedroomFilter={setBedroomFilter}
+        price={price}
+        priceFilter={priceFilter}
+        setPriceFilter={setPriceFilter}
+        timeline={timeline}
+        timelineFilter={timelineFilter}
+        setTimelineFilter={setTimelineFilter}
       />
     </DivStyled>
   )

@@ -109,6 +109,11 @@ const DisplayQuickPossessions = props => {
   const [sqftFilter, setSqftFilter] = useState(500)
   const [bedroomFilter, setBedroomFilter] = useState([])
 
+  const [priceFilter, setPriceFilter] = useState(500)
+  const [timelineFilter, setTimelineFilter] = useState([])
+
+  console.log("TIMELINE", timelineFilter)
+
   useEffect(() => {
     const params = new URLSearchParams(props.location.search)
     const param = params.get("homeType")
@@ -140,6 +145,12 @@ const DisplayQuickPossessions = props => {
             setSqftFilter={setSqftFilter}
             bedroomFilter={bedroomFilter}
             setBedroomFilter={setBedroomFilter}
+            price={true}
+            priceFilter={priceFilter}
+            setPriceFilter={setPriceFilter}
+            timeline={true}
+            timelineFilter={timelineFilter}
+            setTimelineFilter={setTimelineFilter}
           />
         </div>
       </div>

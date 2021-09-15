@@ -136,6 +136,8 @@ const DisplayHomePlans = props => {
             setSqftFilter={setSqftFilter}
             bedroomFilter={bedroomFilter}
             setBedroomFilter={setBedroomFilter}
+            price={false}
+            timeline={false}
           />
         </div>
       </div>
