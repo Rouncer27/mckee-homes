@@ -16,6 +16,9 @@ const FilterMore = ({
   timeline,
   timelineFilter,
   setTimelineFilter,
+  features,
+  homeFeaturesFilter,
+  setHomeFeaturesFilter,
 }) => {
   const handleAddBedroomItem = rooms => {
     // Copy the state so we can safly chage it.
@@ -49,6 +52,24 @@ const FilterMore = ({
     // If it is already on the state array, we need to remove it.
     copyArray.splice(isAlreadySelected, 1)
     setTimelineFilter(copyArray)
+    return
+  }
+
+  const handleAddHomeFeatures = feature => {
+    // Copy the state so we can safly chage it.
+    const copyArray = [...homeFeaturesFilter]
+    if (feature === "all") return setHomeFeaturesFilter([])
+    // The array is empty put the selected item on it.
+    if (homeFeaturesFilter.length <= 0) return setHomeFeaturesFilter([feature])
+    // There are items in the state array, check if this item is being added or removed
+    // Does this item already exisit on the state array?
+    const isAlreadySelected = copyArray.findIndex(item => item === feature)
+    // If it does not already exisit add it to the list.
+    if (isAlreadySelected === -1)
+      return setHomeFeaturesFilter([...copyArray, feature])
+    // If it is already on the state array, we need to remove it.
+    copyArray.splice(isAlreadySelected, 1)
+    setHomeFeaturesFilter(copyArray)
     return
   }
 
@@ -196,6 +217,63 @@ const FilterMore = ({
                     type="checkbox"
                   />
                   &gt; 3months
+                </label>
+              </li>
+            </ul>
+          </div>
+        )}
+
+        {features !== false && (
+          <div>
+            <p>Home Featured</p>
+            <ul className="items">
+              <li value="spiceKitchen">
+                <label>
+                  <input
+                    onChange={() => handleAddHomeFeatures("spiceKitchen")}
+                    type="checkbox"
+                  />
+                  Spice Kitchen
+                </label>
+              </li>
+
+              <li value="lifestyleRoom">
+                <label>
+                  <input
+                    onChange={() => handleAddHomeFeatures("lifestyleRoom")}
+                    type="checkbox"
+                  />
+                  Lifestyle Room
+                </label>
+              </li>
+
+              <li value="inlawSuite">
+                <label>
+                  <input
+                    onChange={() => handleAddHomeFeatures("inlawSuite")}
+                    type="checkbox"
+                  />
+                  In-law Suite
+                </label>
+              </li>
+
+              <li value="homeOffice">
+                <label>
+                  <input
+                    onChange={() => handleAddHomeFeatures("homeOffice")}
+                    type="checkbox"
+                  />
+                  Home Office / Den
+                </label>
+              </li>
+
+              <li value="doubleOwnersSuite">
+                <label>
+                  <input
+                    onChange={() => handleAddHomeFeatures("doubleOwnersSuite")}
+                    type="checkbox"
+                  />
+                  Double Owners Suite
                 </label>
               </li>
             </ul>

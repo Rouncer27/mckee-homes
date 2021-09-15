@@ -26,6 +26,9 @@ const FilterMain = ({
   timeline,
   timelineFilter,
   setTimelineFilter,
+  features,
+  homeFeaturesFilter,
+  setHomeFeaturesFilter,
 }) => {
   return (
     <DivStyled id="filters">
@@ -70,6 +73,9 @@ const FilterMain = ({
         timeline={timeline}
         timelineFilter={timelineFilter}
         setTimelineFilter={setTimelineFilter}
+        features={features}
+        homeFeaturesFilter={homeFeaturesFilter}
+        setHomeFeaturesFilter={setHomeFeaturesFilter}
       />
     </DivStyled>
   )

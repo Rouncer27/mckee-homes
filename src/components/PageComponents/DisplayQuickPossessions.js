@@ -111,8 +111,7 @@ const DisplayQuickPossessions = props => {
 
   const [priceFilter, setPriceFilter] = useState(500)
   const [timelineFilter, setTimelineFilter] = useState([])
-
-  console.log("TIMELINE", timelineFilter)
+  const [homeFeaturesFilter, setHomeFeaturesFilter] = useState([])
 
   useEffect(() => {
     const params = new URLSearchParams(props.location.search)
@@ -122,6 +121,9 @@ const DisplayQuickPossessions = props => {
   }, [props.location.search])
 
   if (!props.data.displayQuickPossessions) return null
+
+  console.log("homeFeaturesFilter", homeFeaturesFilter)
+
   return (
     <SectionStyled filteractive={filterActive !== ""}>
       <div className="wrapper-filters">
@@ -151,6 +153,9 @@ const DisplayQuickPossessions = props => {
             timeline={true}
             timelineFilter={timelineFilter}
             setTimelineFilter={setTimelineFilter}
+            features={true}
+            homeFeaturesFilter={homeFeaturesFilter}
+            setHomeFeaturesFilter={setHomeFeaturesFilter}
           />
         </div>
       </div>

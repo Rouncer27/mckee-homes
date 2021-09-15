@@ -138,6 +138,7 @@ const DisplayHomePlans = props => {
             setBedroomFilter={setBedroomFilter}
             price={false}
             timeline={false}
+            features={false}
           />
         </div>
       </div>
