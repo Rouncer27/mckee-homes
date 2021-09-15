@@ -90,7 +90,7 @@ const getData = graphql`
   }
 `
 
-const DisplayHomePlans = ({ data }) => {
+const DisplayHomePlans = props => {
   const allData = useStaticQuery(getData)
   // Plans Post Types
   const homePlans = allData.homePlans.edges
@@ -105,6 +105,13 @@ const DisplayHomePlans = ({ data }) => {
   const [communityFilter, setCommunityFilter] = useState([])
   const [sqftFilter, setSqftFilter] = useState(500)
   const [bedroomFilter, setBedroomFilter] = useState([])
+
+  useEffect(() => {
+    const params = new URLSearchParams(props.location.search)
+    const param = params.get("homeType")
+    if (param === "AllHomes" || param === null) return
+    setHomeTypesFilter([param])
+  }, [props.location.search])
 
   return (
     <SectionStyled filteractive={filterActive !== ""}>
@@ -139,7 +146,6 @@ const DisplayHomePlans = ({ data }) => {
           let communityMatch = true
           let sqftMatch = true
           let bedroomMatch = true
-          console.log("home", home)
 
           // Does this home match the home types filter?
           if (homeTypesFilter.length > 0) {

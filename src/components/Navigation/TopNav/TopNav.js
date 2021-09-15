@@ -26,7 +26,11 @@ const TopNav = () => {
             <Link className="top-nav-item__link" to="/home-plans">
               Home Plans
             </Link>
-            <HomeTypes activesubstate={homePlanSubActive} title="Home Plans" />
+            <HomeTypes
+              slug="/home-plans"
+              activesubstate={homePlanSubActive}
+              title="Home Plans"
+            />
           </li>
           <li
             onMouseEnter={() => setQuickSubActive(true)}
@@ -37,6 +41,7 @@ const TopNav = () => {
               Quick Possessions
             </Link>
             <HomeTypes
+              slug="/quick-possessions"
               activesubstate={quickSubActive}
               title="Quick Possessions"
             />
@@ -69,7 +74,11 @@ const TopNav = () => {
             <Link className="top-nav-item__link" to="/show-homes">
               Visit A Show Home
             </Link>
-            <HomeTypes activesubstate={showSubActive} title="Show Homes" />
+            <HomeTypes
+              slug="/show-homes"
+              activesubstate={showSubActive}
+              title="Show Homes"
+            />
           </li>
         </ul>
       </nav>

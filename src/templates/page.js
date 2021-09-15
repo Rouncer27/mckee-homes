@@ -16,7 +16,7 @@ const Page = props => {
         // metaImg={seo.pageSeoData.swbThemeImage.localFile.relativePath}
         location={props.location.pathname}
       />*/}
-      <PageComponentGroups components={components} />
+      <PageComponentGroups location={props.location} components={components} />
     </Layout>
   )
 }

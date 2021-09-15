@@ -22,7 +22,7 @@ const FilterMain = ({
   setBedroomFilter,
 }) => {
   return (
-    <DivStyled>
+    <DivStyled id="filters">
       <FilterDropdown
         filterId="homeTypes"
         filterActive={filterActive === "homeTypes"}

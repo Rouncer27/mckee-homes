@@ -8,12 +8,12 @@ import lanedHomes from "../../../images/icons/laned-homes.png"
 import townhomes from "../../../images/icons/townhomes.png"
 import allHomes from "../../../images/icons/all-homes.png"
 
-const HomeTypes = ({ activesubstate, title }) => {
+const HomeTypes = ({ activesubstate, title, slug }) => {
   return (
     <SubMenu activesub={activesubstate} className="main-sub-nav">
       <p>{title}</p>
       <li>
-        <Link to="/">
+        <Link to={`${slug}?homeType=front-drive#filters`}>
           <span className="nav-icon">
             <img src={frontDrive} alt="Logo" />
           </span>
@@ -21,7 +21,7 @@ const HomeTypes = ({ activesubstate, title }) => {
         </Link>
       </li>
       <li>
-        <Link to="">
+        <Link to={`${slug}?homeType=laned-homes#filters`}>
           <span className="nav-icon">
             <img src={lanedHomes} alt="Logo" />
           </span>
@@ -29,7 +29,7 @@ const HomeTypes = ({ activesubstate, title }) => {
         </Link>
       </li>
       <li>
-        <Link to="">
+        <Link to={`${slug}?homeType=townhomes#filters`}>
           <span className="nav-icon">
             <img src={townhomes} alt="Logo" />
           </span>
@@ -37,7 +37,7 @@ const HomeTypes = ({ activesubstate, title }) => {
         </Link>
       </li>
       <li>
-        <Link to="">
+        <Link to={`${slug}?homeType=AllHomes#filters`}>
           <span className="nav-icon nav-icon__all-homes">
             <img src={allHomes} alt="Logo" />
           </span>

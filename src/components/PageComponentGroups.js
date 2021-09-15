@@ -40,7 +40,7 @@ import Map from "./PageComponents/Map"
 import ContactForm from "./PageComponents/Forms/ContactForm"
 
 const PageComponentGroups = props => {
-  const { components } = props
+  const { components, location } = props
   const allPageComponents =
     components?.acfMainTemplateFields?.pageComponents?.length > 0 ? (
       <>
@@ -135,10 +135,22 @@ const PageComponentGroups = props => {
                 return <DisplayPosts key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_DisplayHomePlans":
-                return <DisplayHomePlans key={index} data={component} />
+                return (
+                  <DisplayHomePlans
+                    location={location}
+                    key={index}
+                    data={component}
+                  />
+                )
 
               case "Page_Acfmaintemplatefields_PageComponents_DisplayShowHomes":
-                return <DisplayShowHomes key={index} data={component} />
+                return (
+                  <DisplayShowHomes
+                    location={location}
+                    key={index}
+                    data={component}
+                  />
+                )
 
               case "Page_Acfmaintemplatefields_PageComponents_DisplayQuickPossessions":
                 return <DisplayQuickPossessions key={index} data={component} />
