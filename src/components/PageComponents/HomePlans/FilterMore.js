@@ -117,22 +117,22 @@ const FilterMore = ({
           <div className="price-filter">
             <p>Price</p>
             <div>
-              <input readOnly type="text" step={500} value={priceFilter} />
+              <input readOnly type="text" step={50000} value={priceFilter} />
               <span
-                className={`plus${priceFilter === 4000 ? " disabled" : ""}`}
+                className={`plus${priceFilter === 1000000 ? " disabled" : ""}`}
                 onClick={() => {
-                  if (priceFilter === 4000) return
-                  setPriceFilter(priceFilter + 500)
+                  if (priceFilter === 1000000) return
+                  setPriceFilter(priceFilter + 50000)
                 }}
               >
                 +
               </span>
               <span className="value">{priceFilter}+</span>
               <span
-                className={`minus${priceFilter === 500 ? " disabled" : ""}`}
+                className={`minus${priceFilter === 0 ? " disabled" : ""}`}
                 onClick={() => {
-                  if (priceFilter === 500) return
-                  setPriceFilter(priceFilter - 500)
+                  if (priceFilter === 0) return
+                  setPriceFilter(priceFilter - 50000)
                 }}
               >
                 -

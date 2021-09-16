@@ -109,7 +109,7 @@ const DisplayQuickPossessions = props => {
   const [sqftFilter, setSqftFilter] = useState(500)
   const [bedroomFilter, setBedroomFilter] = useState([])
 
-  const [priceFilter, setPriceFilter] = useState(500)
+  const [priceFilter, setPriceFilter] = useState(0)
   const [timelineFilter, setTimelineFilter] = useState([])
   const [homeFeaturesFilter, setHomeFeaturesFilter] = useState([])
 
@@ -121,8 +121,6 @@ const DisplayQuickPossessions = props => {
   }, [props.location.search])
 
   if (!props.data.displayQuickPossessions) return null
-
-  console.log("homeFeaturesFilter", homeFeaturesFilter)
 
   return (
     <SectionStyled filteractive={filterActive !== ""}>
@@ -166,6 +164,9 @@ const DisplayQuickPossessions = props => {
           let communityMatch = true
           let sqftMatch = true
           let bedroomMatch = true
+          let priceMatch = true
+          let timelineMatch = true
+          let featuresMatch = true
 
           // Does this home match the home types filter?
           if (homeTypesFilter.length > 0) {
@@ -209,11 +210,57 @@ const DisplayQuickPossessions = props => {
             )
           }
 
+          // Does this house match the price filter
+          if (priceFilter > 0) {
+            priceMatch = home.node.acfQuickPossessions.price >= priceFilter
+          }
+
+          // Does this house match the timeline filter
+          if (timelineFilter.length > 0) {
+            const possessionDate = Date.parse(
+              new Date(
+                home.node.acfQuickPossessions.possessionTimeline.split("/")[2],
+                home.node.acfQuickPossessions.possessionTimeline.split("/")[1],
+                home.node.acfQuickPossessions.possessionTimeline.split("/")[0]
+              )
+            )
+            const dateNow = Date.parse(new Date())
+            const difference =
+              (possessionDate - dateNow) / (1000 * 3600 * 24) / 30
+
+            const timeframe =
+              difference > 3
+                ? "greater"
+                : difference > 0 && difference < 3
+                ? "less"
+                : difference < 0
+                ? "Immediate"
+                : ""
+
+            timelineMatch = timelineFilter.some(
+              timeline => timeline === timeframe
+            )
+          }
+
+          // Does this house match the home features filter
+          if (homeFeaturesFilter.length > 0) {
+            featuresMatch = homeFeaturesFilter.every(feature => {
+              const matchFound =
+                home.node.acfQuickPossessions.homeFeatures.find(
+                  homeFeature => homeFeature === feature
+                )
+              if (matchFound !== undefined) return true
+            })
+          }
+
           const displayHome =
             typeMatch &&
             styleMatch &&
             communityMatch &&
             bedroomMatch &&
+            featuresMatch &&
+            timelineMatch &&
+            priceMatch &&
             sqftMatch
 
           if (!displayHome) return null
