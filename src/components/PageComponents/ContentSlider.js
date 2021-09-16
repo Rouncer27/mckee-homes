@@ -83,14 +83,24 @@ const Slide = styled.div`
   }
 
   .image {
-    width: calc(50%);
-    padding: 0 5rem;
+    width: calc(100%);
+    padding: 0;
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+      padding: 0 5rem;
+    }
   }
 
   .content {
     position: relative;
-    width: calc(50%);
-    padding: 5rem;
+    width: calc(100%);
+    padding: 2rem 0;
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+      padding: 5rem;
+    }
 
     h2 {
       ${H2Navy};
@@ -107,12 +117,17 @@ const Slide = styled.div`
     }
 
     .board-line {
+      display: none;
       position: absolute;
       top: 5rem;
       left: 0;
       bottom: 5rem;
       width: 0.4rem;
       background-color: ${colors.colorTertiary};
+
+      @media (min-width: 768px) {
+        display: block;
+      }
     }
   }
 
@@ -121,9 +136,13 @@ const Slide = styled.div`
     top: 0;
     right: 0;
     bottom: 0;
-    width: 60%;
+    width: 100%;
     background-color: #e5e5e5;
     z-index: -1;
+
+    @media (min-width: 768px) {
+      width: 60%;
+    }
   }
 `
 

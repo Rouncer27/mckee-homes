@@ -59,9 +59,13 @@ const ContentImageBgPatternSection = styled.section`
   }
 
   .content {
-    width: calc(85%);
+    width: calc(100%);
     padding-left: 3rem;
     border-left: 0.3rem solid ${colors.colorTertiary};
+
+    @media (min-width: 768px) {
+      width: calc(85%);
+    }
 
     &__title {
       width: 100%;
@@ -92,8 +96,14 @@ const ContentImageBgPatternSection = styled.section`
   }
 
   .image {
-    width: calc(15% - 5rem);
-    margin-right: 5rem;
+    width: calc(30%);
+    margin-bottom: 5rem;
+
+    @media (min-width: 768px) {
+      width: calc(15% - 5rem);
+      margin-right: 5rem;
+      margin-bottom: 0;
+    }
   }
 
   .graphic {

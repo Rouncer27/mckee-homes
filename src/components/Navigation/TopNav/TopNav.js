@@ -87,7 +87,12 @@ const TopNav = () => {
 }
 
 const TopNavStyled = styled.div`
+  display: none;
   background-color: ${colors.colorPrimary};
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 
   .main-nav {
     width: 100%;

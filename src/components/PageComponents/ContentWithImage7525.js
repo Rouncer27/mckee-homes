@@ -57,7 +57,11 @@ const ContentWithImage7525Section = styled.section`
   }
 
   .content {
-    width: calc(75%);
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(75%);
+    }
 
     &__title {
       margin-bottom: 2rem;
@@ -78,9 +82,15 @@ const ContentWithImage7525Section = styled.section`
   }
 
   .image {
-    width: calc(25% - 4rem);
-    margin-right: ${props => (props.imageside === "left" ? "4rem" : "0rem")};
-    margin-left: ${props => (props.imageside === "left" ? "0" : "4rem")};
+    width: calc(25%);
+    margin-right: auto;
+    margin-left: auto;
+
+    @media (min-width: 768px) {
+      width: calc(25% - 4rem);
+      margin-right: ${props => (props.imageside === "left" ? "4rem" : "0rem")};
+      margin-left: ${props => (props.imageside === "left" ? "0" : "4rem")};
+    }
   }
 
   .button {

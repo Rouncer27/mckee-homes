@@ -36,8 +36,13 @@ const ContentWithLogoSection = styled.section`
 
   .images {
     position: relative;
-    width: calc(33.333333%);
-    height: 50rem;
+    width: calc(100%);
+    height: 27.5rem;
+
+    @media (min-width: 768px) {
+      width: calc(33.333333%);
+      height: 50rem;
+    }
 
     &__logo {
       position: absolute;
@@ -57,8 +62,12 @@ const ContentWithLogoSection = styled.section`
   }
 
   .content {
-    width: calc(66.666666%);
-    padding: 0 3rem;
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(66.666666%);
+      padding: 0 3rem;
+    }
 
     p {
       ${H3Black};

@@ -70,8 +70,12 @@ const ContentThreeImagesSection = styled.section`
 
   .content {
     position: relative;
-    width: calc(50%);
+    width: calc(100%);
     padding: 7.5rem 5rem;
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+    }
 
     h2 {
       ${H2Navy};
@@ -110,8 +114,14 @@ const ContentThreeImagesSection = styled.section`
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: calc(50% - 1rem);
-    margin-left: 1rem;
+    width: calc(100%);
+    margin-top: 2rem;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 1rem);
+      margin-top: 0;
+      margin-left: 1rem;
+    }
 
     &__top {
       width: 100%;

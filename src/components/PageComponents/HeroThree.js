@@ -72,12 +72,20 @@ const HeroThreeStyled = styled.section`
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 75rem;
+    width: 100%;
     transform: translate(-50%, -50%);
     z-index: 10;
 
+    @media (min-width: 768px) {
+      width: 75rem;
+    }
+
     &__inner {
-      padding: 2.5rem 10rem 2.5rem 5rem;
+      padding: 5rem 2.5rem;
+
+      @media (min-width: 768px) {
+        padding: 2.5rem 10rem 2.5rem 5rem;
+      }
 
       p {
         ${B1White};

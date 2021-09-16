@@ -65,13 +65,19 @@ const HeroTwoStyled = styled.section`
 
   .hero-content {
     position: absolute;
-    bottom: 12.5rem;
+    bottom: 7.5rem;
     right: 0;
-    width: 60rem;
+    width: 90%;
+
+    @media (min-width: 768px) {
+      width: 60rem;
+      bottom: 12.5rem;
+    }
 
     &__inner {
       padding: 2.5rem 10rem 2.5rem 5rem;
       background-color: rgba(255, 255, 255, 0.7);
+
       p {
         ${H3Grey};
         margin: 0;

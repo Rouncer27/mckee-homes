@@ -66,9 +66,14 @@ const HeroOneSection = styled.section`
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 60rem;
-    padding: 5rem 7.5rem 5rem 10rem;
+    width: 100%;
+    padding: 5rem 3rem;
     background-color: rgba(255, 255, 255, 0.9);
+
+    @media (min-width: 768px) {
+      width: 60rem;
+      padding: 5rem 7.5rem 5rem 10rem;
+    }
 
     .title {
       h2 {

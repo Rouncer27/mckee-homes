@@ -102,10 +102,15 @@ const Vertical = () => {
 }
 
 const SocialMediaStyled = styled.div`
+  display: none;
   position: absolute;
   top: 0;
   left: 5rem;
   background-color: ${colors.colorTertiary};
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 
   ul {
     display: flex;
