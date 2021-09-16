@@ -62,8 +62,13 @@ const SectionStyled = styled.section`
   }
 
   .content {
-    width: calc(50%);
-    padding: 2rem;
+    width: calc(100%);
+    padding-bottom: 3rem;
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+      padding: 2rem;
+    }
   }
 
   .title {
@@ -85,16 +90,29 @@ const SectionStyled = styled.section`
   }
 
   .image {
-    width: calc(50%);
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+    }
 
     &__top {
-      width: 90%;
+      width: 100%;
       margin: 0 auto;
+
+      @media (min-width: 768px) {
+        width: 90%;
+      }
     }
 
     &__bot {
-      width: 65%;
-      margin: 4rem auto 0;
+      width: 100%;
+      margin: 2rem auto;
+
+      @media (min-width: 768px) {
+        width: 65%;
+        margin: 4rem auto 0;
+      }
     }
   }
 `

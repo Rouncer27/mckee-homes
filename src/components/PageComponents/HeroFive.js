@@ -44,10 +44,10 @@ const HeroFive = ({ data }) => {
 const HeroFourStyled = styled.div`
   .hero-Wrap {
     position: relative;
-    height: 50rem;
+    height: 30rem;
 
     @media (min-width: 768px) {
-      height: 60rem;
+      height: 45rem;
     }
 
     @media (min-width: 1025px) {
@@ -68,10 +68,6 @@ const HeroFourStyled = styled.div`
       left: 0;
       width: 100%;
       height: 100%;
-
-      img,
-      picture {
-      }
     }
   }
 
@@ -81,29 +77,35 @@ const HeroFourStyled = styled.div`
 
   .hero-content {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
-
-    &__img-left {
-      width: calc(20%);
-    }
 
     &__inner {
       position: relative;
-      width: calc(60%);
+      width: calc(100%);
       margin: auto;
-      margin-top: -27.5rem;
-      padding: 2.5rem;
+      padding: 1rem 0;
       background-color: #fff;
       z-index: 100;
 
+      @media (min-width: 768px) {
+        width: calc(60%);
+        margin-top: -27.5rem;
+        padding: 2.5rem;
+      }
+
       h2 {
         ${H3Grey};
-        text-align: center;
+        @media (min-width: 768px) {
+          text-align: center;
+        }
       }
 
       h3 {
         ${H1Navy};
-        text-align: center;
+        @media (min-width: 768px) {
+          text-align: center;
+        }
       }
 
       p {

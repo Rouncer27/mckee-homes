@@ -75,8 +75,12 @@ const SectionStyled = styled.div`
 
   .content {
     position: relative;
-    width: calc(50%);
-    padding: 7.5rem 5rem;
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+      padding: 7.5rem 5rem;
+    }
   }
 
   .images {
@@ -85,8 +89,12 @@ const SectionStyled = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: calc(50% - 1rem);
-    margin-left: 1rem;
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50% - 1rem);
+      margin-left: 1rem;
+    }
 
     &__bot {
       width: 100%;

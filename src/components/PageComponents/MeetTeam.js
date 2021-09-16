@@ -56,6 +56,7 @@ const MeetTeam = ({ data }) => {
         </div>
         <div className="team">
           {team.map((team, index) => {
+            if (index > 3) return
             const imageDisplay = getImage(
               team.node.acfOurTeam.image.localFile.childImageSharp
                 .gatsbyImageData
@@ -81,7 +82,6 @@ const MeetTeam = ({ data }) => {
 }
 
 const SectionStyled = styled.section`
-  padding: 5rem 0;
   background: linear-gradient(
     to bottom,
     ${colors.colorPrimary} 0%,
@@ -90,17 +90,31 @@ const SectionStyled = styled.section`
     #fff 0%
   );
 
+  @media (min-width: 768px) {
+    padding: 5rem 0;
+  }
+
   .wrapper {
     ${medWrapper};
   }
 
   .inner-content {
     width: 100%;
-    padding: 0 7.5rem;
+    padding: 0 1rem;
+
+    @media (min-width: 768px) {
+      padding: 0 7.5rem;
+    }
   }
 
   .title {
     width: 100%;
+    margin-top: 5rem;
+
+    @media (min-width: 768px) {
+      margin-top: 0;
+    }
+
     h2 {
       ${H2White};
       font-weight: normal;
@@ -135,8 +149,13 @@ const SectionStyled = styled.section`
 `
 
 const Team = styled.div`
-  width: calc((100% / 4) - 2rem);
-  margin: auto 1rem;
+  width: calc((100% / 2) - 2rem);
+  margin: 1rem;
+
+  @media (min-width: 768px) {
+    width: calc((100% / 4) - 2rem);
+    margin: auto 1rem;
+  }
 `
 
 export default MeetTeam

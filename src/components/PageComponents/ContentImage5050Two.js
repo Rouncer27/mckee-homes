@@ -58,8 +58,13 @@ const SectionStyled = styled.section`
 
   .content {
     position: relative;
-    width: calc(50%);
-    padding: 5rem;
+    width: calc(100%);
+    padding: 2rem;
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+      padding: 5rem;
+    }
 
     h2 {
       ${H2Navy};
@@ -90,14 +95,22 @@ const SectionStyled = styled.section`
     top: 0;
     right: 0;
     bottom: 0;
-    width: 60%;
+    width: 100%;
     background-color: #e5e5e5;
     z-index: -1;
+
+    @media (min-width: 768px) {
+      width: 60%;
+    }
   }
 
   .image {
-    width: calc(50%);
-    padding: 0 5rem;
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+      padding: 0 5rem;
+    }
   }
 `
 

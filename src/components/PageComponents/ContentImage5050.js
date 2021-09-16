@@ -53,10 +53,19 @@ const SectionStyled = styled.section`
 
   .content {
     position: relative;
-    width: calc(50% - 2rem);
-    margin-right: ${props => (props.reversed ? "0rem" : "2rem")};
-    margin-left: ${props => (props.reversed ? "2rem" : "0rem")};
+    width: calc(100%);
+    margin-right: auto;
+    margin-bottom: 2rem;
+    margin-left: auto;
     padding: 7.5rem 5rem;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 2rem);
+      margin-right: ${props => (props.reversed ? "0rem" : "2rem")};
+      margin-bottom: 0;
+      margin-left: ${props => (props.reversed ? "2rem" : "0rem")};
+      padding: 7.5rem 5rem;
+    }
 
     h2 {
       ${H2Navy};
@@ -91,7 +100,11 @@ const SectionStyled = styled.section`
   }
 
   .image {
-    width: calc(50%);
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+    }
   }
 `
 

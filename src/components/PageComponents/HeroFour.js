@@ -108,10 +108,6 @@ const HeroFourStyled = styled.div`
       left: 0;
       width: 100%;
       height: 100%;
-
-      img,
-      picture {
-      }
     }
   }
 
@@ -121,29 +117,44 @@ const HeroFourStyled = styled.div`
 
   .hero-content {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
 
     &__img-left {
-      width: calc(20%);
+      width: calc(100%);
+
+      @media (min-width: 768px) {
+        width: calc(20%);
+      }
     }
 
     &__inner {
       position: relative;
-      width: calc(60%);
+      width: calc(100%);
       margin: auto;
-      margin-top: -27.5rem;
-      padding: 2.5rem;
+      padding: 2.5rem 0;
       background-color: #fff;
       z-index: 100;
 
+      @media (min-width: 768px) {
+        width: calc(60%);
+        margin-top: -27.5rem;
+        padding: 2.5rem;
+      }
+
       h2 {
         ${H3Grey};
-        text-align: center;
+        @media (min-width: 768px) {
+          text-align: center;
+        }
       }
 
       h3 {
         ${H1Navy};
-        text-align: center;
+
+        @media (min-width: 768px) {
+          text-align: center;
+        }
       }
 
       p {
@@ -152,7 +163,10 @@ const HeroFourStyled = styled.div`
 
       .buttons-wrap {
         width: 100%;
-        text-align: center;
+
+        @media (min-width: 768px) {
+          text-align: center;
+        }
 
         a {
           ${Btn1Grey};
@@ -164,7 +178,11 @@ const HeroFourStyled = styled.div`
     }
 
     &__img-right {
-      width: calc(20%);
+      width: calc(100%);
+
+      @media (min-width: 768px) {
+        width: calc(20%);
+      }
     }
   }
 `

@@ -40,15 +40,26 @@ const ContentSketchSection = styled.section`
 
     &__blueprint {
       position: absolute;
-      top: -5rem;
-      left: -10rem;
-      width: 53rem;
+      top: 0;
+      left: -20rem;
+      width: 45rem;
+
+      @media (min-width: 768px) {
+        top: -5rem;
+        left: -10rem;
+        width: 53rem;
+      }
     }
   }
 
   .content {
-    width: calc(90%);
-    padding: 0 3rem;
+    width: calc(100%);
+    padding: 0;
+
+    @media (min-width: 768px) {
+      width: calc(90%);
+      padding: 0 3rem;
+    }
 
     .title {
       margin-bottom: 1rem;

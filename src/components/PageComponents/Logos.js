@@ -46,18 +46,27 @@ const SectionStyled = styled.div`
 
   .wrapper {
     ${medWrapper};
+    justify-content: flex-start;
     align-items: center;
   }
 `
 
 const LogoLink = styled(Link)`
-  width: calc(100% / 5);
+  width: calc(100% / 2);
   padding: 1rem;
+
+  @media (min-width: 768px) {
+    width: calc(100% / 5);
+  }
 `
 
 const Logo = styled.div`
-  width: calc(100% / 5);
+  width: calc(100% / 2);
   padding: 1rem;
+
+  @media (min-width: 768px) {
+    width: calc(100% / 5);
+  }
 `
 
 export default Logos

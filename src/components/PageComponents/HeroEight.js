@@ -82,10 +82,10 @@ const HeroEight = ({ data }) => {
 const HeroEightStyled = styled.div`
   .hero-Wrap {
     position: relative;
-    height: 50rem;
+    height: 30rem;
 
     @media (min-width: 768px) {
-      height: 60rem;
+      height: 45rem;
     }
 
     @media (min-width: 1025px) {
@@ -106,10 +106,6 @@ const HeroEightStyled = styled.div`
       left: 0;
       width: 100%;
       height: 100%;
-
-      img,
-      picture {
-      }
     }
   }
 
@@ -119,12 +115,17 @@ const HeroEightStyled = styled.div`
 
   .hero-content {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
 
     .images {
       display: flex;
       flex-wrap: wrap;
-      width: calc(45%);
+      width: calc(100%);
+
+      @media (min-width: 768px) {
+        width: calc(45%);
+      }
 
       &__img-top {
         width: 100%;
@@ -144,13 +145,18 @@ const HeroEightStyled = styled.div`
 
     &__inner {
       position: relative;
-      width: calc(55%);
+      width: calc(100%);
       margin: auto;
-      margin-top: -27.5rem;
-      margin-left: -5rem;
-      padding: 5rem 6.5rem;
+      padding: 2rem 0;
       background-color: #fff;
       z-index: 100;
+
+      @media (min-width: 768px) {
+        width: calc(55%);
+        margin-top: -27.5rem;
+        margin-left: -5rem;
+        padding: 5rem 6.5rem;
+      }
 
       h2 {
         ${H3Grey};

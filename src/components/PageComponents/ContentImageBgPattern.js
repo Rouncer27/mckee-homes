@@ -51,7 +51,11 @@ const ContentImageBgPattern = ({ data }) => {
 
 const ContentImageBgPatternSection = styled.section`
   position: relative;
-  padding: 10rem 0rem;
+  padding: 2rem 0rem;
+
+  @media (min-width: 768px) {
+    padding: 10rem 0rem;
+  }
 
   .wrapper {
     ${medWrapper};
