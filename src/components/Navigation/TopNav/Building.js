@@ -76,7 +76,7 @@ const Building = ({ activesubstate }) => {
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link to="/work-with-us">
             <span className="nav-icon">
               <img src={homeLadder} alt="Logo" />
             </span>

@@ -652,6 +652,16 @@ export const pageTempQuery = graphql`
             fieldGroupName
             displaySimpleContactForm
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayJobPosts {
+            fieldGroupName
+            displayJobPosts
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayTradePartner {
+            fieldGroupName
+            displayTradePartnerForm
+          }
         }
       }
     }

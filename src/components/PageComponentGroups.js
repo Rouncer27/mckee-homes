@@ -32,12 +32,14 @@ import DisplayPosts from "./PageComponents/DisplayPosts"
 import DisplayHomePlans from "./PageComponents/DisplayHomePlans"
 import DisplayShowHomes from "./PageComponents/DisplayShowHomes"
 import DisplayQuickPossessions from "./PageComponents/DisplayQuickPossessions"
+import DisplayJobPosts from "./PageComponents/DisplayJobPosts"
 import ThreeImagesContent from "./PageComponents/ThreeImagesContent"
 import ThreeImagesRow from "./PageComponents/ThreeImagesRow"
 import CustomerStories from "./PageComponents/CustomerStories"
 import BlueBlockContent from "./PageComponents/BlueBlockContent"
 import Map from "./PageComponents/Map"
 import ContactForm from "./PageComponents/Forms/ContactForm"
+import TradePartner from "./PageComponents/Forms/TradePartner"
 
 const PageComponentGroups = props => {
   const { components, location } = props
@@ -178,6 +180,12 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_ContactForm":
                 return <ContactForm key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_DisplayJobPosts":
+                return <DisplayJobPosts key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_DisplayTradePartner":
+                return <TradePartner key={index} data={component} />
 
               default:
                 return (
