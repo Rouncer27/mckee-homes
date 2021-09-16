@@ -35,7 +35,6 @@ const getData = graphql`
 `
 
 const CustomerStories = ({ data }) => {
-  console.log("CustomerStories", data)
   const testData = useStaticQuery(getData)
   const testimonials = testData.testimonials.edges
 
@@ -88,17 +87,27 @@ const Story = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   margin-bottom: 5rem;
 
   .image {
-    width: calc(25% - 5rem);
-    margin-right: 5rem;
+    width: calc(50%);
+    margin-left: 0;
+
+    @media (min-width: 768px) {
+      width: calc(25% - 5rem);
+      margin-right: 5rem;
+      margin-left: auto;
+    }
   }
 
   .content {
-    width: calc(75%);
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(75%);
+    }
 
     h3 {
       ${H3Black};

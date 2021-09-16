@@ -84,8 +84,13 @@ const Team = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  width: calc((100% / 4) - 2rem);
-  margin: 0.5rem 1rem;
+  width: calc((100% / 2) - 1rem);
+  margin: 0.5rem;
+
+  @media (min-width: 768px) {
+    width: calc((100% / 4) - 2rem);
+    margin: 0.5rem 1rem;
+  }
 
   .image {
     width: 100%;
