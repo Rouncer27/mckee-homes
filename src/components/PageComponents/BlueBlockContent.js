@@ -61,13 +61,23 @@ const Block = styled.div`
   background-color: ${colors.colorPrimary};
 
   .icon {
-    width: calc(20%);
-    padding: 4rem 7rem;
+    width: calc(100%);
+    max-width: 12.5rem;
+    padding: 4rem 0;
+
+    @media (min-width: 768px) {
+      width: calc(20%);
+      padding: 4rem 7rem;
+    }
   }
 
   .content {
-    width: calc(80%);
+    width: calc(100%);
     padding: 2rem;
+
+    @media (min-width: 768px) {
+      width: calc(80%);
+    }
 
     h2 {
       ${H4White};
@@ -79,7 +89,10 @@ const Block = styled.div`
 
     .button {
       width: 100%;
-      text-align: right;
+
+      @media (min-width: 768px) {
+        text-align: right;
+      }
 
       a {
         ${Btn1Grey};

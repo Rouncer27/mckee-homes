@@ -57,18 +57,28 @@ const SectionStyled = styled.section`
     width: 100%;
 
     .image {
-      width: calc(100% / 3);
+      width: calc(100% / 1);
+      margin-bottom: 1rem;
       padding: 0 1.25rem;
+
+      @media (min-width: 768px) {
+        width: calc(100% / 3);
+        margin-bottom: 0;
+      }
     }
 
     &__left {
-      padding-right: 2.5rem !important;
-      padding-left: 0 !important;
+      @media (min-width: 768px) {
+        padding-right: 2.5rem !important;
+        padding-left: 0 !important;
+      }
     }
 
     &__right {
-      padding-right: 0 !important;
-      padding-left: 2.5rem !important;
+      @media (min-width: 768px) {
+        padding-right: 0 !important;
+        padding-left: 2.5rem !important;
+      }
     }
   }
 `

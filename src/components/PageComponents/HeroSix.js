@@ -67,10 +67,6 @@ const HeroSixStyled = styled.div`
       left: 0;
       width: 100%;
       height: 100%;
-
-      img,
-      picture {
-      }
     }
   }
 
@@ -82,10 +78,15 @@ const HeroSixStyled = styled.div`
     position: absolute;
     bottom: -10rem;
     left: 0;
-    width: 70rem;
-    padding: 2.5rem 10rem;
+    width: calc(100%);
+    padding: 2.5rem;
     background-color: #fff;
     z-index: 100;
+
+    @media (min-width: 768px) {
+      width: 70rem;
+      padding: 2.5rem 10rem;
+    }
 
     h2 {
       ${H3Grey};
