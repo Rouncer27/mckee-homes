@@ -8,6 +8,7 @@ import Login from "./Navigation/Login/Login"
 import MainLogo from "./Logos/MainLogo"
 import Vertical from "./SocialMedia/Vertical"
 import TopBanner from "./Header/TopBanner"
+import MobileNav from "./Navigation/MobileNav/MobileNav"
 
 const getData = graphql`
   {
@@ -39,6 +40,7 @@ const Header = ({ siteTitle }) => {
       <TopNav />
       <Vertical />
       <TopBanner />
+      <MobileNav />
     </HeaderStyled>
   )
 }
