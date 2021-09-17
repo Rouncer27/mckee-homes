@@ -67,7 +67,7 @@ const Block = styled.div`
 
     @media (min-width: 768px) {
       width: calc(20%);
-      padding: 4rem 7rem;
+      padding: 4rem 2rem;
     }
   }
 
