@@ -227,33 +227,13 @@ const FilterMore = ({
           <div>
             <p>Home Featured</p>
             <ul className="items">
-              <li value="spiceKitchen">
+              <li value="WalkoutBasement">
                 <label>
                   <input
-                    onChange={() => handleAddHomeFeatures("spiceKitchen")}
+                    onChange={() => handleAddHomeFeatures("WalkoutBasement")}
                     type="checkbox"
                   />
-                  Spice Kitchen
-                </label>
-              </li>
-
-              <li value="lifestyleRoom">
-                <label>
-                  <input
-                    onChange={() => handleAddHomeFeatures("lifestyleRoom")}
-                    type="checkbox"
-                  />
-                  Lifestyle Room
-                </label>
-              </li>
-
-              <li value="inlawSuite">
-                <label>
-                  <input
-                    onChange={() => handleAddHomeFeatures("inlawSuite")}
-                    type="checkbox"
-                  />
-                  In-law Suite
+                  Walkout Basement
                 </label>
               </li>
 
@@ -263,17 +243,56 @@ const FilterMore = ({
                     onChange={() => handleAddHomeFeatures("homeOffice")}
                     type="checkbox"
                   />
-                  Home Office / Den
+                  Office / Den
                 </label>
               </li>
 
-              <li value="doubleOwnersSuite">
+              <li value="fireplace">
                 <label>
                   <input
-                    onChange={() => handleAddHomeFeatures("doubleOwnersSuite")}
+                    onChange={() => handleAddHomeFeatures("fireplace")}
                     type="checkbox"
                   />
-                  Double Owners Suite
+                  Fireplace
+                </label>
+              </li>
+
+              <li value="upgradedEnsuite">
+                <label>
+                  <input
+                    onChange={() => handleAddHomeFeatures("upgradedEnsuite")}
+                    type="checkbox"
+                  />
+                  Upgraded Ensuite
+                </label>
+              </li>
+
+              <li value="greenspaceWater">
+                <label>
+                  <input
+                    onChange={() => handleAddHomeFeatures("greenspaceWater")}
+                    type="checkbox"
+                  />
+                  Greenspace/Water
+                </label>
+              </li>
+
+              <li value="garageSize">
+                <label>
+                  <input
+                    onChange={() => handleAddHomeFeatures("garageSize")}
+                    type="checkbox"
+                  />
+                  Garage size
+                </label>
+              </li>
+              <li value="spiceKitchen">
+                <label>
+                  <input
+                    onChange={() => handleAddHomeFeatures("spiceKitchen")}
+                    type="checkbox"
+                  />
+                  Spice Kitchen
                 </label>
               </li>
             </ul>
