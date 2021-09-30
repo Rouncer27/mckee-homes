@@ -1,15 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-import {
-  B1Black,
-  H1Navy,
-  H3Grey,
-  medWrapper,
-  standardWrapper,
-} from "../../styles/helpers"
+import { B1Black, H1Navy, H3Grey, standardWrapper } from "../../styles/helpers"
 
 const ContentSimpleTitleSub = ({ data }) => {
-  console.log(data)
   return (
     <StyledSection>
       <div className="wrapper">
@@ -30,7 +23,7 @@ const StyledSection = styled.section`
   padding: 5rem 0;
 
   .wrapper {
-    ${medWrapper};
+    ${standardWrapper};
   }
 
   .titles {
