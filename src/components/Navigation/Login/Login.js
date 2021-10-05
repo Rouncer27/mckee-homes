@@ -1,9 +1,18 @@
+import React, { useContext } from "react"
 import { Link } from "gatsby"
-import React from "react"
 import styled from "styled-components"
 import { B2Black } from "../../../styles/helpers"
+import { UserContext } from "../../../context/UserContext"
 
 const Login = () => {
+  const [userState] = useContext(UserContext)
+  const linkText =
+    Object.keys(userState.user).length === 0
+      ? "My Home Sign In"
+      : "My Home Dahsboard"
+  const linkSlug =
+    Object.keys(userState.user).length === 0 ? "login" : "app/dashboard"
+
   return (
     <LoginStyled>
       <ul>
@@ -13,7 +22,7 @@ const Login = () => {
           </Link>
         </li>
         <li>
-          <Link to="/">My Home Sign In</Link>
+          <Link to={`/${linkSlug}`}>{linkText}</Link>
         </li>
       </ul>
     </LoginStyled>
