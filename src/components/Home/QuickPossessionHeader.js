@@ -88,16 +88,18 @@ const QuickPossessionHeader = ({ home }) => {
             </p>
             <p className="header__address--features">
               Home Features: <br />{" "}
-              {home.acfQuickPossessions.homeFeatures.map((feature, index) => {
-                const isLast =
-                  index >= home.acfQuickPossessions.homeFeatures.length - 1
-                return (
-                  <>
-                    {feature}
-                    {isLast ? "" : ", "}
-                  </>
-                )
-              })}
+              {home?.acfQuickPossessions?.homeFeatures?.map(
+                (feature, index) => {
+                  const isLast =
+                    index >= home.acfQuickPossessions.homeFeatures.length - 1
+                  return (
+                    <>
+                      {feature}
+                      {isLast ? "" : ", "}
+                    </>
+                  )
+                }
+              )}
             </p>
             <p className="header__address--possession">
               Time to possession: {timeframe}
