@@ -1,7 +1,11 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/ssr-apis/
- */
+import React from "react"
+import { UserContextProvider } from "./src/context/UserContext"
+import { ErrorContextProvider } from "./src/context/ErrorContext"
 
-// You can delete this file if you're not using it
+export const wrapRootElement = ({ element }) => {
+  return (
+    <UserContextProvider>
+      <ErrorContextProvider>{element}</ErrorContextProvider>
+    </UserContextProvider>
+  )
+}

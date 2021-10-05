@@ -57,7 +57,7 @@ const Forgot = () => {
       <div className="wrapper">
         <div className="mainTitle">
           <h2>Forgot Your Password</h2>
-          <p>Enter </p>
+          <p>Enter your email to reset your password.</p>
         </div>
         <div className="mainForm">
           <form onSubmit={event => handleOnSubmit(event)}>

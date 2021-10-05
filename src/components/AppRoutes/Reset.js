@@ -8,10 +8,10 @@ import { UserContext } from "../../context/UserContext"
 import Input from "./Input"
 
 import {
-  B2CharcoalGrey,
-  Btn1DarkPurple,
+  B1Black,
+  Btn1Navy,
   colors,
-  H4Lavender,
+  H3Navy,
   medWrapper,
 } from "../../styles/helpers"
 
@@ -85,26 +85,29 @@ const Reset = ({ location }) => {
                 fieldvalid={true}
                 required={false}
                 size="full"
+                theme="dark"
               />
               <Input
                 label="confirm password"
                 name="password2"
-                type="password2"
-                placeholder="password2"
+                type="password"
+                placeholder="confirm password"
                 value={formData.password2}
                 onChange={handleOnChange}
                 fieldvalid={true}
                 required={false}
                 size="full"
+                theme="dark"
               />
               <div className="submitButton">
                 <button type="submit">Submit</button>
               </div>
             </fieldset>
           </form>
-          <div className="passForgot">
-            <Link to="/login">Login Page</Link>
-            <Link to="/signup">Sign Up Here.</Link>
+          <div className="appnav">
+            <p>
+              Remembered your password? <Link to="/login">Back To Login</Link>
+            </p>
           </div>
         </div>
       </div>
@@ -114,24 +117,26 @@ const Reset = ({ location }) => {
 
 const DivStyled = styled.div`
   .wrapper {
-    ${medWrapper};
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 55rem;
+    margin: 2rem auto;
+    padding: 4rem 2rem;
+    border: 0.1rem solid ${colors.colorPrimary};
+    box-shadow: 0.5rem 0.7rem 1.2rem 0.3rem rgba(0, 0, 0, 0.3);
   }
 
   .mainTitle {
     width: 100%;
 
     h2 {
-      ${H4Lavender};
+      ${H3Navy};
     }
   }
 
   .mainForm {
     width: 100%;
-    max-width: 55rem;
-    margin: 0;
-    margin-bottom: 2.5rem;
-    padding-bottom: 5rem;
-    border-bottom: solid 0.5rem ${colors.colorTertiary};
 
     fieldset {
       border: none;
@@ -142,33 +147,23 @@ const DivStyled = styled.div`
         padding-left: 0.5rem;
 
         button {
-          ${Btn1DarkPurple};
+          ${Btn1Navy};
         }
       }
     }
   }
 
-  .passForgot {
-    margin-top: 2.5rem;
-    padding-left: 2rem;
-
-    a {
-      ${B2CharcoalGrey};
-      margin: 0;
-    }
-  }
-
-  .mainNav {
-    padding-left: 2rem;
+  .appnav {
+    width: 100%;
+    margin-top: 5rem;
 
     p,
     a {
-      ${B2CharcoalGrey};
-      margin: 0;
+      ${B1Black};
     }
 
-    a {
-      text-decoration: underline;
+    p {
+      margin-bottom: 0.75rem;
     }
 
     a:hover {
