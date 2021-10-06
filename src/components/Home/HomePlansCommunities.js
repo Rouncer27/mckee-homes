@@ -11,14 +11,14 @@ const HomePlansCommunities = ({ communities }) => {
           <h2>Available In These Communities</h2>
         </div>
         <div className="wrapper-communities__logos">
-          {communities.map(community => {
+          {communities.map((community, index) => {
             const logoImg = getImage(
               community.acfCommunities.logo.localFile.childImageSharp
                 .gatsbyImageData
             )
             const logoImgAlt = community.acfCommunities.logo.altText
             return (
-              <div className="wrapper-communities__logos--logo">
+              <div key={index} className="wrapper-communities__logos--logo">
                 <GatsbyImage
                   image={logoImg}
                   alt={logoImgAlt}

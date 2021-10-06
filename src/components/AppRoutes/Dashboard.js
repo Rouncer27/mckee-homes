@@ -6,10 +6,12 @@ import {
   Btn1Navy,
   H1Black,
   H2Navy,
+  H3Navy,
   medWrapper,
 } from "../../styles/helpers"
 import { UserContext } from "../../context/UserContext"
 import { AlertContext } from "../../context/AlertContext"
+import { HomesContext } from "../../context/HomesContext"
 import Intro from "./Intro"
 import { Link } from "gatsby"
 import getProfile from "./AppActions/getProfile"
@@ -17,6 +19,7 @@ import getProfile from "./AppActions/getProfile"
 const Dashboard = () => {
   const [userState, userDispatch] = useContext(UserContext)
   const [, alertDispatch] = useContext(AlertContext)
+  const [homeState, homeDispatch] = useContext(HomesContext)
 
   useEffect(() => {
     getProfile(userDispatch, userState, alertDispatch)
@@ -43,11 +46,33 @@ const Dashboard = () => {
               </div>
               {userState?.profile?.home_plans?.length ? (
                 userState?.profile?.home_plans?.map(plan => {
-                  return (
-                    <div key={plan.id}>
-                      <p>{plan.title}</p>
-                    </div>
+                  const isStillActive = homeState.homePlans.some(
+                    home => home.node.slug === plan.slug
                   )
+
+                  if (isStillActive) {
+                    return (
+                      <HomeCard key={plan.id}>
+                        <p className="title">
+                          <Link to={`/home-plans/${plan.slug}`}>
+                            {plan.title}
+                          </Link>
+                        </p>
+                        <div className="notes">
+                          <p className="notes__title">Notes:</p>
+                          {plan.notes !== "" && <p>{plan.notes}</p>}
+                        </div>
+                      </HomeCard>
+                    )
+                  } else {
+                    return (
+                      <HomeCard key={plan.id}>
+                        <p className="title">
+                          {plan.title} <span>No longer available</span>
+                        </p>
+                      </HomeCard>
+                    )
+                  }
                 })
               ) : (
                 <div className="no-plans-found">
@@ -155,6 +180,9 @@ const SectionStyled = styled.section`
       }
 
       &--inner {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
         width: 100%;
 
         h3 {
@@ -167,6 +195,31 @@ const SectionStyled = styled.section`
           }
         }
       }
+    }
+  }
+`
+
+const HomeCard = styled.div`
+  width: calc(100% / 3);
+  padding: 2rem;
+
+  .title {
+    ${H3Navy};
+    margin: 0;
+    font-weight: 600;
+
+    a {
+      ${H3Navy};
+      margin: 0;
+      font-weight: 600;
+    }
+  }
+
+  .notes {
+    width: 100%;
+
+    &__title {
+      ${B1Black};
     }
   }
 `

@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { UserContext } from "../../context/UserContext"
+import { AlertContext } from "../../context/AlertContext"
 import { Link } from "gatsby"
 import {
   B2Black,
@@ -16,11 +18,30 @@ import sqft from "../../images/icons/sqft.png"
 import bed from "../../images/icons/bed.png"
 import bath from "../../images/icons/bath.png"
 
+import addHomePlan from "../AppRoutes/AppActions/addHomePlan"
+
 const HomePlanHeader = ({ home }) => {
+  console.log("homehomehomehomehomehomehome", home)
+
+  const [userState, userDispatch] = useContext(UserContext)
+  const [alertState, alertDispatch] = useContext(AlertContext)
+
   const mainImg = getImage(
     home.acfHomePlans.mainImage.localFile.childImageSharp.gatsbyImageData
   )
   const mainImgAlt = home.acfHomePlans.mainImage.altText
+
+  const handleOnClick = async () => {
+    console.log(
+      "This home is this data --> ",
+      home.slug,
+      home.title,
+      home.databaseId
+    )
+
+    await addHomePlan(home, userState, userDispatch, alertDispatch)
+  }
+
   return (
     <StyledSection>
       <div className="wrapper">
@@ -31,6 +52,8 @@ const HomePlanHeader = ({ home }) => {
             layout="fullWidth"
             formats={["auto", "webp", "avif"]}
           />
+
+          <button onClick={handleOnClick}>Save Home</button>
         </div>
         <div className="header">
           <div className="header__title">

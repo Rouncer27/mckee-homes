@@ -23,6 +23,7 @@ export const query = graphql`
       id
       date
       slug
+      databaseId
       acfHomePlans {
         details
         numberOfBathrooms
