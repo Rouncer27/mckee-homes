@@ -4,27 +4,15 @@ import styled from "styled-components"
 import axios from "axios"
 import { B2Black } from "../../../styles/helpers"
 import { UserContext } from "../../../context/UserContext"
+import { AlertContext } from "../../../context/AlertContext"
+
+import handleLogout from "../../../components/AppRoutes/AppActions/handleLogout"
 
 const Login = () => {
   const [userState, userDispatch] = useContext(UserContext)
+  const [, alertDispatch] = useContext(AlertContext)
   const linkSlug =
     Object.keys(userState.user).length === 0 ? "login" : "app/dashboard"
-
-  const handleLogout = async () => {
-    try {
-      await axios.post(
-        `http://localhost:1337/logout`,
-        {},
-        {
-          withCredentials: true,
-        }
-      )
-      userDispatch({ type: "USER_LOGOUT" })
-    } catch (err) {
-      console.log(err.response.data.message)
-      console.log(err)
-    }
-  }
 
   return (
     <LoginStyled>
@@ -38,7 +26,9 @@ const Login = () => {
           {Object.keys(userState.user).length === 0 ? (
             <Link to={`/login`}>My Home Sign In</Link>
           ) : (
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={() => handleLogout(userDispatch, alertDispatch)}>
+              Logout
+            </button>
           )}
         </li>
       </ul>
@@ -67,6 +57,7 @@ const LoginStyled = styled.div`
         transition: all 0.3s ease-out;
         color: #42454a;
         text-transform: uppercase;
+        cursor: pointer;
 
         span {
           padding-right: 1rem;

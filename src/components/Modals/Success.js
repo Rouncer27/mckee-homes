@@ -32,7 +32,7 @@ const Success = () => {
       <div className="message">
         <div className="inner">
           <p>{alertState.successMessage}</p>
-          {!alertState.successAutoClear && (
+          {!alertState.successAnimateOut && (
             <button onClick={handleClear}>Clear</button>
           )}
         </div>
@@ -93,11 +93,12 @@ const StyledDiv = styled.div`
 
     p {
       ${B1Black};
-      margin-bottom: 2.5rem;
+      margin-bottom: 0;
     }
 
     button {
       ${Btn1Success};
+      margin-top: 2.5rem;
     }
   }
 `

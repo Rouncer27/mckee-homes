@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react"
 import { UserContext } from "../../context/UserContext"
+import { AlertContext } from "../../context/AlertContext"
 import { Link } from "gatsby"
 import axios from "axios"
 import styled from "styled-components"
@@ -12,25 +13,12 @@ import {
   B1Black,
 } from "../../styles/helpers"
 
+import handleLogout from "./AppActions/handleLogout"
+
 const Account = () => {
   const [editState, setEditState] = useState(false)
   const [userState, userDispatch] = useContext(UserContext)
-
-  const handleLogout = async () => {
-    try {
-      await axios.post(
-        `http://localhost:1337/logout`,
-        {},
-        {
-          withCredentials: true,
-        }
-      )
-      userDispatch({ type: "USER_LOGOUT" })
-    } catch (err) {
-      console.log(err.response.data.message)
-      console.log(err)
-    }
-  }
+  const [, alertDispatch] = useContext(AlertContext)
 
   const handleDelete = async () => {
     try {
@@ -72,7 +60,10 @@ const Account = () => {
             </button>
           )}
 
-          <button className="btn" onClick={handleLogout}>
+          <button
+            className="btn"
+            onClick={() => handleLogout(userDispatch, alertDispatch)}
+          >
             Logout
           </button>
           <button className="btn danger" onClick={handleDelete}>
