@@ -1,11 +1,11 @@
 import React from "react"
 import { UserContextProvider } from "./src/context/UserContext"
-import { ErrorContextProvider } from "./src/context/ErrorContext"
+import { AlertContextProvider } from "./src/context/AlertContext"
 
 export const wrapRootElement = ({ element }) => {
   return (
     <UserContextProvider>
-      <ErrorContextProvider>{element}</ErrorContextProvider>
+      <AlertContextProvider>{element}</AlertContextProvider>
     </UserContextProvider>
   )
 }

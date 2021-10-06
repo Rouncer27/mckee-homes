@@ -104,3 +104,99 @@ export const Btn1Grey = css`
     }
   }
 `
+
+export const Btn1Primary = css`
+  ${Btn1Base};
+  background: transparent;
+  border: solid 0.2rem #154290;
+  color: #154290;
+
+  &:hover {
+    background: #154290;
+    color: ${colors.white};
+  }
+
+  &:focus {
+    outline: 0.4rem solid #003b49;
+    transition: all 0.35s ease-in-out;
+  }
+
+  &:disabled {
+    &:hover {
+      background: ${colors.colorTertiary};
+      color: ${colors.colorPrimary};
+    }
+  }
+`
+
+export const Btn1Secondary = css`
+  ${Btn1Base};
+  background: transparent;
+  border: solid 0.2rem #42454a;
+  color: #42454a;
+
+  &:hover {
+    background: #42454a;
+    color: ${colors.white};
+  }
+
+  &:focus {
+    outline: 0.4rem solid #003b49;
+    transition: all 0.35s ease-in-out;
+  }
+
+  &:disabled {
+    &:hover {
+      background: ${colors.colorTertiary};
+      color: ${colors.colorPrimary};
+    }
+  }
+`
+
+export const Btn1Success = css`
+  ${Btn1Base};
+  background: transparent;
+  border: solid 0.2rem #28a745;
+  color: #28a745;
+
+  &:hover {
+    background: #28a745;
+    color: ${colors.white};
+  }
+
+  &:focus {
+    outline: 0.4rem solid #003b49;
+    transition: all 0.35s ease-in-out;
+  }
+
+  &:disabled {
+    &:hover {
+      background: ${colors.colorTertiary};
+      color: ${colors.colorPrimary};
+    }
+  }
+`
+
+export const Btn1Danger = css`
+  ${Btn1Base};
+  background: transparent;
+  border: solid 0.2rem #dc3545;
+  color: #dc3545;
+
+  &:hover {
+    background: #dc3545;
+    color: ${colors.white};
+  }
+
+  &:focus {
+    outline: 0.4rem solid #003b49;
+    transition: all 0.35s ease-in-out;
+  }
+
+  &:disabled {
+    &:hover {
+      background: ${colors.colorTertiary};
+      color: ${colors.colorPrimary};
+    }
+  }
+`

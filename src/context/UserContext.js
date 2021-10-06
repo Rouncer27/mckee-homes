@@ -9,6 +9,12 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "USER_LOADING":
+      return {
+        ...state,
+        loading: action.payload.loading,
+      }
+
     case "USER_LOGOUT":
       return {
         user: {},

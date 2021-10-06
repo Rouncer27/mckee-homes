@@ -1,18 +1,16 @@
 import React, { useContext, useEffect, useState } from "react"
 import { UserContext } from "../../context/UserContext"
+import { AlertContext } from "../../context/AlertContext"
 import { navigate, Link } from "gatsby"
 import styled from "styled-components"
 import Input from "./Input"
 import axios from "axios"
 
 import {
-  H1White,
-  B1White,
   colors,
   medWrapper,
   Btn1Grey,
   H1Navy,
-  Btn1Navy,
   B1Black,
 } from "../../styles/helpers"
 
@@ -20,6 +18,7 @@ import Intro from "./Intro"
 
 const Login = () => {
   const [userState, userDispatch] = useContext(UserContext)
+  const [alertState, alertDispatch] = useContext(AlertContext)
 
   useEffect(() => {
     const userRole =
@@ -42,6 +41,11 @@ const Login = () => {
 
   const handleOnSubmit = async event => {
     event.preventDefault()
+    userDispatch({
+      type: "USER_LOADING",
+      payload: { loading: true },
+    })
+
     try {
       const response = await axios.post(
         `http://localhost:1337/auth/local`,
@@ -59,7 +63,29 @@ const Login = () => {
         type: "USER_LOGIN",
         payload: { user: response.data.user },
       })
+
+      alertDispatch({
+        type: "USER_SUCCESS",
+        payload: {
+          successMessage: "You have successfully logged in to your account.",
+          successAutoClear: true,
+          successAnimateOut: true,
+        },
+      })
     } catch (err) {
+      const errMessage =
+        err?.response?.data?.message[0]?.messages[0]?.message ===
+        "Identifier or password invalid."
+          ? "Email or password invalid."
+          : "Something went wrong, please try again later."
+      alertDispatch({
+        type: "USER_ERROR",
+        payload: { errMessage },
+      })
+      userDispatch({
+        type: "USER_LOADING",
+        payload: { loading: false },
+      })
       console.log(err)
     }
   }

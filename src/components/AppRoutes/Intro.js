@@ -5,13 +5,14 @@ import { B1Black, Btn1Grey, H1Navy } from "../../styles/helpers"
 
 const Intro = ({ intropage }) => {
   const displayBtn = intropage === "login" ? true : false
-
+  const title =
+    intropage === "dashboard" ? "My Favourites" : "My Favourites Sign Up"
   return (
     <StyledDiv intropage={intropage}>
       <div className="intro__icon"></div>
       <div className="intro__content">
         <div className="intro__title">
-          <h2>My Favourites Sign Up</h2>
+          <h2>{title}</h2>
         </div>
         <div className="intro__para">
           <p>
@@ -46,6 +47,7 @@ const StyledDiv = styled.div`
 
     h2 {
       ${H1Navy};
+      font-weight: 600;
     }
 
     p {
