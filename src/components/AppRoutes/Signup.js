@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import axios from "axios"
 
 import { UserContext } from "../../context/UserContext"
+import { AlertContext } from "../../context/AlertContext"
 import {
   H1White,
   B1White,
@@ -15,8 +15,11 @@ import {
 import Input from "./Input"
 import Intro from "./Intro"
 
+import handleResister from "./AppActions/handleResister"
+
 const Signup = () => {
-  const [, dispatch] = useContext(UserContext)
+  const [, userDispatch] = useContext(UserContext)
+  const [, alertDispatch] = useContext(AlertContext)
 
   const [formData, setFormData] = useState({
     email: "",
@@ -43,26 +46,7 @@ const Signup = () => {
 
   const handleOnSubmit = async event => {
     event.preventDefault()
-
-    try {
-      const response = await axios.post(
-        `http://localhost:1337/auth/local/register`,
-        {
-          email: formData.email,
-          username: formData.username,
-          password: formData.password,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-
-      if (response.data.ok) {
-        resetFormData()
-      }
-    } catch (err) {
-      console.dir(err)
-    }
+    handleResister(formData, resetFormData, userDispatch, alertDispatch)
   }
 
   return (

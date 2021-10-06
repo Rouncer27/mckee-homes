@@ -1,7 +1,7 @@
-import { navigate } from "gatsby"
 import axios from "axios"
+import { navigate } from "gatsby"
 
-export default async (userDispatch, alertDispatch, identifier, password) => {
+export default async (formData, resetFormData, userDispatch, alertDispatch) => {
   userDispatch({
     type: "USER_LOADING",
     payload: { loading: true },
@@ -9,16 +9,20 @@ export default async (userDispatch, alertDispatch, identifier, password) => {
 
   try {
     const response = await axios.post(
-      `http://localhost:1337/auth/local`,
-
+      `http://localhost:1337/auth/local/register`,
       {
-        identifier,
-        password,
+        email: formData.email,
+        username: formData.username,
+        password: formData.password,
       },
       {
         withCredentials: true,
       }
     )
+
+    if (response.data.ok) {
+      resetFormData()
+    }
 
     userDispatch({
       type: "USER_LOGIN",
@@ -28,11 +32,13 @@ export default async (userDispatch, alertDispatch, identifier, password) => {
     alertDispatch({
       type: "USER_SUCCESS",
       payload: {
-        successMessage: "You have successfully logged in to your account.",
-        successAutoClear: true,
-        successAnimateOut: true,
+        successMessage:
+          "You have successfully signed up to My Favourites. Please confirm your email address before you begin.",
+        successAutoClear: false,
+        successAnimateOut: false,
       },
     })
+
     navigate("/app/dashboard", { replace: true })
   } catch (err) {
     const errMessage =

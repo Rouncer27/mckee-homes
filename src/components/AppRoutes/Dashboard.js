@@ -1,12 +1,21 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import styled from "styled-components"
 import { B1Black, Btn1Navy, H1Black, medWrapper } from "../../styles/helpers"
 import { UserContext } from "../../context/UserContext"
+import { AlertContext } from "../../context/AlertContext"
 import Intro from "./Intro"
 import { Link } from "gatsby"
+import getProfile from "./AppActions/getProfile"
 
 const Dashboard = () => {
   const [userState, userDispatch] = useContext(UserContext)
+  const [, alertDispatch] = useContext(AlertContext)
+
+  useEffect(() => {
+    if (Object.keys(userState.profile).length === 0) {
+      getProfile(userDispatch, userState, alertDispatch)
+    }
+  }, [])
 
   return (
     <SectionStyled>

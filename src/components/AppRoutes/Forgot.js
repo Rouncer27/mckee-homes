@@ -5,13 +5,7 @@ import axios from "axios"
 
 import { UserContext } from "../../context/UserContext"
 import Input from "./Input"
-import {
-  B2CharcoalGrey,
-  B1Black,
-  Btn1Navy,
-  colors,
-  H3Navy,
-} from "../../styles/helpers"
+import { B1Black, Btn1Navy, colors, H3Navy } from "../../styles/helpers"
 
 const Forgot = () => {
   const [, dispatch] = useContext(UserContext)

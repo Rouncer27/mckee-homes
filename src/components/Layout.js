@@ -16,6 +16,8 @@ import Success from "./Modals/Success"
 import Alert from "./Modals/Alert"
 import Error from "./Modals/Error"
 
+import getUserCheck from "./AppRoutes/AppActions/getUserCheck"
+
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -33,28 +35,9 @@ const Layout = ({ children }) => {
   console.log("userState LAYOUT: ", userState)
   console.log("alertState LAYOUT: ", alertState)
 
-  const checkUserLoggedIn = async () => {
-    try {
-      const response = await axios.get(`http://localhost:1337/users/me`, {
-        withCredentials: true,
-        headers: {
-          "content-type": "application/x-www-form-urlencoded",
-        },
-      })
-
-      userDispatch({
-        type: "USER_LOGIN",
-        payload: { user: response.data },
-      })
-    } catch (err) {
-      userDispatch({ type: "USER_LOGOUT" })
-      console.log("ERROR: ", err)
-    }
-  }
-
   useEffect(() => {
     if (Object.keys(userState.user).length === 0) {
-      checkUserLoggedIn()
+      getUserCheck(userDispatch)
     }
   }, [])
 

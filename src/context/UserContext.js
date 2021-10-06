@@ -4,6 +4,7 @@ export const UserContext = createContext()
 
 const initialState = {
   user: {},
+  profile: {},
   loading: false,
 }
 
@@ -18,12 +19,20 @@ const reducer = (state, action) => {
     case "USER_LOGOUT":
       return {
         user: {},
+        profile: {},
         loading: false,
       }
     case "USER_LOGIN":
       return {
         ...state,
         user: action.payload.user,
+        loading: false,
+      }
+
+    case "USER_PROFILE":
+      return {
+        ...state,
+        profile: action.payload.profile,
         loading: false,
       }
 

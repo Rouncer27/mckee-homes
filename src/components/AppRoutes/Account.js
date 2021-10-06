@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { UserContext } from "../../context/UserContext"
 import { AlertContext } from "../../context/AlertContext"
 import { Link } from "gatsby"
@@ -13,12 +13,30 @@ import {
   B1Black,
 } from "../../styles/helpers"
 
+import handleGetUser from "./AppActions/handleGetUser"
 import handleLogout from "./AppActions/handleLogout"
+import handleEditAccount from "./AppActions/handleEditAccount"
 
 const Account = () => {
   const [editState, setEditState] = useState(false)
+  const [accountDiff, setDccountDiff] = useState(false)
+  const [accountDetails, setAccountDetails] = useState({
+    username: "",
+  })
   const [userState, userDispatch] = useContext(UserContext)
   const [, alertDispatch] = useContext(AlertContext)
+
+  useEffect(() => {
+    handleGetUser(userDispatch)
+  }, [])
+
+  useEffect(() => {
+    if (accountDetails.username === userState.user.username) {
+      setDccountDiff(false)
+    } else {
+      setDccountDiff(true)
+    }
+  }, [accountDetails])
 
   const handleDelete = async () => {
     try {
@@ -32,12 +50,23 @@ const Account = () => {
     }
   }
 
+  const handleOnChange = event => {
+    setAccountDetails({
+      ...accountDetails,
+      [event.target.name]: event.target.value,
+    })
+  }
+
   const handleEdit = () => {
+    setAccountDetails({
+      username: userState.user.username,
+    })
     setEditState(true)
   }
 
   const handleSave = () => {
     setEditState(false)
+    handleEditAccount()
   }
 
   return (
@@ -51,8 +80,12 @@ const Account = () => {
             My Favourites
           </Link>
           {editState ? (
-            <button className="btn success" onClick={handleSave}>
-              Save Account
+            <button
+              disabled={!accountDiff}
+              className="btn success"
+              onClick={handleSave}
+            >
+              {accountDiff ? "Save Account" : "No Changes Made"}
             </button>
           ) : (
             <button className="btn secondary" onClick={handleEdit}>
@@ -78,7 +111,10 @@ const Account = () => {
               <input
                 type="text"
                 id="username"
-                value={userState.user.username}
+                name="username"
+                value={accountDetails.username}
+                required={false}
+                onChange={handleOnChange}
               />
             ) : (
               <span>{userState.user.username}</span>
