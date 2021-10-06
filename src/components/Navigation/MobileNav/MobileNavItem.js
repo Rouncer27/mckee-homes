@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { colors, Nav1Gold } from "../../../styles/helpers"
+import { colors, B1Black } from "../../../styles/helpers"
 
 import MobileSubMenu from "./MobileSubMenu"
 
@@ -65,7 +65,7 @@ const MobileNavItemStyled = styled.li`
   }
 
   a {
-    ${Nav1Gold};
+    ${B1Black};
     display: block;
     width: 100%;
     padding: 2rem;

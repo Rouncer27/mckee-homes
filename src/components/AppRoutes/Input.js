@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 
 import { fontSizer, colors, B1White, B1Black } from "../../styles/helpers"
@@ -16,7 +16,8 @@ const Input = ({
   required,
   theme,
 }) => {
-  const [currentFieldVal, setCurrentFieldVal] = useState({
+  // setCurrentFieldVal
+  const [currentFieldVal] = useState({
     fieldName: name,
     valid: true,
     message: "",

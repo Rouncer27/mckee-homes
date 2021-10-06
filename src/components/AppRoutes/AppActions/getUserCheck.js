@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export default async userDispatch => {
+const getUserCheck = async userDispatch => {
   try {
     const response = await axios.get(`http://localhost:1337/users/me`, {
       withCredentials: true,
@@ -18,3 +18,5 @@ export default async userDispatch => {
     console.log("ERROR: ", err)
   }
 }
+
+export default getUserCheck

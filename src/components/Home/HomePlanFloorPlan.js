@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import {
   B2Black,
-  B1White,
   B2Grey,
   Btn1Grey,
   colors,

@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import MobileNavItem from "./MobileNavItem"
-import { Nav1Gold, colors } from "../../../styles/helpers"
+import { B1Black, colors } from "../../../styles/helpers"
 
 const MobileNavContainer = ({ navitems }) => {
   const topNavItems = navitems.filter(item => item.parentDatabaseId === 0)
@@ -44,7 +44,7 @@ const MobileNavContainerStyled = styled.nav`
 
       button,
       a {
-        ${Nav1Gold};
+        ${B1Black};
         display: block;
         width: 100%;
         padding: 2rem;

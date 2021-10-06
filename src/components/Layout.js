@@ -45,10 +45,10 @@ const Layout = ({ children }) => {
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Loading />
+        {userState.loading && <Loading />}
         {alertState.success && <Success />}
-        <Alert />
-        <Error />
+        {alertState.alert && <Alert />}
+        {alertState.error && <Error />}
         <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
         <main id="main" role="main">
           {children}

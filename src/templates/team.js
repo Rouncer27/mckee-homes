@@ -7,9 +7,9 @@ import Layout from "../components/Layout"
 import { B1Black, H2Black, medWrapper } from "../styles/helpers"
 
 const Team = props => {
-  const { team, allTeams } = props.data
-  const prevTeam = props.pageContext.prev
-  const nextTeam = props.pageContext.next
+  const { team } = props.data
+  // const prevTeam = props.pageContext.prev
+  // const nextTeam = props.pageContext.next
 
   const imageDisplay = getImage(
     team.acfOurTeam.image.localFile.childImageSharp.gatsbyImageData

@@ -1,14 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import {
-  B2Black,
-  Btn1Grey,
-  Btn1Navy,
-  colors,
-  standardWrapper,
-  B1Black,
-} from "../../styles/helpers"
+import { colors, standardWrapper, B1Black } from "../../styles/helpers"
 
 const HomePlansCommunities = ({ communities }) => {
   return (

@@ -13,7 +13,6 @@ import {
 import BgPatternBrick from "../Graphics/BgPatternBrick"
 
 const ContentImageBgPattern = ({ data }) => {
-  console.log("ContentImageBgPattern: ", data)
   const imgDisplay = getImage(
     data.image.localFile.childImageSharp.gatsbyImageData
   )

@@ -5,9 +5,9 @@ import Layout from "../components/Layout"
 import HomePlan from "../components/Home/HomePlan"
 
 const home = props => {
-  const { home, allHomePlans } = props.data
-  const prevPlan = props.pageContext.prev
-  const nextPlan = props.pageContext.next
+  const { home } = props.data
+  // const prevPlan = props.pageContext.prev
+  // const nextPlan = props.pageContext.next
 
   return (
     <Layout>

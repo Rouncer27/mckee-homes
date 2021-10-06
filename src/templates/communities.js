@@ -13,8 +13,6 @@ import RelatedPosts from "../components/Communities/RelatedPosts"
 
 const communities = props => {
   const { community, allWpShowHome } = props.data
-  console.log(community)
-
   return (
     <div>
       <Layout>

@@ -5,9 +5,9 @@ import Layout from "../components/Layout"
 import QuickPossession from "../components/Home/QuickPossession"
 
 const quickPossession = props => {
-  const { quickPossession, quickPossessions } = props.data
-  const prevPlan = props.pageContext.prev
-  const nextPlan = props.pageContext.next
+  const { quickPossession } = props.data
+  // const prevPlan = props.pageContext.prev
+  // const nextPlan = props.pageContext.next
   return (
     <div>
       <Layout>

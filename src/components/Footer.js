@@ -58,10 +58,10 @@ const Footer = () => {
       <div className="foot-bottom">
         <ul>
           <li>
-            <Link to="">Privacy</Link>
+            <Link to="/">Privacy</Link>
           </li>
           <li>
-            <Link to="">Disclaimer</Link>
+            <Link to="/">Disclaimer</Link>
           </li>
         </ul>
       </div>
