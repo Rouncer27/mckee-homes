@@ -6,7 +6,6 @@ import {
   Btn1Navy,
   H1Black,
   H2Navy,
-  H3Navy,
   medWrapper,
 } from "../../styles/helpers"
 import { UserContext } from "../../context/UserContext"
@@ -15,6 +14,8 @@ import { HomesContext } from "../../context/HomesContext"
 import Intro from "./Intro"
 import { Link } from "gatsby"
 import getProfile from "./AppActions/getProfile"
+import NoteCard from "./AppComponents/NoteCard"
+import NoteCardNot from "./AppComponents/NoteCardNot"
 
 const Dashboard = () => {
   const [userState, userDispatch] = useContext(UserContext)
@@ -51,27 +52,9 @@ const Dashboard = () => {
                   )
 
                   if (isStillActive) {
-                    return (
-                      <HomeCard key={plan.id}>
-                        <p className="title">
-                          <Link to={`/home-plans/${plan.slug}`}>
-                            {plan.title}
-                          </Link>
-                        </p>
-                        <div className="notes">
-                          <p className="notes__title">Notes:</p>
-                          {plan.notes !== "" && <p>{plan.notes}</p>}
-                        </div>
-                      </HomeCard>
-                    )
+                    return <NoteCard key={plan.id} plan={plan} />
                   } else {
-                    return (
-                      <HomeCard key={plan.id}>
-                        <p className="title">
-                          {plan.title} <span>No longer available</span>
-                        </p>
-                      </HomeCard>
-                    )
+                    return <NoteCardNot key={plan.id} plan={plan} />
                   }
                 })
               ) : (
@@ -195,31 +178,6 @@ const SectionStyled = styled.section`
           }
         }
       }
-    }
-  }
-`
-
-const HomeCard = styled.div`
-  width: calc(100% / 3);
-  padding: 2rem;
-
-  .title {
-    ${H3Navy};
-    margin: 0;
-    font-weight: 600;
-
-    a {
-      ${H3Navy};
-      margin: 0;
-      font-weight: 600;
-    }
-  }
-
-  .notes {
-    width: 100%;
-
-    &__title {
-      ${B1Black};
     }
   }
 `
