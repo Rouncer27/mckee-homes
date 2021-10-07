@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const updateNotes = async (userDispatch, alertDispatch, notes, id) => {
+const updateNotes = async (userDispatch, alertDispatch, notes, id, url) => {
   userDispatch({
     type: "USER_LOADING",
     payload: { loading: true },
@@ -8,7 +8,7 @@ const updateNotes = async (userDispatch, alertDispatch, notes, id) => {
 
   try {
     const response = await axios.put(
-      `http://localhost:1337/home-plans/${id}`,
+      `http://localhost:1337/${url}/${id}`,
       {
         notes,
       },

@@ -1,6 +1,8 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { UserContext } from "../../context/UserContext"
+import { AlertContext } from "../../context/AlertContext"
 import { Link } from "gatsby"
 import {
   B2Black,
@@ -16,8 +18,12 @@ import {
 import sqft from "../../images/icons/sqft.png"
 import bed from "../../images/icons/bed.png"
 import bath from "../../images/icons/bath.png"
+import addPlan from "../AppRoutes/AppActions/addPlan"
 
 const QuickPossessionHeader = ({ home }) => {
+  const [userState, userDispatch] = useContext(UserContext)
+  const [, alertDispatch] = useContext(AlertContext)
+
   const mainImg = getImage(
     home.acfQuickPossessions.mainImage.localFile.childImageSharp.gatsbyImageData
   )
@@ -45,6 +51,15 @@ const QuickPossessionHeader = ({ home }) => {
       ? "Immediate"
       : ""
 
+  const handleOnClick = async () =>
+    await addPlan(
+      home,
+      userState,
+      userDispatch,
+      alertDispatch,
+      "quick-possessions"
+    )
+
   return (
     <StyledSection>
       <div className="wrapper">
@@ -55,6 +70,7 @@ const QuickPossessionHeader = ({ home }) => {
             layout="fullWidth"
             formats={["auto", "webp", "avif"]}
           />
+          <button onClick={handleOnClick}>Save Home</button>
         </div>
         <div className="header">
           <div className="header__title">

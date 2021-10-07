@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const addHomePlan = async (home, userState, userDispatch, alertDispatch) => {
+const addPlan = async (home, userState, userDispatch, alertDispatch, url) => {
   userDispatch({
     type: "USER_LOADING",
     payload: { loading: true },
@@ -8,10 +8,10 @@ const addHomePlan = async (home, userState, userDispatch, alertDispatch) => {
 
   try {
     const response = await axios.post(
-      `http://localhost:1337/home-plans`,
+      `http://localhost:1337/${url}`,
       {
         slug: home.slug,
-        wordpress_id: home.databaseId,
+        wordpress_id: home.databaseId.toString(),
         title: home.title,
       },
       {
@@ -46,4 +46,4 @@ const addHomePlan = async (home, userState, userDispatch, alertDispatch) => {
   }
 }
 
-export default addHomePlan
+export default addPlan

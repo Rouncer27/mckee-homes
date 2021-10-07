@@ -16,7 +16,7 @@ import { HomesContext } from "../../../context/HomesContext"
 
 import updateNotes from "../AppActions/updateNotes"
 
-const NoteCard = ({ plan }) => {
+const NoteCard = ({ plan, url }) => {
   const [userState, userDispatch] = useContext(UserContext)
   const [, alertDispatch] = useContext(AlertContext)
   const [editActive, setEditActive] = useState(false)
@@ -40,14 +40,14 @@ const NoteCard = ({ plan }) => {
 
   const handleOnSave = async () => {
     if (isDirty)
-      await updateNotes(userDispatch, alertDispatch, myNotes, plan.id)
+      await updateNotes(userDispatch, alertDispatch, myNotes, plan.id, url)
     setEditActive(false)
   }
 
   return (
     <HomeCard>
       <p className="title">
-        <Link to={`/home-plans/${plan.slug}`}>{plan.title}</Link>
+        <Link to={`/${url}/${plan.slug}`}>{plan.title}</Link>
       </p>
       <div className="notes">
         <div className="notes__actions">

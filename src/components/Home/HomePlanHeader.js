@@ -18,29 +18,19 @@ import sqft from "../../images/icons/sqft.png"
 import bed from "../../images/icons/bed.png"
 import bath from "../../images/icons/bath.png"
 
-import addHomePlan from "../AppRoutes/AppActions/addHomePlan"
+import addPlan from "../AppRoutes/AppActions/addPlan"
 
 const HomePlanHeader = ({ home }) => {
-  console.log("homehomehomehomehomehomehome", home)
-
   const [userState, userDispatch] = useContext(UserContext)
-  const [alertState, alertDispatch] = useContext(AlertContext)
+  const [, alertDispatch] = useContext(AlertContext)
 
   const mainImg = getImage(
     home.acfHomePlans.mainImage.localFile.childImageSharp.gatsbyImageData
   )
   const mainImgAlt = home.acfHomePlans.mainImage.altText
 
-  const handleOnClick = async () => {
-    console.log(
-      "This home is this data --> ",
-      home.slug,
-      home.title,
-      home.databaseId
-    )
-
-    await addHomePlan(home, userState, userDispatch, alertDispatch)
-  }
+  const handleOnClick = async () =>
+    await addPlan(home, userState, userDispatch, alertDispatch, "home-plans")
 
   return (
     <StyledSection>

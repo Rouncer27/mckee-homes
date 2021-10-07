@@ -24,6 +24,7 @@ export const query = graphql`
       id
       date
       slug
+      databaseId
       acfQuickPossessions {
         address
         homeFeatures

@@ -52,9 +52,13 @@ const Dashboard = () => {
                   )
 
                   if (isStillActive) {
-                    return <NoteCard key={plan.id} plan={plan} />
+                    return (
+                      <NoteCard key={plan.id} plan={plan} url="home-plans" />
+                    )
                   } else {
-                    return <NoteCardNot key={plan.id} plan={plan} />
+                    return (
+                      <NoteCardNot key={plan.id} plan={plan} url="home-plans" />
+                    )
                   }
                 })
               ) : (
@@ -74,11 +78,27 @@ const Dashboard = () => {
               </div>
               {userState?.profile?.quick_possessions?.length ? (
                 userState?.profile?.quick_possessions?.map(plan => {
-                  return (
-                    <div key={plan.id}>
-                      <p>{plan.title}</p>
-                    </div>
+                  const isStillActive = homeState.quickPossessions.some(
+                    home => home.node.slug === plan.slug
                   )
+
+                  if (isStillActive) {
+                    return (
+                      <NoteCard
+                        key={plan.id}
+                        plan={plan}
+                        url="quick-possessions"
+                      />
+                    )
+                  } else {
+                    return (
+                      <NoteCardNot
+                        key={plan.id}
+                        plan={plan}
+                        url="quick-possessions"
+                      />
+                    )
+                  }
                 })
               ) : (
                 <div className="no-plans-found">
@@ -97,11 +117,19 @@ const Dashboard = () => {
               </div>
               {userState?.profile?.show_homes?.length ? (
                 userState?.profile?.show_homes?.map(plan => {
-                  return (
-                    <div key={plan.id}>
-                      <p className="fav-title">{plan.title}</p>
-                    </div>
+                  const isStillActive = homeState.showHomes.some(
+                    home => home.node.slug === plan.slug
                   )
+
+                  if (isStillActive) {
+                    return (
+                      <NoteCard key={plan.id} plan={plan} url="show-homes" />
+                    )
+                  } else {
+                    return (
+                      <NoteCardNot key={plan.id} plan={plan} url="show-homes" />
+                    )
+                  }
                 })
               ) : (
                 <div className="no-plans-found">
