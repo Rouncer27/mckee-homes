@@ -14,6 +14,7 @@ const getData = graphql`
         node {
           title
           slug
+          databaseId
           acfHomePlans {
             squareFootage
             numberOfBedrooms

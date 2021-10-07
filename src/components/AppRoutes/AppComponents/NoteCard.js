@@ -9,15 +9,16 @@ import {
   B2Base,
   colors,
   Btn1Secondary,
+  Btn1Danger,
 } from "../../../styles/helpers"
 import { UserContext } from "../../../context/UserContext"
 import { AlertContext } from "../../../context/AlertContext"
-import { HomesContext } from "../../../context/HomesContext"
 
 import updateNotes from "../AppActions/updateNotes"
+import deletePlan from "../AppActions/deletePlan"
 
 const NoteCard = ({ plan, url }) => {
-  const [userState, userDispatch] = useContext(UserContext)
+  const [, userDispatch] = useContext(UserContext)
   const [, alertDispatch] = useContext(AlertContext)
   const [editActive, setEditActive] = useState(false)
   const [myNotes, setMyNotes] = useState("")
@@ -37,11 +38,13 @@ const NoteCard = ({ plan, url }) => {
 
   const handleOnChange = event => setMyNotes(event.target.value)
   const handleOnEdit = () => setEditActive(true)
-
   const handleOnSave = async () => {
     if (isDirty)
       await updateNotes(userDispatch, alertDispatch, myNotes, plan.id, url)
     setEditActive(false)
+  }
+  const handleOnDelete = () => {
+    deletePlan(userDispatch, alertDispatch, plan.id, url)
   }
 
   return (
@@ -63,6 +66,10 @@ const NoteCard = ({ plan, url }) => {
               Edit Notes
             </button>
           )}
+
+          <button className="notes__actions--delete" onClick={handleOnDelete}>
+            Delete House
+          </button>
         </div>
         <p className="notes__title">Notes:</p>
         <div className="notes__content">
@@ -134,6 +141,11 @@ const HomeCard = styled.div`
 
       &--save.btn-cancel {
         ${Btn1Secondary};
+      }
+
+      &--delete {
+        ${Btn1Danger};
+        margin-left: 1rem;
       }
     }
   }

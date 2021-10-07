@@ -18,6 +18,7 @@ import Alert from "./Modals/Alert"
 import Error from "./Modals/Error"
 
 import getUserCheck from "./AppRoutes/AppActions/getUserCheck"
+import getProfile from "./AppRoutes/AppActions/getProfile"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -73,10 +74,9 @@ const Layout = ({ children }) => {
     : []
   const showHomes = data.showHomes ? data.showHomes.edges : []
 
-  console.log("HOMES: ", data)
-  console.log("userState LAYOUT: ", userState)
-  console.log("alertState LAYOUT: ", alertState)
-  console.log("homesState LAYOUT", homesState)
+  // console.log("userState LAYOUT: ", userState)
+  // console.log("alertState LAYOUT: ", alertState)
+  // console.log("homesState LAYOUT", homesState)
 
   useEffect(() => {
     homesDispatch({
@@ -87,11 +87,16 @@ const Layout = ({ children }) => {
         showHomes,
       },
     })
-
     if (Object.keys(userState.user).length === 0) {
       getUserCheck(userDispatch)
     }
   }, [])
+
+  useEffect(() => {
+    if (Object.keys(userState.profile).length === 0 && userState.user.id) {
+      getProfile(userDispatch, userState, alertDispatch)
+    }
+  }, [userState.user])
 
   return (
     <>

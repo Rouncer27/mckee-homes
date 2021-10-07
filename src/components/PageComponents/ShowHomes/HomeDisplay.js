@@ -1,18 +1,42 @@
-import React from "react"
+import React, { useState, useContext, useEffect } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { B1Grey, colors, H4Navy, B2Grey } from "../../../styles/helpers"
+import { UserContext } from "../../../context/UserContext"
 
 import sqft from "../../../images/icons/sqft.png"
 import bed from "../../../images/icons/bed.png"
 import bath from "../../../images/icons/bath.png"
+import Heart from "../../Images/Heart"
 
 const HomeDisplay = ({ home }) => {
+  const [isLiked, setIsLiked] = useState(false)
+  const [userState] = useContext(UserContext)
+
   const imgSrc = getImage(
     home.acfShowHomes.mainImage.localFile.childImageSharp.gatsbyImageData
   )
   const imgAlt = home.acfShowHomes.mainImage.altText
+
+  useEffect(() => {
+    if (
+      userState.profile &&
+      userState.profile.show_homes &&
+      userState.profile.show_homes.length > 0
+    ) {
+      const res = userState.profile.show_homes.find(
+        plan => parseInt(plan.wordpress_id) === home.databaseId
+      )
+
+      if (!res) {
+        setIsLiked(false)
+      } else {
+        setIsLiked(true)
+      }
+    }
+  }, [userState.profile])
+
   return (
     <ShowHomeStyled to={`/show-homes/${home.slug}`}>
       <div className="image">
@@ -23,6 +47,13 @@ const HomeDisplay = ({ home }) => {
             layout="fullWidth"
             formats={["auto", "webp", "avif"]}
           />
+          {isLiked && (
+            <div className="liked">
+              <div className="liked-heart">
+                <Heart />
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="content">
@@ -107,6 +138,31 @@ const ShowHomeStyled = styled(Link)`
         left: 0;
         width: 100%;
         height: 100%;
+      }
+
+      .liked {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 5rem;
+        height: 5rem;
+        padding: 0.75rem;
+        background-color: rgba(66, 69, 74, 0.9);
+
+        .liked-heart {
+          position: relative;
+          width: 3rem;
+          height: 3rem;
+          margin: auto;
+
+          div.gatsby-image-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+        }
       }
     }
   }

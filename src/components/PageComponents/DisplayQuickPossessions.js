@@ -13,6 +13,7 @@ const getData = graphql`
         node {
           title
           slug
+          databaseId
           acfQuickPossessions {
             address
             homeFeatures

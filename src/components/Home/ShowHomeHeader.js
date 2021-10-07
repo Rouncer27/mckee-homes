@@ -1,6 +1,8 @@
-import React, { useContext } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { UserContext } from "../../context/UserContext"
+import { AlertContext } from "../../context/AlertContext"
 import { Link } from "gatsby"
 import {
   B2Black,
@@ -10,18 +12,19 @@ import {
   H1Navy,
   H3Black,
   B2Grey,
+  B1White,
 } from "../../styles/helpers"
 
 import sqft from "../../images/icons/sqft.png"
 import bed from "../../images/icons/bed.png"
 import bath from "../../images/icons/bath.png"
-
-import { UserContext } from "../../context/UserContext"
-import { AlertContext } from "../../context/AlertContext"
+import Heart from "../Images/Heart"
 
 import addPlan from "../AppRoutes/AppActions/addPlan"
 
 const ShowHomeHeader = ({ home }) => {
+  const [isLiked, setIsLiked] = useState(false)
+  const [isJoinActive, setIsJoinActive] = useState(false)
   const mainImg = getImage(
     home.acfShowHomes.mainImage.localFile.childImageSharp.gatsbyImageData
   )
@@ -33,6 +36,36 @@ const ShowHomeHeader = ({ home }) => {
   const handleOnClick = async () =>
     await addPlan(home, userState, userDispatch, alertDispatch, "show-homes")
 
+  const alreadyLiked = () => {
+    if (
+      userState.profile &&
+      userState.profile.show_homes &&
+      userState.profile.show_homes.length > 0
+    ) {
+      const res = userState.profile.show_homes.find(
+        plan => parseInt(plan.wordpress_id) === home.databaseId
+      )
+
+      if (!res) {
+        setIsLiked(false)
+      } else {
+        setIsLiked(true)
+      }
+    }
+  }
+
+  useEffect(() => {
+    alreadyLiked()
+  }, [])
+
+  useEffect(() => {
+    alreadyLiked()
+  }, [userState.profile])
+
+  const handleOnJoinFavs = () => {
+    setIsJoinActive(!isJoinActive)
+  }
+
   return (
     <StyledSection>
       <div className="wrapper">
@@ -43,7 +76,24 @@ const ShowHomeHeader = ({ home }) => {
             layout="fullWidth"
             formats={["auto", "webp", "avif"]}
           />
-          <button onClick={handleOnClick}>Save Home</button>
+          <div className="my-favs-actions">
+            {isLiked ? (
+              <div className="my-favs-actions__heart">
+                <Heart />
+              </div>
+            ) : Object.keys(userState.user).length === 0 ? (
+              <button
+                className="my-favs-actions__save"
+                onClick={handleOnJoinFavs}
+              >
+                Save Home
+              </button>
+            ) : (
+              <button className="my-favs-actions__save" onClick={handleOnClick}>
+                Save Home
+              </button>
+            )}
+          </div>
         </div>
         <div className="header">
           <div className="header__title">
@@ -112,7 +162,37 @@ const StyledSection = styled.section`
   }
 
   .image {
+    position: relative;
     width: calc(50%);
+
+    .my-favs-actions {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 20rem;
+      padding: 0.75rem;
+      background-color: rgba(66, 69, 74, 0.7);
+
+      &__save {
+        ${B1White};
+        display: block;
+        margin: auto;
+        background: transparent;
+        border: none;
+        transition: all 0.3s ease-out;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &:hover {
+          color: ${colors.colorPrimary};
+        }
+      }
+
+      &__heart {
+        width: 5rem;
+        margin: auto;
+      }
+    }
   }
 
   .header {
