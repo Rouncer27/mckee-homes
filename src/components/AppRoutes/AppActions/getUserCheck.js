@@ -5,7 +5,7 @@ const getUserCheck = async userDispatch => {
     const response = await axios.get(`${process.env.GATSBY_API_URL}/users/me`, {
       withCredentials: true,
       headers: {
-        "Access-Control-Allow-Origin": "herokuapp.com",
+        "Access-Control-Allow-Origin": "netlify.app",
       },
 
       // headers: {
