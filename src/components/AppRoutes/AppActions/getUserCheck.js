@@ -6,6 +6,7 @@ const getUserCheck = async userDispatch => {
       withCredentials: true,
       headers: {
         "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
         "content-type": "application/x-www-form-urlencoded",
       },
     })

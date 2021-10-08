@@ -18,6 +18,7 @@ export default async (userDispatch, alertDispatch, identifier, password) => {
       {
         withCredentials: true,
         headers: {
+          "Access-Control-Allow-Headers": "*",
           "Access-Control-Allow-Origin": "*",
         },
       }
