@@ -17,9 +17,9 @@ export default async (userDispatch, alertDispatch, identifier, password) => {
       },
       {
         withCredentials: true,
-        headers: {
-          "content-type": "application/json",
-        },
+        // headers: {
+        //   "content-type": "application/json",
+        // },
       }
     )
 

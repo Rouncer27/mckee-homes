@@ -11,9 +11,9 @@ export default async (userDispatch, userState, alertDispatch) => {
       `${process.env.GATSBY_API_URL}/profile/${userState.user._id}`,
       {
         withCredentials: true,
-        headers: {
-          "content-type": "application/x-www-form-urlencoded",
-        },
+        // headers: {
+        //   "content-type": "application/x-www-form-urlencoded",
+        // },
       }
     )
 
