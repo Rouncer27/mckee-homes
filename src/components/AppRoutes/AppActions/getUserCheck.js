@@ -5,6 +5,7 @@ const getUserCheck = async userDispatch => {
     const response = await axios.get(`${process.env.GATSBY_API_URL}/users/me`, {
       withCredentials: true,
       headers: {
+        "Access-Control-Allow-Origin": "*",
         "content-type": "application/x-www-form-urlencoded",
       },
     })
@@ -15,7 +16,7 @@ const getUserCheck = async userDispatch => {
     })
   } catch (err) {
     userDispatch({ type: "USER_LOGOUT" })
-    console.log("ERROR: ", err)
+    console.dir(err)
   }
 }
 
