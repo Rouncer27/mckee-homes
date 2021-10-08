@@ -7,19 +7,21 @@ export default async (userDispatch, userState, alertDispatch) => {
   })
 
   try {
-    // const response = await axios.get(
-    //   `${process.env.GATSBY_API_URL}/profile/${userState.user._id}`,
-    //   {
-    //     withCredentials: true,
-    //     // headers: {
-    //     //   "content-type": "application/x-www-form-urlencoded",
-    //     // },
-    //   }
-    // )
+    const response = await axios.get(
+      `${process.env.GATSBY_API_URL}/profile/${userState.user._id}`,
+      {
+        withCredentials: true,
+        // headers: {
+        //   "content-type": "application/x-www-form-urlencoded",
+        // },
+      }
+    )
+
+    const profile = response.data ? response.data : {}
 
     userDispatch({
       type: "USER_PROFILE",
-      payload: { profile: {} },
+      payload: { profile },
     })
   } catch (err) {
     const errMessage =
@@ -40,6 +42,6 @@ export default async (userDispatch, userState, alertDispatch) => {
       type: "USER_LOADING",
       payload: { loading: false },
     })
-    console.dir("getProfile ERROR: ", err)
+    console.dir(err)
   }
 }

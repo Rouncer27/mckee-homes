@@ -17,15 +17,14 @@ export default async (userDispatch, alertDispatch, identifier, password) => {
       },
       {
         withCredentials: true,
-        headers: {
-          "Access-Control-Allow-Origin": "herokuapp.com",
-        },
       }
     )
 
+    const newUse = response.data ? response.data.user : {}
+
     userDispatch({
       type: "USER_LOGIN",
-      payload: { user: response?.data?.user },
+      payload: { user: newUse },
     })
 
     alertDispatch({
@@ -56,6 +55,6 @@ export default async (userDispatch, alertDispatch, identifier, password) => {
       type: "USER_LOADING",
       payload: { loading: false },
     })
-    console.dir("handleLogin ERROR: ", err)
+    console.dir(err)
   }
 }
