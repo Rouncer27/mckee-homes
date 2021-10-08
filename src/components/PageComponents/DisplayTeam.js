@@ -35,8 +35,6 @@ const DisplayTeam = ({ data }) => {
   const teamData = useStaticQuery(getData)
   const team = teamData.team.edges
   if (!data.displayAllTeam) return null
-
-  console.log("team", team)
   return (
     <SectionStyled>
       <div className="wrapper">

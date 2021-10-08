@@ -201,7 +201,6 @@ const DisplayPosts = ({ data }) => {
               activeCat !== post.node.categories.nodes[0].slug
             )
               return null
-            console.log("post.node", post.node)
             const imageDisplay = getImage(
               post.node.acfPosts.excerptImage.localFile.childImageSharp
                 .gatsbyImageData

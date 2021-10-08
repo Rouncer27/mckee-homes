@@ -8,7 +8,6 @@ import SeeThisHome from "../PageComponents/Forms/SeeThisHome"
 import HomePlanFloorPlan from "./HomePlanFloorPlan"
 
 const QuickPossesion = ({ home }) => {
-  console.log("home", home)
   return (
     <article>
       <QuickPossessionHeader home={home} />

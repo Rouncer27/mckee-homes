@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { B1Black, H1Navy } from "../../styles/helpers"
 
 const Map = ({ data }) => {
-  console.log(data)
   return (
     <StyledSection>
       <div className="wrapper">

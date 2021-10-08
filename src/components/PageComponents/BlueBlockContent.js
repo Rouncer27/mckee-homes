@@ -10,8 +10,6 @@ import {
 } from "../../styles/helpers"
 
 const BlueBlockContent = ({ data }) => {
-  console.log("BlueBlockContent", data)
-
   return (
     <StyledSection>
       <div className="wrapper">

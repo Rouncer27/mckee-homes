@@ -9,7 +9,6 @@ import {
 } from "../../styles/helpers"
 
 const ContentCenterButton = ({ data }) => {
-  console.log("ContentCenterButton", data)
   return (
     <StyedSection>
       <div className="wrapper">

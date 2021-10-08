@@ -26,8 +26,6 @@ const HomeDisplay = ({ home }) => {
       userState.profile.home_plans.length > 0
     ) {
       const res = userState.profile.home_plans.find(plan => {
-        console.log(plan.wordpress_id)
-        console.log(home)
         return parseInt(plan.wordpress_id) === home.databaseId
       })
 

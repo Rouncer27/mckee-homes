@@ -4,7 +4,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { B1Black, colors, H2Black, standardWrapper } from "../../styles/helpers"
 
 const ContentSimpleTitleIcon = ({ data }) => {
-  console.log("ContentSimpleTitleIcon", data)
   const iconSrc = getImage(data.icon.localFile.childImageSharp.gatsbyImageData)
   const iconAlt = data.icon.altText
   return (

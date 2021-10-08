@@ -244,7 +244,6 @@ const DisplayQuickPossessions = props => {
           }
 
           // Does this house match the home features filter
-          console.log(home.node.acfQuickPossessions)
           if (homeFeaturesFilter.length > 0) {
             featuresMatch = homeFeaturesFilter.every(feature => {
               const matchFound =

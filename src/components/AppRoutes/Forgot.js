@@ -29,7 +29,6 @@ const Forgot = () => {
 
   const handleOnSubmit = async event => {
     event.preventDefault()
-    console.log(formData.email)
     try {
       const response = await axios.post(
         `${process.env.GATSBY_API_URL}/auth/forgot-password`,

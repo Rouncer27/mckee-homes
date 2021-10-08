@@ -47,7 +47,6 @@ const Testimonials = ({ data }) => {
         <div className="slider-wrap">
           <Slider {...settings}>
             {testimonials.map((testimonial, index) => {
-              console.log(testimonial)
               return (
                 <TestimonialSlide key={index}>
                   <div
