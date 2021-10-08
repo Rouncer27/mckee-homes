@@ -17,16 +17,12 @@ export default async (userDispatch, alertDispatch, identifier, password) => {
       },
       {
         withCredentials: true,
-        headers: {
-          "Access-Control-Allow-Headers": "*",
-          "Access-Control-Allow-Origin": "*",
-        },
       }
     )
 
     userDispatch({
       type: "USER_LOGIN",
-      payload: { user: response.data.user },
+      payload: { user: response?.data?.user },
     })
 
     alertDispatch({
@@ -57,6 +53,6 @@ export default async (userDispatch, alertDispatch, identifier, password) => {
       type: "USER_LOADING",
       payload: { loading: false },
     })
-    console.dir(err)
+    console.dir("handleLogin ERROR: ", err)
   }
 }

@@ -12,8 +12,6 @@ export default async (userDispatch, userState, alertDispatch) => {
       {
         withCredentials: true,
         headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "*",
           "content-type": "application/x-www-form-urlencoded",
         },
       }
@@ -42,6 +40,6 @@ export default async (userDispatch, userState, alertDispatch) => {
       type: "USER_LOADING",
       payload: { loading: false },
     })
-    console.dir(err)
+    console.dir("getProfile ERROR: ", err)
   }
 }
