@@ -7,15 +7,15 @@ export default async (userDispatch, userState, alertDispatch) => {
   })
 
   try {
-    const response = await axios.get(
-      `${process.env.GATSBY_API_URL}/profile/${userState.user._id}`,
-      {
-        withCredentials: true,
-        // headers: {
-        //   "content-type": "application/x-www-form-urlencoded",
-        // },
-      }
-    )
+    // const response = await axios.get(
+    //   `${process.env.GATSBY_API_URL}/profile/${userState.user._id}`,
+    //   {
+    //     withCredentials: true,
+    //     // headers: {
+    //     //   "content-type": "application/x-www-form-urlencoded",
+    //     // },
+    //   }
+    // )
 
     userDispatch({
       type: "USER_PROFILE",
