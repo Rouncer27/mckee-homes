@@ -18,7 +18,7 @@ export default async (userDispatch, alertDispatch, identifier, password) => {
       {
         withCredentials: true,
         headers: {
-          "content-type": "application/x-www-form-urlencoded",
+          "Access-Control-Allow-Origin": "*",
         },
       }
     )
