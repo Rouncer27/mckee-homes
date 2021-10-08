@@ -19,7 +19,7 @@ export default async (userDispatch, userState, alertDispatch) => {
 
     userDispatch({
       type: "USER_PROFILE",
-      payload: { profile: response.data },
+      payload: { profile: {} },
     })
   } catch (err) {
     const errMessage =
