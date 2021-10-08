@@ -42,7 +42,7 @@ const Reset = ({ location }) => {
     console.log(formData.email)
     try {
       const response = await axios.post(
-        `http://localhost:1337/auth/reset-password`,
+        `${process.env.GATSBY_API_URL}/auth/reset-password`,
         {
           code: code,
           password: formData.password,

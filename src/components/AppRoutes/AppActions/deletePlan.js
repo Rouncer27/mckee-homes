@@ -12,9 +12,12 @@ const addPlan = async (userDispatch, alertDispatch, id, url) => {
   })
 
   try {
-    const response = await axios.delete(`http://localhost:1337/${url}/${id}`, {
-      withCredentials: true,
-    })
+    const response = await axios.delete(
+      `${process.env.GATSBY_API_URL}/${url}/${id}`,
+      {
+        withCredentials: true,
+      }
+    )
 
     userDispatch({
       type: "USER_PROFILE",

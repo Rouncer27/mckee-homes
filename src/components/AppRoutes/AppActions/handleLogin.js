@@ -9,7 +9,7 @@ export default async (userDispatch, alertDispatch, identifier, password) => {
 
   try {
     const response = await axios.post(
-      `http://localhost:1337/auth/local`,
+      `${process.env.GATSBY_API_URL}/auth/local`,
 
       {
         identifier,

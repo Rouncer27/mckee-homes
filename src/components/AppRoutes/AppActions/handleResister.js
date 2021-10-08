@@ -9,7 +9,7 @@ export default async (formData, resetFormData, userDispatch, alertDispatch) => {
 
   try {
     const response = await axios.post(
-      `http://localhost:1337/auth/local/register`,
+      `${process.env.GATSBY_API_URL}/auth/local/register`,
       {
         email: formData.email,
         username: formData.username,

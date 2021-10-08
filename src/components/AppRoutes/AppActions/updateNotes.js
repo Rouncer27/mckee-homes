@@ -8,7 +8,7 @@ const updateNotes = async (userDispatch, alertDispatch, notes, id, url) => {
 
   try {
     const response = await axios.put(
-      `http://localhost:1337/${url}/${id}`,
+      `${process.env.GATSBY_API_URL}/${url}/${id}`,
       {
         notes,
       },

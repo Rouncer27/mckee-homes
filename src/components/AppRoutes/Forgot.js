@@ -32,7 +32,7 @@ const Forgot = () => {
     console.log(formData.email)
     try {
       const response = await axios.post(
-        `http://localhost:1337/auth/forgot-password`,
+        `${process.env.GATSBY_API_URL}/auth/forgot-password`,
         {
           email: formData.email,
         }

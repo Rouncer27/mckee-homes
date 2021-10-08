@@ -7,7 +7,7 @@ export default async userDispatch => {
   })
 
   try {
-    const response = await axios.get(`http://localhost:1337/users/me`, {
+    const response = await axios.get(`${process.env.GATSBY_API_URL}/users/me`, {
       withCredentials: true,
       headers: {
         "content-type": "application/x-www-form-urlencoded",

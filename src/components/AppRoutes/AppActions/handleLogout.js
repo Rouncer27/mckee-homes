@@ -9,7 +9,7 @@ export default async (userDispatch, alertDispatch) => {
 
   try {
     await axios.post(
-      `http://localhost:1337/logout`,
+      `${process.env.GATSBY_API_URL}/logout`,
       {},
       {
         withCredentials: true,

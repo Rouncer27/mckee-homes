@@ -8,7 +8,7 @@ const addPlan = async (home, userState, userDispatch, alertDispatch, url) => {
 
   try {
     const response = await axios.post(
-      `http://localhost:1337/${url}`,
+      `${process.env.GATSBY_API_URL}/${url}`,
       {
         slug: home.slug,
         wordpress_id: home.databaseId.toString(),

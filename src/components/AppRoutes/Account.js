@@ -40,9 +40,12 @@ const Account = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:1337/users/${userState.user._id}`, {
-        withCredentials: true,
-      })
+      await axios.delete(
+        `${process.env.GATSBY_API_URL}/users/${userState.user._id}`,
+        {
+          withCredentials: true,
+        }
+      )
       userDispatch({ type: "USER_LOGOUT" })
     } catch (err) {
       console.log(err.response.data.message)
