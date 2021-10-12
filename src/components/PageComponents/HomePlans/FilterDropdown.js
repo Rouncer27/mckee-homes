@@ -50,26 +50,26 @@ const FilterDropDown = ({
           })
           return (
             <li key={option.node.databaseId} value={option.node.slug}>
-              <label>
-                <input
-                  checked={itemChecked.length > 0 ? true : false}
-                  type="checkbox"
-                  onChange={() => handleAddItem(option.node.slug)}
-                />
+              <input
+                id={`checkbox${option.node.databaseId}`}
+                checked={itemChecked.length > 0 ? true : false}
+                type="checkbox"
+                onChange={() => handleAddItem(option.node.slug)}
+              />
+              <label for={`checkbox${option.node.databaseId}`}>
                 {option.node.name}
               </label>
             </li>
           )
         })}
         <li value="all">
-          <label>
-            <input
-              checked={itemsSelected.length === 0 ? true : false}
-              type="checkbox"
-              onChange={() => handleAddItem("all")}
-            />
-            All {title}
-          </label>
+          <input
+            id={filterId}
+            checked={itemsSelected.length === 0 ? true : false}
+            type="checkbox"
+            onChange={() => handleAddItem("all")}
+          />
+          <label for={filterId}>All {title}</label>
         </li>
       </ul>
     </FilterStyled>
@@ -119,7 +119,7 @@ const FilterStyled = styled.div`
     right: 0;
     left: 0;
     margin: 0;
-    padding: 2.5rem;
+    padding: 2.5rem 1rem;
     transition: 0.4s all ease-out;
     border: 0.1rem solid #c7b2a1;
     background-color: #efefef;
@@ -130,9 +130,43 @@ const FilterStyled = styled.div`
 
   ul.items li {
     ${B2Black};
+    position: relative;
+    margin-bottom: 0.5rem;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    label {
+      padding-right: 1rem;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      &::before {
+        display: block;
+        position: absolute;
+        top: -0.75rem;
+        right: -1rem;
+        width: 3rem;
+        height: 3rem;
+        transition: all 0.3s ease-out;
+        color: ${colors.colorTertiary};
+        font-family: "FontAwesome";
+        font-size: 2.5rem;
+        content: "\f1db";
+      }
+    }
 
     input {
-      padding-right: 1rem;
+      position: absolute;
+      opacity: 0;
+
+      &:checked + label {
+        &::before {
+          color: #154290 !important;
+          content: "\f058";
+        }
+      }
     }
   }
 

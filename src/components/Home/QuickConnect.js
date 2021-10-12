@@ -152,6 +152,10 @@ const SectionStyled = styled.section`
       justify-content: center;
       width: 100%;
 
+      @media (min-width: 768px) {
+        justify-content: flex-start;
+      }
+
       &--sales {
         position: relative;
         flex-wrap: wrap;
