@@ -24,10 +24,12 @@ const FilterMore = ({
   const priceDisplay = useRef(null)
 
   useEffect(() => {
+    if (sqfootDisplay.current === null) return
     sqfootDisplay.current.innerHTML = sqftFilter + "+"
   }, [sqftFilter])
 
   useEffect(() => {
+    if (priceDisplay.current === null) return
     priceDisplay.current.innerHTML = priceFilter + "+"
   }, [priceFilter])
 
