@@ -22,6 +22,21 @@ const settings = {
   centerMode: true,
   arrows: true,
   dots: false,
+
+  responsive: [
+    {
+      breakpoint: 1025,
+      settings: {
+        centerPadding: "100px",
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        centerPadding: "0px",
+      },
+    },
+  ],
 }
 
 const HomePlanGallery = ({ gallery }) => {
@@ -105,10 +120,17 @@ const SectionStyled = styled.div`
 
     .slide {
       position: relative;
-      height: 45rem;
-      margin-right: 2rem;
-      margin-left: 2rem;
+      height: 35rem;
       z-index: 10;
+
+      @media (min-width: 768px) {
+        height: 45rem;
+        margin-right: 2rem;
+        margin-left: 2rem;
+      }
+
+      @media (min-width: 1025px) {
+      }
 
       .gatsby-image-wrapper {
         position: absolute !important;
@@ -120,7 +142,7 @@ const SectionStyled = styled.div`
     }
 
     .slick-arrow {
-      position: absolute;
+      position: absolute !important;
       top: calc(100% + 2rem);
       z-index: 100;
 
@@ -130,11 +152,19 @@ const SectionStyled = styled.div`
     }
 
     .slick-prev {
-      left: 48%;
+      left: 5rem;
+
+      @media (min-width: 768px) {
+        left: 48%;
+      }
     }
 
     .slick-next {
-      right: 48%;
+      right: 5rem;
+
+      @media (min-width: 768px) {
+        right: 48%;
+      }
     }
   }
 `

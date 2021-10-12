@@ -59,8 +59,17 @@ const SectionStyled = styled.section`
       width: 100%;
 
       &--logo {
-        width: calc((100% / 7) - 2rem);
+        width: calc((100% / 2) - 2rem);
         margin-right: 2rem;
+        margin-bottom: 2rem;
+
+        @media (min-width: 768px) {
+          width: calc((100% / 4) - 2rem);
+          margin-bottom: 0;
+        }
+        @media (min-width: 1025px) {
+          width: calc((100% / 7) - 2rem);
+        }
       }
     }
   }

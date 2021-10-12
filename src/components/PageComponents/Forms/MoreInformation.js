@@ -245,9 +245,13 @@ const SectionStyled = styled.div`
 `
 
 const InputField = styled.div`
-  width: calc(50% - 4rem);
+  width: calc(100% - 4rem);
   margin: 1rem 2rem;
   padding: 1rem 0;
+
+  @media (min-width: 768px) {
+    width: calc(50% - 4rem);
+  }
 
   label {
     ${B2White};

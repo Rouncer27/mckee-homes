@@ -205,7 +205,11 @@ const StyledSection = styled.section`
 
   .image {
     position: relative;
-    width: calc(50%);
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+    }
 
     .my-favs-actions {
       position: absolute;
@@ -238,11 +242,16 @@ const StyledSection = styled.section`
   }
 
   .header {
-    width: calc(50%);
-    max-width: 65rem;
+    width: calc(100%);
     margin-right: auto;
     margin-left: 0;
-    padding: 5rem;
+    padding: 0 2rem;
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+      max-width: 65rem;
+      padding: 5rem;
+    }
 
     &__title {
       width: 100%;
@@ -292,6 +301,15 @@ const StyledSection = styled.section`
 
       &--tour {
         ${Btn1Navy};
+      }
+
+      a {
+        width: 100%;
+        margin-bottom: 2.5rem;
+
+        @media (min-width: 768px) {
+          width: auto;
+        }
       }
     }
 

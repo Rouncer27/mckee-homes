@@ -23,12 +23,12 @@ const SectionStyled = styled.section`
 
   .wrapper-details {
     ${standardWrapper};
+    margin: auto;
 
     &__title {
       width: 100%;
       margin-bottom: 3rem;
       padding-top: 5rem;
-      padding-bottom: 2.5rem;
       border-bottom: 0.25rem solid ${colors.colorTertiary};
 
       h2 {
@@ -39,7 +39,10 @@ const SectionStyled = styled.section`
 
     &__content {
       width: 100%;
-      columns: 2;
+
+      @media (min-width: 768px) {
+        columns: 2;
+      }
 
       ul {
         width: 100%;
