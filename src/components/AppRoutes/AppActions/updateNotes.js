@@ -21,6 +21,15 @@ const updateNotes = async (userDispatch, alertDispatch, notes, id, url) => {
       type: "USER_PROFILE",
       payload: { profile: response.data.profile },
     })
+
+    alertDispatch({
+      type: "USER_SUCCESS",
+      payload: {
+        successMessage: "You have successfully updated your note.",
+        successAutoClear: true,
+        successAnimateOut: true,
+      },
+    })
   } catch (err) {
     const errMessage =
       err.response.data &&

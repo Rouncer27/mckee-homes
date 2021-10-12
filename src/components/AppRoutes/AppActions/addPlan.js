@@ -23,6 +23,14 @@ const addPlan = async (home, userState, userDispatch, alertDispatch, url) => {
       type: "USER_PROFILE",
       payload: { profile: response.data.profile },
     })
+    alertDispatch({
+      type: "USER_SUCCESS",
+      payload: {
+        successMessage: "You have successfully added to your favourites.",
+        successAutoClear: true,
+        successAnimateOut: true,
+      },
+    })
   } catch (err) {
     const errMessage =
       err.response.data &&

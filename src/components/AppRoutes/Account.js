@@ -115,19 +115,54 @@ const StyledDiv = styled.div`
 
     .btn {
       ${Btn1Primary};
-      margin-right: 2.5rem;
+      display: block;
+      width: 100%;
+      margin-bottom: 2.5rem;
+
+      @media (min-width: 768px) {
+        display: inline-block;
+        width: auto;
+        margin-right: 2.5rem;
+      }
     }
 
     .success {
       ${Btn1Success};
+      display: block;
+      width: 100%;
+      margin-bottom: 2.5rem;
+
+      @media (min-width: 768px) {
+        display: inline-block;
+        width: auto;
+        margin-right: 2.5rem;
+      }
     }
 
     .secondary {
       ${Btn1Secondary};
+      width: 100%;
+      display: block;
+      margin-bottom: 2.5rem;
+
+      @media (min-width: 768px) {
+        display: inline-block;
+        width: auto;
+        margin-right: 2.5rem;
+      }
     }
 
     .danger {
       ${Btn1Danger};
+      display: block;
+      width: 100%;
+      margin-bottom: 2.5rem;
+
+      @media (min-width: 768px) {
+        display: inline-block;
+        width: auto;
+        margin-right: 2.5rem;
+      }
     }
   }
 

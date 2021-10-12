@@ -45,19 +45,28 @@ const StyledDiv = styled.div`
   width: 100%;
 
   .intro__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 25%;
+    width: 100%;
+    margin-top: 2.5rem;
+
+    @media (min-width: 768px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 25%;
+      margin-top: 0;
+    }
 
     &--wrap {
       width: 9rem;
-      margin: auto;
     }
   }
 
   .intro__content {
-    width: 75%;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: 75%;
+    }
 
     h2 {
       ${H1Navy};

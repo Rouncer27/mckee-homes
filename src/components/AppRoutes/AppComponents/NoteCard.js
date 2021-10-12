@@ -6,7 +6,6 @@ import {
   H3Navy,
   Btn1Primary,
   Btn1Success,
-  B2Base,
   colors,
   Btn1Secondary,
   Btn1Danger,
@@ -93,8 +92,13 @@ const NoteCard = ({ plan, url }) => {
 }
 
 const HomeCard = styled.div`
-  width: calc(100% / 3);
-  padding: 2rem;
+  width: calc(100% / 1);
+  margin-top: 2.5rem;
+
+  @media (min-width: 768px) {
+    width: calc(100% / 3);
+    padding: 2rem;
+  }
 
   .title {
     ${H3Navy};
@@ -121,11 +125,11 @@ const HomeCard = styled.div`
 
     &__content {
       p {
-        ${B2Base};
+        ${B1Black};
       }
 
       textarea {
-        ${B2Base};
+        ${B1Black};
         width: 100%;
         padding: 1rem;
         border: 0.1rem solid ${colors.colorPrimary};
