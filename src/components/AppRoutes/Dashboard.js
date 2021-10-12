@@ -32,7 +32,7 @@ const Dashboard = () => {
         <Intro intropage="dashboard" />
         <div className="title">
           <h2>My Dashboard</h2>
-          <p>Welcome {userState.user.username}</p>
+          <p>{userState.user.email}</p>
         </div>
         <div className="actions">
           <Link to="/app/account">Account Settings</Link>

@@ -60,18 +60,6 @@ const Account = () => {
     })
   }
 
-  const handleEdit = () => {
-    setAccountDetails({
-      username: userState.user.username,
-    })
-    setEditState(true)
-  }
-
-  const handleSave = () => {
-    setEditState(false)
-    handleEditAccount()
-  }
-
   return (
     <StyledDiv>
       <div className="wrapper">
@@ -82,20 +70,6 @@ const Account = () => {
           <Link to="/app/dashboard" className="btn">
             My Favourites
           </Link>
-          {editState ? (
-            <button
-              disabled={!accountDiff}
-              className="btn success"
-              onClick={handleSave}
-            >
-              {accountDiff ? "Save Account" : "No Changes Made"}
-            </button>
-          ) : (
-            <button className="btn secondary" onClick={handleEdit}>
-              Edit Account
-            </button>
-          )}
-
           <button
             className="btn"
             onClick={() => handleLogout(userDispatch, alertDispatch)}
@@ -108,21 +82,6 @@ const Account = () => {
         </div>
         <div className="details">
           <h3>Account Details</h3>
-          <p>
-            Username:{" "}
-            {editState ? (
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={accountDetails.username}
-                required={false}
-                onChange={handleOnChange}
-              />
-            ) : (
-              <span>{userState.user.username}</span>
-            )}
-          </p>
           <p>
             Email: <span>{userState.user.email}</span>
           </p>
@@ -141,6 +100,8 @@ const Account = () => {
 }
 
 const StyledDiv = styled.div`
+  padding-bottom: 10rem;
+
   .wrapper {
     ${standardWrapper};
   }

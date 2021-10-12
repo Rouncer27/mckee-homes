@@ -4,8 +4,6 @@ import { UserContext } from "../context/UserContext"
 import { AlertContext } from "../context/AlertContext"
 import { HomesContext } from "../context/HomesContext"
 import { useStaticQuery, graphql } from "gatsby"
-import { navigate } from "gatsby"
-import axios from "axios"
 
 import theme from "../styles/theme/Theme"
 import GlobalStyle from "../styles/global/Golbal"

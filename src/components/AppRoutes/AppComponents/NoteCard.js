@@ -53,6 +53,22 @@ const NoteCard = ({ plan, url }) => {
         <Link to={`/${url}/${plan.slug}`}>{plan.title}</Link>
       </p>
       <div className="notes">
+        <div className="notes__container">
+          <p className="notes__title">Notes:</p>
+          <div className="notes__content">
+            {editActive ? (
+              <textarea
+                name="myNotes"
+                value={myNotes}
+                onChange={handleOnChange}
+                rows="4"
+              />
+            ) : (
+              plan.notes !== "" && <p>{myNotes}</p>
+            )}
+          </div>
+        </div>
+
         <div className="notes__actions">
           {editActive ? (
             <button
@@ -70,19 +86,6 @@ const NoteCard = ({ plan, url }) => {
           <button className="notes__actions--delete" onClick={handleOnDelete}>
             Delete House
           </button>
-        </div>
-        <p className="notes__title">Notes:</p>
-        <div className="notes__content">
-          {editActive ? (
-            <textarea
-              name="myNotes"
-              value={myNotes}
-              onChange={handleOnChange}
-              rows="4"
-            />
-          ) : (
-            plan.notes !== "" && <p>{myNotes}</p>
-          )}
         </div>
       </div>
     </HomeCard>
@@ -110,6 +113,10 @@ const HomeCard = styled.div`
 
     &__title {
       ${B1Black};
+    }
+
+    &__container {
+      border-bottom: 0.1rem solid ${colors.greyMed};
     }
 
     &__content {

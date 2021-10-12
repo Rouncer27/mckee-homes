@@ -3,13 +3,19 @@ import React from "react"
 import styled from "styled-components"
 import { B1Black, Btn1Grey, H1Navy } from "../../styles/helpers"
 
+import heartKey from "../../images/heart-key.png"
+
 const Intro = ({ intropage }) => {
   const displayBtn = intropage === "login" ? true : false
   const title =
     intropage === "dashboard" ? "My Favourites" : "My Favourites Sign Up"
   return (
     <StyledDiv intropage={intropage}>
-      <div className="intro__icon"></div>
+      <div className="intro__icon">
+        <div className="intro__icon--wrap">
+          <img src={heartKey} alt="My favourites" />
+        </div>
+      </div>
       <div className="intro__content">
         <div className="intro__title">
           <h2>{title}</h2>
@@ -39,7 +45,15 @@ const StyledDiv = styled.div`
   width: 100%;
 
   .intro__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 25%;
+
+    &--wrap {
+      width: 9rem;
+      margin: auto;
+    }
   }
 
   .intro__content {
