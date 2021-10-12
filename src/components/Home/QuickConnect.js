@@ -126,12 +126,17 @@ const SectionStyled = styled.section`
 
     &__titles {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       width: 100%;
       margin-bottom: 3rem;
       margin-top: 5rem;
       padding-bottom: 0;
       border-bottom: 0.3rem solid ${colors.colorTertiary};
+
+      @media (min-width: 768px) {
+        margin-bottom: 3rem;
+      }
 
       p {
         ${B1Black};
@@ -143,23 +148,38 @@ const SectionStyled = styled.section`
 
     &__content {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       width: 100%;
 
       &--sales {
         position: relative;
+        flex-wrap: wrap;
         display: flex;
         justify-content: center;
-        width: calc(50%);
-        padding-top: 4.7rem;
+        width: calc(100%);
+        padding-top: 2rem;
+
+        @media (min-width: 768px) {
+          width: calc(60%);
+          padding-top: 4.7rem;
+        }
 
         .image {
-          width: calc(50%);
+          width: calc(100%);
           padding: 0 3rem 3rem 0;
+
+          @media (min-width: 768px) {
+            width: calc(50%);
+          }
         }
 
         .contact {
-          width: calc(50%);
+          width: calc(100%);
+
+          @media (min-width: 768px) {
+            width: calc(50%);
+          }
 
           p {
             ${B1Black};

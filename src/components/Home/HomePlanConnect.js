@@ -85,48 +85,79 @@ const SectionStyled = styled.section`
 
     &__titles {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       width: 100%;
-      margin-bottom: 3rem;
       margin-top: 5rem;
       padding-bottom: 0;
       border-bottom: 0.25rem solid ${colors.colorTertiary};
 
+      @media (min-width: 768px) {
+        margin-bottom: 3rem;
+      }
+
       p {
         ${B1Black};
-        width: calc(100% / 2);
+        width: calc(100% / 1);
         margin: 0;
+
+        @media (min-width: 768px) {
+          width: calc(100% / 2);
+        }
       }
 
       p:first-of-type {
-        width: calc(60%);
+        width: calc(100%);
+
+        @media (min-width: 768px) {
+          width: calc(60%);
+        }
       }
 
       p:last-of-type {
-        width: calc(40%);
-        padding-left: 4rem;
+        width: calc(100%);
+
+        @media (min-width: 768px) {
+          width: calc(40%);
+          padding-left: 4rem;
+        }
       }
     }
 
     &__content {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       width: 100%;
 
       &--sales {
         position: relative;
+        flex-wrap: wrap;
         display: flex;
         justify-content: center;
-        width: calc(60%);
-        padding-top: 4.7rem;
+        width: calc(100%);
+        padding-top: 2rem;
+
+        @media (min-width: 768px) {
+          width: calc(60%);
+          padding-top: 4.7rem;
+        }
 
         .image {
-          width: calc(50%);
+          width: calc(100%);
           padding: 0 3rem 3rem 0;
+
+          @media (min-width: 768px) {
+            width: calc(50%);
+          }
         }
 
         .contact {
-          width: calc(50%);
+          width: calc(100%);
+
+          @media (min-width: 768px) {
+            width: calc(50%);
+          }
 
           p {
             ${B1Black};
@@ -157,9 +188,13 @@ const SectionStyled = styled.section`
 
       &--hours {
         position: relative;
-        width: calc(40% - 4rem);
-        margin-left: 4rem;
+        width: calc(100%);
         padding-top: 4.7rem;
+
+        @media (min-width: 768px) {
+          width: calc(40% - 4rem);
+          margin-left: 4rem;
+        }
 
         p {
           ${B1Black};
