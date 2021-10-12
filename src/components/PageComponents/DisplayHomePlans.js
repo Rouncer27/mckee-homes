@@ -208,6 +208,8 @@ const DisplayHomePlans = props => {
 }
 
 const SectionStyled = styled.section`
+  min-height: 75rem;
+
   .wrapper {
     ${medWrapper};
     position: relative;

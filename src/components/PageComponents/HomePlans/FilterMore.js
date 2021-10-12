@@ -1,6 +1,6 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
-import { B1Black, colors } from "../../../styles/helpers"
+import { B1Black, colors, B2Black } from "../../../styles/helpers"
 
 const FilterMore = ({
   filterId,
@@ -20,6 +20,25 @@ const FilterMore = ({
   homeFeaturesFilter,
   setHomeFeaturesFilter,
 }) => {
+  const sqfootDisplay = useRef(null)
+  const priceDisplay = useRef(null)
+
+  useEffect(() => {
+    sqfootDisplay.current.innerHTML = sqftFilter + "+"
+  }, [sqftFilter])
+
+  useEffect(() => {
+    priceDisplay.current.innerHTML = priceFilter + "+"
+  }, [priceFilter])
+
+  const handleOnSquareFootChange = event => {
+    setSqftFilter(event.target.value)
+  }
+
+  const handleOnPriceChange = event => {
+    setPriceFilter(event.target.value)
+  }
+
   const handleAddBedroomItem = rooms => {
     // Copy the state so we can safly chage it.
     const copyArray = [...bedroomFilter]
@@ -87,101 +106,79 @@ const FilterMore = ({
       </p>
 
       <div className="filter-wrap">
-        <div className="sqft-filter">
-          <p>Square Feet</p>
+        <StyledSelector>
           <div>
-            <input readOnly type="text" step={500} value={sqftFilter} />
-            <span
-              className={`plus${sqftFilter === 4000 ? " disabled" : ""}`}
-              onClick={() => {
-                if (sqftFilter === 4000) return
-                setSqftFilter(sqftFilter + 500)
-              }}
-            >
-              +
-            </span>
-            <span className="value">{sqftFilter}+</span>
-            <span
-              className={`minus${sqftFilter === 500 ? " disabled" : ""}`}
-              onClick={() => {
-                if (sqftFilter === 500) return
-                setSqftFilter(sqftFilter - 500)
-              }}
-            >
-              -
-            </span>
+            <p>Square Feet</p>
           </div>
-        </div>
+          <div ref={sqfootDisplay} className="sqftvalue">
+            500
+          </div>
+          <input
+            type="range"
+            min="500"
+            max="4000"
+            step="500"
+            value={sqftFilter}
+            onChange={handleOnSquareFootChange}
+          />
+        </StyledSelector>
 
         {price !== false && (
-          <div className="price-filter">
-            <p>Price</p>
+          <StyledSelector>
             <div>
-              <input readOnly type="text" step={50000} value={priceFilter} />
-              <span
-                className={`plus${priceFilter === 1000000 ? " disabled" : ""}`}
-                onClick={() => {
-                  if (priceFilter === 1000000) return
-                  setPriceFilter(priceFilter + 50000)
-                }}
-              >
-                +
-              </span>
-              <span className="value">{priceFilter}+</span>
-              <span
-                className={`minus${priceFilter === 0 ? " disabled" : ""}`}
-                onClick={() => {
-                  if (priceFilter === 0) return
-                  setPriceFilter(priceFilter - 50000)
-                }}
-              >
-                -
-              </span>
+              <p>Price</p>
             </div>
-          </div>
+            <div ref={priceDisplay} className="pricevalue">
+              0
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="1000000"
+              step="50000"
+              value={priceFilter}
+              onChange={handleOnPriceChange}
+            />
+          </StyledSelector>
         )}
 
         <div>
           <p>Bedrooms</p>
           <ul className="items">
             <li value="1">
-              <label>
-                <input
-                  onChange={() => handleAddBedroomItem("1")}
-                  type="checkbox"
-                />
-                1 Bedroom
-              </label>
+              <input
+                id="oneBed"
+                onChange={() => handleAddBedroomItem("1")}
+                type="checkbox"
+              />
+              <label for="oneBed">1 Bedroom</label>
             </li>
 
             <li value="2">
-              <label>
-                <input
-                  onChange={() => handleAddBedroomItem("2")}
-                  type="checkbox"
-                />
-                2 Bedrooms
-              </label>
+              <input
+                id="twoBed"
+                onChange={() => handleAddBedroomItem("2")}
+                type="checkbox"
+              />
+              <label for="twoBed">2 Bedrooms</label>
             </li>
 
             <li value="3">
-              <label>
-                <input
-                  onChange={() => handleAddBedroomItem("3")}
-                  type="checkbox"
-                />
-                3 Bedrooms
-              </label>
+              <input
+                id="threeBed"
+                onChange={() => handleAddBedroomItem("3")}
+                type="checkbox"
+              />
+              <label for="threeBed">3 Bedrooms</label>
             </li>
 
             <li value="4">
-              <label>
-                <input
-                  onChange={() => handleAddBedroomItem("4")}
-                  type="checkbox"
-                />
-                4 Bedrooms
-              </label>
+              <input
+                id="fourBed"
+                onChange={() => handleAddBedroomItem("4")}
+                type="checkbox"
+              />
+              <label for="fourBed">4 Bedrooms</label>
             </li>
           </ul>
         </div>
@@ -191,33 +188,30 @@ const FilterMore = ({
             <p>Timeline</p>
             <ul className="items">
               <li value="immediate">
-                <label>
-                  <input
-                    onChange={() => handleAddTimeline("immediate")}
-                    type="checkbox"
-                  />
-                  immediate
-                </label>
+                <input
+                  id="immediate"
+                  onChange={() => handleAddTimeline("immediate")}
+                  type="checkbox"
+                />
+                <label for="immediate">immediate</label>
               </li>
 
               <li value="less">
-                <label>
-                  <input
-                    onChange={() => handleAddTimeline("less")}
-                    type="checkbox"
-                  />
-                  &lt; 3months
-                </label>
+                <input
+                  id="ltThree"
+                  onChange={() => handleAddTimeline("less")}
+                  type="checkbox"
+                />
+                <label for="ltThree">&lt; 3months</label>
               </li>
 
               <li value="greater">
-                <label>
-                  <input
-                    onChange={() => handleAddTimeline("greater")}
-                    type="checkbox"
-                  />
-                  &gt; 3months
-                </label>
+                <input
+                  id="gtThree"
+                  onChange={() => handleAddTimeline("greater")}
+                  type="checkbox"
+                />
+                <label for="gtThree">&gt; 3months</label>
               </li>
             </ul>
           </div>
@@ -228,72 +222,65 @@ const FilterMore = ({
             <p>Home Featured</p>
             <ul className="items">
               <li value="WalkoutBasement">
-                <label>
-                  <input
-                    onChange={() => handleAddHomeFeatures("WalkoutBasement")}
-                    type="checkbox"
-                  />
-                  Walkout Basement
-                </label>
+                <input
+                  id="walkout"
+                  onChange={() => handleAddHomeFeatures("WalkoutBasement")}
+                  type="checkbox"
+                />
+                <label for="walkout">Walkout Basement</label>
               </li>
 
               <li value="homeOffice">
-                <label>
-                  <input
-                    onChange={() => handleAddHomeFeatures("homeOffice")}
-                    type="checkbox"
-                  />
-                  Office / Den
-                </label>
+                <input
+                  id="officeDen"
+                  onChange={() => handleAddHomeFeatures("homeOffice")}
+                  type="checkbox"
+                />
+                <label for="officeDen">Office / Den</label>
               </li>
 
               <li value="fireplace">
-                <label>
-                  <input
-                    onChange={() => handleAddHomeFeatures("fireplace")}
-                    type="checkbox"
-                  />
-                  Fireplace
-                </label>
+                <input
+                  id="fireplace"
+                  onChange={() => handleAddHomeFeatures("fireplace")}
+                  type="checkbox"
+                />
+                <label for="fireplace">Fireplace</label>
               </li>
 
               <li value="upgradedEnsuite">
-                <label>
-                  <input
-                    onChange={() => handleAddHomeFeatures("upgradedEnsuite")}
-                    type="checkbox"
-                  />
-                  Upgraded Ensuite
-                </label>
+                <input
+                  id="ensuite"
+                  onChange={() => handleAddHomeFeatures("upgradedEnsuite")}
+                  type="checkbox"
+                />
+                <label for="ensuite">Upgraded Ensuite</label>
               </li>
 
               <li value="greenspaceWater">
-                <label>
-                  <input
-                    onChange={() => handleAddHomeFeatures("greenspaceWater")}
-                    type="checkbox"
-                  />
-                  Greenspace/Water
-                </label>
+                <input
+                  id="greenspace"
+                  onChange={() => handleAddHomeFeatures("greenspaceWater")}
+                  type="checkbox"
+                />
+                <label for="greenspace">Greenspace/Water</label>
               </li>
 
               <li value="garageSize">
-                <label>
-                  <input
-                    onChange={() => handleAddHomeFeatures("garageSize")}
-                    type="checkbox"
-                  />
-                  Garage size
-                </label>
+                <input
+                  id="garageSize"
+                  onChange={() => handleAddHomeFeatures("garageSize")}
+                  type="checkbox"
+                />
+                <label for="garageSize">Garage size</label>
               </li>
               <li value="spiceKitchen">
-                <label>
-                  <input
-                    onChange={() => handleAddHomeFeatures("spiceKitchen")}
-                    type="checkbox"
-                  />
-                  Spice Kitchen
-                </label>
+                <input
+                  id="spiceKit"
+                  onChange={() => handleAddHomeFeatures("spiceKitchen")}
+                  type="checkbox"
+                />
+                <label for="spiceKit">Spice Kitchen</label>
               </li>
             </ul>
           </div>
@@ -302,6 +289,34 @@ const FilterMore = ({
     </DivStyled>
   )
 }
+
+const StyledSelector = styled.div`
+  margin-bottom: 5rem;
+
+  .sqftvalue,
+  .pricevalue {
+    border-bottom: 4px dashed #bdc3c7;
+    text-align: center;
+    font-weight: bold;
+    font-size: 7rem;
+    width: 100%;
+    line-height: 7rem;
+    margin: 4rem auto;
+    letter-spacing: -0.07em;
+    text-shadow: white 2px 2px 2px;
+  }
+
+  input[type="range"] {
+    display: block;
+    -webkit-appearance: none;
+    background-color: #bdc3c7;
+    width: 300px;
+    height: 5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    outline: 0;
+  }
+`
 
 const DivStyled = styled.div`
   position: relative;
@@ -375,6 +390,54 @@ const DivStyled = styled.div`
     opacity: ${props => (props.filteractive ? 1 : 0)};
     visibility: ${props => (props.filteractive ? "visible" : "hidden")};
     z-index: 9999;
+  }
+
+  ul.items {
+    display: block;
+    padding: 2.5rem 1rem;
+    border: 0.1rem solid #c7b2a1;
+  }
+
+  ul.items li {
+    ${B2Black};
+    position: relative;
+    margin-bottom: 0.5rem;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    label {
+      padding-right: 1rem;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      &::before {
+        display: block;
+        position: absolute;
+        top: -0.75rem;
+        right: -1rem;
+        width: 3rem;
+        height: 3rem;
+        transition: all 0.3s ease-out;
+        color: ${colors.colorTertiary};
+        font-family: "FontAwesome";
+        font-size: 2.5rem;
+        content: "\f1db";
+      }
+    }
+
+    input {
+      position: absolute;
+      opacity: 0;
+
+      &:checked + label {
+        &::before {
+          color: #154290 !important;
+          content: "\f058";
+        }
+      }
+    }
   }
 `
 
