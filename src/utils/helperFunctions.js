@@ -17,3 +17,9 @@ export const wordSpiltter = (sent, chartPerLine) => {
   const newSententance = sententance.join(" ")
   return newSententance
 }
+
+export const commaAdder = numb => {
+  let str = numb.toString().split(".")
+  str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  return str.join(".")
+}

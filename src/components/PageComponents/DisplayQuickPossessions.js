@@ -110,7 +110,7 @@ const DisplayQuickPossessions = props => {
   const [sqftFilter, setSqftFilter] = useState(500)
   const [bedroomFilter, setBedroomFilter] = useState([])
 
-  const [priceFilter, setPriceFilter] = useState(0)
+  const [priceFilter, setPriceFilter] = useState(50000)
   const [timelineFilter, setTimelineFilter] = useState([])
   const [homeFeaturesFilter, setHomeFeaturesFilter] = useState([])
 

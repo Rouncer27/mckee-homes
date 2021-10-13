@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
 import { B1Black, colors, B2Black } from "../../../styles/helpers"
+import { commaAdder } from "../../../utils/helperFunctions"
 
 const FilterMore = ({
   filterId,
@@ -25,12 +26,13 @@ const FilterMore = ({
 
   useEffect(() => {
     if (sqfootDisplay.current === null) return
-    sqfootDisplay.current.innerHTML = sqftFilter + "+"
+    sqfootDisplay.current.innerHTML = sqftFilter + " &#43;"
   }, [sqftFilter])
 
   useEffect(() => {
     if (priceDisplay.current === null) return
-    priceDisplay.current.innerHTML = priceFilter + "+"
+    priceDisplay.current.innerHTML =
+      "&#36;" + commaAdder(priceFilter) + " &#43;"
   }, [priceFilter])
 
   const handleOnSquareFootChange = event => {
@@ -113,7 +115,7 @@ const FilterMore = ({
             <p>Square Feet</p>
           </div>
           <div ref={sqfootDisplay} className="sqftvalue">
-            500
+            500 &#43;
           </div>
           <input
             type="range"
@@ -131,11 +133,11 @@ const FilterMore = ({
               <p>Price</p>
             </div>
             <div ref={priceDisplay} className="pricevalue">
-              0
+              &#36;50,000 &#43;
             </div>
             <input
               type="range"
-              min="0"
+              min="50000"
               max="1000000"
               step="50000"
               value={priceFilter}
