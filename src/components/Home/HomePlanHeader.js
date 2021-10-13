@@ -22,6 +22,7 @@ import bath from "../../images/icons/bath.png"
 import Heart from "../Images/Heart"
 
 import addPlan from "../AppRoutes/AppActions/addPlan"
+import JoinModal from "../Modals/JoinModal"
 
 const HomePlanHeader = ({ home }) => {
   const [isLiked, setIsLiked] = useState(false)
@@ -152,48 +153,10 @@ const HomePlanHeader = ({ home }) => {
           </div>
         </div>
       </StyledSection>
-      {isJoinActive && (
-        <JoinModal onClick={handleOnJoinFavs}>
-          <div className="inner">
-            <p>Sign up to our favourites!</p>
-            <Link to="/signup">Join Now</Link>
-            <button onClick={handleOnJoinFavs}>Close</button>
-          </div>
-        </JoinModal>
-      )}
+      {isJoinActive && <JoinModal closeModal={setIsJoinActive} />}
     </>
   )
 }
-
-const JoinModal = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
-  z-index: 99999;
-
-  .inner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 45rem;
-    padding: 3rem;
-    background-color: #fff;
-    transform: translate(-50%, -50%);
-    text-align: center;
-
-    a {
-      ${Btn1Navy};
-    }
-
-    button {
-      ${Btn1Danger};
-      margin-left: 2.5rem;
-    }
-  }
-`
 
 const StyledSection = styled.section`
   .wrapper {

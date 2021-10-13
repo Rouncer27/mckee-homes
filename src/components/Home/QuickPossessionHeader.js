@@ -22,6 +22,7 @@ import bath from "../../images/icons/bath.png"
 import Heart from "../Images/Heart"
 
 import addPlan from "../AppRoutes/AppActions/addPlan"
+import JoinModal from "../Modals/JoinModal"
 
 const QuickPossessionHeader = ({ home }) => {
   const [isLiked, setIsLiked] = useState(false)
@@ -199,6 +200,7 @@ const QuickPossessionHeader = ({ home }) => {
           </div>
         </div>
       </div>
+      {isJoinActive && <JoinModal closeModal={setIsJoinActive} />}
     </StyledSection>
   )
 }
