@@ -16,8 +16,10 @@ import {
 import handleGetUser from "./AppActions/handleGetUser"
 import handleLogout from "./AppActions/handleLogout"
 import handleEditAccount from "./AppActions/handleEditAccount"
+import ConfirmDelete from "../Modals/ConfirmDelete"
 
 const Account = () => {
+  const [isConfirmActive, setIsConfirmActive] = useState(false)
   const [editState, setEditState] = useState(false)
   const [accountDiff, setDccountDiff] = useState(false)
   const [accountDetails, setAccountDetails] = useState({
@@ -37,6 +39,10 @@ const Account = () => {
       setDccountDiff(true)
     }
   }, [accountDetails])
+
+  const handleConfirm = () => {
+    setIsConfirmActive(!isConfirmActive)
+  }
 
   const handleDelete = async () => {
     try {
@@ -76,7 +82,7 @@ const Account = () => {
           >
             Logout
           </button>
-          <button className="btn danger" onClick={handleDelete}>
+          <button className="btn danger" onClick={handleConfirm}>
             Delete Account
           </button>
         </div>
@@ -95,6 +101,12 @@ const Account = () => {
           </p>
         </div>
       </div>
+      {isConfirmActive && (
+        <ConfirmDelete
+          closeModal={setIsConfirmActive}
+          deleteAccount={handleDelete}
+        />
+      )}
     </StyledDiv>
   )
 }

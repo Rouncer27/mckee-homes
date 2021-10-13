@@ -153,6 +153,30 @@ export const Btn1Secondary = css`
   }
 `
 
+export const Btn1White = css`
+  ${Btn1Base};
+  background: transparent;
+  border: solid 0.2rem #fff;
+  color: #fff;
+
+  &:hover {
+    background: #fff;
+    color: ${colors.black};
+  }
+
+  &:focus {
+    outline: 0.4rem solid #003b49;
+    transition: all 0.35s ease-in-out;
+  }
+
+  &:disabled {
+    &:hover {
+      background: ${colors.colorTertiary};
+      color: ${colors.colorPrimary};
+    }
+  }
+`
+
 export const Btn1Success = css`
   ${Btn1Base};
   background: transparent;
