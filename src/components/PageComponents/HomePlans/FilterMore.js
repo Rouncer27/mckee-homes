@@ -299,26 +299,23 @@ const StyledSelector = styled.div`
 
   .sqftvalue,
   .pricevalue {
-    border-bottom: 4px dashed #bdc3c7;
-    text-align: center;
-    font-weight: bold;
-    font-size: 7rem;
     width: 100%;
-    line-height: 7rem;
-    margin: 4rem auto;
-    letter-spacing: -0.07em;
-    text-shadow: white 2px 2px 2px;
+    margin: 1rem auto;
+    font-size: 4rem;
+    text-align: center;
+    line-height: 4rem;
+    letter-spacing: 0;
   }
 
   input[type="range"] {
     display: block;
-    -webkit-appearance: none;
     background-color: #bdc3c7;
-    width: 300px;
-    height: 5px;
-    border-radius: 5px;
+    width: 30rem;
+    height: 0.5rem;
+    border-radius: 0.5rem;
     margin: 0 auto;
     outline: 0;
+    cursor: pointer;
   }
 `
 
