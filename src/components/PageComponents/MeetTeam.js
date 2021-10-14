@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import { Link } from "gatsby"
@@ -16,6 +16,7 @@ const getData = graphql`
     team: allWpOurTeam {
       edges {
         node {
+          slug
           acfOurTeam {
             bio
             department
@@ -37,8 +38,10 @@ const getData = graphql`
 
 const MeetTeam = ({ data }) => {
   const teamData = useStaticQuery(getData)
-  const team = teamData.team.edges
+  const team = teamData.team.edges.sort((a, b) => 0.5 - Math.random())
+
   if (!data.displayMeetTeam) return null
+
   return (
     <SectionStyled>
       <div className="wrapper">
@@ -63,7 +66,7 @@ const MeetTeam = ({ data }) => {
             )
             const imageAlt = team.node.acfOurTeam.image.altText
             return (
-              <Team key={index}>
+              <Team to={`/our-team/${team.node.slug}`} key={index}>
                 <div className="image">
                   <GatsbyImage
                     image={imageDisplay}
@@ -148,7 +151,7 @@ const SectionStyled = styled.section`
   }
 `
 
-const Team = styled.div`
+const Team = styled(Link)`
   width: calc((100% / 2) - 2rem);
   margin: 1rem;
 

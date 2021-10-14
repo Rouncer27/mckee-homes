@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { B1Black, medWrapper } from "../../styles/helpers"
+import { B1Black, medWrapper, fontSizer, colors } from "../../styles/helpers"
 import { graphql, useStaticQuery } from "gatsby"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
@@ -49,6 +49,8 @@ const Testimonials = ({ data }) => {
             {testimonials.map((testimonial, index) => {
               return (
                 <TestimonialSlide key={index}>
+                  <span className="quote-left">&#8220;</span>
+                  <span className="quote-right">&#8221;</span>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: testimonial.node.acfTestimonials.content,
@@ -76,11 +78,29 @@ const SectionStyled = styled.section`
 
   .slider-wrap {
     width: 100%;
+    max-width: 110rem;
   }
 `
 
 const TestimonialSlide = styled.div`
+  position: relative;
+  padding: 2rem 10rem;
   text-align: center;
+
+  span {
+    ${fontSizer(7, 10, 76.8, 150, 3)};
+    position: absolute;
+    top: 0;
+    color: ${colors.colorPrimary};
+  }
+
+  .quote-right {
+    right: 1rem;
+  }
+
+  .quote-left {
+    left: 1rem;
+  }
 
   p {
     ${B1Black};
