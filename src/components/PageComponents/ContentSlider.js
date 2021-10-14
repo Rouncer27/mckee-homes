@@ -72,7 +72,34 @@ const ContentSlider = ({ data }) => {
   )
 }
 
-const ContentSliderSection = styled.section``
+const ContentSliderSection = styled.section`
+  .slick-slider {
+    .slick-arrow {
+      top: auto;
+      bottom: 20%;
+      left: auto;
+      z-index: 500;
+
+      &::before {
+        color: ${colors.colorSecondary};
+        font-family: "FontAwesome";
+      }
+
+      &.slick-prev {
+        right: 17rem;
+        &::before {
+          content: "\f060";
+        }
+      }
+      &.slick-next {
+        right: 14rem;
+        &::before {
+          content: "\f061";
+        }
+      }
+    }
+  }
+`
 
 const Slide = styled.div`
   position: relative;
