@@ -9,6 +9,7 @@ import HeroSix from "./PageComponents/HeroSix"
 import HeroSeven from "./PageComponents/HeroSeven"
 import HeroEight from "./PageComponents/HeroEight"
 import HeroNine from "./PageComponents/HeroNine"
+import HeroTen from "./PageComponents/HeroTen"
 import ContentWithLogo from "./PageComponents/ContentWithLogo"
 import ContentThreeImages from "./PageComponents/ContentThreeImages"
 import ContentImage5050 from "./PageComponents/ContentImage5050"
@@ -40,6 +41,9 @@ import BlueBlockContent from "./PageComponents/BlueBlockContent"
 import Map from "./PageComponents/Map"
 import ContactForm from "./PageComponents/Forms/ContactForm"
 import TradePartner from "./PageComponents/Forms/TradePartner"
+import ContentSimpleWysiwyg from "./PageComponents/ContentSimpleWysiwyg"
+import CrossfieldMapPins from "./PageComponents/CommunitiesMaps/CrossfieldMapPins"
+import AirdrieMapPins from "./PageComponents/CommunitiesMaps/AirdrieMapPins"
 
 const PageComponentGroups = props => {
   const { components, location } = props
@@ -75,6 +79,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_HeroNine":
                 return <HeroNine key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_HeroTen":
+                return <HeroTen key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_ContentWithLogo":
                 return <ContentWithLogo key={index} data={component} />
@@ -186,6 +193,15 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_DisplayTradePartner":
                 return <TradePartner key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_ContentSimpleWysiwyg":
+                return <ContentSimpleWysiwyg key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_AirdrieMapPins":
+                return <AirdrieMapPins key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_CrossfieldMapPins":
+                return <CrossfieldMapPins key={index} data={component} />
 
               default:
                 return (

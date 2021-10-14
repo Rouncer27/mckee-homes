@@ -9,5 +9,6 @@ export * from "./buttons"
 export * from "./wrappers"
 export * from "./form"
 export * from "./navigation"
+export * from "./wysiwyg"
 
 export { colors, fonts }

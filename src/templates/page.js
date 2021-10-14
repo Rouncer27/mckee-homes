@@ -228,6 +228,24 @@ export const pageTempQuery = graphql`
             }
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_HeroTen {
+            fieldGroupName
+            topTitle
+            bottomTitle
+            content
+            buttonText
+            buttonSlug
+            image {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 2500)
+                }
+              }
+            }
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentWithImage7525 {
             fieldGroupName
             buttonText
@@ -661,6 +679,22 @@ export const pageTempQuery = graphql`
           ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayTradePartner {
             fieldGroupName
             displayTradePartnerForm
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_ContentSimpleWysiwyg {
+            fieldGroupName
+            title
+            content
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_AirdrieMapPins {
+            fieldGroupName
+            displayAirdrieMap
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_CrossfieldMapPins {
+            fieldGroupName
+            displayCrossfieldMap
           }
         }
       }
