@@ -246,6 +246,24 @@ export const pageTempQuery = graphql`
             }
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_HeroEleven {
+            fieldGroupName
+            topTitle
+            mainTitle
+            content
+            sideTitle
+            sideContent
+            image {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 2500)
+                }
+              }
+            }
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentWithImage7525 {
             fieldGroupName
             buttonText
