@@ -1,9 +1,11 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import {
+  B1White,
   B2Black,
   B2White,
   colors,
+  H2White,
   standardWrapper,
 } from "../../../styles/helpers"
 
@@ -33,6 +35,14 @@ const TradePartner = ({ data }) => {
   return (
     <SectionStyled>
       <div className="wrapper">
+        <div className="title">
+          <h2>Interested in being a trade partner?</h2>
+          <p>
+            We are always looking for valued trade partners to work with us. If
+            you are interested please send us your contact information and a bit
+            about how you want to help and we will be in touch.{" "}
+          </p>
+        </div>
         <form>
           <InputField>
             <label htmlFor="firstName">
@@ -41,7 +51,9 @@ const TradePartner = ({ data }) => {
                 className={`error-message${
                   formStatus.errors.findIndex(
                     error => error.idref === "firstName"
-                  ) !== -1 && " error-active"
+                  ) !== -1
+                    ? " error-active"
+                    : " "
                 }`}
               >
                 You must input a name.
@@ -64,7 +76,9 @@ const TradePartner = ({ data }) => {
                 className={`error-message${
                   formStatus.errors.findIndex(
                     error => error.idref === "lastName"
-                  ) !== -1 && " error-active"
+                  ) !== -1
+                    ? " error-active"
+                    : " "
                 }`}
               >
                 You must input a name.
@@ -87,7 +101,9 @@ const TradePartner = ({ data }) => {
                 className={`error-message${
                   formStatus.errors.findIndex(
                     error => error.idref === "email"
-                  ) !== -1 && " error-active"
+                  ) !== -1
+                    ? " error-active"
+                    : " "
                 }`}
               >
                 You must input a email.
@@ -110,7 +126,9 @@ const TradePartner = ({ data }) => {
                 className={`error-message${
                   formStatus.errors.findIndex(
                     error => error.idref === "phone"
-                  ) !== -1 && " error-active"
+                  ) !== -1
+                    ? " error-active"
+                    : " "
                 }`}
               >
                 You must input a phone number.
@@ -134,7 +152,9 @@ const TradePartner = ({ data }) => {
                 className={`error-message${
                   formStatus.errors.findIndex(
                     error => error.idref === "community"
-                  ) !== -1 && " error-active"
+                  ) !== -1
+                    ? " error-active"
+                    : " "
                 }`}
               >
                 You must input a phone number.
@@ -173,8 +193,26 @@ const TradePartner = ({ data }) => {
 }
 
 const SectionStyled = styled.div`
+  background-color: ${colors.colorPrimary};
+
   .wrapper {
     ${standardWrapper};
+  }
+  .title {
+    width: 100%;
+    text-align: center;
+
+    h2 {
+      ${H2White};
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 0.1rem solid ${colors.colorTertiary};
+    }
+
+    p {
+      ${B1White};
+      padding: 0 5rem;
+    }
   }
 
   form {
@@ -191,7 +229,7 @@ const InputField = styled.div`
   padding: 1rem 0;
 
   label {
-    ${B2Black};
+    ${B2White};
     display: block;
     width: 100%;
     line-height: 1.5;

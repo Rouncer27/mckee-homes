@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import { Btn1Grey, colors, H2Grey, standardWrapper } from "../../styles/helpers"
 
 import Wysiwyg from "./Wysiwyg"
@@ -56,6 +56,7 @@ const SectionStyled = styled.section`
 `
 
 const JobPost = styled.div`
+  width: calc(80%);
   margin: 0 auto 2.5rem;
   padding: 2.5rem 0;
   border-bottom: 0.25rem solid ${colors.colorTertiary};

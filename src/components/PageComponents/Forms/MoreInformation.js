@@ -53,7 +53,9 @@ const MoreInformation = ({ homeSlug }) => {
                   className={`error-message${
                     formStatus.errors.findIndex(
                       error => error.idref === "firstName"
-                    ) !== -1 && " error-active"
+                    ) !== -1
+                      ? " error-active"
+                      : " "
                   }`}
                 >
                   You must input a name.
@@ -76,7 +78,9 @@ const MoreInformation = ({ homeSlug }) => {
                   className={`error-message${
                     formStatus.errors.findIndex(
                       error => error.idref === "lastName"
-                    ) !== -1 && " error-active"
+                    ) !== -1
+                      ? " error-active"
+                      : " "
                   }`}
                 >
                   You must input a name.
@@ -99,7 +103,9 @@ const MoreInformation = ({ homeSlug }) => {
                   className={`error-message${
                     formStatus.errors.findIndex(
                       error => error.idref === "email"
-                    ) !== -1 && " error-active"
+                    ) !== -1
+                      ? " error-active"
+                      : " "
                   }`}
                 >
                   You must input a email.
@@ -122,7 +128,9 @@ const MoreInformation = ({ homeSlug }) => {
                   className={`error-message${
                     formStatus.errors.findIndex(
                       error => error.idref === "phone"
-                    ) !== -1 && " error-active"
+                    ) !== -1
+                      ? " error-active"
+                      : " "
                   }`}
                 >
                   You must input a phone number.
@@ -146,7 +154,9 @@ const MoreInformation = ({ homeSlug }) => {
                   className={`error-message${
                     formStatus.errors.findIndex(
                       error => error.idref === "community"
-                    ) !== -1 && " error-active"
+                    ) !== -1
+                      ? " error-active"
+                      : " "
                   }`}
                 >
                   You must input a phone number.

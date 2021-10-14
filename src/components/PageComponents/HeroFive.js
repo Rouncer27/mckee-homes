@@ -91,7 +91,7 @@ const HeroFourStyled = styled.div`
       @media (min-width: 768px) {
         width: calc(60%);
         margin-top: -27.5rem;
-        padding: 2.5rem;
+        padding: 2.5rem 7.1rem;
       }
 
       h2 {
