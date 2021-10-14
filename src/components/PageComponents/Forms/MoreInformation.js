@@ -33,7 +33,12 @@ const MoreInformation = ({ homeSlug }) => {
       [event.target.name]: event.target.value,
     })
   }
-
+  const handleOnCheck = () => {
+    setFormData({
+      ...formData,
+      send: !formData.send,
+    })
+  }
   return (
     <SectionStyled>
       <div className="wrapper">
@@ -42,8 +47,9 @@ const MoreInformation = ({ homeSlug }) => {
         </div>
         <div className="form">
           <p>
-            Send us your contact information to learn more and we will be in
-            touch to speak about{" "}
+            We will send you more information about this home and plan. If you
+            are looking for more information on what is included on each
+            attribute level visit us at a show home or call us today.
           </p>
           <form>
             <InputField>
@@ -173,18 +179,18 @@ const MoreInformation = ({ homeSlug }) => {
               </label>
             </InputField>
 
-            <InputField>
+            <CheckboxField>
+              <input
+                name="send"
+                type="checkbox"
+                value={formData.send}
+                id="send"
+                onChange={handleOnCheck}
+              />
               <label htmlFor="send">
                 Send me monthly news, promotions and updates
-                <input
-                  name="send"
-                  type="checkbox"
-                  value={formData.send}
-                  id="send"
-                  onChange={handleOnChange}
-                />
               </label>
-            </InputField>
+            </CheckboxField>
             <div className="btn-submit">
               <button>Send Me More Info</button>
             </div>
@@ -249,6 +255,55 @@ const SectionStyled = styled.div`
 
       button {
         ${Btn1Grey};
+      }
+    }
+  }
+`
+
+const CheckboxField = styled.div`
+  width: calc(50% - 4rem);
+  margin: 1rem 2rem;
+  padding: 1rem 0;
+
+  label {
+    ${B2White};
+    position: relative;
+    padding-right: 5rem;
+    cursor: pointer;
+
+    &::before {
+      display: block;
+      position: absolute;
+      top: -1rem;
+      right: -2rem;
+      width: 3rem;
+      height: 3rem;
+      transition: all 0.3s ease-out;
+      color: ${colors.colorTertiary};
+      font-family: "FontAwesome";
+      font-size: 2.5rem;
+      content: "\f1db";
+    }
+
+    .error-message {
+      display: none;
+    }
+
+    .error-active {
+      display: inline-block;
+      color: red;
+      padding-left: 2rem;
+    }
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+
+    &:checked + label {
+      &::before {
+        color: #fff !important;
+        content: "\f058";
       }
     }
   }

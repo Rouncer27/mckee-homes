@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import {
   B1White,
-  B2Black,
+  Btn1Grey,
   B2White,
   colors,
   H2White,
@@ -32,6 +32,7 @@ const TradePartner = ({ data }) => {
       [event.target.name]: event.target.value,
     })
   }
+
   return (
     <SectionStyled>
       <div className="wrapper">
@@ -146,7 +147,7 @@ const TradePartner = ({ data }) => {
           </InputField>
           <InputField>
             <label htmlFor="community">
-              Why Community are you interested in?{" "}
+              How do you want to help?
               <span className="required">(required)</span>
               <span
                 className={`error-message${
@@ -159,9 +160,9 @@ const TradePartner = ({ data }) => {
               >
                 You must input a phone number.
               </span>
-              <input
+              <textarea
                 name="community"
-                type="text"
+                rows={8}
                 value={formData.community}
                 id="community"
                 onChange={handleOnChange}
@@ -170,21 +171,8 @@ const TradePartner = ({ data }) => {
               />
             </label>
           </InputField>
-
-          <InputField>
-            <label htmlFor="send">
-              Send me monthly news, promotions and updates
-              <input
-                name="send"
-                type="checkbox"
-                value={formData.send}
-                id="send"
-                onChange={handleOnChange}
-              />
-            </label>
-          </InputField>
           <div className="btn-submit">
-            <button>Submit</button>
+            <button>Send</button>
           </div>
         </form>
       </div>
@@ -220,6 +208,15 @@ const SectionStyled = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
     width: 100%;
+
+    .btn-submit {
+      width: 100%;
+      margin: 2rem;
+
+      button {
+        ${Btn1Grey};
+      }
+    }
   }
 `
 

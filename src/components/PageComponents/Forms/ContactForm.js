@@ -3,6 +3,7 @@ import styled from "styled-components"
 import {
   B2Black,
   B2White,
+  Btn1Grey,
   colors,
   standardWrapper,
 } from "../../../styles/helpers"
@@ -13,7 +14,7 @@ const ContactForm = ({ data }) => {
     lastName: "",
     email: "",
     phone: "",
-    community: "",
+    message: "",
     send: false,
   })
 
@@ -30,6 +31,15 @@ const ContactForm = ({ data }) => {
       [event.target.name]: event.target.value,
     })
   }
+
+  const handleOnCheck = () => {
+    console.log(formData.send)
+    setFormData({
+      ...formData,
+      send: !formData.send,
+    })
+  }
+
   return (
     <SectionStyled>
       <div className="wrapper">
@@ -135,25 +145,25 @@ const ContactForm = ({ data }) => {
             </label>
           </InputField>
           <InputField>
-            <label htmlFor="community">
-              Why Community are you interested in?{" "}
+            <label htmlFor="message">
+              Message
               <span className="required">(required)</span>
               <span
                 className={`error-message${
                   formStatus.errors.findIndex(
-                    error => error.idref === "community"
+                    error => error.idref === "message"
                   ) !== -1
                     ? " error-active"
                     : " "
                 }`}
               >
-                You must input a phone number.
+                You must input a message.
               </span>
-              <input
-                name="community"
-                type="text"
-                value={formData.community}
-                id="community"
+              <textarea
+                name="message"
+                rows={5}
+                value={formData.message}
+                id="message"
                 onChange={handleOnChange}
                 aria-required="true"
                 required
@@ -161,18 +171,18 @@ const ContactForm = ({ data }) => {
             </label>
           </InputField>
 
-          <InputField>
+          <CheckboxField>
+            <input
+              name="send"
+              type="checkbox"
+              checked={formData.send ? true : false}
+              id="send"
+              onChange={handleOnCheck}
+            />
             <label htmlFor="send">
               Send me monthly news, promotions and updates
-              <input
-                name="send"
-                type="checkbox"
-                value={formData.send}
-                id="send"
-                onChange={handleOnChange}
-              />
             </label>
-          </InputField>
+          </CheckboxField>
           <div className="btn-submit">
             <button>Submit</button>
           </div>
@@ -182,7 +192,58 @@ const ContactForm = ({ data }) => {
   )
 }
 
+const CheckboxField = styled.div`
+  width: calc(50% - 4rem);
+  margin: 1rem 2rem;
+  padding: 1rem 0;
+
+  label {
+    ${B2Black};
+    position: relative;
+    padding-right: 5rem;
+    cursor: pointer;
+
+    &::before {
+      display: block;
+      position: absolute;
+      top: -1rem;
+      right: -2rem;
+      width: 3rem;
+      height: 3rem;
+      transition: all 0.3s ease-out;
+      color: ${colors.colorTertiary};
+      font-family: "FontAwesome";
+      font-size: 2.5rem;
+      content: "\f1db";
+    }
+
+    .error-message {
+      display: none;
+    }
+
+    .error-active {
+      display: inline-block;
+      color: red;
+      padding-left: 2rem;
+    }
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+
+    &:checked + label {
+      &::before {
+        color: #154290 !important;
+        content: "\f058";
+      }
+    }
+  }
+`
+
 const SectionStyled = styled.div`
+  margin-top: -5rem;
+
   .wrapper {
     ${standardWrapper};
   }
@@ -192,6 +253,15 @@ const SectionStyled = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
     width: 100%;
+
+    .btn-submit {
+      padding-top: 2.5rem;
+      padding-left: 2rem;
+
+      button {
+        ${Btn1Grey};
+      }
+    }
   }
 `
 
@@ -227,7 +297,8 @@ const InputField = styled.div`
       margin-left: 0;
       margin-right: 0;
       width: 100%;
-      border: 0.1rem ${colors.colorSecondary} solid;
+      border: 0.2rem ${colors.colorPrimary} solid;
+      border-radius: 0.4rem;
     }
   }
 `

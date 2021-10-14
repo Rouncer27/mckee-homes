@@ -55,7 +55,6 @@ const HeroEleven = ({ data }) => {
 
 const HeroElevenStyled = styled.div`
   position: relative;
-  margin-bottom: 15rem;
 
   .hero-Wrap {
     position: relative;
@@ -157,6 +156,7 @@ const HeroElevenStyled = styled.div`
 
       p {
         ${B1Black};
+        margin-bottom: 0;
       }
     }
   }
