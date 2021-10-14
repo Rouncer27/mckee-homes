@@ -51,6 +51,7 @@ const ContentWithImage7525Section = styled.section`
 
   .wrapper {
     ${standardWrapper};
+    align-items: center;
     position: relative;
     flex-direction: ${props =>
       props.imageside === "left" ? "row-reverse" : "row"};
@@ -88,6 +89,7 @@ const ContentWithImage7525Section = styled.section`
 
     @media (min-width: 768px) {
       width: calc(25% - 4rem);
+      padding: 0 5rem;
       margin-right: ${props => (props.imageside === "left" ? "4rem" : "0rem")};
       margin-left: ${props => (props.imageside === "left" ? "0" : "4rem")};
     }

@@ -74,6 +74,9 @@ const ContentSlider = ({ data }) => {
 
 const ContentSliderSection = styled.section`
   .slick-slider {
+    .slick-active.slick-current {
+      z-index: 1000;
+    }
     .slick-arrow {
       top: auto;
       bottom: 20%;
