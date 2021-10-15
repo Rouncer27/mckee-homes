@@ -44,7 +44,7 @@ const HomePlanFloorPlan = ({ floorImg, floorImgAlt, floorPlanPdf, title }) => {
               className="floorplan-wrapper__like--save"
               onClick={() => console.log("LIKE!!")}
             >
-              Save Floor Plan
+              Save Home
             </button>
           </div>
         </div>

@@ -43,7 +43,7 @@ const SeeThisHome = ({ homeSlug }) => {
 
   return (
     <SectionStyled>
-      <div className="wrapper">
+      <div id="see-this-home" className="wrapper">
         <div className="title">
           <h2>I would like to see this home</h2>
         </div>

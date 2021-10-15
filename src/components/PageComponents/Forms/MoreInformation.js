@@ -41,7 +41,7 @@ const MoreInformation = ({ homeSlug }) => {
   }
   return (
     <SectionStyled>
-      <div className="wrapper">
+      <div id="more-information-form" className="wrapper">
         <div className="title">
           <h2>Send me more information</h2>
         </div>

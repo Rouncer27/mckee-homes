@@ -2,7 +2,13 @@ import React, { useState, useContext, useEffect } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { B1Grey, colors, H4Navy, B2Grey } from "../../../styles/helpers"
+import {
+  B1Grey,
+  colors,
+  H4Navy,
+  B2Grey,
+  B1White,
+} from "../../../styles/helpers"
 import { UserContext } from "../../../context/UserContext"
 
 import sqft from "../../../images/icons/sqft.png"
@@ -75,6 +81,12 @@ const HomeDisplay = ({ home }) => {
             </div>
           )}
         </div>
+
+        {home.acfQuickPossessions.optionalAddedNoteReq && (
+          <OptionalNotes className="optional-notes">
+            <p>{home.acfQuickPossessions.optionalAddedNote}</p>
+          </OptionalNotes>
+        )}
       </div>
       <div className="content">
         <div className="content__title">
@@ -120,6 +132,19 @@ const HomeDisplay = ({ home }) => {
     </ShowHomeStyled>
   )
 }
+
+const OptionalNotes = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5rem 1rem;
+  background-color: rgba(66, 69, 74, 0.7);
+
+  p {
+    ${B1White};
+    margin: 0;
+  }
+`
 
 const ShowHomeStyled = styled(Link)`
   width: 100%;

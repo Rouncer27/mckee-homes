@@ -15,6 +15,8 @@ const getData = graphql`
           slug
           databaseId
           acfQuickPossessions {
+            optionalAddedNoteReq
+            optionalAddedNote
             address
             homeFeatures
             price

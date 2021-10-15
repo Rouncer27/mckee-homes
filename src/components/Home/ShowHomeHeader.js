@@ -14,10 +14,13 @@ import {
   B2Grey,
   B1White,
 } from "../../styles/helpers"
+import scrollTo from "gatsby-plugin-smoothscroll"
 
 import sqft from "../../images/icons/sqft.png"
 import bed from "../../images/icons/bed.png"
 import bath from "../../images/icons/bath.png"
+import whiteHeart from "../../images/heart-white.png"
+import redHeart from "../../images/heart-red.png"
 import Heart from "../Images/Heart"
 
 import addPlan from "../AppRoutes/AppActions/addPlan"
@@ -88,6 +91,12 @@ const ShowHomeHeader = ({ home }) => {
                 onClick={handleOnJoinFavs}
               >
                 Save Home
+                <span className="heart-white">
+                  <img src={whiteHeart} alt="" />
+                </span>
+                <span className="heart-red">
+                  <img src={redHeart} alt="" />
+                </span>
               </button>
             ) : (
               <button className="my-favs-actions__save" onClick={handleOnClick}>
@@ -146,7 +155,9 @@ const ShowHomeHeader = ({ home }) => {
           </div>
 
           <div className="header__more">
-            <Link to="/contact">Need More Information</Link>
+            <button onClick={() => scrollTo("#more-information-form")}>
+              <span>&gt; </span>Need More Information?
+            </button>
           </div>
         </div>
       </div>
@@ -181,6 +192,7 @@ const StyledSection = styled.section`
 
       &__save {
         ${B1White};
+        position: relative;
         display: block;
         margin: auto;
         background: transparent;
@@ -189,8 +201,41 @@ const StyledSection = styled.section`
         text-transform: uppercase;
         cursor: pointer;
 
+        span {
+          position: absolute;
+          top: 0.25rem;
+          right: -3rem;
+          display: inline-block;
+          width: 2.4rem;
+          margin-left: 1rem;
+          transition: all 0.3s ease-out;
+
+          img {
+            width: 100%;
+          }
+        }
+        .heart-white {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .heart-red {
+          opacity: 0;
+          visibility: hidden;
+        }
+
         &:hover {
-          color: ${colors.colorPrimary};
+          color: rgba(255, 0, 0, 1);
+
+          .heart-white {
+            opacity: 0;
+            visibility: hidden;
+          }
+
+          .heart-red {
+            opacity: 1;
+            visibility: visible;
+          }
         }
       }
 
@@ -286,8 +331,11 @@ const StyledSection = styled.section`
     &__more {
       margin-top: 4rem;
 
-      a {
+      button {
         ${B2Black};
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
       }
     }
   }
