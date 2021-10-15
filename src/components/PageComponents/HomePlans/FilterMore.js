@@ -416,7 +416,7 @@ const DivStyled = styled.div`
     background-color: #efefef;
     opacity: ${props => (props.filteractive ? 1 : 0)};
     visibility: ${props => (props.filteractive ? "visible" : "hidden")};
-    z-index: 9999;
+    z-index: 10000;
 
     .clear-filter {
       margin-bottom: 2.5rem;
