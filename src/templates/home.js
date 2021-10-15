@@ -30,10 +30,31 @@ export const query = graphql`
         numberOfBedrooms
         squareFootage
         virtualTour
+        floorPlanImageReq
         floorPlanPdf {
           mediaItemUrl
           localFile {
-            publicURL
+            childImageSharp {
+              gatsbyImageData(width: 2000)
+            }
+          }
+        }
+        designerFloorPlanReq
+        designerFloorPlan {
+          mediaItemUrl
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 2000)
+            }
+          }
+        }
+        signatureFloorPlanReq
+        signatureFloorPlan {
+          mediaItemUrl
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 2000)
+            }
           }
         }
         gallery {

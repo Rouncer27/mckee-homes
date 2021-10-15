@@ -38,6 +38,12 @@ const QuickPossesion = ({ home }) => {
             ?.gatsbyImageData
         }
         floorImgAlt={home.acfQuickPossessions.floorPlanImage.altText}
+        propelFloorPlanReq={home.acfQuickPossessions.floorPlanImageReq}
+        propelFloorPlan={home.acfQuickPossessions.floorPlanImage}
+        designerFloorPlanReq={home.acfQuickPossessions.designerFloorPlanReq}
+        designerFloorPlan={home.acfQuickPossessions.designerFloorPlan}
+        signatureFloorPlanReq={home.acfQuickPossessions.signatureFloorPlanReq}
+        signatureFloorPlan={home.acfQuickPossessions.signatureFloorPlan}
         floorPlanPdf={home.acfQuickPossessions.floorPlanPdf.localFile.publicURL}
       />
     </article>

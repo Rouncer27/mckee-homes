@@ -34,6 +34,12 @@ const ShowHome = ({ home }) => {
             ?.gatsbyImageData
         }
         floorImgAlt={home.acfShowHomes.floorPlanImage.altText}
+        propelFloorPlanReq={home.acfShowHomes.floorPlanImageReq}
+        propelFloorPlan={home.acfShowHomes.floorPlanImage}
+        designerFloorPlanReq={home.acfShowHomes.designerFloorPlanReq}
+        designerFloorPlan={home.acfShowHomes.designerFloorPlan}
+        signatureFloorPlanReq={home.acfShowHomes.signatureFloorPlanReq}
+        signatureFloorPlan={home.acfShowHomes.signatureFloorPlan}
         floorPlanPdf={home.acfShowHomes.floorPlanPdf.localFile.publicURL}
       />
     </article>
