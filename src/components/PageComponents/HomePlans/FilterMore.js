@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
-import { B1Black, colors, B2Black } from "../../../styles/helpers"
+import { B1Black, colors, B2Black, Btn1Grey } from "../../../styles/helpers"
 import { commaAdder } from "../../../utils/helperFunctions"
 
 const FilterMore = ({
@@ -20,6 +20,7 @@ const FilterMore = ({
   features,
   homeFeaturesFilter,
   setHomeFeaturesFilter,
+  clearMore,
 }) => {
   const sqfootDisplay = useRef(null)
   const priceDisplay = useRef(null)
@@ -110,6 +111,9 @@ const FilterMore = ({
       </p>
 
       <div className="filter-wrap">
+        <div className="clear-filter">
+          <button onClick={clearMore}>Clear Filter</button>
+        </div>
         <StyledSelector>
           <div>
             <p>Square Feet</p>
@@ -154,8 +158,9 @@ const FilterMore = ({
                 id="oneBed"
                 onChange={() => handleAddBedroomItem("1")}
                 type="checkbox"
+                checked={bedroomFilter.some(bed => bed === "1")}
               />
-              <label for="oneBed">1 Bedroom</label>
+              <label htmlFor="oneBed">1 Bedroom</label>
             </li>
 
             <li value="2">
@@ -163,8 +168,9 @@ const FilterMore = ({
                 id="twoBed"
                 onChange={() => handleAddBedroomItem("2")}
                 type="checkbox"
+                checked={bedroomFilter.some(bed => bed === "2")}
               />
-              <label for="twoBed">2 Bedrooms</label>
+              <label htmlFor="twoBed">2 Bedrooms</label>
             </li>
 
             <li value="3">
@@ -172,17 +178,19 @@ const FilterMore = ({
                 id="threeBed"
                 onChange={() => handleAddBedroomItem("3")}
                 type="checkbox"
+                checked={bedroomFilter.some(bed => bed === "3")}
               />
-              <label for="threeBed">3 Bedrooms</label>
+              <label htmlFor="threeBed">3 Bedrooms</label>
             </li>
 
             <li value="4">
               <input
                 id="fourBed"
                 onChange={() => handleAddBedroomItem("4")}
+                checked={bedroomFilter.some(bed => bed === "4")}
                 type="checkbox"
               />
-              <label for="fourBed">4 Bedrooms</label>
+              <label htmlFor="fourBed">4 Bedrooms</label>
             </li>
           </ul>
         </div>
@@ -195,27 +203,30 @@ const FilterMore = ({
                 <input
                   id="immediate"
                   onChange={() => handleAddTimeline("immediate")}
+                  checked={timelineFilter.some(bed => bed === "immediate")}
                   type="checkbox"
                 />
-                <label for="immediate">immediate</label>
+                <label htmlFor="immediate">immediate</label>
               </li>
 
               <li value="less">
                 <input
                   id="ltThree"
                   onChange={() => handleAddTimeline("less")}
+                  checked={timelineFilter.some(bed => bed === "less")}
                   type="checkbox"
                 />
-                <label for="ltThree">&lt; 3months</label>
+                <label htmlFor="ltThree">&lt; 3months</label>
               </li>
 
               <li value="greater">
                 <input
                   id="gtThree"
                   onChange={() => handleAddTimeline("greater")}
+                  checked={timelineFilter.some(bed => bed === "greater")}
                   type="checkbox"
                 />
-                <label for="gtThree">&gt; 3months</label>
+                <label htmlFor="gtThree">&gt; 3months</label>
               </li>
             </ul>
           </div>
@@ -229,62 +240,77 @@ const FilterMore = ({
                 <input
                   id="walkout"
                   onChange={() => handleAddHomeFeatures("WalkoutBasement")}
+                  checked={homeFeaturesFilter.some(
+                    bed => bed === "WalkoutBasement"
+                  )}
                   type="checkbox"
                 />
-                <label for="walkout">Walkout Basement</label>
+                <label htmlFor="walkout">Walkout Basement</label>
               </li>
 
               <li value="homeOffice">
                 <input
                   id="officeDen"
                   onChange={() => handleAddHomeFeatures("homeOffice")}
+                  checked={homeFeaturesFilter.some(bed => bed === "homeOffice")}
                   type="checkbox"
                 />
-                <label for="officeDen">Office / Den</label>
+                <label htmlFor="officeDen">Office / Den</label>
               </li>
 
               <li value="fireplace">
                 <input
                   id="fireplace"
                   onChange={() => handleAddHomeFeatures("fireplace")}
+                  checked={homeFeaturesFilter.some(bed => bed === "fireplace")}
                   type="checkbox"
                 />
-                <label for="fireplace">Fireplace</label>
+                <label htmlFor="fireplace">Fireplace</label>
               </li>
 
               <li value="upgradedEnsuite">
                 <input
                   id="ensuite"
                   onChange={() => handleAddHomeFeatures("upgradedEnsuite")}
+                  checked={homeFeaturesFilter.some(
+                    bed => bed === "upgradedEnsuite"
+                  )}
                   type="checkbox"
                 />
-                <label for="ensuite">Upgraded Ensuite</label>
+                <label htmlFor="ensuite">Upgraded Ensuite</label>
               </li>
 
               <li value="greenspaceWater">
                 <input
                   id="greenspace"
                   onChange={() => handleAddHomeFeatures("greenspaceWater")}
+                  checked={homeFeaturesFilter.some(
+                    bed => bed === "greenspaceWater"
+                  )}
                   type="checkbox"
                 />
-                <label for="greenspace">Greenspace/Water</label>
+                <label htmlFor="greenspace">Greenspace/Water</label>
               </li>
 
               <li value="garageSize">
                 <input
                   id="garageSize"
                   onChange={() => handleAddHomeFeatures("garageSize")}
+                  checked={homeFeaturesFilter.some(bed => bed === "garageSize")}
                   type="checkbox"
                 />
-                <label for="garageSize">Garage size</label>
+                <label htmlFor="garageSize">Garage size</label>
               </li>
               <li value="spiceKitchen">
                 <input
                   id="spiceKit"
                   onChange={() => handleAddHomeFeatures("spiceKitchen")}
+                  checked={homeFeaturesFilter.some(
+                    bed => bed === "spiceKitchen"
+                  )}
                   type="checkbox"
                 />
-                <label for="spiceKit">Spice Kitchen</label>
+                <label htmlFor="spiceKit">Spice Kitchen</label>
               </li>
             </ul>
           </div>
@@ -391,6 +417,14 @@ const DivStyled = styled.div`
     opacity: ${props => (props.filteractive ? 1 : 0)};
     visibility: ${props => (props.filteractive ? "visible" : "hidden")};
     z-index: 9999;
+
+    .clear-filter {
+      margin-bottom: 2.5rem;
+
+      button {
+        ${Btn1Grey};
+      }
+    }
   }
 
   ul.items {

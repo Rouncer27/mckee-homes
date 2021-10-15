@@ -43,8 +43,6 @@ const HomeDisplay = ({ home }) => {
     }
   }, [userState.profile])
 
-  console.log(home)
-
   return (
     <HomePlanStyled to={`/home-plans/${home.slug}`}>
       <div className="image">

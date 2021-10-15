@@ -56,7 +56,7 @@ const FilterDropDown = ({
                 type="checkbox"
                 onChange={() => handleAddItem(option.node.slug)}
               />
-              <label for={`checkbox${option.node.databaseId}`}>
+              <label htmlFor={`checkbox${option.node.databaseId}`}>
                 {option.node.name}
               </label>
             </li>
@@ -69,7 +69,7 @@ const FilterDropDown = ({
             type="checkbox"
             onChange={() => handleAddItem("all")}
           />
-          <label for={filterId}>All {title}</label>
+          <label htmlFor={filterId}>All {title}</label>
         </li>
       </ul>
     </FilterStyled>

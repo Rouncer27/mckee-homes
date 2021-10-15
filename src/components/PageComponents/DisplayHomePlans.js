@@ -109,6 +109,11 @@ const DisplayHomePlans = props => {
   const [sqftFilter, setSqftFilter] = useState(500)
   const [bedroomFilter, setBedroomFilter] = useState([])
 
+  const handleClearMore = () => {
+    setSqftFilter(500)
+    setBedroomFilter([])
+  }
+
   useEffect(() => {
     const params = new URLSearchParams(props.location.search)
     const param = params.get("homeType")
@@ -142,6 +147,7 @@ const DisplayHomePlans = props => {
             price={false}
             timeline={false}
             features={false}
+            clearMore={handleClearMore}
           />
         </div>
       </div>

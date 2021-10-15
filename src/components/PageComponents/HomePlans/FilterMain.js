@@ -29,6 +29,7 @@ const FilterMain = ({
   features,
   homeFeaturesFilter,
   setHomeFeaturesFilter,
+  clearMore,
 }) => {
   return (
     <DivStyled id="filters">
@@ -76,6 +77,7 @@ const FilterMain = ({
         features={features}
         homeFeaturesFilter={homeFeaturesFilter}
         setHomeFeaturesFilter={setHomeFeaturesFilter}
+        clearMore={clearMore}
       />
     </DivStyled>
   )
