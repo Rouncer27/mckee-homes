@@ -52,6 +52,12 @@ export const query = graphql`
         node {
           title
           slug
+          categories {
+            nodes {
+              name
+              slug
+            }
+          }
           acfPosts {
             excerpt
             excerptImage {

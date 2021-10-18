@@ -6,6 +6,7 @@ import PostHeader from "./PostHeader"
 import PostFeaturedImage from "./PostFeaturedImage"
 import PostWysiwyg from "./PostWysiwyg"
 import PostNav from "./PostNav"
+import OtherArticles from "./OtherArticles"
 
 const PostSingle = ({ post, allPosts, prevPost, nextPost }) => {
   return (
@@ -22,6 +23,7 @@ const PostSingle = ({ post, allPosts, prevPost, nextPost }) => {
         </div>
       </PostSingleArticle>
       <PostNav allPosts={allPosts} prevPost={prevPost} nextPost={nextPost} />
+      <OtherArticles allPosts={allPosts} />
     </>
   )
 }
