@@ -265,16 +265,18 @@ export const pageTempQuery = graphql`
           }
 
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentWithImage7525 {
-            fieldGroupName
-            buttonText
-            buttonSlug
             buttonPosition
+            buttonSlug
+            imageIsAGif
+            imageSide
             title
             content
-            imageSide
+            buttonText
+            fieldGroupName
             image {
               altText
               localFile {
+                publicURL
                 url
                 childImageSharp {
                   gatsbyImageData(width: 1500)

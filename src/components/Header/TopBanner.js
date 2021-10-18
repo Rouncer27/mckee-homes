@@ -40,7 +40,7 @@ const TopBannerStyled = styled.div`
   top: 0;
   right: 0;
   left: 0;
-  z-index: -1;
+  z-index: 1;
 
   .message-wrap {
     width: 100%;
@@ -52,6 +52,16 @@ const TopBannerStyled = styled.div`
       ${B2Black};
       margin: 0;
       padding: 0;
+    }
+
+    a {
+      ${B2Black};
+      margin: 0;
+      padding: 0;
+
+      &:hover {
+        color: ${colors.colorPrimary};
+      }
     }
   }
 `

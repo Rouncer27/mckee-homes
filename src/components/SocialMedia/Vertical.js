@@ -107,6 +107,7 @@ const SocialMediaStyled = styled.div`
   top: 0;
   left: 5rem;
   background-color: ${colors.colorTertiary};
+  z-index: 100;
 
   @media (min-width: 768px) {
     display: block;

@@ -11,10 +11,16 @@ import {
 import { Link } from "gatsby"
 
 const ContentWithImage7525 = ({ data }) => {
-  const imageDisplay = getImage(
-    data.image.localFile.childImageSharp.gatsbyImageData
-  )
-  const imageAlt = data.image.altText
+  let imageDisplay
+  let imageAlt
+  if (!data.imageIsAGif === "no") {
+    imageDisplay = getImage(
+      data?.image?.localFile?.childImageSharp?.gatsbyImageData
+    )
+    imageAlt = data?.image?.altText
+  }
+
+  console.log("HELLO", data)
   return (
     <ContentWithImage7525Section
       imageside={data.imageSide}
@@ -31,12 +37,20 @@ const ContentWithImage7525 = ({ data }) => {
           />
         </div>
         <div className="image">
-          <GatsbyImage
-            image={imageDisplay}
-            alt={imageAlt}
-            layout="fullWidth"
-            formats={["auto", "webp", "avif"]}
-          />
+          {data.imageIsAGif === "yes" ? (
+            <>
+              <img src={data.image.localFile.url} />
+            </>
+          ) : (
+            <>
+              <GatsbyImage
+                image={imageDisplay}
+                alt={imageAlt}
+                layout="fullWidth"
+                formats={["auto", "webp", "avif"]}
+              />
+            </>
+          )}
         </div>
         <div className="button">
           <Link to={`/${data.buttonSlug}`}>{data.buttonText}</Link>
