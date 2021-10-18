@@ -107,7 +107,7 @@ const ShowHomeHeader = ({ home }) => {
         </div>
         <div className="header">
           <div className="header__title">
-            <p>Home Plans</p>
+            <p>Show Home</p>
             <h1>{home.title}</h1>
           </div>
           <div className="header__sizes">
@@ -132,11 +132,16 @@ const ShowHomeHeader = ({ home }) => {
           </div>
           <div className="header__address">
             <p>{home.acfShowHomes.address}</p>
+            <p>
+              {home.communities.nodes[0].name},{" "}
+              {home.communities.nodes[0].name === "Visa Crossing"
+                ? "Crossfield"
+                : "Airdrie"}
+            </p>
           </div>
 
           <div className="header__plans">
             <a
-              className="header__plans--pdf"
               target="_blank"
               rel="noreferrer"
               href={home.acfShowHomes.floorPlanPdf.localFile.publicURL}
@@ -145,13 +150,20 @@ const ShowHomeHeader = ({ home }) => {
             </a>
 
             <a
-              className="header__plans--tour"
               target="_blank"
               rel="noreferrer"
               href={home.acfShowHomes.virtualTour}
             >
               Take A Virtual Tour
             </a>
+
+            <Link
+              target="_blank"
+              rel="noreferrer"
+              to={`/communities/${home.communities.nodes[0].slug}`}
+            >
+              Discover Community
+            </Link>
           </div>
 
           <div className="header__more">
@@ -309,17 +321,10 @@ const StyledSection = styled.section`
       width: 100%;
       margin-top: 2.5rem;
 
-      &--pdf {
-        ${Btn1Grey};
-        margin-right: 2rem;
-      }
-
-      &--tour {
-        ${Btn1Navy};
-      }
-
       a {
+        ${Btn1Grey};
         width: 100%;
+        margin-right: 2rem;
         margin-bottom: 2.5rem;
 
         @media (min-width: 768px) {

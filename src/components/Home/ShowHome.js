@@ -10,8 +10,11 @@ import HomePlanFloorPlan from "./HomePlanFloorPlan"
 const ShowHome = ({ home }) => {
   return (
     <article>
-      <ShowHomeHeader home={home} title={`HOME SPECIFICATIONS AND FEATURES:`} />
-      <HomePlanDetails details={home.acfShowHomes.details} />
+      <ShowHomeHeader home={home} />
+      <HomePlanDetails
+        details={home.acfShowHomes.details}
+        title={`HOME SPECIFICATIONS AND FEATURES:`}
+      />
       <HomePlanGallery gallery={home.acfShowHomes.gallery} />
       <HomePlanConnect
         salesImg={

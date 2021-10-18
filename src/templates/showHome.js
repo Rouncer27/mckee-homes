@@ -100,6 +100,13 @@ export const query = graphql`
           }
         }
       }
+
+      communities {
+        nodes {
+          name
+          slug
+        }
+      }
     }
 
     allWpShowHome: allWpShowHome {
