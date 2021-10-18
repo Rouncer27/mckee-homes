@@ -40,6 +40,7 @@ const communities = props => {
         <ShowHours
           hours={community.acfCommunity.showHomeHours}
           map={community.acfCommunity.mapPin}
+          directions={community.acfCommunity.directions}
         />
         <CommunityForm />
         <LotPicker />

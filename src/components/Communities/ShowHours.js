@@ -2,19 +2,12 @@ import React from "react"
 import styled from "styled-components"
 import { B1Black, Btn1Grey, H4Navy } from "../../styles/helpers"
 
-const ShowHours = ({ hours, map }) => {
+const ShowHours = ({ hours, map, directions }) => {
   return (
     <StyledDiv>
       <div className="wrapper">
         <div className="map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d19961.79109256606!2d-114.00826420000001!3d51.288603849999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sca!4v1631646971064!5m2!1sen!2sca"
-            width="100%"
-            height="450"
-            style={{ border: 0 }}
-            allowfullscreen=""
-            loading="lazy"
-          ></iframe>
+          <div dangerouslySetInnerHTML={{ __html: map }} />
         </div>
         <div className="hours">
           <div className="hours__title">
@@ -26,7 +19,9 @@ const ShowHours = ({ hours, map }) => {
           />
 
           <div className="hours__directions">
-            <a href={map}>Directions to show home</a>
+            <a target="_blank" rel="noreferrer" href={directions}>
+              Directions to show home
+            </a>
           </div>
         </div>
       </div>

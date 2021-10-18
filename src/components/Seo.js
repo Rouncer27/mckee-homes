@@ -29,47 +29,40 @@ function Seo({ description, lang, meta, title }) {
   const defaultTitle = site.siteMetadata?.title
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-    />
+    <>
+      <Helmet htmlAttributes={{ lang }}>
+        {/* General tags */}
+        <title>{title}</title>
+        <meta charset="UTF-8" />
+        <meta name="HandheldFriendly" content="true" />
+        {/* <meta name="description" content={metaDescription} />
+        <meta name="image" content={image} />
+        <link rel="canonical" href={canonicalUrl} /> */}
+
+        {/* OpenGraph tags */}
+        {/* <meta property="og:url" content={canonicalUrl} />
+        {isBlogPost ? (
+          <meta property="og:type" content="article" />
+        ) : (
+          <meta property="og:type" content="website" />
+        )}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:image" content={image} />
+        <meta property="og:image:alt" content={metaDescription} /> */}
+        {/* <meta property="fb:app_id" content={seo.social.fbAppID} /> */}
+        {/* <meta property="og:site_name" content={title} />
+        <meta property="og:locale" content={`en_US`} /> */}
+
+        {/* Twitter Card tags */}
+        {/* <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content={site.siteMetadata.author} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={image} /> */}
+        {/* Google Ownership Verification */}
+      </Helmet>
+    </>
   )
 }
 
