@@ -45,6 +45,7 @@ import TradePartner from "./PageComponents/Forms/TradePartner"
 import ContentSimpleWysiwyg from "./PageComponents/ContentSimpleWysiwyg"
 import CrossfieldMapPins from "./PageComponents/CommunitiesMaps/CrossfieldMapPins"
 import AirdrieMapPins from "./PageComponents/CommunitiesMaps/AirdrieMapPins"
+import DisplayCustomersVideos from "./PageComponents/DisplayCustomersVideos"
 
 const PageComponentGroups = props => {
   const { components, location } = props
@@ -206,6 +207,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_CrossfieldMapPins":
                 return <CrossfieldMapPins key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_DisplayCustomersVideos":
+                return <DisplayCustomersVideos key={index} data={component} />
 
               default:
                 return (

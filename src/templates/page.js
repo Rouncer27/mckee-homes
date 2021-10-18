@@ -714,6 +714,14 @@ export const pageTempQuery = graphql`
             fieldGroupName
             displayCrossfieldMap
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayCustomersVideos {
+            fieldGroupName
+            displayCustomersVideos
+            videos {
+              video
+            }
+          }
         }
       }
     }
