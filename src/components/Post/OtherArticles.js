@@ -5,17 +5,17 @@ import { Link } from "gatsby"
 
 import {
   B1Black,
-  B1White,
   B2Black,
   colors,
   H4Navy,
   medWrapper,
 } from "../../styles/helpers"
 
-const OtherArticles = ({ allPosts }) => {
-  console.log("allPosts", allPosts)
-
-  const posts = allPosts.edges.sort((a, b) => 0.5 - Math.random())
+const OtherArticles = ({ allPosts, postSlug }) => {
+  const postsFiltered = allPosts.edges.filter(post => {
+    return post.node.slug !== postSlug
+  })
+  const posts = postsFiltered.sort((a, b) => 0.5 - Math.random())
 
   return (
     <DivStyled>

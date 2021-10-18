@@ -23,7 +23,7 @@ const PostSingle = ({ post, allPosts, prevPost, nextPost }) => {
         </div>
       </PostSingleArticle>
       <PostNav allPosts={allPosts} prevPost={prevPost} nextPost={nextPost} />
-      <OtherArticles allPosts={allPosts} />
+      <OtherArticles allPosts={allPosts} postSlug={post.slug} />
     </>
   )
 }
