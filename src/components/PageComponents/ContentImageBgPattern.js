@@ -13,20 +13,34 @@ import {
 import BgPatternBrick from "../Graphics/BgPatternBrick"
 
 const ContentImageBgPattern = ({ data }) => {
-  const imgDisplay = getImage(
-    data.image.localFile.childImageSharp.gatsbyImageData
-  )
-  const imgAlt = data.image.altText
+  let imageDisplay
+  let imageAlt
+  const isGif = data.image.localFile.url.endsWith("gif")
+
+  if (!isGif) {
+    imageDisplay = getImage(
+      data?.image?.localFile?.childImageSharp?.gatsbyImageData
+    )
+    imageAlt = data?.image?.altText
+  }
   return (
     <ContentImageBgPatternSection>
       <div className="wrapper">
         <div className="image">
-          <GatsbyImage
-            image={imgDisplay}
-            alt={imgAlt}
-            layout="fullWidth"
-            formats={["auto", "webp", "avif"]}
-          />
+          {isGif ? (
+            <>
+              <img src={data.image.localFile.url} />
+            </>
+          ) : (
+            <>
+              <GatsbyImage
+                image={imageDisplay}
+                alt={imageAlt}
+                layout="fullWidth"
+                formats={["auto", "webp", "avif"]}
+              />
+            </>
+          )}
         </div>
         <div className="content">
           <div className="content__title">
