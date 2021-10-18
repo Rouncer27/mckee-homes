@@ -49,7 +49,6 @@ import DisplayCustomersVideos from "./PageComponents/DisplayCustomersVideos"
 
 const PageComponentGroups = props => {
   const { components, location } = props
-  console.log("component", components)
   const allPageComponents =
     components?.acfMainTemplateFields?.pageComponents?.length > 0 ? (
       <>

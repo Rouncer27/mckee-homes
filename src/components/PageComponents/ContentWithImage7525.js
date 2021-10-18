@@ -13,14 +13,16 @@ import { Link } from "gatsby"
 const ContentWithImage7525 = ({ data }) => {
   let imageDisplay
   let imageAlt
-  if (!data.imageIsAGif === "no") {
+
+  const isGif = data.image.localFile.url.endsWith("gif")
+
+  if (!isGif) {
     imageDisplay = getImage(
       data?.image?.localFile?.childImageSharp?.gatsbyImageData
     )
     imageAlt = data?.image?.altText
   }
 
-  console.log("HELLO", data)
   return (
     <ContentWithImage7525Section
       imageside={data.imageSide}
@@ -37,7 +39,7 @@ const ContentWithImage7525 = ({ data }) => {
           />
         </div>
         <div className="image">
-          {data.imageIsAGif === "yes" ? (
+          {isGif ? (
             <>
               <img src={data.image.localFile.url} />
             </>

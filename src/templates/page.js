@@ -267,7 +267,6 @@ export const pageTempQuery = graphql`
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentWithImage7525 {
             buttonPosition
             buttonSlug
-            imageIsAGif
             imageSide
             title
             content
