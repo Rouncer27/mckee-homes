@@ -59,7 +59,7 @@ const Exclusive = () => {
           <h2>Latest Exclusive Promotions and Announcements</h2>
         </div>
         <div className="ex-posts">
-          {userState.exclusive.length <= 0 ? (
+          {userState.exclusive && userState.exclusive.length <= 0 ? (
             <div>
               <p>
                 No Exclusive Promotions and Announcements, please check back
