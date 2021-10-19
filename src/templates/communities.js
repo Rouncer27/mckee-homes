@@ -13,6 +13,8 @@ import RelatedPosts from "../components/Communities/RelatedPosts"
 
 const communities = props => {
   const { community, allWpShowHome } = props.data
+
+  console.log("TREVOR community:", community)
   return (
     <div>
       <Layout>
@@ -44,7 +46,10 @@ const communities = props => {
         />
         <CommunityForm />
         <LotPicker />
-        <RelatedPosts />
+        <RelatedPosts
+          communitySlug={community.slug}
+          communityTitle={community.title}
+        />
       </Layout>
     </div>
   )

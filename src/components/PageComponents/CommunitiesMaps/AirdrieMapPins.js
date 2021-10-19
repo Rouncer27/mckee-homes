@@ -27,7 +27,7 @@ const AirdrieMapPins = () => {
           </Link>
         </div>
         <div className="pin pins__cooperscrossing">
-          <Link to="/communities//coopers-crossing">
+          <Link to="/communities/coopers-crossing">
             <img src={cooperscrossing} alt="coopers crossing" />
           </Link>
         </div>
