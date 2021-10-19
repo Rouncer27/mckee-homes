@@ -5,17 +5,19 @@ import { B1Black, H1Navy, H3Black } from "../../styles/helpers"
 const PostHeader = ({ title, date, categories }) => {
   const options = { year: "numeric", month: "long", day: "numeric" }
   const postDate = new Date(date).toLocaleDateString(undefined, options)
+
   return (
     <PostHeaderStyled>
       <p>
-        {categories.nodes.map((cat, index) => {
-          return (
-            <span key={index}>
-              {index !== 0 ? " ," : ""}
-              {cat.name}
-            </span>
-          )
-        })}
+        {categories &&
+          categories.nodes.map((cat, index) => {
+            return (
+              <span key={index}>
+                {index !== 0 ? " ," : ""}
+                {cat.name}
+              </span>
+            )
+          })}
       </p>
       <h1>{title}</h1>
     </PostHeaderStyled>

@@ -5,6 +5,7 @@ export const UserContext = createContext()
 const initialState = {
   user: {},
   profile: {},
+  exclusive: [],
   loading: false,
 }
 
@@ -33,6 +34,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         profile: action.payload.profile,
+        loading: false,
+      }
+
+    case "USER_EXCLUSIVE":
+      return {
+        ...state,
+        exclusive: action.payload.exclusive,
         loading: false,
       }
 

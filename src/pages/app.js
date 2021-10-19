@@ -7,6 +7,7 @@ import PrivateRoute from "../components/PrivateRoute"
 
 import Dashboard from "../components/AppRoutes/Dashboard"
 import Account from "../components/AppRoutes/Account"
+import ExclusiveSingle from "../components/AppRoutes/ExclusiveSingle"
 
 const App = ({ location }) => {
   const [state] = useContext(UserContext)
@@ -16,6 +17,7 @@ const App = ({ location }) => {
       <Router>
         <PrivateRoute path="/app/dashboard" component={Dashboard} />
         <PrivateRoute path="/app/account" component={Account} />
+        <PrivateRoute path="/app/exclusive/:id" component={ExclusiveSingle} />
       </Router>
     </Layout>
   )

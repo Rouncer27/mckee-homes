@@ -16,6 +16,7 @@ import { Link } from "gatsby"
 import getProfile from "./AppActions/getProfile"
 import NoteCard from "./AppComponents/NoteCard"
 import NoteCardNot from "./AppComponents/NoteCardNot"
+import Exclusive from "./Exclusive"
 
 const Dashboard = () => {
   const [userState, userDispatch] = useContext(UserContext)
@@ -37,6 +38,9 @@ const Dashboard = () => {
         <div className="actions">
           <Link to="/app/account">Account Settings</Link>
         </div>
+      </div>
+      <div className="exclusive">
+        <Exclusive />
       </div>
       <div className="favourites">
         <div className="favourites__section home-plans">
