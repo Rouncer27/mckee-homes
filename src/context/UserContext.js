@@ -21,6 +21,7 @@ const reducer = (state, action) => {
       return {
         user: {},
         profile: {},
+        exclusive: [],
         loading: false,
       }
     case "USER_LOGIN":
