@@ -31,6 +31,9 @@ const ShowHome = ({ home }) => {
       />
       <MoreInformation homeSlug="show-homes" />
       <HomePlanFloorPlan
+        home={home}
+        homeType="show-homes"
+        homeId={home.databaseId}
         title={home.title}
         floorImg={
           home.acfShowHomes.floorPlanImage.localFile?.childImageSharp

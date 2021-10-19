@@ -81,13 +81,14 @@ const HomePlanGallery = ({ gallery }) => {
     <SectionStyled>
       <div className="gallery-wrapper">
         <Slider ref={slickSlider} {...settings}>
-          {gallery.map(gal => {
+          {gallery.map((gal, index) => {
             const galImg = getImage(
               gal.localFile.childImageSharp.gatsbyImageData
             )
             const galImgAlt = gal.altText
             return (
               <div
+                key={index}
                 className="slide"
                 onClick={event => handleSetLightboxActive(event)}
               >

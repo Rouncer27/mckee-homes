@@ -19,6 +19,9 @@ const HomePlan = ({ home }) => {
       <HomePlansCommunities communities={home.communities.nodes} />
       <HomePlanGallery gallery={home.acfHomePlans.gallery} />
       <HomePlanFloorPlan
+        home={home}
+        homeType="home-plans"
+        homeId={home.databaseId}
         title={home.title}
         floorImgReq={home.acfHomePlans.floorPlanImageReq}
         floorImg={

@@ -32,6 +32,9 @@ const QuickPossesion = ({ home }) => {
       />
       <SeeThisHome homeSlug="quick-possessions" />
       <HomePlanFloorPlan
+        home={home}
+        homeType="quick-possessions"
+        homeId={home.databaseId}
         title={home.title}
         floorImg={
           home.acfQuickPossessions.floorPlanImage.localFile?.childImageSharp

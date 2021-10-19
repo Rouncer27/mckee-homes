@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { UserContext } from "../../context/UserContext"
+import { AlertContext } from "../../context/AlertContext"
+
 import {
   B1Navy,
   B2Black,
@@ -8,10 +11,21 @@ import {
   Btn1Grey,
   colors,
   H1Navy,
+  B1White,
   standardWrapper,
+  B1Black,
+  Btn1Primary,
 } from "../../styles/helpers"
+import whiteHeart from "../../images/heart-white.png"
+import redHeart from "../../images/heart-red.png"
+import Heart from "../Images/Heart"
+import addPlan from "../AppRoutes/AppActions/addPlan"
+import JoinModal from "../Modals/JoinModal"
 
 const HomePlanFloorPlan = ({
+  home,
+  homeType,
+  homeId,
   floorPlanPdf,
   title,
   propelFloorPlanReq,
@@ -87,59 +101,163 @@ const HomePlanFloorPlan = ({
     )
   }
 
+  // for the lick button. //
+  const [isLiked, setIsLiked] = useState(false)
+  const [isJoinActive, setIsJoinActive] = useState(false)
+  const [userState, userDispatch] = useContext(UserContext)
+  const [, alertDispatch] = useContext(AlertContext)
+
+  const handleOnClick = async () =>
+    await addPlan(home, userState, userDispatch, alertDispatch, homeType)
+
+  const alreadyLiked = () => {
+    if (homeType === "home-plans") {
+      if (
+        userState.profile &&
+        userState.profile.home_plans &&
+        userState.profile.home_plans.length > 0
+      ) {
+        const res = userState.profile.home_plans.find(
+          plan => parseInt(plan.wordpress_id) === homeId
+        )
+
+        if (!res) {
+          setIsLiked(false)
+        } else {
+          setIsLiked(true)
+        }
+      }
+    } else if (homeType === "quick-possessions") {
+      if (
+        userState.profile &&
+        userState.profile.quick_possessions &&
+        userState.profile.quick_possessions.length > 0
+      ) {
+        const res = userState.profile.quick_possessions.find(
+          plan => parseInt(plan.wordpress_id) === homeId
+        )
+
+        if (!res) {
+          setIsLiked(false)
+        } else {
+          setIsLiked(true)
+        }
+      }
+    } else if (homeType === "show-homes") {
+      if (
+        userState.profile &&
+        userState.profile.show_homes &&
+        userState.profile.show_homes.length > 0
+      ) {
+        const res = userState.profile.show_homes.find(
+          plan => parseInt(plan.wordpress_id) === homeId
+        )
+
+        if (!res) {
+          setIsLiked(false)
+        } else {
+          setIsLiked(true)
+        }
+      }
+    }
+  }
+
+  useEffect(() => {
+    alreadyLiked()
+  }, [])
+
+  useEffect(() => {
+    alreadyLiked()
+  }, [userState.profile])
+
+  const handleOnJoinFavs = () => {
+    setIsJoinActive(!isJoinActive)
+  }
+
   if (floorPlanDisplay === "") return null
 
   return (
-    <SectionStyled>
-      <div className="floorplan-wrapper">
-        <div className="floorplan-wrapper__inner">
-          <div className="floorplan-wrapper__title">
-            <h2>Floor Plan</h2>
-          </div>
-          <div className="floorplan-wrapper__plan">
-            <div className="floorplan-wrapper__plan--title">
-              <p>{title}</p>
+    <>
+      <SectionStyled>
+        <div className="floorplan-wrapper">
+          <div className="floorplan-wrapper__inner">
+            <div className="floorplan-wrapper__title">
+              <h2>Floor Plan</h2>
             </div>
-            <div className="floorplan-wrapper__plan--nav">
-              <span>Attributes: </span>
-              {propelFloorPlanReq && (
-                <button onClick={() => setFloorPlanDisplay("propel")}>
-                  Propel
-                </button>
-              )}
-              {designerFloorPlanReq && (
-                <button onClick={() => setFloorPlanDisplay("designer")}>
-                  Designer
-                </button>
-              )}
-              {signatureFloorPlanReq && (
-                <button onClick={() => setFloorPlanDisplay("signature")}>
-                  Signature
-                </button>
-              )}
-            </div>
+            <div className="floorplan-wrapper__plan">
+              <div className="floorplan-wrapper__plan--title">
+                <p>{title}</p>
+              </div>
+              <div className="floorplan-wrapper__plan--nav">
+                <span>Attributes: </span>
+                {propelFloorPlanReq && (
+                  <button onClick={() => setFloorPlanDisplay("propel")}>
+                    Propel
+                  </button>
+                )}
+                {designerFloorPlanReq && (
+                  <button onClick={() => setFloorPlanDisplay("designer")}>
+                    Designer
+                  </button>
+                )}
+                {signatureFloorPlanReq && (
+                  <button onClick={() => setFloorPlanDisplay("signature")}>
+                    Signature
+                  </button>
+                )}
+              </div>
 
-            <div className="floorplan-wrapper__plan--image">{displayImage}</div>
-          </div>
-          <div className="floorplan-wrapper__like">
-            <a
-              className="floorplan-wrapper__like--download"
-              target="_blank"
-              rel="noreferrer"
-              href={floorPlanPdf}
-            >
-              Download Floor Plan
-            </a>
-            <button
-              className="floorplan-wrapper__like--save"
-              onClick={() => console.log("LIKE!!")}
-            >
-              Save Home
-            </button>
+              <div className="floorplan-wrapper__plan--image">
+                {displayImage}
+              </div>
+            </div>
+            <div className="floorplan-wrapper__like">
+              <a
+                className="floorplan-wrapper__like--download"
+                target="_blank"
+                rel="noreferrer"
+                href={floorPlanPdf}
+              >
+                Download Floor Plan
+              </a>
+
+              {isLiked ? (
+                <div className="my-favs-actions__heart">
+                  <Heart />
+                </div>
+              ) : Object.keys(userState.user).length === 0 ? (
+                <button
+                  className="my-favs-actions__save"
+                  onClick={handleOnJoinFavs}
+                >
+                  Save Home
+                  <span className="heart-white">
+                    <img src={whiteHeart} alt="" />
+                  </span>
+                  <span className="heart-red">
+                    <img src={redHeart} alt="" />
+                  </span>
+                </button>
+              ) : (
+                <button
+                  className="my-favs-actions__save"
+                  onClick={handleOnClick}
+                >
+                  Save Home
+                  <span className="heart-white">
+                    <img src={whiteHeart} alt="" />
+                  </span>
+                  <span className="heart-red">
+                    <img src={redHeart} alt="" />
+                  </span>
+                </button>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </SectionStyled>
+      </SectionStyled>
+      {isJoinActive && <JoinModal closeModal={setIsJoinActive} />}
+    </>
   )
 }
 
@@ -184,6 +302,10 @@ const SectionStyled = styled.section`
     }
 
     &__like {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-start;
       width: 100%;
       margin-top: 3rem;
       padding-top: 2.5rem;
@@ -194,11 +316,53 @@ const SectionStyled = styled.section`
         margin-right: 2.5rem;
       }
 
-      &--save {
-        ${B2Grey};
-        border: none;
-        background-color: transparent;
-        text-transform: uppercase;
+      .my-favs-actions__save {
+        ${Btn1Primary};
+        padding-right: 5rem;
+        position: relative;
+
+        span {
+          position: absolute;
+          top: 1.5rem;
+          right: 1rem;
+          display: inline-block;
+          width: 2.4rem;
+          margin-left: 1rem;
+          transition: all 0.3s ease-out;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .heart-white {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .heart-red {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        &:hover {
+          color: rgba(255, 0, 0, 1);
+
+          .heart-white {
+            opacity: 0;
+            visibility: hidden;
+          }
+
+          .heart-red {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+
+      .my-favs-actions__heart {
+        display: inline-block;
+        width: 4rem;
       }
     }
   }
