@@ -193,9 +193,14 @@ const ContactForm = ({ data }) => {
 }
 
 const CheckboxField = styled.div`
-  width: calc(50% - 4rem);
-  margin: 1rem 2rem;
-  padding: 1rem 0;
+  width: calc(100%);
+  margin: 1rem auto;
+
+  @media (min-width: 768px) {
+    width: calc(50% - 4rem);
+    margin: 1rem 2rem;
+    padding: 1rem 0;
+  }
 
   label {
     ${B2Black};
@@ -255,8 +260,12 @@ const SectionStyled = styled.div`
     width: 100%;
 
     .btn-submit {
-      padding-top: 2.5rem;
-      padding-left: 2rem;
+      margin-top: 2rem;
+      margin-bottom: 5rem;
+
+      @media (min-width: 768px) {
+        margin: 2rem;
+      }
 
       button {
         ${Btn1Grey};
@@ -266,9 +275,14 @@ const SectionStyled = styled.div`
 `
 
 const InputField = styled.div`
-  width: calc(50% - 4rem);
-  margin: 1rem 2rem;
-  padding: 1rem 0;
+  width: calc(100%);
+  margin: 1rem auto;
+
+  @media (min-width: 768px) {
+    width: calc(50% - 4rem);
+    margin: 1rem 2rem;
+    padding: 1rem 0;
+  }
 
   label {
     ${B2Black};

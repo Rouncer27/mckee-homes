@@ -28,9 +28,20 @@ const StyledSection = styled.section`
   }
 
   .content {
-    width: calc(50% - 6rem);
-    margin-right: 6rem;
-    text-align: right;
+    text-align: center;
+    width: calc(100%);
+    padding: 2rem;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 6rem);
+      margin-right: 6rem;
+      padding: 2rem;
+      text-align: right;
+    }
+
+    @media (min-width: 1025px) {
+      padding: 0;
+    }
 
     h2 {
       ${H1Navy};
@@ -42,7 +53,19 @@ const StyledSection = styled.section`
   }
 
   .map {
-    width: calc(50%);
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+    }
+
+    @media (min-width: 1025px) {
+      width: calc(50%);
+    }
+
+    iframe {
+      width: 100% !important;
+    }
   }
 `
 
