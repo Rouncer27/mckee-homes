@@ -50,12 +50,6 @@ const NavDrawer = styled.div`
   transition: all 0.3s ease-in;
   transform: translateX(${props => (props.isOpen ? "0%" : "-100%")});
   background: ${colors.colorPrimary};
-  background-image: linear-gradient(
-    to bottom,
-    ${colors.colorTertiary} 0%,
-    ${colors.colorPrimary} 50%,
-    ${colors.colorPrimary} 100%
-  );
   opacity: ${props => (props.isOpen ? 1 : 0)};
   z-index: ${props => (props.isOpen ? 9999999 : -9999999)};
   overflow-y: scroll;
@@ -80,8 +74,9 @@ const NavDrawer = styled.div`
 
   .mobileLogo {
     width: 100%;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    background-color: ${colors.white};
 
     .gatsby-image-wrapper {
       max-width: 25rem;
