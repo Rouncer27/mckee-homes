@@ -34,18 +34,39 @@ const StyledDiv = styled.div`
 
   .wrapper {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 100%;
   }
 
   .map {
-    width: calc(40%);
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+    }
+
+    @media (min-width: 1025px) {
+      width: calc(40%);
+    }
+
+    iframe {
+      width: 100% !important;
+    }
   }
 
   .hours {
-    width: calc(60%);
+    width: calc(100%);
     padding: 2rem 6rem;
+
+    @media (min-width: 768px) {
+      width: calc(50%);
+    }
+
+    @media (min-width: 1025px) {
+      width: calc(60%);
+    }
 
     &__title {
       h2 {
