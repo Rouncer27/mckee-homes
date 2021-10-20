@@ -53,8 +53,12 @@ const SectionStyled = styled.section`
   }
 
   .details {
-    width: calc(70%);
+    width: calc(100%);
     padding: 0 2.5rem;
+
+    @media (min-width: 768px) {
+      width: calc(70%);
+    }
 
     &__title {
       p {
@@ -76,10 +80,15 @@ const SectionStyled = styled.section`
   }
 
   .logo {
-    width: calc(30% - 5rem);
-    margin-top: 2.5rem;
-    margin-left: 5rem;
+    width: calc(100%);
+
     text-align: center;
+
+    @media (min-width: 768px) {
+      width: calc(30% - 5rem);
+      margin-top: 2.5rem;
+      margin-left: 5rem;
+    }
 
     &__wrapper {
       width: 100%;

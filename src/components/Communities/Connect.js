@@ -142,6 +142,7 @@ const SectionStyled = styled.section`
 
     &__content {
       display: flex;
+      flex-wrap: wrap;
       justify-content: flex-start;
       width: 100%;
 
@@ -149,8 +150,12 @@ const SectionStyled = styled.section`
         position: relative;
         display: flex;
         justify-content: center;
-        width: calc(50%);
+        width: calc(100%);
         padding-top: 4.7rem;
+
+        @media (min-width: 768px) {
+          width: calc(50%);
+        }
 
         .image {
           width: calc(50%);

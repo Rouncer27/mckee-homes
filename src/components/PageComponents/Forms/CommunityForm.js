@@ -203,6 +203,7 @@ const CommunityForm = () => {
 }
 
 const SectionStyled = styled.div`
+  padding: 4rem 0;
   background-color: ${colors.colorPrimary};
 
   .back-btn {
@@ -227,6 +228,7 @@ const SectionStyled = styled.div`
 
     h2 {
       ${H2White};
+      margin-top: 0;
     }
   }
 
@@ -249,7 +251,11 @@ const SectionStyled = styled.div`
     }
 
     .btn-submit {
-      margin: 2rem;
+      margin-top: 5rem;
+
+      @media (min-width: 768px) {
+        margin: 2rem;
+      }
 
       button {
         ${Btn1Grey};
@@ -259,9 +265,14 @@ const SectionStyled = styled.div`
 `
 
 const CheckboxField = styled.div`
-  width: calc(50% - 4rem);
-  margin: 1rem 2rem;
-  padding: 1rem 0;
+  width: calc(100%);
+  margin: 1rem auto;
+
+  @media (min-width: 768px) {
+    width: calc(50% - 4rem);
+    margin: 1rem 2rem;
+    padding: 1rem 0;
+  }
 
   label {
     ${B2White};
@@ -308,9 +319,14 @@ const CheckboxField = styled.div`
 `
 
 const InputField = styled.div`
-  width: calc(50% - 4rem);
-  margin: 1rem 2rem;
-  padding: 1rem 0;
+  width: calc(100%);
+  margin: 1rem auto;
+
+  @media (min-width: 768px) {
+    width: calc(50% - 4rem);
+    margin: 1rem 2rem;
+    padding: 1rem 0;
+  }
 
   label {
     ${B2White};

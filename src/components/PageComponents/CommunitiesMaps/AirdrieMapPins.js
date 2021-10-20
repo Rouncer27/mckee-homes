@@ -57,8 +57,12 @@ const DivStyled = styled.div`
   .pins {
     .pin {
       position: absolute;
-      width: 10rem;
+      width: 12vw;
       z-index: 500;
+
+      @media (min-width: 768px) {
+        width: 10rem;
+      }
     }
 
     &__baysideEstates {

@@ -137,7 +137,8 @@ const HomePlanStyled = styled(Link)`
   background-color: #efefef;
 
   @media (min-width: 768px) {
-    width: calc(100% / 2);
+    width: calc((100% / 2) - 2rem);
+    margin: 1rem;
   }
 
   @media (min-width: 1025px) {
