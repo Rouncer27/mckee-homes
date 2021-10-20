@@ -106,13 +106,22 @@ const SocialMediaStyled = styled.div`
   p {
     ${B2White};
     margin: 0;
-    text-align: left;
+    text-align: center;
     text-transform: uppercase;
+
+    @media (min-width: 1024px) {
+      text-align: left;
+    }
   }
 
   ul {
     display: flex;
+    justify-content: center;
     padding: 1rem 0;
+
+    @media (min-width: 768px) {
+      width: 100%;
+    }
 
     li:first-of-type {
       margin-left: 0 !important;

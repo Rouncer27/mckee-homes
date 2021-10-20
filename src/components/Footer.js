@@ -78,24 +78,59 @@ const FooterStyled = styled.footer`
   }
 
   .foot-social {
-    width: calc(15%);
+    width: calc(100%);
+
+    @media (min-width: 1025px) {
+      width: calc(15%);
+    }
   }
 
   .foot-quick-links {
-    width: calc(70%);
+    width: calc(100%);
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+
+    @media (min-width: 1025px) {
+      width: calc(70%);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
 
     ul {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
+      text-align: center;
 
       li {
+        width: 100%;
+        margin-bottom: 1.5rem;
+
+        @media (min-width: 768px) {
+          width: auto;
+          margin-bottom: auto;
+        }
+
+        @media (min-width: 1025px) {
+          width: auto;
+        }
+
         a {
           ${B2White};
-          padding-right: 1rem;
-          padding-left: 1rem;
-          border-right: solid 0.1rem ${colors.white};
           text-align: center;
           text-transform: uppercase;
+
+          @media (min-width: 768px) {
+            padding-right: 1rem;
+            padding-left: 1rem;
+            border-right: solid 0.1rem ${colors.white};
+          }
+
+          @media (min-width: 1025px) {
+            padding-right: 1rem;
+            padding-left: 1rem;
+            border-right: solid 0.1rem ${colors.white};
+          }
 
           &:hover {
             color: ${colors.colorSecondary};
@@ -112,11 +147,19 @@ const FooterStyled = styled.footer`
   }
 
   .foot-mail {
-    width: calc(15%);
+    width: calc(100%);
+
+    @media (min-width: 1025px) {
+      width: calc(15%);
+    }
 
     p {
       margin: 0;
-      text-align: right;
+      text-align: center;
+
+      @media (min-width: 1025px) {
+        text-align: right;
+      }
 
       a {
         ${B2White};
