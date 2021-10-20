@@ -316,7 +316,10 @@ const SectionStyled = styled.section`
 
     .filter {
       width: 100%;
-      padding: 0 4rem;
+
+      @media (min-width: 768px) {
+        padding: 0 4rem;
+      }
     }
   }
   .filters-background {

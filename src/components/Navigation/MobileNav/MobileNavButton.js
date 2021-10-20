@@ -25,7 +25,7 @@ const MobileButton = styled.button`
   color: ${props =>
     props.isOpen ? props.theme.colorSecondary : props.theme.white};
   text-align: center;
-  z-index: 99999999;
+  z-index: 9999999999;
 
   @media (min-width: 768px) {
     display: none !important;

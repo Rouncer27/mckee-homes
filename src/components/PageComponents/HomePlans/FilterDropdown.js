@@ -78,10 +78,16 @@ const FilterDropDown = ({
 
 const FilterStyled = styled.div`
   display: block;
-  width: 20rem;
+  width: 100%;
   position: relative;
-  margin-right: 0.5rem;
+  margin-bottom: 2.5rem;
   border: solid 0.2rem ${colors.colorAccent};
+
+  @media (min-width: 768px) {
+    width: 20rem;
+    margin-right: 0.5rem;
+    margin-bottom: auto;
+  }
 
   .anchor {
     ${B1Base};

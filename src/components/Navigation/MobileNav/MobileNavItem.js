@@ -6,7 +6,6 @@ import { colors, B1Black } from "../../../styles/helpers"
 import MobileSubMenu from "./MobileSubMenu"
 
 const MobileNavItem = ({ item }) => {
-  console.log("NAV ITEM", item)
   const slug = item.url
     .split("/")
     .filter(item => item !== "")

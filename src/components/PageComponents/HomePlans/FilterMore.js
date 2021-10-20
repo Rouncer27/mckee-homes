@@ -347,8 +347,12 @@ const StyledSelector = styled.div`
 
 const DivStyled = styled.div`
   position: relative;
-  width: 20rem;
+  width: 100%;
   border: solid 0.2rem ${colors.colorAccent};
+
+  @media (min-width: 768px) {
+    width: 20rem;
+  }
 
   .price-filter,
   .sqft-filter {
@@ -408,7 +412,7 @@ const DivStyled = styled.div`
     position: absolute;
     top: 101%;
     left: 0;
-    width: 45rem;
+    width: 100%;
     margin: 0;
     padding: 2.5rem;
     transition: 0.4s all ease-out;
@@ -417,6 +421,10 @@ const DivStyled = styled.div`
     opacity: ${props => (props.filteractive ? 1 : 0)};
     visibility: ${props => (props.filteractive ? "visible" : "hidden")};
     z-index: 10000;
+
+    @media (min-width: 768px) {
+      width: 45rem;
+    }
 
     .clear-filter {
       margin-bottom: 2.5rem;

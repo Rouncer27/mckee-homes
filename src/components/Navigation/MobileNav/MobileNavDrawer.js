@@ -51,7 +51,7 @@ const NavDrawer = styled.div`
   transform: translateX(${props => (props.isOpen ? "0%" : "-100%")});
   background: ${colors.colorPrimary};
   opacity: ${props => (props.isOpen ? 1 : 0)};
-  z-index: ${props => (props.isOpen ? 9999999 : -9999999)};
+  z-index: ${props => (props.isOpen ? 999999999 : -9999999)};
   overflow-y: scroll;
 
   @media (min-width: 768px) {
