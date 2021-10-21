@@ -2,11 +2,15 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import {
   B2Black,
-  B2White,
   Btn1Grey,
   colors,
   standardWrapper,
 } from "../../../styles/helpers"
+
+import submitToServer from "../../FormParts/functions/submitToServer"
+import FormSuccess from "../../FormParts/formModals/FormSuccess"
+import FormSubmit from "../../FormParts/formModals/FormSubmit"
+import FormErrors from "../../FormParts/formModals/FormErrors"
 
 const ContactForm = ({ data }) => {
   const [formData, setFormData] = useState({
@@ -33,17 +37,78 @@ const ContactForm = ({ data }) => {
   }
 
   const handleOnCheck = () => {
-    console.log(formData.send)
     setFormData({
       ...formData,
       send: !formData.send,
     })
   }
 
+  const handleOnSubmit = async event => {
+    console.log("SUBMIT!!")
+    event.preventDefault()
+    setFormStatus({
+      ...formStatus,
+      submitting: true,
+    })
+    const formDataArray = Object.entries(formData)
+    const bodyFormData = new FormData()
+    formDataArray.forEach(field => {
+      bodyFormData.append(field[0], field[1])
+    })
+
+    const response = await submitToServer(1892, bodyFormData)
+
+    if (!response.errors) {
+      setFormStatus({
+        ...formStatus,
+        submitting: false,
+        errorWarnDisplay: false,
+        success: true,
+        errors: [],
+      })
+    } else {
+      setFormStatus({
+        ...formStatus,
+        submitting: false,
+        errorWarnDisplay: true,
+        success: false,
+        errors: response.errorMessages,
+      })
+    }
+  }
+
+  const handleErrorModalClose = () => {
+    setFormStatus({
+      ...formStatus,
+      submitting: false,
+      errorWarnDisplay: false,
+      success: false,
+    })
+  }
+
+  const handleSuccessModalClose = () => {
+    setFormStatus({
+      ...formStatus,
+      submitting: false,
+      errorWarnDisplay: false,
+      success: false,
+      errors: [],
+    })
+
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      message: "",
+      send: false,
+    })
+  }
+
   return (
     <SectionStyled>
       <div className="wrapper">
-        <form>
+        <form onSubmit={handleOnSubmit}>
           <InputField>
             <label htmlFor="firstName">
               Frist Name <span className="required">(required)</span>
@@ -184,10 +249,19 @@ const ContactForm = ({ data }) => {
             </label>
           </CheckboxField>
           <div className="btn-submit">
-            <button>Submit</button>
+            <button type="submit">Submit</button>
           </div>
         </form>
       </div>
+      <FormSubmit isActive={formStatus.submitting} />
+      <FormSuccess
+        isActive={formStatus.success}
+        handleClose={handleSuccessModalClose}
+      />
+      <FormErrors
+        isActive={formStatus.errorWarnDisplay}
+        handleClose={handleErrorModalClose}
+      />
     </SectionStyled>
   )
 }

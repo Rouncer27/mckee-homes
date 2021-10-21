@@ -9,14 +9,18 @@ import {
   standardWrapper,
 } from "../../../styles/helpers"
 
+import submitToServer from "../../FormParts/functions/submitToServer"
+import FormSuccess from "../../FormParts/formModals/FormSuccess"
+import FormSubmit from "../../FormParts/formModals/FormSubmit"
+import FormErrors from "../../FormParts/formModals/FormErrors"
+
 const TradePartner = ({ data }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    community: "",
-    send: false,
+    help: "",
   })
 
   const [formStatus, setFormStatus] = useState({
@@ -33,6 +37,67 @@ const TradePartner = ({ data }) => {
     })
   }
 
+  const handleOnSubmit = async event => {
+    console.log("SUBMIT!!")
+    event.preventDefault()
+    setFormStatus({
+      ...formStatus,
+      submitting: true,
+    })
+    const formDataArray = Object.entries(formData)
+    const bodyFormData = new FormData()
+    formDataArray.forEach(field => {
+      bodyFormData.append(field[0], field[1])
+    })
+
+    const response = await submitToServer(1896, bodyFormData)
+
+    if (!response.errors) {
+      setFormStatus({
+        ...formStatus,
+        submitting: false,
+        errorWarnDisplay: false,
+        success: true,
+        errors: [],
+      })
+    } else {
+      setFormStatus({
+        ...formStatus,
+        submitting: false,
+        errorWarnDisplay: true,
+        success: false,
+        errors: response.errorMessages,
+      })
+    }
+  }
+
+  const handleErrorModalClose = () => {
+    setFormStatus({
+      ...formStatus,
+      submitting: false,
+      errorWarnDisplay: false,
+      success: false,
+    })
+  }
+
+  const handleSuccessModalClose = () => {
+    setFormStatus({
+      ...formStatus,
+      submitting: false,
+      errorWarnDisplay: false,
+      success: false,
+      errors: [],
+    })
+
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      help: "",
+    })
+  }
+
   return (
     <SectionStyled>
       <div className="wrapper">
@@ -44,7 +109,7 @@ const TradePartner = ({ data }) => {
             about how you want to help and we will be in touch.{" "}
           </p>
         </div>
-        <form>
+        <form onSubmit={handleOnSubmit}>
           <InputField>
             <label htmlFor="firstName">
               Frist Name <span className="required">(required)</span>
@@ -146,13 +211,13 @@ const TradePartner = ({ data }) => {
             </label>
           </InputField>
           <InputField>
-            <label htmlFor="community">
+            <label htmlFor="help">
               How do you want to help?
               <span className="required">(required)</span>
               <span
                 className={`error-message${
                   formStatus.errors.findIndex(
-                    error => error.idref === "community"
+                    error => error.idref === "help"
                   ) !== -1
                     ? " error-active"
                     : " "
@@ -161,10 +226,10 @@ const TradePartner = ({ data }) => {
                 You must input a phone number.
               </span>
               <textarea
-                name="community"
+                name="help"
                 rows={8}
-                value={formData.community}
-                id="community"
+                value={formData.help}
+                id="help"
                 onChange={handleOnChange}
                 aria-required="true"
                 required
@@ -172,10 +237,19 @@ const TradePartner = ({ data }) => {
             </label>
           </InputField>
           <div className="btn-submit">
-            <button>Send</button>
+            <button type="submit">Send</button>
           </div>
         </form>
       </div>
+      <FormSubmit isActive={formStatus.submitting} />
+      <FormSuccess
+        isActive={formStatus.success}
+        handleClose={handleSuccessModalClose}
+      />
+      <FormErrors
+        isActive={formStatus.errorWarnDisplay}
+        handleClose={handleErrorModalClose}
+      />
     </SectionStyled>
   )
 }

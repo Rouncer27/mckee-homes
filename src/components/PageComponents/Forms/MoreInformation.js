@@ -10,6 +10,11 @@ import {
   standardWrapper,
 } from "../../../styles/helpers"
 
+import submitToServer from "../../FormParts/functions/submitToServer"
+import FormSuccess from "../../FormParts/formModals/FormSuccess"
+import FormSubmit from "../../FormParts/formModals/FormSubmit"
+import FormErrors from "../../FormParts/formModals/FormErrors"
+
 const MoreInformation = ({ homeSlug }) => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -39,6 +44,69 @@ const MoreInformation = ({ homeSlug }) => {
       send: !formData.send,
     })
   }
+
+  const handleOnSubmit = async event => {
+    console.log("SUBMIT!!")
+    event.preventDefault()
+    setFormStatus({
+      ...formStatus,
+      submitting: true,
+    })
+    const formDataArray = Object.entries(formData)
+    const bodyFormData = new FormData()
+    formDataArray.forEach(field => {
+      bodyFormData.append(field[0], field[1])
+    })
+
+    const response = await submitToServer(1893, bodyFormData)
+
+    if (!response.errors) {
+      setFormStatus({
+        ...formStatus,
+        submitting: false,
+        errorWarnDisplay: false,
+        success: true,
+        errors: [],
+      })
+    } else {
+      setFormStatus({
+        ...formStatus,
+        submitting: false,
+        errorWarnDisplay: true,
+        success: false,
+        errors: response.errorMessages,
+      })
+    }
+  }
+
+  const handleErrorModalClose = () => {
+    setFormStatus({
+      ...formStatus,
+      submitting: false,
+      errorWarnDisplay: false,
+      success: false,
+    })
+  }
+
+  const handleSuccessModalClose = () => {
+    setFormStatus({
+      ...formStatus,
+      submitting: false,
+      errorWarnDisplay: false,
+      success: false,
+      errors: [],
+    })
+
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      community: "",
+      send: false,
+    })
+  }
+
   return (
     <SectionStyled>
       <div id="more-information-form" className="wrapper">
@@ -51,7 +119,7 @@ const MoreInformation = ({ homeSlug }) => {
             are looking for more information on what is included on each
             attribute level visit us at a show home or call us today.
           </p>
-          <form>
+          <form onSubmit={handleOnSubmit}>
             <InputField>
               <label htmlFor="firstName">
                 Frist Name <span className="required">(required)</span>
@@ -192,7 +260,7 @@ const MoreInformation = ({ homeSlug }) => {
               </label>
             </CheckboxField>
             <div className="btn-submit">
-              <button>Send Me More Info</button>
+              <button type="submit">Send Me More Info</button>
             </div>
           </form>
         </div>
@@ -200,6 +268,15 @@ const MoreInformation = ({ homeSlug }) => {
       <div className="back-btn">
         <Link to={`/${homeSlug}`}>Back To Listings</Link>
       </div>
+      <FormSubmit isActive={formStatus.submitting} />
+      <FormSuccess
+        isActive={formStatus.success}
+        handleClose={handleSuccessModalClose}
+      />
+      <FormErrors
+        isActive={formStatus.errorWarnDisplay}
+        handleClose={handleErrorModalClose}
+      />
     </SectionStyled>
   )
 }
