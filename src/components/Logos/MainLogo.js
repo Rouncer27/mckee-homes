@@ -1,5 +1,5 @@
 import React from "react"
-import Img from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 
@@ -12,9 +12,7 @@ const getData = graphql`
             altText
             localFile {
               childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid_tracedSVG
-                }
+                gatsbyImageData(width: 1000)
               }
             }
           }
@@ -26,14 +24,15 @@ const getData = graphql`
 
 const MainLogo = () => {
   const data = useStaticQuery(getData)
-  const logoFluid =
+  console.log(data)
+  const image = getImage(
     data.logo.acfOptionsSiteWideSettings.acfSiteWideSettings.mainLogo.localFile
-      .childImageSharp.fluid
-  const logoAlt =
-    data.logo.acfOptionsSiteWideSettings.acfSiteWideSettings.mainLogo.altText
+      .childImageSharp.gatsbyImageData
+  )
+
   return (
     <MainLogoStyled>
-      <Img fluid={logoFluid} alt={logoAlt} />
+      <GatsbyImage image={image} alt="Key" layout="fixed" />
     </MainLogoStyled>
   )
 }
