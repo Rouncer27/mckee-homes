@@ -81,8 +81,8 @@ body.preloader_active #preloader {
 }
 
 body.preloader_ready {
-  height: auto;
-  overflow-y: auto;
+  /* height: auto;
+  overflow-y: auto; */
 }
 
 body.preloader_ready #preloader {
