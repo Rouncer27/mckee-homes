@@ -97,7 +97,7 @@ body #preloader .preloader_animation {
   position: absolute;
   width: 250px;
   height: 133.81px;
-  margin-top: 25px;
+  margin-top: 10px;
   border: 5px solid #cecdda;
   border-radius: 50%;
   opacity: 0;
