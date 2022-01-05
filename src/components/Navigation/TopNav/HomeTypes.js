@@ -79,7 +79,12 @@ const SubMenu = styled.ul`
       width: 100%;
       margin-bottom: 1rem;
       padding: 1.5rem 0;
+      transition: all 0.3s ease-out;
       text-transform: uppercase;
+
+      &:hover {
+        background-color: ${colors.colorAccent};
+      }
 
       .nav-label {
         display: block;

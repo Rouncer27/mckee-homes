@@ -21,10 +21,10 @@ const TopNav = () => {
           <li
             onMouseEnter={() => setHomePlanSubActive(true)}
             onMouseLeave={() => setHomePlanSubActive(false)}
-            className="nav-item top-nav-item"
+            className="nav-item top-nav-item top-nav-item--first"
           >
             <Link className="top-nav-item__link" to="/home-plans">
-              Home Plans
+              Home Plans <span className="sub-icon">&#8964;</span>
             </Link>
             <HomeTypes
               slug="/home-plans"
@@ -38,7 +38,7 @@ const TopNav = () => {
             className="nav-item top-nav-item"
           >
             <Link className="top-nav-item__link" to="/quick-possessions">
-              Quick Possessions
+              Quick Possessions <span className="sub-icon">&#8964;</span>
             </Link>
             <HomeTypes
               slug="/quick-possessions"
@@ -52,7 +52,7 @@ const TopNav = () => {
             className="nav-item top-nav-item"
           >
             <Link className="top-nav-item__link" to="/airdrie">
-              Communities
+              Communities <span className="sub-icon">&#8964;</span>
             </Link>
             <Communities activesubstate={communitiesSubActive} />
           </li>
@@ -62,23 +62,26 @@ const TopNav = () => {
             onMouseLeave={() => setBuildSubActive(false)}
           >
             <Link className="top-nav-item__link" to="/building-with-mckee">
-              Building With McKee
+              Building With McKee <span className="sub-icon">&#8964;</span>
             </Link>
             <Building activesubstate={buildSubActive} />
           </li>
           <li
             onMouseEnter={() => setShowSubActive(true)}
             onMouseLeave={() => setShowSubActive(false)}
-            className="nav-item top-nav-item"
+            className="nav-item top-nav-item top-nav-item--highlight"
           >
-            <Link className="top-nav-item__link" to="/show-homes">
+            <Link
+              className="top-nav-item__link top-nav-item__link--highlight"
+              to="/show-homes"
+            >
               Visit A Show Home
             </Link>
-            <HomeTypes
+            {/* <HomeTypes
               slug="/show-homes"
               activesubstate={showSubActive}
               title="Show Homes"
-            />
+            /> */}
           </li>
         </ul>
       </nav>
@@ -101,7 +104,7 @@ const TopNavStyled = styled.div`
   .main-nav-wrap {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 100%;
   }
 
@@ -113,16 +116,56 @@ const TopNavStyled = styled.div`
     margin: 0;
     padding: 0;
 
+    &--first {
+      @media (min-width: 1100px) {
+        margin-left: 10rem;
+      }
+    }
+
+    &--highlight {
+      @media (max-width: 830px) {
+        flex-grow: 2;
+      }
+      @media (min-width: 1100px) {
+        margin-left: 10rem;
+      }
+    }
+
     &__link {
       ${B2White};
+      position: relative;
       display: block;
       padding: 1rem 3rem;
       text-align: center;
       text-transform: uppercase;
 
       &:hover {
+        background-color: ${colors.colorAccent};
+        color: ${colors.black};
+      }
+
+      .sub-icon {
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+      }
+
+      &--highlight {
         background-color: ${colors.colorTertiary};
-        color: ${colors.white};
+
+        @media (min-width: 1100px) {
+          padding: 1rem 7.5rem;
+        }
+
+        &:hover {
+          background-color: ${colors.colorAccent};
+          color: ${colors.black};
+        }
+      }
+
+      &[aria-current="page"] {
+        background-color: ${colors.colorAccent};
+        color: ${colors.black};
       }
     }
   }

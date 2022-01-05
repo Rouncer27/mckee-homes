@@ -80,8 +80,14 @@ const SubMenu = styled.div`
 
       a {
         ${B1Black};
+        padding: 1rem 3rem;
         text-align: center;
         text-transform: uppercase;
+
+        &[aria-current="page"] {
+          background-color: ${colors.colorAccent};
+          color: ${colors.black};
+        }
       }
     }
 
@@ -95,6 +101,11 @@ const SubMenu = styled.div`
 
         &:hover {
           background-color: ${colors.colorAccent};
+        }
+
+        &[aria-current="page"] {
+          background-color: ${colors.colorAccent};
+          color: ${colors.black};
         }
       }
     }

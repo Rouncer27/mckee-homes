@@ -9,6 +9,7 @@ import theme from "../styles/theme/Theme"
 import GlobalStyle from "../styles/global/Golbal"
 import Header from "./Header"
 import Footer from "./Footer"
+import BackToTop from "./Navigation/BackTopTop"
 
 import Loading from "./Modals/Loading"
 import Success from "./Modals/Success"
@@ -105,6 +106,7 @@ const Layout = ({ children }) => {
         {alertState.alert && <Alert />}
         {alertState.error && <Error />}
         <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+        <BackToTop />
         <main id="main" role="main">
           {children}
         </main>
