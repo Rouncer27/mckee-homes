@@ -21,7 +21,9 @@ const TopNav = () => {
           <li
             onMouseEnter={() => setHomePlanSubActive(true)}
             onMouseLeave={() => setHomePlanSubActive(false)}
-            className="nav-item top-nav-item top-nav-item--first"
+            className={`nav-item top-nav-item top-nav-item--first${
+              homePlanSubActive ? " active-sub" : ""
+            }`}
           >
             <Link className="top-nav-item__link" to="/home-plans">
               Home Plans <span className="sub-icon">&#8964;</span>
@@ -35,7 +37,9 @@ const TopNav = () => {
           <li
             onMouseEnter={() => setQuickSubActive(true)}
             onMouseLeave={() => setQuickSubActive(false)}
-            className="nav-item top-nav-item"
+            className={`nav-item top-nav-item ${
+              quickSubActive ? " active-sub" : ""
+            }`}
           >
             <Link className="top-nav-item__link" to="/quick-possessions">
               Quick Possessions <span className="sub-icon">&#8964;</span>
@@ -49,7 +53,9 @@ const TopNav = () => {
           <li
             onMouseEnter={() => setCommunitiesSubActive(true)}
             onMouseLeave={() => setCommunitiesSubActive(false)}
-            className="nav-item top-nav-item"
+            className={`nav-item top-nav-item ${
+              communitiesSubActive ? " active-sub" : ""
+            }`}
           >
             <Link className="top-nav-item__link" to="/airdrie">
               Communities <span className="sub-icon">&#8964;</span>
@@ -57,9 +63,11 @@ const TopNav = () => {
             <Communities activesubstate={communitiesSubActive} />
           </li>
           <li
-            className="nav-item top-nav-item"
             onMouseEnter={() => setBuildSubActive(true)}
             onMouseLeave={() => setBuildSubActive(false)}
+            className={`nav-item top-nav-item ${
+              buildSubActive ? " active-sub" : ""
+            }`}
           >
             <Link className="top-nav-item__link" to="/building-with-mckee">
               Building With McKee <span className="sub-icon">&#8964;</span>
@@ -136,6 +144,7 @@ const TopNavStyled = styled.div`
       position: relative;
       display: block;
       padding: 1rem 3rem;
+      transition: all 0.3s ease-out;
       text-align: center;
       text-transform: uppercase;
 
@@ -162,8 +171,14 @@ const TopNavStyled = styled.div`
           color: ${colors.black};
         }
       }
-
       &[aria-current="page"] {
+        background-color: ${colors.colorAccent};
+        color: ${colors.black};
+      }
+    }
+
+    &.active-sub {
+      .top-nav-item__link {
         background-color: ${colors.colorAccent};
         color: ${colors.black};
       }
