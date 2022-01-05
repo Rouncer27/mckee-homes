@@ -5,8 +5,10 @@ import { medWrapper, H3Black, H2Black } from "../../styles/helpers"
 import HouseBlueprint from "../Images/HouseBlueprint"
 
 const ContentSketch = ({ data }) => {
+  const secID = data.sectionId ? data.sectionId : ""
+
   return (
-    <ContentSketchSection>
+    <ContentSketchSection id={secID}>
       <div className="wrapper">
         <div className="images">
           <div className="images__blueprint">

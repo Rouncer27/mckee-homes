@@ -402,6 +402,7 @@ export const pageTempQuery = graphql`
             fieldGroupName
             content
             title
+            sectionId
           }
 
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentImagesLogo5050 {

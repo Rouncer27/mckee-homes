@@ -34,11 +34,41 @@ const getData = graphql`
 const DisplayTeam = ({ data }) => {
   const teamData = useStaticQuery(getData)
   const team = teamData.team.edges
+
+  const principals = team.filter(
+    item => item.node.acfOurTeam.department === "principals"
+  )
+  const admins = team.filter(
+    item => item.node.acfOurTeam.department === "admin"
+  )
+  const sales = team.filter(item => item.node.acfOurTeam.department === "sales")
+  const designs = team.filter(
+    item => item.node.acfOurTeam.department === "design"
+  )
+  const constructions = team.filter(
+    item => item.node.acfOurTeam.department === "construction"
+  )
+  const warranty = team.filter(
+    item => item.node.acfOurTeam.department === "warranty"
+  )
+
+  const teamSorted = [
+    ...principals,
+    ...admins,
+    ...sales,
+    ...designs,
+    ...constructions,
+    ...warranty,
+  ]
+
+  console.log(team)
+  console.log(teamSorted)
+
   if (!data.displayAllTeam) return null
   return (
     <SectionStyled>
       <div className="wrapper">
-        {team.map((team, index) => {
+        {teamSorted.map((team, index) => {
           const imageDisplay = getImage(
             team.node.acfOurTeam.image.localFile.childImageSharp.gatsbyImageData
           )
@@ -55,7 +85,10 @@ const DisplayTeam = ({ data }) => {
               </div>
               <div className="name">
                 <h2>{team.node.title}</h2>
-                <h3>{team.node.acfOurTeam.department}</h3>
+                <h3>
+                  {team.node.acfOurTeam.department}{" "}
+                  {team.node.acfOurTeam.department !== "principals" && "Team"}
+                </h3>
                 <div className="read-more">
                   <Link to={`/our-team/${team.node.slug}`}>Read More</Link>
                 </div>
