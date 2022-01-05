@@ -53,7 +53,7 @@ const HeaderStyled = styled.header`
     align-self: center;
     margin: auto;
     width: 100%;
-    margin: 0 auto;
+    margin: 6rem auto 0;
     padding: 2rem 0;
     text-align: center;
 

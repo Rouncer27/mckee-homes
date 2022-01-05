@@ -162,7 +162,7 @@ const TopNavStyled = styled.div`
       &--highlight {
         background-color: ${colors.colorTertiary};
 
-        @media (min-width: 1100px) {
+        @media (min-width: 1150px) {
           padding: 1rem 7.5rem;
         }
 

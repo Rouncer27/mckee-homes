@@ -32,7 +32,6 @@ const HeroOne = ({ data }) => {
 
 const HeroOneSection = styled.section`
   position: relative;
-  height: 50rem;
 
   @media (min-width: 768px) {
     height: 60rem;
@@ -43,32 +42,35 @@ const HeroOneSection = styled.section`
   }
 
   .hero-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 101%;
-    height: 100%;
-
-    .gatsby-image-wrapper {
+    @media (min-width: 768px) {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 101%;
       height: 100%;
+    }
 
-      img,
-      picture {
+    .gatsby-image-wrapper {
+      @media (min-width: 768px) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
       }
     }
   }
 
   .hero-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
     padding: 5rem 3rem;
     background-color: rgba(255, 255, 255, 0.9);
+
+    @media (min-width: 768px) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
 
     @media (min-width: 768px) {
       width: 60rem;

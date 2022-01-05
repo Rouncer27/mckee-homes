@@ -1,8 +1,7 @@
 import React, { useContext } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import axios from "axios"
-import { B2Black } from "../../../styles/helpers"
+import { B2Black, colors } from "../../../styles/helpers"
 import { UserContext } from "../../../context/UserContext"
 import { AlertContext } from "../../../context/AlertContext"
 
@@ -41,19 +40,31 @@ const LoginStyled = styled.div`
 
   ul {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
-    padding: 0 5rem;
+
+    @media (min-width: 768px) {
+      justify-content: flex-end;
+      padding: 0 5rem;
+    }
 
     li {
-      margin: 0 2rem;
+      margin: 0.5rem;
+      text-align: center;
+
+      @media (max-width: 767px) {
+        width: 100%;
+      }
 
       a,
       button {
         ${B2Black};
+        display: block;
+        padding: 0.5rem 2rem;
         background: transparent;
-        border: none;
+        border: 0.1rem solid ${colors.colorSecondary};
         transition: all 0.3s ease-out;
         color: #42454a;
         text-transform: uppercase;
@@ -65,7 +76,8 @@ const LoginStyled = styled.div`
         }
 
         &:hover {
-          color: #154290;
+          background-color: ${colors.colorPrimary};
+          color: #fff;
 
           span {
             color: #ff0000;

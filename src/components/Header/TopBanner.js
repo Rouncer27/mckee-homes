@@ -37,10 +37,14 @@ const TopBanner = () => {
 
 const TopBannerStyled = styled.div`
   position: absolute;
-  top: 0;
+  top: 6rem;
   right: 0;
   left: 0;
   z-index: 1;
+
+  @media (min-width: 768px) {
+    top: 0;
+  }
 
   .message-wrap {
     width: 100%;

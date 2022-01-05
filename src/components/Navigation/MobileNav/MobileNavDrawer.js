@@ -76,14 +76,17 @@ const NavDrawer = styled.div`
     width: 100%;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
+    margin: 0 auto;
     background-color: ${colors.white};
 
     .gatsby-image-wrapper {
+      display: block;
       max-width: 25rem;
       margin: 0 auto;
 
       @media (min-width: 768px) {
         max-width: 100%;
+        margin: 0 auto;
       }
     }
   }
