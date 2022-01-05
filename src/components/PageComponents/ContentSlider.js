@@ -78,10 +78,15 @@ const ContentSliderSection = styled.section`
       z-index: 1000;
     }
     .slick-arrow {
-      top: auto;
-      bottom: 20%;
+      top: 40%;
       left: auto;
       z-index: 500;
+
+      @media (min-width: 768px) {
+        top: auto;
+        bottom: 20%;
+        left: auto;
+      }
 
       &::before {
         color: ${colors.colorSecondary};
@@ -89,15 +94,38 @@ const ContentSliderSection = styled.section`
       }
 
       &.slick-prev {
-        right: 17rem;
+        left: 1rem;
+
+        @media (min-width: 768px) {
+          right: 17rem;
+          left: auto;
+        }
         &::before {
           content: "\f060";
         }
       }
       &.slick-next {
-        right: 14rem;
+        right: 1.5rem;
+
+        @media (min-width: 768px) {
+          right: 14rem;
+          left: auto;
+        }
         &::before {
           content: "\f061";
+        }
+      }
+
+      @media (max-width: 767px) {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        background-color: ${colors.colorPrimary};
+        opacity: 1;
+
+        &::before {
+          color: ${colors.white};
+          opacity: 1;
         }
       }
     }
