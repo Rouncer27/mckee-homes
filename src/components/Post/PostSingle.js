@@ -18,6 +18,7 @@ const PostSingle = ({ post, allPosts, prevPost, nextPost }) => {
             title={post.title}
             date={post.date}
             categories={post.categories}
+            slug={post.slug}
           />
           <PostWysiwyg content={post.acfPosts.article} />
         </div>
@@ -29,6 +30,7 @@ const PostSingle = ({ post, allPosts, prevPost, nextPost }) => {
 }
 
 const PostSingleArticle = styled.article`
+  overflow: hidden;
   .wrapper {
     ${standardWrapper};
     max-width: 95rem !important;
