@@ -264,6 +264,36 @@ export const pageTempQuery = graphql`
             }
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_HeroTwelve {
+            fieldGroupName
+            title
+            content
+            buttonOneText
+            buttonOneSlug
+            buttonTwoText
+            buttonTwoSlug
+            awardLogos {
+              logo {
+                altText
+                localFile {
+                  url
+                  childImageSharp {
+                    gatsbyImageData(width: 2500)
+                  }
+                }
+              }
+            }
+            image {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 2500)
+                }
+              }
+            }
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentWithImage7525 {
             buttonPosition
             buttonSlug

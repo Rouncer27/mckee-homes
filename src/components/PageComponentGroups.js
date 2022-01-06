@@ -11,6 +11,7 @@ import HeroEight from "./PageComponents/HeroEight"
 import HeroNine from "./PageComponents/HeroNine"
 import HeroTen from "./PageComponents/HeroTen"
 import HeroEleven from "./PageComponents/HeroEleven"
+import HeroTwelve from "./PageComponents/HeroTwelve"
 import ContentWithLogo from "./PageComponents/ContentWithLogo"
 import ContentThreeImages from "./PageComponents/ContentThreeImages"
 import ContentImage5050 from "./PageComponents/ContentImage5050"
@@ -87,6 +88,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_HeroEleven":
                 return <HeroEleven key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_HeroTwelve":
+                return <HeroTwelve key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_ContentWithLogo":
                 return <ContentWithLogo key={index} data={component} />
