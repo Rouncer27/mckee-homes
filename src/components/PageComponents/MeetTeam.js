@@ -43,7 +43,7 @@ const MeetTeam = ({ data }) => {
   if (!data.displayMeetTeam) return null
 
   return (
-    <SectionStyled>
+    <SectionStyled id="meet-team-intro">
       <div className="wrapper">
         <div className="inner-content">
           <div className="title">
