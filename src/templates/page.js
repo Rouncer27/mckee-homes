@@ -743,6 +743,18 @@ export const pageTempQuery = graphql`
               video
             }
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_BuildingFuturesStatus {
+            fieldGroupName
+            title
+            content
+            stages {
+              title
+              complete
+              linkRequired
+              link
+            }
+          }
         }
       }
     }

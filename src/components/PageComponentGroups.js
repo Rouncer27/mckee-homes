@@ -47,6 +47,7 @@ import ContentSimpleWysiwyg from "./PageComponents/ContentSimpleWysiwyg"
 import CrossfieldMapPins from "./PageComponents/CommunitiesMaps/CrossfieldMapPins"
 import AirdrieMapPins from "./PageComponents/CommunitiesMaps/AirdrieMapPins"
 import DisplayCustomersVideos from "./PageComponents/DisplayCustomersVideos"
+import BuildingFuturesStatus from "./PageComponents/BuildingFuturesStatus"
 
 const PageComponentGroups = props => {
   const { components, location } = props
@@ -214,6 +215,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_DisplayCustomersVideos":
                 return <DisplayCustomersVideos key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_BuildingFuturesStatus":
+                return <BuildingFuturesStatus key={index} data={component} />
 
               default:
                 return (
