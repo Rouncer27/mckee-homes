@@ -10,11 +10,6 @@ const ContentImageColorBg = ({ data }) => {
   )
   const imageTopAlt = data.imageTop.altText
 
-  const imageBotDisplay = getImage(
-    data.imageBottom.localFile.childImageSharp.gatsbyImageData
-  )
-  const imageBotAlt = data.imageBottom.altText
-
   return (
     <SectionStyled>
       <div className="wrapper">
@@ -35,14 +30,6 @@ const ContentImageColorBg = ({ data }) => {
             <GatsbyImage
               image={imageTopDisplay}
               alt={imageTopAlt}
-              layout="fullWidth"
-              formats={["auto", "webp", "avif"]}
-            />
-          </div>
-          <div className="image__bot">
-            <GatsbyImage
-              image={imageBotDisplay}
-              alt={imageBotAlt}
               layout="fullWidth"
               formats={["auto", "webp", "avif"]}
             />

@@ -34,32 +34,6 @@ const Building = ({ activesubstate }) => {
           </Link>
         </li>
         <li>
-          <Link to="/news-promotions">
-            <span className="nav-icon">
-              <img src={homeNews} alt="Logo" />
-            </span>
-            <span className="nav-label">News + Promotions</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/design-centre">
-            <span className="nav-icon">
-              <img src={homeDesign} alt="Logo" />
-            </span>
-            <span className="nav-label">Design Center</span>
-          </Link>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <Link to="/airdrie">
-            <span className="nav-icon">
-              <img src={homeBuildings} alt="Logo" />
-            </span>
-            <span className="nav-label">The Community</span>
-          </Link>
-        </li>
-        <li>
           <Link to="/building-futures">
             <span className="nav-icon">
               <img src={homeTools} alt="Logo" />
@@ -68,11 +42,37 @@ const Building = ({ activesubstate }) => {
           </Link>
         </li>
         <li>
+          <Link to="/news-promotions">
+            <span className="nav-icon">
+              <img src={homeNews} alt="Logo" />
+            </span>
+            <span className="nav-label">News + Promotions</span>
+          </Link>
+        </li>
+      </ul>
+      <ul>
+        {/* <li>
+          <Link to="/airdrie">
+            <span className="nav-icon">
+              <img src={homeBuildings} alt="Logo" />
+            </span>
+            <span className="nav-label">The Community</span>
+          </Link>
+        </li> */}
+        <li>
           <Link to="/customer-stories">
             <span className="nav-icon">
               <img src={homeBook} alt="Logo" />
             </span>
             <span className="nav-label">Customer Stories</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/design-centre">
+            <span className="nav-icon">
+              <img src={homeDesign} alt="Logo" />
+            </span>
+            <span className="nav-label">Design Center</span>
           </Link>
         </li>
         <li>

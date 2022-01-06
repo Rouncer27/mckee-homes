@@ -514,17 +514,6 @@ export const pageTempQuery = graphql`
                 }
               }
             }
-
-            imageBottom {
-              altText
-              sourceUrl
-              localFile {
-                url
-                childImageSharp {
-                  gatsbyImageData(width: 1000)
-                }
-              }
-            }
           }
 
           ... on WpPage_Acfmaintemplatefields_PageComponents_Logos {

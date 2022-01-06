@@ -46,7 +46,7 @@ const SectionStyled = styled.section`
 
   .side-title {
     position: absolute;
-    top: 20rem;
+    top: 27rem;
     left: -5rem;
     transform-origin: center left;
     transform: rotate(-90deg);

@@ -14,15 +14,17 @@ const ContentImage5050 = ({ data }) => {
     <SectionStyled reversed={data.reversed}>
       <div className="wrapper">
         <div className="content">
-          <div className="title">
-            <h2>{data.title}</h2>
-          </div>
-          <div
-            className="paragraph"
-            dangerouslySetInnerHTML={{ __html: data.content }}
-          />
-          <div className="button">
-            <Link to={`/${data.buttonSlug}`}>{data.buttonText}</Link>
+          <div className="content__inner">
+            <div className="title">
+              <h2>{data.title}</h2>
+            </div>
+            <div
+              className="paragraph"
+              dangerouslySetInnerHTML={{ __html: data.content }}
+            />
+            <div className="button">
+              <Link to={`/${data.buttonSlug}`}>{data.buttonText}</Link>
+            </div>
           </div>
           <div className="bg-pattern">
             <BgPatternOne />
@@ -52,6 +54,8 @@ const SectionStyled = styled.section`
   }
 
   .content {
+    display: flex;
+    align-items: center;
     position: relative;
     width: calc(100%);
     margin-right: auto;

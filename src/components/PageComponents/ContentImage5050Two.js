@@ -96,7 +96,7 @@ const SectionStyled = styled.section`
     right: 0;
     bottom: 0;
     width: 100%;
-    background-color: #e5e5e5;
+    background-color: rgba(165, 182, 186, 0.3);
     z-index: -1;
 
     @media (min-width: 768px) {
