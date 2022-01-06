@@ -1,10 +1,10 @@
 import React from "react"
 import styled from "styled-components"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Layout from "../components/Layout"
-import { B1Black, H2Black, medWrapper } from "../styles/helpers"
+import { B1Black, Btn1Navy, H2Black, medWrapper } from "../styles/helpers"
 
 const Team = props => {
   const { team } = props.data
@@ -30,6 +30,9 @@ const Team = props => {
               </h2>
             </div>
             <div dangerouslySetInnerHTML={{ __html: team.acfOurTeam.bio }} />
+            <div className="bio__back">
+              <Link to="/our-team#our-team-list">Back To Team</Link>
+            </div>
           </div>
         </div>
       </StyledSection>
@@ -61,6 +64,14 @@ const StyledSection = styled.section`
 
     p {
       ${B1Black};
+    }
+
+    &__back {
+      width: 100%;
+
+      a {
+        ${Btn1Navy};
+      }
     }
   }
 `

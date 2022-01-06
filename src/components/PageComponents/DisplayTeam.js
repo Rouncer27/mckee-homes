@@ -66,7 +66,7 @@ const DisplayTeam = ({ data }) => {
 
   if (!data.displayAllTeam) return null
   return (
-    <SectionStyled>
+    <SectionStyled id="our-team-list">
       <div className="wrapper">
         {teamSorted.map((team, index) => {
           const imageDisplay = getImage(
