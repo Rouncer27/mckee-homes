@@ -10,7 +10,6 @@ import {
 } from "../../styles/helpers"
 
 const BuildingFuturesStatus = ({ data }) => {
-  console.log("BuildingFuturesStatus: ", data)
   return (
     <SectionStyled>
       <div className="wrapper">
