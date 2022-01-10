@@ -52,7 +52,7 @@ const SubMenu = styled.ul`
   position: absolute;
   top: 100%;
   left: -5rem;
-  width: 30rem;
+  width: 32rem;
   background-color: #efefef;
   padding: 2.5rem 4.5rem;
   transition: all 0.3s ease-out;
@@ -78,7 +78,7 @@ const SubMenu = styled.ul`
       display: block;
       width: 100%;
       margin-bottom: 1rem;
-      padding: 1.5rem 0;
+      padding: 1.5rem 1rem;
       transition: all 0.3s ease-out;
       text-transform: uppercase;
 
@@ -92,17 +92,13 @@ const SubMenu = styled.ul`
       }
 
       .nav-icon {
+        display: flex;
+        align-items: center;
         position: absolute;
-        left: 0;
+        left: 0.5rem;
         top: 0;
         bottom: 0;
-        display: block;
-        width: 6rem;
-        background-color: #fff;
-
-        &__all-homes {
-          padding: 1rem;
-        }
+        width: 4.5rem;
       }
     }
   }

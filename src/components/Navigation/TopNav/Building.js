@@ -159,7 +159,6 @@ const SubMenu = styled.div`
           bottom: 0;
           width: 6rem;
           padding: 1rem;
-          background-color: #fff;
         }
 
         &[aria-current="page"] {

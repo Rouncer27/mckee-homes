@@ -5,7 +5,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { standardWrapper } from "../../styles/helpers"
+import { colors, standardWrapper } from "../../styles/helpers"
 
 const HomePlanLightbox = ({
   lightboxActive,
@@ -67,8 +67,8 @@ const LightboxStyled = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(21, 66, 144, 0.8);
-  z-index: 999999;
+  background-color: #42454a;
+  z-index: 99999999999;
 
   .wrapper {
     ${standardWrapper};
@@ -106,6 +106,20 @@ const LightboxStyled = styled.div`
     position: absolute;
     top: 3rem;
     right: 3rem;
+
+    button {
+      padding: 1rem 2rem;
+      background-color: ${colors.white};
+      border: 0.1rem solid ${colors.white};
+      transition: all 0.3s ease-out;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      &:hover {
+        background-color: ${colors.colorPrimary};
+        color: ${colors.white};
+      }
+    }
   }
 `
 
