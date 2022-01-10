@@ -51,6 +51,7 @@ const SubMenu = styled.div`
   width: 50rem;
   padding: 2.5rem 2.5rem;
   background-color: #efefef;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   transition: all 0.3s ease-out;
   opacity: ${props => (props.activesub ? 1 : 0)};
   visibility: ${props => (props.activesub ? "visable" : "hidden")};
