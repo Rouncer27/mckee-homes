@@ -1,51 +1,126 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
+import { getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
-
 import AirdrieMap from "./AirdrieMap"
+import SinglePin from "./SinglePin"
 
-import baysideEstates from "../../../images/pin-bayside-estates.png"
-import chinookgate from "../../../images/pin-chinookgate.png"
-import cooperscrossing from "../../../images/pin-cooperscrossing.png"
-import kingsHeights from "../../../images/pin-kings-heights.png"
-import lanarklanding from "../../../images/pin-lanarklanding.png"
-import ravenswood from "../../../images/pin-ravenswood.png"
+const getData = graphql`
+  {
+    community: allWpCommunityPost {
+      edges {
+        node {
+          title
+          slug
+          acfCommunity {
+            popupDetails
+            popupPinIcon {
+              altText
+              sourceUrl
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 const AirdrieMapPins = () => {
+  const communityData = useStaticQuery(getData)
+  const community = communityData.community.edges
+
+  const bayside = community.find(item => item.node.slug === "bayside-estates")
+  const chinookgate = community.find(item => item.node.slug === "chinook-gate")
+  const cooperscrossing = community.find(
+    item => item.node.slug === "coopers-crossing"
+  )
+  const kingsHeights = community.find(
+    item => item.node.slug === "kings-heights"
+  )
+  const lanark = community.find(item => item.node.slug === "lanark-landing")
+  const ravenswood = community.find(item => item.node.slug === "ravenswood")
+
   return (
     <DivStyled>
       <AirdrieMap />
       <div className="pins">
-        <div className="pin pins__baysideEstates">
-          <Link to="/communities/bayside-estates">
-            <img src={baysideEstates} alt="bayside estates" />
-          </Link>
-        </div>
-        <div className="pin pins__chinookgate">
-          <Link to="/communities/chinook-gate">
-            <img src={chinookgate} alt="chinookgate" />
-          </Link>
-        </div>
-        <div className="pin pins__cooperscrossing">
-          <Link to="/communities/coopers-crossing">
-            <img src={cooperscrossing} alt="coopers crossing" />
-          </Link>
-        </div>
-        <div className="pin pins__kingsHeights">
-          <Link to="/communities/kings-heights">
-            <img src={kingsHeights} alt="Kings Heights" />
-          </Link>
-        </div>
-        <div className="pin pins__lanarklanding">
-          <Link to="/communities/lanark-landing">
-            <img src={lanarklanding} alt="lanark landing" />
-          </Link>
-        </div>
-        <div className="pin pins__ravenswood">
-          <Link to="/communities/ravenswood">
-            <img src={ravenswood} alt="ravenswood" />
-          </Link>
-        </div>
+        <SinglePin
+          imgSrc={getImage(
+            bayside.node.acfCommunity.popupPinIcon.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          alt={bayside.node.acfCommunity.popupPinIcon.altText}
+          title={bayside.node.title}
+          details={bayside.node.acfCommunity.popupDetails}
+          slug={bayside.node.slug}
+          classmodifier={`pins__baysideEstates`}
+        />
+
+        <SinglePin
+          imgSrc={getImage(
+            chinookgate.node.acfCommunity.popupPinIcon.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          alt={chinookgate.node.acfCommunity.popupPinIcon.altText}
+          title={chinookgate.node.title}
+          details={chinookgate.node.acfCommunity.popupDetails}
+          slug={chinookgate.node.slug}
+          classmodifier={`pins__chinookgate`}
+        />
+
+        <SinglePin
+          imgSrc={getImage(
+            cooperscrossing.node.acfCommunity.popupPinIcon.localFile
+              .childImageSharp.gatsbyImageData
+          )}
+          alt={cooperscrossing.node.acfCommunity.popupPinIcon.altText}
+          title={cooperscrossing.node.title}
+          details={cooperscrossing.node.acfCommunity.popupDetails}
+          slug={cooperscrossing.node.slug}
+          classmodifier={`pins__cooperscrossing`}
+        />
+
+        <SinglePin
+          imgSrc={getImage(
+            kingsHeights.node.acfCommunity.popupPinIcon.localFile
+              .childImageSharp.gatsbyImageData
+          )}
+          alt={kingsHeights.node.acfCommunity.popupPinIcon.altText}
+          title={kingsHeights.node.title}
+          details={kingsHeights.node.acfCommunity.popupDetails}
+          slug={kingsHeights.node.slug}
+          classmodifier={`pins__kingsHeights`}
+        />
+
+        <SinglePin
+          imgSrc={getImage(
+            lanark.node.acfCommunity.popupPinIcon.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          alt={lanark.node.acfCommunity.popupPinIcon.altText}
+          title={lanark.node.title}
+          details={lanark.node.acfCommunity.popupDetails}
+          slug={lanark.node.slug}
+          classmodifier={`pins__lanarklanding`}
+        />
+
+        <SinglePin
+          imgSrc={getImage(
+            ravenswood.node.acfCommunity.popupPinIcon.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          alt={ravenswood.node.acfCommunity.popupPinIcon.altText}
+          title={ravenswood.node.title}
+          details={ravenswood.node.acfCommunity.popupDetails}
+          slug={ravenswood.node.slug}
+          classmodifier={`pins__ravenswood`}
+        />
       </div>
     </DivStyled>
   )
@@ -53,48 +128,6 @@ const AirdrieMapPins = () => {
 
 const DivStyled = styled.div`
   position: relative;
-
-  .pins {
-    .pin {
-      position: absolute;
-      width: 12vw;
-      z-index: 500;
-
-      @media (min-width: 768px) {
-        width: 10rem;
-      }
-    }
-
-    &__baysideEstates {
-      left: 30vw;
-      bottom: 50%;
-    }
-
-    &__chinookgate {
-      left: 15vw;
-      bottom: 30%;
-    }
-
-    &__cooperscrossing {
-      left: 45vw;
-      bottom: 5%;
-    }
-
-    &__kingsHeights {
-      right: 22.5vw;
-      bottom: 27.5%;
-    }
-
-    &__lanarklanding {
-      right: 22.5vw;
-      bottom: 5%;
-    }
-
-    &__ravenswood {
-      right: 10vw;
-      bottom: 20%;
-    }
-  }
 `
 
 export default AirdrieMapPins

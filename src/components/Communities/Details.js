@@ -48,6 +48,8 @@ const Details = ({ city, title, details, logo, url }) => {
 }
 
 const SectionStyled = styled.section`
+  padding-top: 5rem;
+
   .wrapper {
     ${standardWrapper};
   }
@@ -68,7 +70,8 @@ const SectionStyled = styled.section`
 
       h2 {
         ${H1Navy};
-        font-weight: 500;
+        margin-top: 0.5rem;
+        font-weight: 700;
       }
     }
 
@@ -81,12 +84,10 @@ const SectionStyled = styled.section`
 
   .logo {
     width: calc(100%);
-
     text-align: center;
 
     @media (min-width: 768px) {
       width: calc(30% - 5rem);
-      margin-top: 2.5rem;
       margin-left: 5rem;
     }
 
