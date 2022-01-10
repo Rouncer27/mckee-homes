@@ -1,20 +1,58 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
+import { getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 
 import CrossfieldMap from "./CrossfieldMap"
-import vistaCrossing from "../../../images/pin-vista-crossing.png"
+import SinglePin from "./SinglePin"
+
+const getData = graphql`
+  {
+    community: allWpCommunityPost {
+      edges {
+        node {
+          title
+          slug
+          acfCommunity {
+            popupDetails
+            popupPinIcon {
+              altText
+              sourceUrl
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 const CrossfieldMapPins = () => {
+  const communityData = useStaticQuery(getData)
+  const community = communityData.community.edges
+
+  const vista = community.find(item => item.node.slug === "vista-crossing")
+
   return (
     <DivStyled>
       <CrossfieldMap />
       <div className="pins">
-        <div className="pin pins__vistaCrossing">
-          <Link to="/communities/vista-crossing">
-            <img src={vistaCrossing} alt="Vista Crossing" />
-          </Link>
-        </div>
+        <SinglePin
+          imgSrc={getImage(
+            vista.node.acfCommunity.popupPinIcon.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          alt={vista.node.acfCommunity.popupPinIcon.altText}
+          title={vista.node.title}
+          details={vista.node.acfCommunity.popupDetails}
+          slug={vista.node.slug}
+          classmodifier={`pins__vistaCrossing`}
+        />
       </div>
     </DivStyled>
   )
@@ -22,19 +60,6 @@ const CrossfieldMapPins = () => {
 
 const DivStyled = styled.div`
   position: relative;
-
-  .pins {
-    .pin {
-      position: absolute;
-      width: 10rem;
-      z-index: 500;
-    }
-
-    &__vistaCrossing {
-      left: 18vw;
-      top: 30%;
-    }
-  }
 `
 
 export default CrossfieldMapPins

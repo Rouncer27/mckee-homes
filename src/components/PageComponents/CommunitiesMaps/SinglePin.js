@@ -144,6 +144,11 @@ const DivStyled = styled.div`
       left: -27.5rem;
     }
   }
+
+  &.pins__vistaCrossing {
+    left: 18vw;
+    top: 30%;
+  }
 `
 
 export default SinglePin
