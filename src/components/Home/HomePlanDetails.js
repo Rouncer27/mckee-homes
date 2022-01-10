@@ -44,6 +44,10 @@ const SectionStyled = styled.section`
         columns: 2;
       }
 
+      p {
+        ${B2Black};
+      }
+
       ul {
         width: 100%;
 
