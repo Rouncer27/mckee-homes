@@ -1,6 +1,7 @@
 import React from "react"
 
 import HomePlanHeader from "./HomePlanHeader"
+import HomePlanBest from "./HomePlanBest"
 import HomePlanDetails from "./HomePlanDetails"
 import HomePlansCommunities from "./HomePlansCommunities"
 import HomePlanGallery from "./HomePlanGallery"
@@ -8,14 +9,16 @@ import MoreInformation from "../PageComponents/Forms/MoreInformation"
 import HomePlanFloorPlan from "./HomePlanFloorPlan"
 
 const HomePlan = ({ home }) => {
-  console.log("HELLO: ", home)
   return (
     <article>
       <HomePlanHeader home={home} />
-      <HomePlanDetails
-        details={home.acfHomePlans.details}
-        title={`BEST IS BUILT IN WITH MCKEE HOMES:`}
-      />
+      <HomePlanBest />
+      {home.acfHomePlans.details && (
+        <HomePlanDetails
+          details={home.acfHomePlans.details}
+          title={`Other Features and details to note:`}
+        />
+      )}
       <HomePlansCommunities communities={home.communities.nodes} />
       <HomePlanGallery gallery={home.acfHomePlans.gallery} />
       <HomePlanFloorPlan

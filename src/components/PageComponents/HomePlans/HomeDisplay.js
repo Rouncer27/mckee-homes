@@ -134,6 +134,8 @@ const HomePlanStyled = styled(Link)`
   width: 100%;
   margin-bottom: 5rem;
   border: solid 0.3rem #a2a3a5;
+  box-shadow: 0.3rem 0.5rem 0.6rem 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-out;
   background-color: #efefef;
 
   @media (min-width: 768px) {
@@ -144,6 +146,10 @@ const HomePlanStyled = styled(Link)`
   @media (min-width: 1025px) {
     width: calc((100% / 3) - 2rem);
     margin: 1rem;
+  }
+
+  &:hover {
+    box-shadow: 0.3rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.6);
   }
 
   .image {
