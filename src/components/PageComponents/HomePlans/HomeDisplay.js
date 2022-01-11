@@ -134,7 +134,7 @@ const HomePlanStyled = styled(Link)`
   width: 100%;
   margin-bottom: 5rem;
   border: solid 0.3rem #a2a3a5;
-  box-shadow: 0.3rem 0.5rem 0.6rem 0 rgba(0, 0, 0, 0.3);
+  ${"" /* box-shadow: 0.3rem 0.5rem 0.6rem 0 rgba(0, 0, 0, 0.3); */}
   transition: all 0.3s ease-out;
   background-color: #efefef;
 
@@ -150,6 +150,7 @@ const HomePlanStyled = styled(Link)`
 
   &:hover {
     box-shadow: 0.3rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.6);
+    box-shadow: 3px 7px 9px 0 rgba(77, 88, 113, 0.55);
   }
 
   .image {
