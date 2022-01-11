@@ -9,21 +9,7 @@ import {
   B1Black,
 } from "../../styles/helpers"
 
-const Connect = ({
-  salesImg,
-  salesImgAlt,
-  salesPersonName,
-  salesPersonEmail,
-  salesPersonCell,
-  salesPersonPhone,
-  community,
-}) => {
-  const displayImage = getImage(salesImg)
-  const salesTwoImg = getImage(
-    community?.acfCommunity?.twoSalesPersonImage?.localFile?.childImageSharp
-      ?.gatsbyImageData
-  )
-
+const Connect = ({ salesOne, salesTwo }) => {
   return (
     <SectionStyled>
       <div className="connect-wrapper">
@@ -32,75 +18,83 @@ const Connect = ({
             <p>Connect With Us</p>
           </div>
           <div className="connect-wrapper__content">
-            <div className="connect-wrapper__content--sales">
-              <div className="image">
-                <GatsbyImage
-                  image={displayImage}
-                  alt={salesImgAlt}
-                  layout="fullWidth"
-                  formats={["auto", "webp", "avif"]}
-                />
-              </div>
-              <div className="contact">
-                <p className="sales-name">{salesPersonName}</p>
-                <p>
-                  <a href={`mailto:${salesPersonEmail}`}>{salesPersonEmail}</a>
-                </p>
-                <p>
-                  T:{" "}
-                  <a href={`tel:+1${salesPersonPhone}`}>{salesPersonPhone}</a>
-                </p>
-                <p>
-                  C: <a href={`tel:+1${salesPersonCell}`}>{salesPersonCell}</a>
-                </p>
-
-                <div className="sales-btn">
-                  <a href={`mailto:${salesPersonEmail}`}>Email Sales Person</a>
-                </div>
-              </div>
-            </div>
-            {community.acfCommunity.twoSalesPersonRequired && (
+            {salesOne && (
               <div className="connect-wrapper__content--sales">
                 <div className="image">
                   <GatsbyImage
-                    image={salesTwoImg}
-                    alt={community.acfCommunity.twoSalesPersonImage.altText}
+                    image={getImage(
+                      salesOne.acfSalesTeam.image.localFile.childImageSharp
+                        .gatsbyImageData
+                    )}
+                    alt={salesOne.acfSalesTeam.image.altText}
                     layout="fullWidth"
                     formats={["auto", "webp", "avif"]}
                   />
                 </div>
                 <div className="contact">
-                  <p className="sales-name">
-                    {community.acfCommunity.twoSalesPersonName}
-                  </p>
+                  <p className="sales-name">{salesOne.title}</p>
                   <p>
-                    <a
-                      href={`mailto:${community.acfCommunity.twoSalesPersonEmail}`}
-                    >
-                      {community.acfCommunity.twoSalesPersonEmail}
+                    <a href={`mailto:${salesOne.acfSalesTeam.email}`}>
+                      {salesOne.acfSalesTeam.email}
                     </a>
                   </p>
                   <p>
                     T:{" "}
-                    <a
-                      href={`tel:+1${community.acfCommunity.twoSalesPersonPhone}`}
-                    >
-                      {community.acfCommunity.twoSalesPersonPhone}
+                    <a href={`tel:+1${salesOne.acfSalesTeam.phone}`}>
+                      {salesOne.acfSalesTeam.phone}
                     </a>
                   </p>
                   <p>
                     C:{" "}
-                    <a
-                      href={`tel:+1${community.acfCommunity.twoSalesPersonCell}`}
-                    >
-                      {community.acfCommunity.twoSalesPersonCell}
+                    <a href={`tel:+1${salesOne.acfSalesTeam.cell}`}>
+                      {salesOne.acfSalesTeam.cell}
                     </a>
                   </p>
 
                   <div className="sales-btn">
-                    <a
-                      href={`mailto:${community.acfCommunity.twoSalesPersonEmail}`}
-                    >
+                    <a href={`mailto:${salesOne.acfSalesTeam.email}`}>
+                      Email Sales Person
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {salesTwo && (
+              <div className="connect-wrapper__content--sales">
+                <div className="image">
+                  <GatsbyImage
+                    image={getImage(
+                      salesTwo.acfSalesTeam.image.localFile.childImageSharp
+                        .gatsbyImageData
+                    )}
+                    alt={salesTwo.acfSalesTeam.image.altText}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
+                  />
+                </div>
+                <div className="contact">
+                  <p className="sales-name">{salesTwo.title}</p>
+                  <p>
+                    <a href={`mailto:${salesTwo.acfSalesTeam.email}`}>
+                      {salesTwo.acfSalesTeam.email}
+                    </a>
+                  </p>
+                  <p>
+                    T:{" "}
+                    <a href={`tel:+1${salesTwo.acfSalesTeam.phone}`}>
+                      {salesTwo.acfSalesTeam.phone}
+                    </a>
+                  </p>
+                  <p>
+                    C:{" "}
+                    <a href={`tel:+1${salesTwo.acfSalesTeam.cell}`}>
+                      {salesTwo.acfSalesTeam.cell}
+                    </a>
+                  </p>
+
+                  <div className="sales-btn">
+                    <a href={`mailto:${salesTwo.acfSalesTeam.email}`}>
                       Email Sales Person
                     </a>
                   </div>

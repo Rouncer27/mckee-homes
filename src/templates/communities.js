@@ -26,16 +26,8 @@ const communities = props => {
         />
         <ShowHomes currentSlug={community.slug} showHomes={allWpShowHome} />
         <Connect
-          salesImg={
-            community.acfCommunity.salesPersonImage.localFile.childImageSharp
-              .gatsbyImageData
-          }
-          salesImgAlt={community.acfCommunity.salesPersonImage.altText}
-          salesPersonName={community.acfCommunity.salesPersonName}
-          salesPersonEmail={community.acfCommunity.twoSalesPersonEmail}
-          salesPersonCell={community.acfCommunity.salesPersonCell}
-          salesPersonPhone={community.acfCommunity.salesPersonPhone}
-          community={community}
+          salesOne={community.acfCommunity.salesPersonOne}
+          salesTwo={community.acfCommunity.salesPersonTwo}
         />
         <ShowHours
           hours={community.acfCommunity.showHomeHours}
@@ -89,29 +81,40 @@ export const query = graphql`
           }
         }
 
-        salesPersonName
-        salesPersonPhone
-        salesPersonEmail
-        salesPersonCell
-        salesPersonImage {
-          altText
-          localFile {
-            childImageSharp {
-              gatsbyImageData(width: 1000)
+        salesPersonOne {
+          ... on WpSalesTeam {
+            title
+            acfSalesTeam {
+              cell
+              email
+              phone
+              image {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(width: 1000)
+                  }
+                }
+              }
             }
           }
         }
 
-        twoSalesPersonRequired
-        twoSalesPersonCell
-        twoSalesPersonEmail
-        twoSalesPersonName
-        twoSalesPersonPhone
-        twoSalesPersonImage {
-          altText
-          localFile {
-            childImageSharp {
-              gatsbyImageData(width: 1000)
+        salesPersonTwo {
+          ... on WpSalesTeam {
+            title
+            acfSalesTeam {
+              cell
+              email
+              phone
+              image {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(width: 1000)
+                  }
+                }
+              }
             }
           }
         }
