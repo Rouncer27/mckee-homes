@@ -17,18 +17,8 @@ const QuickPossesion = ({ home }) => {
       />
       <HomePlanGallery gallery={home.acfQuickPossessions.gallery} />
       <QuickConnect
-        salesImg={
-          home.acfQuickPossessions.salesPersonImage.localFile.childImageSharp
-            .gatsbyImageData
-        }
-        salesImgAlt={home.acfQuickPossessions.salesPersonImage.altText}
-        salesPersonName={home.acfQuickPossessions.salesPersonName}
-        salesPersonEmail={home.acfQuickPossessions.salesPersonEmail}
-        salesPersonCell={home.acfQuickPossessions.salesPersonCell}
-        salesPersonPhone={home.acfQuickPossessions.salesPersonPhone}
-        showHomeHours={home.acfQuickPossessions.showHomeHours}
-        googleMapLink={home.acfQuickPossessions.googleMapLink}
-        home={home}
+        salesOne={home.acfQuickPossessions.salesPersonOne}
+        salesTwo={home.acfQuickPossessions.salesPersonTwo}
       />
       <SeeThisHome homeSlug="quick-possessions" />
       <HomePlanFloorPlan

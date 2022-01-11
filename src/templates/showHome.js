@@ -84,18 +84,42 @@ export const query = graphql`
             }
           }
         }
-
-        salesPersonName
-        salesPersonPhone
-        salesPersonEmail
-        salesPersonCell
         googleMapLink
         showHomeHours
-        salesPersonImage {
-          altText
-          localFile {
-            childImageSharp {
-              gatsbyImageData(width: 1000)
+        salesPersonOne {
+          ... on WpSalesTeam {
+            title
+            acfSalesTeam {
+              cell
+              email
+              phone
+              image {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(width: 1000)
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        salesPersonTwo {
+          ... on WpSalesTeam {
+            title
+            acfSalesTeam {
+              cell
+              email
+              phone
+              image {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(width: 1000)
+                  }
+                }
+              }
             }
           }
         }

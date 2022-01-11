@@ -7,24 +7,10 @@ import {
   colors,
   standardWrapper,
   B1Black,
+  medWrapper,
 } from "../../styles/helpers"
 
-const QuickConnect = ({
-  salesImg,
-  salesImgAlt,
-  salesPersonName,
-  salesPersonEmail,
-  salesPersonCell,
-  salesPersonPhone,
-  home,
-}) => {
-  const displayImage = getImage(salesImg)
-
-  const salesTwoImg = getImage(
-    home?.acfQuickPossessions?.twoSalesPersonImage?.localFile?.childImageSharp
-      ?.gatsbyImageData
-  )
-
+const QuickConnect = ({ salesOne, salesTwo }) => {
   return (
     <SectionStyled>
       <div className="connect-wrapper">
@@ -33,75 +19,82 @@ const QuickConnect = ({
             <p>Connect With Us</p>
           </div>
           <div className="connect-wrapper__content">
-            <div className="connect-wrapper__content--sales">
-              <div className="image">
-                <GatsbyImage
-                  image={displayImage}
-                  alt={salesImgAlt}
-                  layout="fullWidth"
-                  formats={["auto", "webp", "avif"]}
-                />
-              </div>
-              <div className="contact">
-                <p className="sales-name">{salesPersonName}</p>
-                <p>
-                  <a href={`mailto:${salesPersonEmail}`}>{salesPersonEmail}</a>
-                </p>
-                <p>
-                  T:{" "}
-                  <a href={`tel:+1${salesPersonPhone}`}>{salesPersonPhone}</a>
-                </p>
-                <p>
-                  C: <a href={`tel:+1${salesPersonCell}`}>{salesPersonCell}</a>
-                </p>
-
-                <div className="sales-btn">
-                  <a href={`mailto:${salesPersonEmail}`}>Email Sales Person</a>
-                </div>
-              </div>
-            </div>
-            {home.acfQuickPossessions.twoSalesPersonRequired && (
+            {salesOne && (
               <div className="connect-wrapper__content--sales">
                 <div className="image">
                   <GatsbyImage
-                    image={salesTwoImg}
-                    alt={home.acfQuickPossessions.twoSalesPersonImage.altText}
+                    image={getImage(
+                      salesOne.acfSalesTeam.image.localFile.childImageSharp
+                        .gatsbyImageData
+                    )}
+                    alt={salesOne.acfSalesTeam.image.altText}
                     layout="fullWidth"
                     formats={["auto", "webp", "avif"]}
                   />
                 </div>
                 <div className="contact">
-                  <p className="sales-name">
-                    {home.acfQuickPossessions.twoSalesPersonName}
-                  </p>
+                  <p className="sales-name">{salesOne.title}</p>
                   <p>
-                    <a
-                      href={`mailto:${home.acfQuickPossessions.twoSalesPersonEmail}`}
-                    >
-                      {home.acfQuickPossessions.twoSalesPersonEmail}
+                    <a href={`mailto:${salesOne.acfSalesTeam.email}`}>
+                      {salesOne.acfSalesTeam.email}
                     </a>
                   </p>
                   <p>
                     T:{" "}
-                    <a
-                      href={`tel:+1${home.acfQuickPossessions.twoSalesPersonPhone}`}
-                    >
-                      {home.acfQuickPossessions.twoSalesPersonPhone}
+                    <a href={`tel:+1${salesOne.acfSalesTeam.phone}`}>
+                      {salesOne.acfSalesTeam.phone}
                     </a>
                   </p>
                   <p>
                     C:{" "}
-                    <a
-                      href={`tel:+1${home.acfQuickPossessions.twoSalesPersonCell}`}
-                    >
-                      {home.acfQuickPossessions.twoSalesPersonCell}
+                    <a href={`tel:+1${salesOne.acfSalesTeam.cell}`}>
+                      {salesOne.acfSalesTeam.cell}
                     </a>
                   </p>
 
                   <div className="sales-btn">
-                    <a
-                      href={`mailto:${home.acfQuickPossessions.twoSalesPersonEmail}`}
-                    >
+                    <a href={`mailto:${salesOne.acfSalesTeam.email}`}>
+                      Email Sales Person
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+            {salesTwo && (
+              <div className="connect-wrapper__content--sales">
+                <div className="image">
+                  <GatsbyImage
+                    image={getImage(
+                      salesTwo.acfSalesTeam.image.localFile.childImageSharp
+                        .gatsbyImageData
+                    )}
+                    alt={salesTwo.acfSalesTeam.image.altText}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
+                  />
+                </div>
+                <div className="contact">
+                  <p className="sales-name">{salesTwo.title}</p>
+                  <p>
+                    <a href={`mailto:${salesTwo.acfSalesTeam.email}`}>
+                      {salesTwo.acfSalesTeam.email}
+                    </a>
+                  </p>
+                  <p>
+                    T:{" "}
+                    <a href={`tel:+1${salesTwo.acfSalesTeam.phone}`}>
+                      {salesTwo.acfSalesTeam.phone}
+                    </a>
+                  </p>
+                  <p>
+                    C:{" "}
+                    <a href={`tel:+1${salesTwo.acfSalesTeam.cell}`}>
+                      {salesTwo.acfSalesTeam.cell}
+                    </a>
+                  </p>
+
+                  <div className="sales-btn">
+                    <a href={`mailto:${salesTwo.acfSalesTeam.email}`}>
                       Email Sales Person
                     </a>
                   </div>
@@ -121,7 +114,7 @@ const SectionStyled = styled.section`
     padding-bottom: 5rem;
 
     &__inner {
-      ${standardWrapper};
+      ${medWrapper};
     }
 
     &__titles {
@@ -165,7 +158,7 @@ const SectionStyled = styled.section`
         padding-top: 2rem;
 
         @media (min-width: 768px) {
-          width: calc(60%);
+          width: calc(50%);
           padding-top: 4.7rem;
         }
 
@@ -214,7 +207,7 @@ const SectionStyled = styled.section`
 
       &--salestwo {
         position: relative;
-        width: calc(40% - 4rem);
+        width: calc(50% - 4rem);
         margin-left: 4rem;
         padding-top: 4.7rem;
 

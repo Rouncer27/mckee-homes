@@ -8,6 +8,8 @@ import MoreInformation from "../PageComponents/Forms/MoreInformation"
 import HomePlanFloorPlan from "./HomePlanFloorPlan"
 
 const ShowHome = ({ home }) => {
+  console.log("home: ", home)
+
   return (
     <article>
       <ShowHomeHeader home={home} />
@@ -17,15 +19,8 @@ const ShowHome = ({ home }) => {
       />
       <HomePlanGallery gallery={home.acfShowHomes.gallery} />
       <HomePlanConnect
-        salesImg={
-          home.acfShowHomes.salesPersonImage.localFile.childImageSharp
-            .gatsbyImageData
-        }
-        salesImgAlt={home.acfShowHomes.salesPersonImage.altText}
-        salesPersonName={home.acfShowHomes.salesPersonName}
-        salesPersonEmail={home.acfShowHomes.salesPersonEmail}
-        salesPersonCell={home.acfShowHomes.salesPersonCell}
-        salesPersonPhone={home.acfShowHomes.salesPersonPhone}
+        salesOne={home.acfShowHomes.salesPersonOne}
+        salesTwo={home.acfShowHomes.salesPersonTwo}
         showHomeHours={home.acfShowHomes.showHomeHours}
         googleMapLink={home.acfShowHomes.googleMapLink}
       />

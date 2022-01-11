@@ -10,16 +10,13 @@ import {
 } from "../../styles/helpers"
 
 const HomePlanConnect = ({
-  salesImg,
-  salesImgAlt,
-  salesPersonName,
-  salesPersonEmail,
-  salesPersonCell,
+  salesOne,
+  salesTwo,
   showHomeHours,
-  salesPersonPhone,
   googleMapLink,
 }) => {
-  const displayImage = getImage(salesImg)
+  console.log("salesOne: ", salesOne)
+  console.log("salesTwo: ", salesTwo)
 
   return (
     <SectionStyled>
@@ -27,35 +24,97 @@ const HomePlanConnect = ({
         <div className="connect-wrapper__inner">
           <div className="connect-wrapper__titles">
             <p>Connect With Us</p>
-            <p>Show Home Hours</p>
           </div>
           <div className="connect-wrapper__content">
-            <div className="connect-wrapper__content--sales">
-              <div className="image">
-                <GatsbyImage
-                  image={displayImage}
-                  alt={salesImgAlt}
-                  layout="fullWidth"
-                  formats={["auto", "webp", "avif"]}
-                />
-              </div>
-              <div className="contact">
-                <p className="sales-name">{salesPersonName}</p>
-                <p>
-                  <a href={`mailto:${salesPersonEmail}`}>{salesPersonEmail}</a>
-                </p>
-                <p>
-                  T:{" "}
-                  <a href={`tel:+1${salesPersonPhone}`}>{salesPersonPhone}</a>
-                </p>
-                <p>
-                  C: <a href={`tel:+1${salesPersonCell}`}>{salesPersonCell}</a>
-                </p>
+            {salesOne && (
+              <div className="connect-wrapper__content--sales">
+                <div className="image">
+                  <GatsbyImage
+                    image={getImage(
+                      salesOne.acfSalesTeam.image.localFile.childImageSharp
+                        .gatsbyImageData
+                    )}
+                    alt={salesOne.acfSalesTeam.image.altText}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
+                  />
+                </div>
 
-                <div className="sales-btn">
-                  <a href={`mailto:${salesPersonEmail}`}>Email Sales Person</a>
+                <div className="contact">
+                  <p className="sales-name">{salesOne.title}</p>
+                  <p>
+                    <a href={`mailto:${salesOne.acfSalesTeam.email}`}>
+                      {salesOne.acfSalesTeam.email}
+                    </a>
+                  </p>
+                  <p>
+                    T:{" "}
+                    <a href={`tel:+1${salesOne.acfSalesTeam.phone}`}>
+                      {salesOne.acfSalesTeam.phone}
+                    </a>
+                  </p>
+                  <p>
+                    C:{" "}
+                    <a href={`tel:+1${salesOne.acfSalesTeam.cell}`}>
+                      {salesOne.acfSalesTeam.cell}
+                    </a>
+                  </p>
+
+                  <div className="sales-btn">
+                    <a href={`mailto:${salesOne.acfSalesTeam.email}`}>
+                      Email Sales Person
+                    </a>
+                  </div>
                 </div>
               </div>
+            )}
+            {salesTwo && (
+              <div className="connect-wrapper__content--sales">
+                <div className="image">
+                  <GatsbyImage
+                    image={getImage(
+                      salesTwo.acfSalesTeam.image.localFile.childImageSharp
+                        .gatsbyImageData
+                    )}
+                    alt={salesTwo.acfSalesTeam.image.altText}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
+                  />
+                </div>
+
+                <div className="contact">
+                  <p className="sales-name">{salesTwo.title}</p>
+                  <p>
+                    <a href={`mailto:${salesTwo.acfSalesTeam.email}`}>
+                      {salesTwo.acfSalesTeam.email}
+                    </a>
+                  </p>
+                  <p>
+                    T:{" "}
+                    <a href={`tel:+1${salesTwo.acfSalesTeam.phone}`}>
+                      {salesTwo.acfSalesTeam.phone}
+                    </a>
+                  </p>
+                  <p>
+                    C:{" "}
+                    <a href={`tel:+1${salesTwo.acfSalesTeam.cell}`}>
+                      {salesTwo.acfSalesTeam.cell}
+                    </a>
+                  </p>
+
+                  <div className="sales-btn">
+                    <a href={`mailto:${salesTwo.acfSalesTeam.email}`}>
+                      Email Sales Person
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="connect-wrapper__content">
+            <div className="connect-wrapper__titles">
+              <p>Show Home Hours</p>
             </div>
             <div className="connect-wrapper__content--hours">
               <div
@@ -76,6 +135,9 @@ const HomePlanConnect = ({
 
 const SectionStyled = styled.section`
   .connect-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     background-color: ${colors.white};
     padding-bottom: 5rem;
 
@@ -98,29 +160,8 @@ const SectionStyled = styled.section`
 
       p {
         ${B1Black};
-        width: calc(100% / 1);
+        width: 100%;
         margin: 0;
-
-        @media (min-width: 768px) {
-          width: calc(100% / 2);
-        }
-      }
-
-      p:first-of-type {
-        width: calc(100%);
-
-        @media (min-width: 768px) {
-          width: calc(60%);
-        }
-      }
-
-      p:last-of-type {
-        width: calc(100%);
-
-        @media (min-width: 768px) {
-          width: calc(40%);
-          padding-left: 4rem;
-        }
       }
     }
 
@@ -139,7 +180,7 @@ const SectionStyled = styled.section`
         padding-top: 2rem;
 
         @media (min-width: 768px) {
-          width: calc(60%);
+          width: calc(50%);
           padding-top: 4.7rem;
         }
 
@@ -192,8 +233,7 @@ const SectionStyled = styled.section`
         padding-top: 4.7rem;
 
         @media (min-width: 768px) {
-          width: calc(40% - 4rem);
-          margin-left: 4rem;
+          width: calc(100%);
         }
 
         p {
@@ -201,9 +241,6 @@ const SectionStyled = styled.section`
         }
 
         .directions-btn {
-          position: absolute;
-          bottom: 3rem;
-          left: 0;
           width: 100%;
 
           a {
