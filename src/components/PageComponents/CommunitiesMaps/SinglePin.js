@@ -72,6 +72,7 @@ const DivStyled = styled.div`
       h3 {
         ${B2Black};
         margin: 0;
+        line-height: 1.25;
         text-transform: uppercase;
       }
     }
@@ -79,6 +80,7 @@ const DivStyled = styled.div`
     &--content {
       p {
         ${B2Black};
+        line-height: 1.25;
       }
     }
 

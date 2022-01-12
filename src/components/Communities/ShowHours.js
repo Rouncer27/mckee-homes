@@ -2,6 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import { B1Black, Btn1Grey, H4Navy } from "../../styles/helpers"
 
+import showhome from "../../images/icons/townhomes.png"
+
 const ShowHours = ({ hours, map, directions }) => {
   return (
     <StyledDiv>
@@ -11,7 +13,12 @@ const ShowHours = ({ hours, map, directions }) => {
         </div>
         <div className="hours">
           <div className="hours__title">
-            <h2>Show Home Hours</h2>
+            <h2>
+              <span>
+                <img src={showhome} alt="" />
+              </span>{" "}
+              Show Home Hours
+            </h2>
           </div>
           <div
             className="hours__content"
@@ -71,7 +78,17 @@ const StyledDiv = styled.div`
     &__title {
       h2 {
         ${H4Navy};
+        position: relative;
+        padding-top: 8.5rem;
         text-transform: uppercase;
+
+        span {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 11.1rem;
+        }
       }
     }
 

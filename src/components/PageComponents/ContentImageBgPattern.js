@@ -50,9 +50,18 @@ const ContentImageBgPattern = ({ data }) => {
             className="content__paragraph"
             dangerouslySetInnerHTML={{ __html: data.content }}
           />
-          <div className="content__button">
-            <Link to={`/${data.buttonSlug}`}>{data.buttonText}</Link>
-          </div>
+
+          {data.buttonType !== "external" ? (
+            <div className="content__button">
+              <Link to={`/${data.buttonSlug}`}>{data.buttonText}</Link>
+            </div>
+          ) : (
+            <div className="content__button">
+              <a target="_balnk" rel="noreferrer" href={`${data.buttonLink}`}>
+                {data.buttonText}
+              </a>
+            </div>
+          )}
         </div>
         <div className="graphic">
           <BgPatternBrick />
