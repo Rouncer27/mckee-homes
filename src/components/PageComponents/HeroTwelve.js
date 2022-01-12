@@ -30,24 +30,24 @@ const HeroTwelve = ({ data }) => {
             <Link to={`/${data.buttonOneSlug}`}>{data.buttonOneText}</Link>
             <Link to={`/${data.buttonTwoSlug}`}>{data.buttonTwoText}</Link>
           </div>
-          <div className="hero-content__logos">
-            {data.awardLogos.map((logo, index) => {
-              const logoDisplay = getImage(
-                logo.logo.localFile.childImageSharp.gatsbyImageData
-              )
-              const logoAlt = logo.logo.altText
-              return (
-                <div className="single-logo" key={index}>
-                  <GatsbyImage
-                    image={logoDisplay}
-                    alt={logoAlt}
-                    layout="fullWidth"
-                    formats={["auto", "webp", "avif"]}
-                  />
-                </div>
-              )
-            })}
-          </div>
+        </div>
+        <div className="hero-content__logos">
+          {data.awardLogos.map((logo, index) => {
+            const logoDisplay = getImage(
+              logo.logo.localFile.childImageSharp.gatsbyImageData
+            )
+            const logoAlt = logo.logo.altText
+            return (
+              <div className="single-logo" key={index}>
+                <GatsbyImage
+                  image={logoDisplay}
+                  alt={logoAlt}
+                  layout="fullWidth"
+                  formats={["auto", "webp", "avif"]}
+                />
+              </div>
+            )
+          })}
         </div>
       </div>
       <div className="hero-overlay" />
@@ -57,7 +57,7 @@ const HeroTwelve = ({ data }) => {
 
 const HeroTwelveStyled = styled.section`
   position: relative;
-  height: 50rem;
+  height: 75rem;
 
   @media (min-width: 768px) {
     height: 60rem;
@@ -97,14 +97,16 @@ const HeroTwelveStyled = styled.section`
     z-index: 10;
 
     @media (min-width: 768px) {
-      width: 75rem;
     }
 
     &__inner {
+      width: 100%;
       padding: 5rem 2.5rem;
 
       @media (min-width: 768px) {
-        padding: 2.5rem 10rem 2.5rem 5rem;
+        width: 75rem;
+        margin: 0 auto;
+        padding: 2.5rem;
       }
 
       p {
@@ -137,18 +139,30 @@ const HeroTwelveStyled = styled.section`
       width: 100%;
       margin-top: 5rem;
 
+      @media (min-width: 768px) {
+        max-width: 90rem;
+        margin: 5rem auto 0;
+      }
+
       .single-logo {
-        width: calc((100% / 3) - 4rem);
-        margin: 0 2rem;
+        width: calc((100% / 5) - 1rem);
+        margin: 0 0.5rem;
+
+        @media (min-width: 768px) {
+          width: calc((100% / 5) - 4rem);
+        }
+
+        @media (min-width: 1025px) {
+          width: calc((100% / 5) - 4rem);
+        }
       }
 
       .single-logo:first-of-type {
         margin-left: 0;
-        margin-bottom: 0.5rem;
       }
 
       .single-logo:last-of-type {
-        margin-bottom: 0.5rem;
+        margin-right: 0;
       }
     }
   }

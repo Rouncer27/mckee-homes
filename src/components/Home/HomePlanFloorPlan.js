@@ -30,21 +30,16 @@ const HomePlanFloorPlan = ({
   title,
   propelFloorPlanReq,
   propelFloorPlan,
-  designerFloorPlanReq,
-  designerFloorPlan,
   signatureFloorPlanReq,
   signatureFloorPlan,
 }) => {
   const [floorPlanDisplay, setFloorPlanDisplay] = useState("propel")
   let propel
-  let designer
   let signature
 
   useEffect(() => {
     if (propelFloorPlanReq) {
       setFloorPlanDisplay("propel")
-    } else if (designerFloorPlanReq) {
-      setFloorPlanDisplay("designer")
     } else if (signatureFloorPlanReq) {
       setFloorPlanDisplay("signature")
     } else {
@@ -55,12 +50,6 @@ const HomePlanFloorPlan = ({
   if (propelFloorPlanReq) {
     propel = getImage(
       propelFloorPlan.localFile?.childImageSharp?.gatsbyImageData
-    )
-  }
-
-  if (designerFloorPlanReq) {
-    designer = getImage(
-      designerFloorPlan.localFile?.childImageSharp?.gatsbyImageData
     )
   }
 
@@ -76,15 +65,6 @@ const HomePlanFloorPlan = ({
     displayImage = (
       <GatsbyImage
         image={propel}
-        alt={``}
-        layout="fullWidth"
-        formats={["auto", "webp", "avif"]}
-      />
-    )
-  } else if (floorPlanDisplay === "designer") {
-    displayImage = (
-      <GatsbyImage
-        image={designer}
         alt={``}
         layout="fullWidth"
         formats={["auto", "webp", "avif"]}
@@ -189,19 +169,24 @@ const HomePlanFloorPlan = ({
                 <p>{title}</p>
               </div>
               <div className="floorplan-wrapper__plan--nav">
-                <span>Attributes: </span>
+                <span>Specification Grade: </span>
                 {propelFloorPlanReq && (
-                  <button onClick={() => setFloorPlanDisplay("propel")}>
+                  <button
+                    className={
+                      floorPlanDisplay === "propel" ? "active-plan" : ""
+                    }
+                    onClick={() => setFloorPlanDisplay("propel")}
+                  >
                     Propel
                   </button>
                 )}
-                {designerFloorPlanReq && (
-                  <button onClick={() => setFloorPlanDisplay("designer")}>
-                    Designer
-                  </button>
-                )}
                 {signatureFloorPlanReq && (
-                  <button onClick={() => setFloorPlanDisplay("signature")}>
+                  <button
+                    className={
+                      floorPlanDisplay === "signature" ? "active-plan" : ""
+                    }
+                    onClick={() => setFloorPlanDisplay("signature")}
+                  >
                     Signature
                   </button>
                 )}
@@ -279,13 +264,24 @@ const SectionStyled = styled.section`
     }
 
     &__plan {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+
       p {
         ${H1Navy};
         margin-top: 2rem;
         margin-bottom: 2rem;
       }
 
+      &--title {
+        width: 50%;
+      }
+
       &--nav {
+        width: 50%;
+
         span {
           ${B1Navy};
         }
@@ -293,11 +289,29 @@ const SectionStyled = styled.section`
         button {
           ${B1Navy};
           display: inline-block;
+          margin: 0 0.5rem;
           padding: 0.5rem 2rem;
+          transition: all 0.3s ease-out;
           background-color: transparent;
           border: none;
           cursor: pointer;
+
+          &:hover {
+            background-color: ${colors.colorTertiary};
+            color: ${colors.white};
+          }
+
+          &.active-plan {
+            background-color: ${colors.colorTertiary};
+            color: ${colors.white};
+            cursor: inherit;
+          }
         }
+      }
+
+      &--image {
+        max-width: 60rem;
+        margin: auto;
       }
     }
 

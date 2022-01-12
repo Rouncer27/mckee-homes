@@ -123,6 +123,7 @@ const SectionStyled = styled.div`
       position: relative;
       height: 35rem;
       z-index: 10;
+      cursor: zoom-in;
 
       @media (min-width: 768px) {
         height: 45rem;

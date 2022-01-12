@@ -39,15 +39,6 @@ export const query = graphql`
             }
           }
         }
-        designerFloorPlanReq
-        designerFloorPlan {
-          mediaItemUrl
-          localFile {
-            childImageSharp {
-              gatsbyImageData(width: 2000)
-            }
-          }
-        }
         signatureFloorPlanReq
         signatureFloorPlan {
           mediaItemUrl
