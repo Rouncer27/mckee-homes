@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
-import { fonts, fontSizer, colors } from "../../styles/helpers"
+import { fonts, fontSizer, colors, B2White } from "../../styles/helpers"
 import scrollTo from "gatsby-plugin-smoothscroll"
 
 const handleScrollPosition = bookBtn => {
@@ -46,11 +46,11 @@ const BackToTopStyled = styled.div`
   right: 1rem;
   width: 6rem;
   height: 6rem;
-  background: rgba(21, 66, 144, 0.6);
+  background: rgba(21, 66, 144, 0.45);
   transition: all 0.3s ease-in-out;
   transform: translateX(200%);
   border-radius: 50%;
-  box-shadow: 0.3rem 0.3rem 0.75rem ${colors.black};
+  box-shadow: 5px 3px 6px 0 rgba(0, 0, 0, 0.16);
   overflow: hidden;
   z-index: 9999999999999;
 
@@ -66,11 +66,7 @@ const BackToTopStyled = styled.div`
   }
 
   .inner-button {
-    ${fontSizer(1.4, 1.6, 76.8, 150, 1.2)};
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    align-items: center;
+    ${B2White};
     width: 6rem;
     height: 6rem;
     padding: 0.5rem;
@@ -78,11 +74,6 @@ const BackToTopStyled = styled.div`
     border: none;
     transition: all 0.3s ease-in-out;
     text-align: center;
-    color: #fff;
-    font-family: ${fonts.fontPrimary};
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
     line-height: 1.11;
     cursor: pointer;
 

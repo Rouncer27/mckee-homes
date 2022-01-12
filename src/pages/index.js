@@ -90,6 +90,8 @@ export const homeQuery = graphql`
 
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentImageBgPattern {
             fieldGroupName
+            buttonType
+            buttonLink
             buttonText
             buttonSlug
             title

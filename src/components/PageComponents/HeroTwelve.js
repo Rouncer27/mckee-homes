@@ -5,13 +5,12 @@ import { Btn1GreyBlue, B1White, H2White } from "../../styles/helpers"
 import { Link } from "gatsby"
 
 const HeroTwelve = ({ data }) => {
-  console.log("HeroTwelve: ", data)
   const imageDisplay = getImage(
     data.image.localFile.childImageSharp.gatsbyImageData
   )
   const imageAlt = data.image.altText
   return (
-    <HeroTwelveStyled>
+    <HeroTwelveStyled id={data.sectionId}>
       <div className="hero-image">
         <GatsbyImage
           image={imageDisplay}

@@ -272,6 +272,7 @@ export const pageTempQuery = graphql`
             buttonOneSlug
             buttonTwoText
             buttonTwoSlug
+            sectionId
             awardLogos {
               logo {
                 altText
@@ -316,6 +317,8 @@ export const pageTempQuery = graphql`
 
           ... on WpPage_Acfmaintemplatefields_PageComponents_ContentImageBgPattern {
             fieldGroupName
+            buttonType
+            buttonLink
             buttonText
             buttonSlug
             title
