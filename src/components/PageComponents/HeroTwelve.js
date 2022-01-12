@@ -134,7 +134,7 @@ const HeroTwelveStyled = styled.section`
     &__logos {
       display: flex;
       align-items: flex-end;
-      justify-content: flex-start;
+      justify-content: center;
       flex-wrap: wrap;
       width: 100%;
       margin-top: 5rem;

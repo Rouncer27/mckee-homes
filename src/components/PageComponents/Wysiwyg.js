@@ -104,18 +104,19 @@ const WysiwygStyled = styled.div`
       li {
         ${B1Black};
         position: relative;
-        margin-bottom: 0.75em;
-        padding-left: 0.75em;
+        margin-bottom: 0.25em;
+        padding-left: 0.5em;
         font-size: 1.6rem;
 
         &::before {
           font-family: ${fonts.fontAwesome};
           position: absolute;
-          top: 0.1em;
+          top: 2.25em;
           left: 0;
           padding-right: 0.5em;
-          color: rgba($grey, 0.75);
-          content: "\f0da";
+          color: rgba(0, 0, 0, 0.5);
+          font-size: 0.5rem;
+          content: "\f111";
         }
       }
     }
