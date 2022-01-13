@@ -13,10 +13,12 @@ const ShowHome = ({ home }) => {
     <article>
       <ShowHomeHeader home={home} />
       <HomePlanBest />
-      <HomePlanDetails
-        details={home.acfShowHomes.details}
-        title={`HOME SPECIFICATIONS AND FEATURES:`}
-      />
+      {home.acfShowHomes.details && (
+        <HomePlanDetails
+          details={home.acfShowHomes.details}
+          title={`Other features and details to note:`}
+        />
+      )}
       <HomePlanGallery gallery={home.acfShowHomes.gallery} />
       <HomePlanConnect
         salesOne={home.acfShowHomes.salesPersonOne}

@@ -13,10 +13,12 @@ const QuickPossesion = ({ home }) => {
     <article>
       <QuickPossessionHeader home={home} />
       <HomePlanBest />
-      <HomePlanDetails
-        details={home.acfQuickPossessions.details}
-        title={`HOME SPECIFICATIONS AND FEATURES:`}
-      />
+      {home.acfQuickPossessions.details && (
+        <HomePlanDetails
+          details={home.acfQuickPossessions.details}
+          title={`Other features and details to note:`}
+        />
+      )}
       <HomePlanGallery gallery={home.acfQuickPossessions.gallery} />
       <QuickConnect
         salesOne={home.acfQuickPossessions.salesPersonOne}

@@ -15,9 +15,6 @@ const HomePlanConnect = ({
   showHomeHours,
   googleMapLink,
 }) => {
-  console.log("salesOne: ", salesOne)
-  console.log("salesTwo: ", salesTwo)
-
   return (
     <SectionStyled>
       <div className="connect-wrapper">
@@ -181,7 +178,6 @@ const SectionStyled = styled.section`
 
         @media (min-width: 768px) {
           width: calc(50%);
-          padding-top: 4.7rem;
         }
 
         .image {
@@ -230,7 +226,6 @@ const SectionStyled = styled.section`
       &--hours {
         position: relative;
         width: calc(100%);
-        padding-top: 4.7rem;
 
         @media (min-width: 768px) {
           width: calc(100%);

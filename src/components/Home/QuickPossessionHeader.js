@@ -13,6 +13,7 @@ import {
   B2Grey,
   B1Black,
   B1White,
+  fontSizer,
 } from "../../styles/helpers"
 import scrollTo from "gatsby-plugin-smoothscroll"
 
@@ -138,6 +139,10 @@ const QuickPossessionHeader = ({ home }) => {
             <p>Quick Possessions</p>
             <h1>{home.title}</h1>
             <p className="price">&#36;{priceComma}</p>
+            <p className="disclaimer">
+              The images and elevations supplied my not be indicative of
+              included items.
+            </p>
           </div>
           <div className="header__sizes">
             <p>
@@ -171,7 +176,7 @@ const QuickPossessionHeader = ({ home }) => {
                     index >= home.acfQuickPossessions.homeFeatures.length - 1
                   return (
                     <>
-                      {feature}
+                      {feature.split(/(?=[A-Z])/).join(" ")}
                       {isLast ? "" : ", "}
                     </>
                   )
@@ -322,6 +327,13 @@ const StyledSection = styled.section`
         ${B1Black};
       }
 
+      p.disclaimer {
+        ${B2Black};
+        ${fontSizer(1, 1.4, 76.8, 150, 1.4)};
+        margin: 0;
+        text-transform: capitalize;
+      }
+
       h1 {
         ${H1Navy};
         margin: 0;
@@ -380,6 +392,10 @@ const StyledSection = styled.section`
       &--details {
         margin-top: 2rem;
         margin-bottom: 2rem;
+      }
+
+      &--features {
+        text-transform: capitalize;
       }
     }
 

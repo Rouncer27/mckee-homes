@@ -34,6 +34,7 @@ const SectionStyled = styled.section`
       h2 {
         ${B1Black};
         margin: 0;
+        text-transform: uppercase;
       }
     }
 
