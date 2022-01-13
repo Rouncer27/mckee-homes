@@ -1,6 +1,7 @@
 import React from "react"
 
 import QuickPossessionHeader from "./QuickPossessionHeader"
+import HomePlanBest from "./HomePlanBest"
 import HomePlanDetails from "./HomePlanDetails"
 import HomePlanGallery from "./HomePlanGallery"
 import QuickConnect from "./QuickConnect"
@@ -11,6 +12,7 @@ const QuickPossesion = ({ home }) => {
   return (
     <article>
       <QuickPossessionHeader home={home} />
+      <HomePlanBest />
       <HomePlanDetails
         details={home.acfQuickPossessions.details}
         title={`HOME SPECIFICATIONS AND FEATURES:`}

@@ -1,6 +1,7 @@
 import React from "react"
 
 import ShowHomeHeader from "./ShowHomeHeader"
+import HomePlanBest from "./HomePlanBest"
 import HomePlanDetails from "./HomePlanDetails"
 import HomePlanGallery from "./HomePlanGallery"
 import HomePlanConnect from "./HomePlanConnect"
@@ -8,11 +9,10 @@ import MoreInformation from "../PageComponents/Forms/MoreInformation"
 import HomePlanFloorPlan from "./HomePlanFloorPlan"
 
 const ShowHome = ({ home }) => {
-  console.log("home: ", home)
-
   return (
     <article>
       <ShowHomeHeader home={home} />
+      <HomePlanBest />
       <HomePlanDetails
         details={home.acfShowHomes.details}
         title={`HOME SPECIFICATIONS AND FEATURES:`}

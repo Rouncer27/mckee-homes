@@ -97,6 +97,18 @@ const DisplayHomePlans = props => {
   const allData = useStaticQuery(getData)
   // Plans Post Types
   const homePlans = allData.homePlans.edges
+
+  const plansSorted = homePlans.sort(function (a, b) {
+    if (a.node.slug < b.node.slug) {
+      return -1
+    }
+    if (a.node.slug > b.node.slug) {
+      return 1
+    }
+    return 0
+  })
+  console.log("TREVOR", plansSorted)
+
   // Filters Information
   const homeTypes = allData.homeTypes.edges
   const homeStyles = allData.homeStyles.edges
@@ -152,7 +164,7 @@ const DisplayHomePlans = props => {
         </div>
       </div>
       <div className="wrapper">
-        {homePlans.map(home => {
+        {plansSorted.map(home => {
           let typeMatch = true
           let styleMatch = true
           let communityMatch = true

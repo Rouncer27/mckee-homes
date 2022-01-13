@@ -5,7 +5,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { colors, standardWrapper } from "../../styles/helpers"
+import { colors, fonts, standardWrapper } from "../../styles/helpers"
 
 const HomePlanLightbox = ({
   lightboxActive,
@@ -54,8 +54,9 @@ const HomePlanLightbox = ({
           })}
         </Slider>
       </div>
+      <div onClick={() => handleCloseLightBox()} className="lightbox-bg" />
       <div className="btn-close">
-        <button onClick={() => handleCloseLightBox()}>Close</button>
+        <button onClick={() => handleCloseLightBox()}>&#10005;</button>
       </div>
     </LightboxStyled>
   )
@@ -67,8 +68,18 @@ const LightboxStyled = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #42454a;
+
   z-index: 99999999999;
+
+  .lightbox-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: ${colors.colorPrimary};
+    z-index: 5;
+  }
 
   .wrapper {
     ${standardWrapper};
@@ -82,10 +93,61 @@ const LightboxStyled = styled.div`
     width: 100%;
     max-height: 80%;
     margin: auto !important;
+    z-index: 500;
   }
 
   .slick-slider {
     width: 100%;
+
+    button {
+      top: calc(100% + 5rem);
+      width: 10rem;
+      height: 10rem;
+      z-index: 999999;
+
+      @media (min-width: 768px) {
+        top: 50%;
+      }
+
+      &::before {
+        font-size: 10rem;
+        font-family: ${fonts.fontAwesome};
+        opacity: 1;
+      }
+
+      &.slick-prev {
+        @media (min-width: 768px) {
+          left: -9rem;
+        }
+
+        &::before {
+          content: "\f104";
+        }
+      }
+
+      &.slick-next {
+        @media (min-width: 768px) {
+          right: -9rem;
+        }
+
+        &::before {
+          content: "\f105";
+        }
+      }
+    }
+
+    .slick-list {
+      max-width: 100%;
+
+      @media (min-width: 768px) {
+        max-width: 65rem;
+        margin: auto;
+      }
+
+      @media (min-width: 1025px) {
+        max-width: 100%;
+      }
+    }
   }
 
   .slick-slide {
@@ -106,12 +168,18 @@ const LightboxStyled = styled.div`
     position: absolute;
     top: 3rem;
     right: 3rem;
+    z-index: 501;
 
     button {
-      padding: 1rem 2rem;
+      display: block;
+      width: 7.5rem;
+      height: 7.5rem;
       background-color: ${colors.white};
       border: 0.1rem solid ${colors.white};
+      border-radius: 50%;
       transition: all 0.3s ease-out;
+      font-size: 2rem;
+      font-weight: bold;
       text-transform: uppercase;
       cursor: pointer;
 

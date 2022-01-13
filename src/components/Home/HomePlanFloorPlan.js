@@ -284,6 +284,7 @@ const SectionStyled = styled.section`
 
         span {
           ${B1Navy};
+          text-transform: uppercase;
         }
 
         button {
@@ -293,7 +294,9 @@ const SectionStyled = styled.section`
           padding: 0.5rem 2rem;
           transition: all 0.3s ease-out;
           background-color: transparent;
-          border: none;
+          border: 0.1rem solid ${colors.colorPrimary};
+          border-radius: 0.5rem;
+          text-transform: uppercase;
           cursor: pointer;
 
           &:hover {
