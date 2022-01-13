@@ -97,7 +97,7 @@ const SectionStyled = styled.section`
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #a5b6ba;
+        background-color: rgba(0, 0, 0, 0.25);
         opacity: 0.4;
       }
     }

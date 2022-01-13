@@ -83,7 +83,7 @@ const DisplayTeam = ({ data }) => {
                   formats={["auto", "webp", "avif"]}
                 />
               </div>
-              <div className="name">
+              <Link className="name" to={`/our-team/${team.node.slug}`}>
                 <h2>{team.node.title}</h2>
                 <h3>
                   {team.node.acfOurTeam.department}{" "}
@@ -92,7 +92,7 @@ const DisplayTeam = ({ data }) => {
                 <div className="read-more">
                   <Link to={`/our-team/${team.node.slug}`}>Read More</Link>
                 </div>
-              </div>
+              </Link>
             </Team>
           )
         })}
@@ -132,7 +132,12 @@ const Team = styled.div`
     width: 100%;
     padding: 2.5rem;
     padding-bottom: 5rem;
+    transition: all 0.3s ease-out;
     background-color: ${colors.colorPrimary};
+
+    &:hover {
+      background-color: ${colors.colorSecondary};
+    }
 
     h2 {
       ${B1White};
