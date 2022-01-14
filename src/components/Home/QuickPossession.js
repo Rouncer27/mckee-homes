@@ -5,7 +5,7 @@ import HomePlanBest from "./HomePlanBest"
 import HomePlanDetails from "./HomePlanDetails"
 import HomePlanGallery from "./HomePlanGallery"
 import QuickConnect from "./QuickConnect"
-import SeeThisHome from "../PageComponents/Forms/SeeThisHome"
+import QuickPossesionsForm from "../PageComponents/Forms/QuickPossesionsForm"
 import HomePlanFloorPlan from "./HomePlanFloorPlan"
 
 const QuickPossesion = ({ home }) => {
@@ -24,7 +24,11 @@ const QuickPossesion = ({ home }) => {
         salesOne={home.acfQuickPossessions.salesPersonOne}
         salesTwo={home.acfQuickPossessions.salesPersonTwo}
       />
-      <SeeThisHome homeSlug="quick-possessions" />
+      <QuickPossesionsForm
+        homeSlug="quick-possessions"
+        title={home.title}
+        community={home.communities.nodes[0].slug}
+      />
       <HomePlanFloorPlan
         home={home}
         homeType="quick-possessions"

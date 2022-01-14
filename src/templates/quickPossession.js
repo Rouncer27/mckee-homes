@@ -25,6 +25,11 @@ export const query = graphql`
       date
       slug
       databaseId
+      communities {
+        nodes {
+          slug
+        }
+      }
       acfQuickPossessions {
         address
         homeFeatures

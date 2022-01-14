@@ -15,13 +15,14 @@ import FormSuccess from "../../FormParts/formModals/FormSuccess"
 import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
 
-const HomePlanForms = ({ homeSlug, homePlan }) => {
+const QuickPossesionsForm = ({ homeSlug, title, community }) => {
+  console.log("QUICK POSSESIONS: ", title)
   const [formData, setFormData] = useState({
     yourname: "",
     email: "",
     phone: "",
     community: "all",
-    homeplan: "",
+    title: "",
     questions: "",
     newsletterChecked: false,
     newsletter: "No Thank You",
@@ -46,7 +47,8 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
   useEffect(() => {
     setFormData({
       ...formData,
-      homeplan: homePlan,
+      title: title,
+      community: community,
     })
   }, [])
 
@@ -66,27 +68,27 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
   const getFormId = community => {
     switch (community) {
       case "bayside-estates":
-        return 2190
+        return 2198
       case "chinook-gate":
-        return 2191
+        return 2199
       case "coopers-crossing":
-        return 2192
+        return 2200
       case "kings-heights":
-        return 2193
+        return 2201
       case "lanark-landing":
-        return 2194
+        return 2202
       case "ravenswood":
-        return 2195
+        return 2203
       case "vista-crossing":
-        return 2196
+        return 2204
       default:
-        return 2197
+        return 2205
     }
   }
 
   const handleOnSubmit = async event => {
     event.preventDefault()
-    const formId = getFormId(formData.community)
+    const formId = getFormId(community)
 
     setFormStatus({
       ...formStatus,
@@ -142,14 +144,12 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
       email: "",
       phone: "",
       community: "all",
-      homeplan: "",
+      title: "",
       questions: "",
       newsletterChecked: false,
       newsletter: "No Thank You",
     })
   }
-
-  console.log("TREVOR::::::", formData.newsletterChecked)
 
   return (
     <SectionStyled>
@@ -226,26 +226,19 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
                 />
               </label>
             </InputField>
-            <InputField>
-              <label htmlFor="community">
-                What Community are you looking at?
-                <select
-                  value={formData.community}
-                  name="community"
-                  id="community"
-                  onChange={handleOnChange}
-                >
-                  <option value="all">All Communities</option>
-                  <option value="bayside-estates">Bayside Estates</option>
-                  <option value="chinook-gate">Chinook Gate</option>
-                  <option value="coopers-crossing">Coopers Crossing</option>
-                  <option value="kings-heights">King's Heights</option>
-                  <option value="lanark-landing">Lanark Landing</option>
-                  <option value="ravenswood">Ravenswood</option>
-                  <option value="vista-crossing">Vista Crossing</option>
-                </select>
+
+            <CheckboxField>
+              <input
+                name="send"
+                type="checkbox"
+                value={formData.newsletterChecked}
+                id="send"
+                onChange={handleOnCheck}
+              />
+              <label htmlFor="send">
+                Send me monthly news, promotions and updates
               </label>
-            </InputField>
+            </CheckboxField>
 
             <InputField>
               <label htmlFor="questions">
@@ -260,18 +253,6 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
               </label>
             </InputField>
 
-            <CheckboxField>
-              <input
-                name="send"
-                type="checkbox"
-                value={formData.newsletterChecked}
-                id="send"
-                onChange={handleOnCheck}
-              />
-              <label htmlFor="send">
-                Send me monthly news, promotions and updates
-              </label>
-            </CheckboxField>
             <div className="btn-submit">
               <button type="submit">Send Me More Info</button>
             </div>
@@ -341,6 +322,7 @@ const SectionStyled = styled.div`
     }
 
     .btn-submit {
+      width: 100%;
       margin-top: 5rem;
 
       @media (min-width: 768px) {
@@ -451,4 +433,4 @@ const InputField = styled.div`
   }
 `
 
-export default HomePlanForms
+export default QuickPossesionsForm
