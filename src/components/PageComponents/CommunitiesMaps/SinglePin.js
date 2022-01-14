@@ -3,17 +3,27 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 
-import { B2Black, Btn1Grey, colors } from "../../../styles/helpers"
+import { B2Black, Btn1Grey, Btn1Navy, colors } from "../../../styles/helpers"
 
-const SinglePin = ({ imgSrc, alt, title, details, slug, classmodifier }) => {
+const SinglePin = ({
+  imgSrc,
+  alt,
+  title,
+  details,
+  slug,
+  classmodifier,
+  setPinActive,
+}) => {
   return (
     <DivStyled
       className={`pin ${classmodifier}`}
       onMouseOver={e => {
         e.currentTarget.classList.add("active-pin")
+        setPinActive(true)
       }}
       onMouseLeave={e => {
         e.currentTarget.classList.remove("active-pin")
+        setPinActive(false)
       }}
     >
       <div className="pin__icon">
@@ -37,6 +47,18 @@ const SinglePin = ({ imgSrc, alt, title, details, slug, classmodifier }) => {
         <div className="pin__details--link">
           <Link to={`/communities/${slug}`}>Learn More</Link>
         </div>
+        <div className="pin__details--close">
+          <button
+            onClick={e => {
+              e.currentTarget.parentElement.parentElement.parentElement.classList.remove(
+                "active-pin"
+              )
+              setPinActive(false)
+            }}
+          >
+            Close
+          </button>
+        </div>
       </div>
     </DivStyled>
   )
@@ -57,14 +79,20 @@ const DivStyled = styled.div`
   .pin__details {
     position: absolute;
     top: -100%;
-    left: 100%;
-    width: 25.5rem;
+    left: 0%;
+    width: 30rem;
     padding: 1rem 1.5rem;
     background-color: ${colors.white};
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     transition: all 0.3s ease-out;
     opacity: 0;
     visibility: hidden;
+
+    @media (min-width: 768px) {
+      top: -100%;
+      left: 100%;
+      width: 27.5rem;
+    }
 
     &--title {
       border-bottom: 0.1rem solid ${colors.colorPrimary};
@@ -89,6 +117,21 @@ const DivStyled = styled.div`
         ${Btn1Grey};
       }
     }
+
+    &--close {
+      width: 100%;
+
+      @media (min-width: 768px) {
+        display: none;
+      }
+
+      button {
+        ${Btn1Navy};
+        display: block;
+        width: 100%;
+        margin-top: 2.5rem;
+      }
+    }
   }
 
   &.active-pin {
@@ -103,11 +146,31 @@ const DivStyled = styled.div`
   &.pins__baysideEstates {
     left: 30vw;
     bottom: 50%;
+
+    .pin__details {
+      top: -10rem;
+      left: -7.5rem;
+
+      @media (min-width: 768px) {
+        top: -100%;
+        left: 0%;
+      }
+    }
   }
 
   &.pins__chinookgate {
     left: 15vw;
     bottom: 30%;
+
+    .pin__details {
+      left: -2.5rem;
+      top: -12.5rem;
+
+      @media (min-width: 768px) {
+        top: -100%;
+        left: 0%;
+      }
+    }
   }
 
   &.pins__cooperscrossing {
@@ -115,7 +178,13 @@ const DivStyled = styled.div`
     bottom: 5%;
 
     .pin__details {
-      top: -27.5rem;
+      left: -13rem;
+      top: -20rem;
+
+      @media (min-width: 768px) {
+        top: -27.5rem;
+        left: 0%;
+      }
     }
   }
 
@@ -124,7 +193,13 @@ const DivStyled = styled.div`
     bottom: 27.5%;
 
     .pin__details {
-      left: -27.5rem;
+      left: -20rem;
+      top: -15rem;
+
+      @media (min-width: 768px) {
+        top: -100%;
+        left: -27.5rem;
+      }
     }
   }
 
@@ -133,8 +208,13 @@ const DivStyled = styled.div`
     bottom: 5%;
 
     .pin__details {
-      top: -27.5rem;
-      left: -27.5rem;
+      left: -20rem;
+      top: -20rem;
+
+      @media (min-width: 768px) {
+        top: -27.5rem;
+        left: -27.5rem;
+      }
     }
   }
 
@@ -143,13 +223,29 @@ const DivStyled = styled.div`
     bottom: 20%;
 
     .pin__details {
-      left: -27.5rem;
+      left: -25rem;
+      top: -15rem;
+
+      @media (min-width: 768px) {
+        top: -100%;
+        left: -27.5rem;
+      }
     }
   }
 
   &.pins__vistaCrossing {
     left: 18vw;
     top: 30%;
+
+    .pin__details {
+      left: -3.5rem;
+      top: -20rem;
+
+      @media (min-width: 768px) {
+        top: -100%;
+        left: 100%;
+      }
+    }
   }
 `
 

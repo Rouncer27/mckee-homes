@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import AirdrieMap from "./AirdrieMap"
 import SinglePin from "./SinglePin"
+import { colors } from "../../../styles/helpers"
 
 const getData = graphql`
   {
@@ -32,6 +33,7 @@ const getData = graphql`
 `
 
 const AirdrieMapPins = () => {
+  const [pinActive, setPinActive] = useState(false)
   const communityData = useStaticQuery(getData)
   const community = communityData.community.edges
 
@@ -47,7 +49,7 @@ const AirdrieMapPins = () => {
   const ravenswood = community.find(item => item.node.slug === "ravenswood")
 
   return (
-    <DivStyled>
+    <DivStyled pinactive={pinActive}>
       <AirdrieMap />
       <div className="pins">
         <SinglePin
@@ -60,6 +62,7 @@ const AirdrieMapPins = () => {
           details={bayside.node.acfCommunity.popupDetails}
           slug={bayside.node.slug}
           classmodifier={`pins__baysideEstates`}
+          setPinActive={setPinActive}
         />
 
         <SinglePin
@@ -72,6 +75,7 @@ const AirdrieMapPins = () => {
           details={chinookgate.node.acfCommunity.popupDetails}
           slug={chinookgate.node.slug}
           classmodifier={`pins__chinookgate`}
+          setPinActive={setPinActive}
         />
 
         <SinglePin
@@ -84,6 +88,7 @@ const AirdrieMapPins = () => {
           details={cooperscrossing.node.acfCommunity.popupDetails}
           slug={cooperscrossing.node.slug}
           classmodifier={`pins__cooperscrossing`}
+          setPinActive={setPinActive}
         />
 
         <SinglePin
@@ -96,6 +101,7 @@ const AirdrieMapPins = () => {
           details={kingsHeights.node.acfCommunity.popupDetails}
           slug={kingsHeights.node.slug}
           classmodifier={`pins__kingsHeights`}
+          setPinActive={setPinActive}
         />
 
         <SinglePin
@@ -108,6 +114,7 @@ const AirdrieMapPins = () => {
           details={lanark.node.acfCommunity.popupDetails}
           slug={lanark.node.slug}
           classmodifier={`pins__lanarklanding`}
+          setPinActive={setPinActive}
         />
 
         <SinglePin
@@ -120,14 +127,38 @@ const AirdrieMapPins = () => {
           details={ravenswood.node.acfCommunity.popupDetails}
           slug={ravenswood.node.slug}
           classmodifier={`pins__ravenswood`}
+          setPinActive={setPinActive}
         />
       </div>
+      <div className="bg-overlay" />
     </DivStyled>
   )
 }
 
 const DivStyled = styled.div`
   position: relative;
+  margin-bottom: 7.5rem;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
+
+  .bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: ${colors.colorPrimary};
+    transition: all 0.3s ease-out;
+    opacity: ${props => (props.pinactive ? 1 : 0)};
+    visibility: ${props => (props.pinactive ? "visible" : "hidden")};
+    z-index: 5;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
 `
 
 export default AirdrieMapPins

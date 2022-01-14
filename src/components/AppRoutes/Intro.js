@@ -22,10 +22,10 @@ const Intro = ({ intropage }) => {
         </div>
         <div className="intro__para">
           <p>
-            Welcome to the My Favourites Portal. Sign up to gain access your My
-            Favourites account, where you can save your favourite home plans and
-            quick possessions, as well as learn about exclusive offers and
-            deals.
+            Welcome to the My Favourites Portal. The is your spot where you can
+            save your favourite home plans and quick possessions, and make notes
+            to yourself as well. We will share any exclusive offers and deals
+            here for you too.
           </p>
         </div>
         {displayBtn && (
