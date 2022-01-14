@@ -287,7 +287,8 @@ const DisplayQuickPossessions = props => {
 }
 
 const SectionStyled = styled.section`
-  min-height: 75rem;
+  min-height: 100rem;
+  overflow: hidden;
 
   .wrapper {
     ${medWrapper};
