@@ -81,7 +81,7 @@ const NavDrawer = styled.div`
 
     .gatsby-image-wrapper {
       display: block;
-      max-width: 25rem;
+      max-width: 15rem;
       margin: 0 auto;
 
       @media (min-width: 768px) {

@@ -1,7 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
+import { Link } from "gatsby"
 import styled from "styled-components"
 import MobileNavItem from "./MobileNavItem"
-import { B1Black, colors } from "../../../styles/helpers"
+import { UserContext } from "../../../context/UserContext"
+import { AlertContext } from "../../../context/AlertContext"
+import { B2Black, colors } from "../../../styles/helpers"
+
+import handleLogout from "../../../components/AppRoutes/AppActions/handleLogout"
+import MobileNavSocial from "../../SocialMedia/MobileNavSocial"
 
 const MobileNavContainer = ({ navitems }) => {
   const topNavItems = navitems.filter(item => item.parentDatabaseId === 0)
@@ -14,13 +20,34 @@ const MobileNavContainer = ({ navitems }) => {
     return item
   })
 
+  const [userState, userDispatch] = useContext(UserContext)
+  const [, alertDispatch] = useContext(AlertContext)
+  const linkSlug =
+    Object.keys(userState.user).length === 0 ? "login" : "app/dashboard"
+
   return (
     <MobileNavContainerStyled>
-      <ul>
+      <ul className="main-mobile-nav">
         {navItemsWithSubs.map(item => (
           <MobileNavItem key={item.id} item={item} />
         ))}
+
+        <li>
+          <Link to={`/${linkSlug}`}>
+            <span> &#9829;</span>My Favourites
+          </Link>
+        </li>
+        <li>
+          {Object.keys(userState.user).length === 0 ? (
+            <Link to={`/login`}>My Home Sign In</Link>
+          ) : (
+            <button onClick={() => handleLogout(userDispatch, alertDispatch)}>
+              Logout
+            </button>
+          )}
+        </li>
       </ul>
+      <MobileNavSocial />
     </MobileNavContainerStyled>
   )
 }
@@ -28,32 +55,38 @@ const MobileNavContainer = ({ navitems }) => {
 const MobileNavContainerStyled = styled.nav`
   display: block;
   width: 100%;
-  padding-bottom: 5rem;
 
-  ul {
+  ul.main-mobile-nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    padding-bottom: 5rem;
 
-    .logoutBtn {
+    li {
       position: relative;
       width: 100%;
       border-bottom: 0.1rem solid ${colors.white};
-      text-align: center;
+      text-align: left;
 
-      button,
       a {
-        ${B1Black};
+        ${B2Black};
         display: block;
         width: 100%;
         padding: 2rem;
-        border: none;
-        background-color: transparent;
+        color: ${colors.white};
         text-transform: uppercase;
 
         &:hover {
           color: ${colors.colorTertiary};
+        }
+
+        &[aria-current="page"] {
+          color: ${colors.colorTertiary};
+
+          &:hover {
+            cursor: default;
+          }
         }
       }
     }

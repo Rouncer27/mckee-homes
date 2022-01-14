@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { colors, B1Black } from "../../../styles/helpers"
+import { colors, B1Black, B2Black } from "../../../styles/helpers"
 
 import MobileSubMenu from "./MobileSubMenu"
 
@@ -20,7 +20,7 @@ const MobileNavItem = ({ item }) => {
     <MobileNavItemStyled>
       <Link to={`/${slug === "home" ? "" : slug}`}>{item.label}</Link>
       {item.subItems && item.subItems.length > 0 && (
-        <div className="subContainer">
+        <div className="sub-wrap">
           <button
             onClick={() => {
               handleToggleActive()
@@ -28,7 +28,9 @@ const MobileNavItem = ({ item }) => {
           >
             {subActive ? <>&#8722;</> : <>&#43;</>}
           </button>
-          <MobileSubMenu subActive={subActive} items={item.subItems} />
+          <div className="subContainer">
+            <MobileSubMenu subActive={subActive} items={item.subItems} />
+          </div>
         </div>
       )}
     </MobileNavItemStyled>
@@ -39,24 +41,23 @@ const MobileNavItemStyled = styled.li`
   position: relative;
   width: 100%;
   border-bottom: 0.1rem solid ${colors.white};
-  text-align: center;
+  text-align: left;
 
-  .subContainer {
-    width: 100%;
-    height: 100%;
-
+  .sub-wrap {
     button {
       position: absolute;
-      top: 50%;
+      top: 0;
       right: 0;
-      width: 4rem;
-      height: 4rem;
-      font-size: 2.5rem;
+      bottom: 0;
+      width: 7.5rem;
+      height: 100%;
+      background-color: transparent;
+      font-size: 3rem;
       font-weight: bold;
+      color: ${colors.white};
+      border: none;
       border-radius: 0 !important;
-      transform: translateY(-50%);
-      line-height: 1.25;
-      z-index: 150;
+      z-index: 10;
 
       &:hover {
         cursor: pointer;
@@ -64,8 +65,13 @@ const MobileNavItemStyled = styled.li`
     }
   }
 
+  .subContainer {
+    width: 100%;
+    height: 100%;
+  }
+
   a {
-    ${B1Black};
+    ${B2Black};
     display: block;
     width: 100%;
     padding: 2rem;
@@ -77,7 +83,8 @@ const MobileNavItemStyled = styled.li`
     }
 
     &[aria-current="page"] {
-      color: ${colors.colorTertiary};
+      color: ${colors.colorSecondary} !important;
+      background-color: ${colors.colorTertiary};
 
       &:hover {
         cursor: default;

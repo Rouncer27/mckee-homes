@@ -16,10 +16,12 @@ const MobileSubMenuItem = ({ item }) => {
 
 const MobileSubMenuItemStyled = styled.li`
   width: 100%;
-  text-align: center;
+  padding-left: 5rem;
+  border: none !important;
+  text-align: left;
 
   a {
-    padding: 1.5rem 2rem !important;
+    padding: 1rem 2rem !important;
   }
 `
 

@@ -39,13 +39,14 @@ const LoginStyled = styled.div`
   width: 100%;
 
   ul {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     width: 100%;
 
     @media (min-width: 768px) {
+      display: flex;
       justify-content: flex-end;
       padding: 0 5rem;
     }
