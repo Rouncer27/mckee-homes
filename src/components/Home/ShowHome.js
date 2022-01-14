@@ -5,7 +5,7 @@ import HomePlanBest from "./HomePlanBest"
 import HomePlanDetails from "./HomePlanDetails"
 import HomePlanGallery from "./HomePlanGallery"
 import HomePlanConnect from "./HomePlanConnect"
-import MoreInformation from "../PageComponents/Forms/MoreInformation"
+import ShowHomeForm from "../PageComponents/Forms/ShowHomeForm"
 import HomePlanFloorPlan from "./HomePlanFloorPlan"
 
 const ShowHome = ({ home }) => {
@@ -26,7 +26,11 @@ const ShowHome = ({ home }) => {
         showHomeHours={home.acfShowHomes.showHomeHours}
         googleMapLink={home.acfShowHomes.googleMapLink}
       />
-      <MoreInformation homeSlug="show-homes" />
+      <ShowHomeForm
+        homeSlug="show-homes"
+        showHome={home.title}
+        community={home.communities.nodes[0].slug}
+      />
       <HomePlanFloorPlan
         home={home}
         homeType="show-homes"

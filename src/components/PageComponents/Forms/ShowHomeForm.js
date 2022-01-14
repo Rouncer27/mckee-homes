@@ -15,14 +15,14 @@ import FormSuccess from "../../FormParts/formModals/FormSuccess"
 import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
 
-const QuickPossesionsForm = ({ homeSlug, title, community }) => {
-  console.log("QUICK POSSESIONS: ", title)
+const ShowHomeForm = ({ homeSlug, showHome, community }) => {
   const [formData, setFormData] = useState({
     yourname: "",
     email: "",
     phone: "",
     community: "all",
-    title: "",
+    showhome: "",
+    questions: "",
     newsletterChecked: false,
     newsletter: "No Thank You",
   })
@@ -46,7 +46,7 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
   useEffect(() => {
     setFormData({
       ...formData,
-      title: title,
+      showhome: showHome,
       community: community,
     })
   }, [])
@@ -67,21 +67,21 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
   const getFormId = community => {
     switch (community) {
       case "bayside-estates":
-        return 2198
+        return 2206
       case "chinook-gate":
-        return 2199
+        return 2207
       case "coopers-crossing":
-        return 2200
+        return 2208
       case "kings-heights":
-        return 2201
+        return 2209
       case "lanark-landing":
-        return 2202
+        return 2210
       case "ravenswood":
-        return 2203
+        return 2211
       case "vista-crossing":
-        return 2204
+        return 2212
       default:
-        return 2205
+        return 2213
     }
   }
 
@@ -143,17 +143,17 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
       email: "",
       phone: "",
       community: "all",
-      title: "",
+      showhome: showHome,
+      questions: "",
       newsletterChecked: false,
       newsletter: "No Thank You",
     })
   }
-
   return (
     <SectionStyled>
       <div id="more-information-form" className="wrapper">
         <div className="title">
-          <h2>Send me more information On this Quick Possession</h2>
+          <h2>Send me more information on this Show Home - {showHome}</h2>
         </div>
         <div className="form">
           <p>
@@ -237,6 +237,19 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
                 Send me monthly news, promotions and updates
               </label>
             </CheckboxField>
+
+            <InputField>
+              <label htmlFor="questions">
+                Questions/comments
+                <textarea
+                  name="questions"
+                  value={formData.questions}
+                  id="questions"
+                  onChange={handleOnChange}
+                  rows="12"
+                />
+              </label>
+            </InputField>
 
             <div className="btn-submit">
               <button type="submit">Send Me More Info</button>
@@ -418,4 +431,4 @@ const InputField = styled.div`
   }
 `
 
-export default QuickPossesionsForm
+export default ShowHomeForm

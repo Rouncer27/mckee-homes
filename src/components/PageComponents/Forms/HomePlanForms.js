@@ -142,20 +142,17 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
       email: "",
       phone: "",
       community: "all",
-      homeplan: "",
+      homeplan: homePlan,
       questions: "",
       newsletterChecked: false,
       newsletter: "No Thank You",
     })
   }
-
-  console.log("TREVOR::::::", formData.newsletterChecked)
-
   return (
     <SectionStyled>
       <div id="more-information-form" className="wrapper">
         <div className="title">
-          <h2>Send me more information</h2>
+          <h2>Send me more information on this home plan - {homePlan}</h2>
         </div>
         <div className="form">
           <p>
