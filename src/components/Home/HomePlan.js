@@ -5,7 +5,7 @@ import HomePlanBest from "./HomePlanBest"
 import HomePlanDetails from "./HomePlanDetails"
 import HomePlansCommunities from "./HomePlansCommunities"
 import HomePlanGallery from "./HomePlanGallery"
-import MoreInformation from "../PageComponents/Forms/MoreInformation"
+import HomePlanForms from "../PageComponents/Forms/HomePlanForms"
 import HomePlanFloorPlan from "./HomePlanFloorPlan"
 
 const HomePlan = ({ home }) => {
@@ -40,7 +40,7 @@ const HomePlan = ({ home }) => {
         signatureFloorPlan={home.acfHomePlans.signatureFloorPlan}
         floorPlanPdf={home.acfHomePlans.floorPlanPdf.localFile.publicURL}
       />
-      <MoreInformation homeSlug="home-plans" />
+      <HomePlanForms homeSlug="home-plans" homePlan={home.title} />
     </article>
   )
 }
