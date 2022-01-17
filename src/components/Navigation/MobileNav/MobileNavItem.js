@@ -18,7 +18,14 @@ const MobileNavItem = ({ item }) => {
   }
   return (
     <MobileNavItemStyled>
-      <Link to={`/${slug === "home" ? "" : slug}`}>{item.label}</Link>
+      <Link
+        className={`${
+          item.cssClasses.length > 0 ? item.cssClasses.map(item => item) : ""
+        }`}
+        to={`/${slug === "home" ? "" : slug}`}
+      >
+        {item.label}
+      </Link>
       {item.subItems && item.subItems.length > 0 && (
         <div className="sub-wrap">
           <button
@@ -84,10 +91,18 @@ const MobileNavItemStyled = styled.li`
 
     &[aria-current="page"] {
       color: ${colors.colorSecondary} !important;
-      background-color: ${colors.colorTertiary};
+      background-color: ${colors.colorAccent};
 
       &:hover {
         cursor: default;
+      }
+    }
+
+    &.mobile-highlight {
+      background-color: ${colors.colorTertiary};
+
+      &:hover {
+        color: ${colors.black} !important;
       }
     }
   }

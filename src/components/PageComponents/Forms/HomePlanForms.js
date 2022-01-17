@@ -7,7 +7,6 @@ import {
   Btn1Grey,
   colors,
   H2White,
-  fonts,
   standardWrapper,
 } from "../../../styles/helpers"
 
@@ -258,7 +257,7 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
             </InputField>
 
             <RadioBtnField>
-              <h4>Are you working with a realtor?</h4>
+              <p id="radio-btn-title">Are you working with a realtor?</p>
               <input
                 type="radio"
                 id="realtorChoice1"
@@ -414,10 +413,12 @@ const RadioBtnField = styled.div`
     padding: 1rem 0;
   }
 
-  h4 {
+  p#radio-btn-title {
     ${B2White};
     display: block;
     position: relative;
+    margin-bottom: 1rem;
+    margin-left: 0;
     padding-right: 5rem;
     cursor: pointer;
   }

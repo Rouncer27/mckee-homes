@@ -17,6 +17,7 @@ const getData = graphql`
           parentId
           id
           databaseId
+          cssClasses
         }
       }
     }
