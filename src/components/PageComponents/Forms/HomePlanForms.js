@@ -7,6 +7,7 @@ import {
   Btn1Grey,
   colors,
   H2White,
+  fonts,
   standardWrapper,
 } from "../../../styles/helpers"
 
@@ -14,7 +15,6 @@ import submitToServer from "../../FormParts/functions/submitToServer"
 import FormSuccess from "../../FormParts/formModals/FormSuccess"
 import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
-import { fonts } from "../../../../../18resolvelegal/src/styles/helpers"
 
 const HomePlanForms = ({ homeSlug, homePlan }) => {
   const [formData, setFormData] = useState({
