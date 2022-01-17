@@ -1,6 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import { colors, standardWrapper, B1Black, B2Black } from "../../styles/helpers"
+import {
+  colors,
+  standardWrapper,
+  B1Black,
+  B2Black,
+  standardWysiwyg,
+} from "../../styles/helpers"
 
 const HomePlanDetails = ({ title, details }) => {
   return (
@@ -39,6 +45,7 @@ const SectionStyled = styled.section`
     }
 
     &__content {
+      ${standardWysiwyg};
       width: 100%;
 
       @media (min-width: 768px) {
@@ -55,6 +62,12 @@ const SectionStyled = styled.section`
         li {
           ${B2Black};
           margin-bottom: 1rem;
+
+          &::before {
+            top: 1em;
+            font-size: 0.75rem;
+            content: "\f111";
+          }
         }
       }
     }
