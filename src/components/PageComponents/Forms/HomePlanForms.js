@@ -14,6 +14,7 @@ import submitToServer from "../../FormParts/functions/submitToServer"
 import FormSuccess from "../../FormParts/formModals/FormSuccess"
 import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
+import { fonts } from "../../../../../18resolvelegal/src/styles/helpers"
 
 const HomePlanForms = ({ homeSlug, homePlan }) => {
   const [formData, setFormData] = useState({
@@ -25,6 +26,8 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
     questions: "",
     newsletterChecked: false,
     newsletter: "No Thank You",
+    realtor: "no",
+    price: "",
   })
 
   const [formStatus, setFormStatus] = useState({
@@ -60,6 +63,13 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
     setFormData({
       ...formData,
       newsletterChecked: !formData.newsletterChecked,
+    })
+  }
+
+  const onRealtorChange = value => {
+    setFormData({
+      ...formData,
+      realtor: value,
     })
   }
 
@@ -146,8 +156,11 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
       questions: "",
       newsletterChecked: false,
       newsletter: "No Thank You",
+      realtor: "no",
+      price: "300~450",
     })
   }
+
   return (
     <SectionStyled>
       <div id="more-information-form" className="wrapper">
@@ -240,6 +253,46 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
                   <option value="lanark-landing">Lanark Landing</option>
                   <option value="ravenswood">Ravenswood</option>
                   <option value="vista-crossing">Vista Crossing</option>
+                </select>
+              </label>
+            </InputField>
+
+            <RadioBtnField>
+              <h4>Are you working with a realtor?</h4>
+              <input
+                type="radio"
+                id="realtorChoice1"
+                name="realtor"
+                value="yes"
+                checked={formData.realtor === "yes"}
+                onChange={() => onRealtorChange("yes")}
+              />
+              <label for="realtorChoice1">Yes</label>
+
+              <input
+                type="radio"
+                id="realtorChoice2"
+                name="realtor"
+                value="no"
+                checked={formData.realtor === "no"}
+                onChange={() => onRealtorChange("no")}
+              />
+              <label for="realtorChoice2">No</label>
+            </RadioBtnField>
+
+            <InputField>
+              <label htmlFor="price">
+                Price point you are looking for?
+                <select
+                  value={formData.price}
+                  name="price"
+                  id="price"
+                  onChange={handleOnChange}
+                >
+                  <option value="300~450">$300,000 ~ $450,000</option>
+                  <option value="451~550">$451,000 ~ $550,000</option>
+                  <option value="551~700">$551,000 ~ $700,000</option>
+                  <option value="700+">$700,000 +</option>
                 </select>
               </label>
             </InputField>
@@ -346,6 +399,71 @@ const SectionStyled = styled.div`
 
       button {
         ${Btn1Grey};
+      }
+    }
+  }
+`
+
+const RadioBtnField = styled.div`
+  width: calc(100%);
+  margin: 1rem auto;
+
+  @media (min-width: 768px) {
+    width: calc(50% - 4rem);
+    margin: 1rem 2rem;
+    padding: 1rem 0;
+  }
+
+  h4 {
+    ${B2White};
+    display: block;
+    position: relative;
+    padding-right: 5rem;
+    cursor: pointer;
+  }
+
+  label {
+    ${B2White};
+    display: block;
+    position: relative;
+    margin-bottom: 1rem;
+    padding-right: 5rem;
+    max-width: 5rem;
+    cursor: pointer;
+
+    &::before {
+      display: block;
+      position: absolute;
+      top: -1rem;
+      right: -2rem;
+      width: 3rem;
+      height: 3rem;
+      transition: all 0.3s ease-out;
+      color: ${colors.colorTertiary};
+      font-family: "FontAwesome";
+      font-size: 2.5rem;
+      content: "\f1db";
+    }
+
+    .error-message {
+      display: none;
+    }
+
+    .error-active {
+      display: inline-block;
+      color: red;
+      padding-left: 2rem;
+    }
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+
+    &:checked + label {
+      &::before {
+        color: #fff !important;
+        content: "\f058";
       }
     }
   }
