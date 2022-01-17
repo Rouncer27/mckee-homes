@@ -49,6 +49,7 @@ const BuildingFuturesStatus = ({ data }) => {
 
 const SectionStyled = styled.section`
   margin: 5rem auto;
+  background-color: #efefef;
 
   .wrapper {
     ${standardWrapper};
