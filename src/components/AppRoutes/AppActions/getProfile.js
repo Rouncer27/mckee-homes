@@ -8,7 +8,7 @@ export default async (userDispatch, userState, alertDispatch) => {
 
   try {
     const response = await axios.get(
-      `${process.env.GATSBY_API_URL}/profile/${userState.user._id}`,
+      `${process.env.GATSBY_API_URL}/profile/${userState.user.id}`,
       {
         withCredentials: true,
         // headers: {

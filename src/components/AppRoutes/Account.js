@@ -47,7 +47,7 @@ const Account = () => {
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `${process.env.GATSBY_API_URL}/users/${userState.user._id}`,
+        `${process.env.GATSBY_API_URL}/users/${userState.user.id}`,
         {
           withCredentials: true,
         }
