@@ -7,6 +7,7 @@ import {
   H1Black,
   H2Navy,
   medWrapper,
+  standardWrapper,
 } from "../../styles/helpers"
 import { UserContext } from "../../context/UserContext"
 import { AlertContext } from "../../context/AlertContext"
@@ -150,7 +151,7 @@ const Dashboard = () => {
 
 const SectionStyled = styled.section`
   .wrapper {
-    ${medWrapper};
+    ${standardWrapper};
   }
 
   .title {

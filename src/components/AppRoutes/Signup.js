@@ -23,7 +23,6 @@ const Signup = () => {
 
   const [formData, setFormData] = useState({
     email: "",
-    username: "",
     password: "",
     password2: "",
   })
@@ -31,7 +30,6 @@ const Signup = () => {
   const resetFormData = () => {
     setFormData({
       email: "",
-      username: "",
       password: "",
       password2: "",
     })
@@ -61,17 +59,6 @@ const Signup = () => {
           </div>
           <form onSubmit={event => handleOnSubmit(event)}>
             <fieldset>
-              <Input
-                label="username"
-                name="username"
-                type="text"
-                placeholder="username"
-                value={formData.username}
-                onChange={handleOnChange}
-                fieldvalid={true}
-                required={false}
-                size="full"
-              />
               <Input
                 label="email"
                 name="email"

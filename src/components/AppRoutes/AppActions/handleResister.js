@@ -12,7 +12,7 @@ export default async (formData, resetFormData, userDispatch, alertDispatch) => {
       `${process.env.GATSBY_API_URL}/auth/local/register`,
       {
         email: formData.email,
-        username: formData.username,
+        username: formData.email,
         password: formData.password,
       },
       {
