@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext } from "react"
+import React, { useContext } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import axios from "axios"
 import { UserContext } from "../../context/UserContext"
 
 import FeaturedImage from "./ExclusivePost/FeaturedImage"

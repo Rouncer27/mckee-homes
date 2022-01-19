@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { B1Black, B2White, B2Black, colors } from "../../../styles/helpers"
+import { B1Black, B2Black, colors } from "../../../styles/helpers"
 
 import frontDrive from "../../../images/icons/front-drive-homes.png"
 import lanedHomes from "../../../images/icons/laned-homes.png"

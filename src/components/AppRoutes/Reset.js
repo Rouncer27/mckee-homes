@@ -49,8 +49,6 @@ const Reset = ({ location }) => {
         }
       )
 
-      console.log("RESET RESPONSE: ", response)
-
       if (response.data.ok) {
         dispatch({ type: "USER_RESET" })
         resetFormData()

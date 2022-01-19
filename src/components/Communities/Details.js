@@ -4,7 +4,6 @@ import styled from "styled-components"
 import {
   B1Black,
   Btn1Grey,
-  fonts,
   H1Navy,
   H3Grey,
   standardWrapper,

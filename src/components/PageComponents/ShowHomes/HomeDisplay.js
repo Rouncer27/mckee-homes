@@ -17,7 +17,6 @@ import bath from "../../../images/icons/bath.png"
 import Heart from "../../Images/Heart"
 
 const HomeDisplay = ({ home }) => {
-  console.log("SHOW HOMES: ", home)
   const [isLiked, setIsLiked] = useState(false)
   const [userState] = useContext(UserContext)
 

@@ -50,8 +50,6 @@ const Exclusive = () => {
     // }
   }, [])
 
-  console.log("exclusivePosts: ", userState)
-
   return (
     <DivStyled>
       <div className="ex-wrapper">

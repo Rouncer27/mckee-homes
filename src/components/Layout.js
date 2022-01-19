@@ -73,9 +73,9 @@ const Layout = ({ children }) => {
     : []
   const showHomes = data.showHomes ? data.showHomes.edges : []
 
-  console.log("userState LAYOUT: ", userState)
-  console.log("alertState LAYOUT: ", alertState)
-  console.log("homesState LAYOUT", homesState)
+  // console.log("userState LAYOUT: ", userState)
+  // console.log("alertState LAYOUT: ", alertState)
+  // console.log("homesState LAYOUT", homesState)
 
   useEffect(() => {
     homesDispatch({

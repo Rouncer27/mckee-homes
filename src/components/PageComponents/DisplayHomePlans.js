@@ -107,7 +107,6 @@ const DisplayHomePlans = props => {
     }
     return 0
   })
-  console.log("TREVOR", plansSorted)
 
   // Filters Information
   const homeTypes = allData.homeTypes.edges

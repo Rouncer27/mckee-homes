@@ -13,8 +13,6 @@ const initialState = {
 }
 
 const reducer = (state, action) => {
-  console.log("CALLED!!!!!", action.type)
-
   switch (action.type) {
     case "USER_SUCCESS":
       return {

@@ -5,7 +5,6 @@ import { B1Black, B2Black, colors } from "../../../styles/helpers"
 
 import homeLove from "../../../images/icons/home-love.png"
 import homeBook from "../../../images/icons/home-book.png"
-import homeBuildings from "../../../images/icons/home-buildings.png"
 import homeDesign from "../../../images/icons/home-design.png"
 import homeLadder from "../../../images/icons/home-ladder.png"
 import homeNews from "../../../images/icons/home-news.png"

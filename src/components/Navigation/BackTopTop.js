@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
-import { fonts, fontSizer, colors, B2White } from "../../styles/helpers"
+import { B2White } from "../../styles/helpers"
 import scrollTo from "gatsby-plugin-smoothscroll"
 
 const handleScrollPosition = bookBtn => {

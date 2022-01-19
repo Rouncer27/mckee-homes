@@ -266,7 +266,7 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
                 checked={formData.realtor === "yes"}
                 onChange={() => onRealtorChange("yes")}
               />
-              <label for="realtorChoice1">Yes</label>
+              <label htmlFor="realtorChoice1">Yes</label>
 
               <input
                 type="radio"
@@ -276,7 +276,7 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
                 checked={formData.realtor === "no"}
                 onChange={() => onRealtorChange("no")}
               />
-              <label for="realtorChoice2">No</label>
+              <label htmlFor="realtorChoice2">No</label>
             </RadioBtnField>
 
             <InputField>

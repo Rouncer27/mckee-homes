@@ -25,7 +25,6 @@ const DisplayCustomersVideos = ({ data }) => {
       <div className="wrapper">
         <Slider {...settings}>
           {data.videos.map((video, index) => {
-            console.log(video)
             return (
               <Slide>
                 <div

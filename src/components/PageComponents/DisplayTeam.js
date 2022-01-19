@@ -61,9 +61,6 @@ const DisplayTeam = ({ data }) => {
     ...warranty,
   ]
 
-  console.log(team)
-  console.log(teamSorted)
-
   if (!data.displayAllTeam) return null
   return (
     <SectionStyled id="our-team-list">

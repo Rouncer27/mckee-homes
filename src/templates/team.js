@@ -10,9 +10,6 @@ const Team = props => {
   const { team } = props.data
   const prevTeam = props.pageContext.prev
   const nextTeam = props.pageContext.next
-
-  console.log("NEXT TEAM: ", nextTeam)
-
   const imageDisplay = getImage(
     team.acfOurTeam.image.localFile.childImageSharp.gatsbyImageData
   )

@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { Link } from "gatsby"
 import { B1Black, H3Navy } from "../../../styles/helpers"
 
 const NoteCardNot = ({ plan }) => {

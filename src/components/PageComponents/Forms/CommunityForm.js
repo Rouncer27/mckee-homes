@@ -46,7 +46,6 @@ const CommunityForm = () => {
   }
 
   const handleOnSubmit = async event => {
-    console.log("SUBMIT!!")
     event.preventDefault()
     setFormStatus({
       ...formStatus,

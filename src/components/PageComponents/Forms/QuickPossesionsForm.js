@@ -16,7 +16,6 @@ import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
 
 const QuickPossesionsForm = ({ homeSlug, title, community }) => {
-  console.log("QUICK POSSESIONS: ", title)
   const [formData, setFormData] = useState({
     yourname: "",
     email: "",

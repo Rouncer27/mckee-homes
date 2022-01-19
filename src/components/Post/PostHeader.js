@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { B1Black, B2White, colors, H1Navy, H3Black } from "../../styles/helpers"
+import { B2White, colors, H1Navy, H3Black } from "../../styles/helpers"
 
 import {
   FacebookShareButton,
@@ -13,7 +13,7 @@ import {
 
 const PostHeader = ({ title, date, categories, slug }) => {
   const options = { year: "numeric", month: "long", day: "numeric" }
-  const postDate = new Date(date).toLocaleDateString(undefined, options)
+  // const postDate = new Date(date).toLocaleDateString(undefined, options)
 
   return (
     <PostHeaderStyled>

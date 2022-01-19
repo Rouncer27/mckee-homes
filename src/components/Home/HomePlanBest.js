@@ -37,7 +37,6 @@ const getData = graphql`
 
 const HomePlanBest = () => {
   const data = useStaticQuery(getData)
-  console.log("HERE ", data)
   return (
     <SectionStyled>
       <div className="wrapper-details">
