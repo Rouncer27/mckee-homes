@@ -197,14 +197,16 @@ const HomePlanFloorPlan = ({
               </div>
             </div>
             <div className="floorplan-wrapper__like">
-              <a
-                className="floorplan-wrapper__like--download"
-                target="_blank"
-                rel="noreferrer"
-                href={floorPlanPdf}
-              >
-                Download Floor Plan
-              </a>
+              {floorPlanPdf && (
+                <a
+                  className="floorplan-wrapper__like--download"
+                  target="_blank"
+                  rel="noreferrer"
+                  href={floorPlanPdf}
+                >
+                  Download Floor Plan
+                </a>
+              )}
 
               {isLiked ? (
                 <div className="my-favs-actions__heart">

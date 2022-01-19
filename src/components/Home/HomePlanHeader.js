@@ -134,25 +134,31 @@ const HomePlanHeader = ({ home }) => {
               </p>
             </div>
 
-            <div className="header__plans">
-              <a
-                className="header__plans--pdf"
-                target="_blank"
-                rel="noreferrer"
-                href={home.acfHomePlans.floorPlanPdf.localFile.publicURL}
-              >
-                Download Floor Plan
-              </a>
-
-              <a
-                className="header__plans--tour"
-                target="_blank"
-                rel="noreferrer"
-                href={home.acfHomePlans.virtualTour}
-              >
-                Take A Virtual Tour
-              </a>
-            </div>
+            {home.acfHomePlans.floorPlanPdf.mediaItemUrl !== null ||
+            home.acfHomePlans.virtualTour !== null ? (
+              <div className="header__plans">
+                {home.acfHomePlans.floorPlanPdf.mediaItemUrl && (
+                  <a
+                    className="header__plans--pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={home.acfHomePlans.floorPlanPdf.mediaItemUrl}
+                  >
+                    Download Floor Plan
+                  </a>
+                )}
+                {home.acfHomePlans.virtualTour && (
+                  <a
+                    className="header__plans--tour"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={home.acfHomePlans.virtualTour}
+                  >
+                    Take A Virtual Tour
+                  </a>
+                )}
+              </div>
+            ) : null}
 
             <div className="header__more">
               <button onClick={() => scrollTo("#more-information-form")}>

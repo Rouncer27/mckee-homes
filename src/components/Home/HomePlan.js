@@ -38,7 +38,7 @@ const HomePlan = ({ home }) => {
         designerFloorPlan={home.acfHomePlans.designerFloorPlan}
         signatureFloorPlanReq={home.acfHomePlans.signatureFloorPlanReq}
         signatureFloorPlan={home.acfHomePlans.signatureFloorPlan}
-        floorPlanPdf={home.acfHomePlans.floorPlanPdf.localFile.publicURL}
+        floorPlanPdf={home.acfHomePlans.floorPlanPdf.mediaItemUrl}
       />
       <HomePlanForms homeSlug="home-plans" homePlan={home.title} />
     </article>
