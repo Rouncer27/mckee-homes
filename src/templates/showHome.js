@@ -74,6 +74,7 @@ export const query = graphql`
         }
         mainImage {
           altText
+          mediaItemUrl
           localFile {
             childImageSharp {
               gatsbyImageData(width: 2000)

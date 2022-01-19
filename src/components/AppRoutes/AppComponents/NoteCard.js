@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import {
   B1Black,
+  B1Navy,
   H3Navy,
   Btn1Primary,
   Btn1Success,
@@ -46,14 +47,21 @@ const NoteCard = ({ plan, url }) => {
     deletePlan(userDispatch, alertDispatch, plan.id, url)
   }
 
+  console.log(plan)
+
   return (
     <HomeCard>
-      <p className="title">
-        <Link to={`/${url}/${plan.slug}`}>{plan.title}</Link>
-      </p>
+      <div className="title">
+        <Link to={`/${url}/${plan.slug}`}>
+          <p>{plan.title}</p>
+          <div>
+            <img src={plan.image} alt={plan.title} />
+          </div>
+        </Link>
+      </div>
       <div className="notes">
         <div className="notes__container">
-          <p className="notes__title">Notes:</p>
+          <p className="notes__title">My notes:</p>
           <div className="notes__content">
             {editActive ? (
               <textarea
@@ -101,13 +109,10 @@ const HomeCard = styled.div`
   }
 
   .title {
-    ${H3Navy};
-    margin: 0;
-    font-weight: 600;
-
-    a {
-      ${H3Navy};
+    p {
+      ${B1Navy};
       margin: 0;
+      text-transform: uppercase;
       font-weight: 600;
     }
   }

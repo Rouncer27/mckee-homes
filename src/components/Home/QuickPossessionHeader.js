@@ -96,7 +96,8 @@ const QuickPossessionHeader = ({ home }) => {
       userState,
       userDispatch,
       alertDispatch,
-      "quick-possessions"
+      "quick-possessions",
+      home.acfQuickPossessions.mainImage.mediaItemUrl
     )
 
   console.log(home.acfQuickPossessions.floorPlanPdf)

@@ -37,7 +37,14 @@ const HomePlanHeader = ({ home }) => {
   const mainImgAlt = home.acfHomePlans.mainImage.altText
 
   const handleOnClick = async () =>
-    await addPlan(home, userState, userDispatch, alertDispatch, "home-plans")
+    await addPlan(
+      home,
+      userState,
+      userDispatch,
+      alertDispatch,
+      "home-plans",
+      home.acfHomePlans.mainImage.mediaItemUrl
+    )
 
   const alreadyLiked = () => {
     if (

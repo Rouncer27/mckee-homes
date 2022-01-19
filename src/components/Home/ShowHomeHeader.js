@@ -38,7 +38,14 @@ const ShowHomeHeader = ({ home }) => {
   const [, alertDispatch] = useContext(AlertContext)
 
   const handleOnClick = async () =>
-    await addPlan(home, userState, userDispatch, alertDispatch, "show-homes")
+    await addPlan(
+      home,
+      userState,
+      userDispatch,
+      alertDispatch,
+      "show-homes",
+      home.acfShowHomes.mainImage.mediaItemUrl
+    )
 
   const alreadyLiked = () => {
     if (

@@ -35,6 +35,11 @@ const Layout = ({ children }) => {
             slug
             id
             databaseId
+            acfHomePlans {
+              mainImage {
+                sourceUrl
+              }
+            }
           }
         }
       }
@@ -46,6 +51,11 @@ const Layout = ({ children }) => {
             slug
             id
             databaseId
+            acfQuickPossessions {
+              mainImage {
+                sourceUrl
+              }
+            }
           }
         }
       }
@@ -57,6 +67,11 @@ const Layout = ({ children }) => {
             slug
             id
             databaseId
+            acfShowHomes {
+              mainImage {
+                sourceUrl
+              }
+            }
           }
         }
       }
@@ -72,6 +87,8 @@ const Layout = ({ children }) => {
     ? data.quickPossessions.edges
     : []
   const showHomes = data.showHomes ? data.showHomes.edges : []
+
+  console.log(showHomes)
 
   // console.log("userState LAYOUT: ", userState)
   // console.log("alertState LAYOUT: ", alertState)

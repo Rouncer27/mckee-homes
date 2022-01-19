@@ -32,6 +32,7 @@ const HomePlanFloorPlan = ({
   propelFloorPlan,
   signatureFloorPlanReq,
   signatureFloorPlan,
+  appImage,
 }) => {
   const [floorPlanDisplay, setFloorPlanDisplay] = useState("propel")
   let propel
@@ -88,7 +89,14 @@ const HomePlanFloorPlan = ({
   const [, alertDispatch] = useContext(AlertContext)
 
   const handleOnClick = async () =>
-    await addPlan(home, userState, userDispatch, alertDispatch, homeType)
+    await addPlan(
+      home,
+      userState,
+      userDispatch,
+      alertDispatch,
+      homeType,
+      appImage
+    )
 
   const alreadyLiked = () => {
     if (homeType === "home-plans") {

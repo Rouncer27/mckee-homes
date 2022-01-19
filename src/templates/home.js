@@ -57,6 +57,7 @@ export const query = graphql`
           }
         }
         mainImage {
+          mediaItemUrl
           altText
           localFile {
             childImageSharp {

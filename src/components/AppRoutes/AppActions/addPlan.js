@@ -1,6 +1,13 @@
 import axios from "axios"
 
-const addPlan = async (home, userState, userDispatch, alertDispatch, url) => {
+const addPlan = async (
+  home,
+  userState,
+  userDispatch,
+  alertDispatch,
+  url,
+  appImage
+) => {
   userDispatch({
     type: "USER_LOADING",
     payload: { loading: true },
@@ -13,6 +20,7 @@ const addPlan = async (home, userState, userDispatch, alertDispatch, url) => {
         slug: home.slug,
         wordpress_id: home.databaseId.toString(),
         title: home.title,
+        image: appImage,
       },
       {
         withCredentials: true,
