@@ -141,21 +141,24 @@ const ShowHomeHeader = ({ home }) => {
           </div>
 
           <div className="header__plans">
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href={home.acfShowHomes.floorPlanPdf.localFile.publicURL}
-            >
-              Download Floor Plan
-            </a>
-
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href={home.acfShowHomes.virtualTour}
-            >
-              Take A Virtual Tour
-            </a>
+            {home.acfShowHomes.floorPlanPdf && (
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={home.acfShowHomes.floorPlanPdf.mediaItemUrl}
+              >
+                Download Floor Plan
+              </a>
+            )}
+            {home.acfShowHomes.virtualTour && (
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={home.acfShowHomes.virtualTour}
+              >
+                Take A Virtual Tour
+              </a>
+            )}
 
             <Link
               target="_blank"

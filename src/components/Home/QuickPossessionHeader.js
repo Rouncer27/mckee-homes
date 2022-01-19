@@ -99,6 +99,8 @@ const QuickPossessionHeader = ({ home }) => {
       "quick-possessions"
     )
 
+  console.log(home.acfQuickPossessions.floorPlanPdf)
+
   return (
     <StyledSection>
       <div className="wrapper">
@@ -188,25 +190,31 @@ const QuickPossessionHeader = ({ home }) => {
             </p>
           </div>
 
-          <div className="header__plans">
-            <a
-              className="header__plans--pdf"
-              target="_blank"
-              rel="noreferrer"
-              href={home.acfQuickPossessions.floorPlanPdf.localFile.publicURL}
-            >
-              Download Floor Plan
-            </a>
-
-            <a
-              className="header__plans--tour"
-              target="_blank"
-              rel="noreferrer"
-              href={home.acfQuickPossessions.virtualTour}
-            >
-              Take A Virtual Tour
-            </a>
-          </div>
+          {home.acfQuickPossessions.floorPlanPdf.mediaItemUrl !== null ||
+          home.acfQuickPossessions.virtualTour !== null ? (
+            <div className="header__plans">
+              {home.acfQuickPossessions.floorPlanPdf.mediaItemUrl && (
+                <a
+                  className="header__plans--pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  href={home.acfQuickPossessions.floorPlanPdf.mediaItemUrl}
+                >
+                  Download Floor Plan
+                </a>
+              )}
+              {home.acfQuickPossessions.virtualTour && (
+                <a
+                  className="header__plans--tour"
+                  target="_blank"
+                  rel="noreferrer"
+                  href={home.acfQuickPossessions.virtualTour}
+                >
+                  Take A Virtual Tour
+                </a>
+              )}
+            </div>
+          ) : null}
 
           <div className="header__more">
             <button onClick={() => scrollTo("#see-this-home")}>

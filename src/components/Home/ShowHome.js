@@ -47,7 +47,7 @@ const ShowHome = ({ home }) => {
         designerFloorPlan={home.acfShowHomes.designerFloorPlan}
         signatureFloorPlanReq={home.acfShowHomes.signatureFloorPlanReq}
         signatureFloorPlan={home.acfShowHomes.signatureFloorPlan}
-        floorPlanPdf={home.acfShowHomes.floorPlanPdf.localFile.publicURL}
+        floorPlanPdf={home.acfShowHomes.floorPlanPdf.mediaItemUrl}
       />
     </article>
   )

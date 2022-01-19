@@ -45,7 +45,7 @@ const QuickPossesion = ({ home }) => {
         designerFloorPlan={home.acfQuickPossessions.designerFloorPlan}
         signatureFloorPlanReq={home.acfQuickPossessions.signatureFloorPlanReq}
         signatureFloorPlan={home.acfQuickPossessions.signatureFloorPlan}
-        floorPlanPdf={home.acfQuickPossessions.floorPlanPdf.localFile.publicURL}
+        floorPlanPdf={home.acfQuickPossessions.floorPlanPdf.mediaItemUrl}
       />
     </article>
   )
