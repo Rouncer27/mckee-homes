@@ -84,6 +84,16 @@ const LoginStyled = styled.div`
             color: #ff0000;
           }
         }
+
+        &[aria-current="page"] {
+          background-color: ${colors.colorPrimary};
+          color: #fff;
+          cursor: inherit;
+
+          span {
+            color: #ff0000;
+          }
+        }
       }
     }
   }
