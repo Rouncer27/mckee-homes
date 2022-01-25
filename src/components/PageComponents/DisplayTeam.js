@@ -15,6 +15,7 @@ const getData = graphql`
           acfOurTeam {
             bio
             department
+            title
             image {
               altText
               localFile {
@@ -71,7 +72,7 @@ const DisplayTeam = ({ data }) => {
           )
           const imageAlt = team.node.acfOurTeam.image.altText
           return (
-            <Team key={index}>
+            <Team key={index} to={`/our-team/${team.node.slug}`}>
               <div className="image">
                 <GatsbyImage
                   image={imageDisplay}
@@ -80,16 +81,19 @@ const DisplayTeam = ({ data }) => {
                   formats={["auto", "webp", "avif"]}
                 />
               </div>
-              <Link className="name" to={`/our-team/${team.node.slug}`}>
-                <h2>{team.node.title}</h2>
+              <div className="name">
+                <h2>
+                  <span>{team.node.title}</span>{" "}
+                  <span className="job-title">
+                    {team.node.acfOurTeam.title}
+                  </span>
+                </h2>
+
                 <h3>
                   {team.node.acfOurTeam.department}{" "}
                   {team.node.acfOurTeam.department !== "principals" && "Team"}
                 </h3>
-                <div className="read-more">
-                  <Link to={`/our-team/${team.node.slug}`}>Read More</Link>
-                </div>
-              </Link>
+              </div>
             </Team>
           )
         })}
@@ -106,7 +110,7 @@ const SectionStyled = styled.section`
   }
 `
 
-const Team = styled.div`
+const Team = styled(Link)`
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
@@ -114,6 +118,11 @@ const Team = styled.div`
   justify-content: center;
   width: calc((100% / 2) - 1rem);
   margin: 0.5rem;
+  background-color: ${colors.colorPrimary};
+
+  &:hover {
+    background-color: ${colors.colorSecondary};
+  }
 
   @media (min-width: 768px) {
     width: calc((100% / 4) - 2rem);
@@ -128,24 +137,28 @@ const Team = styled.div`
     position: relative;
     width: 100%;
     padding: 2.5rem;
-    padding-bottom: 5rem;
     transition: all 0.3s ease-out;
-    background-color: ${colors.colorPrimary};
-
-    &:hover {
-      background-color: ${colors.colorSecondary};
-    }
 
     h2 {
       ${B1White};
       margin: 0;
       text-transform: uppercase;
+
+      span {
+        display: block;
+      }
+
+      span.job-title {
+        ${B2White};
+        text-transform: lowercase;
+        text-transform: capitalize;
+      }
     }
 
     h3 {
-      ${B1White};
+      ${B2White};
       margin: 0;
-      text-transform: uppercase;
+      text-transform: capitalize;
     }
 
     .read-more {

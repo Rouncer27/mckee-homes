@@ -47,8 +47,6 @@ const NoteCard = ({ plan, url }) => {
     deletePlan(userDispatch, alertDispatch, plan.id, url)
   }
 
-  console.log(plan)
-
   return (
     <HomeCard>
       <div className="title">
