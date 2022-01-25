@@ -31,7 +31,7 @@ const HomePlan = ({ home }) => {
           home?.acfHomePlans?.floorPlanImage?.localFile?.childImageSharp
             ?.gatsbyImageData
         }
-        floorImgAlt={home.acfHomePlans.floorPlanImage.altText}
+        floorImgAlt={home?.acfHomePlans?.floorPlanImage?.altText}
         propelFloorPlanReq={home.acfHomePlans.floorPlanImageReq}
         propelFloorPlan={home.acfHomePlans.floorPlanImage}
         designerFloorPlanReq={home.acfHomePlans.designerFloorPlanReq}
