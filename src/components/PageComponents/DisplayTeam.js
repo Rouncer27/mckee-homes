@@ -7,7 +7,7 @@ import { B2White, colors, medWrapper, B1White } from "../../styles/helpers"
 
 const getData = graphql`
   {
-    team: allWpOurTeam {
+    team: allWpOurTeam(sort: { fields: title }) {
       edges {
         node {
           title

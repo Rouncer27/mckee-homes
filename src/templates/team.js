@@ -4,7 +4,13 @@ import { graphql, Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Layout from "../components/Layout"
-import { B1Black, B2Grey, H2Black, medWrapper } from "../styles/helpers"
+import {
+  B1Black,
+  B2Grey,
+  H2Black,
+  H3Black,
+  medWrapper,
+} from "../styles/helpers"
 
 const Team = props => {
   const { team } = props.data
@@ -29,9 +35,11 @@ const Team = props => {
           </div>
           <div className="bio">
             <div className="bio__title">
-              <h2>
-                {team.title}, {team.acfOurTeam.department}
-              </h2>
+              <h2>{team.title}</h2>
+              <h3>
+                {team.acfOurTeam.title},{" "}
+                <span>{team.acfOurTeam.department}</span>
+              </h3>
             </div>
             <div dangerouslySetInnerHTML={{ __html: team.acfOurTeam.bio }} />
           </div>
@@ -92,6 +100,15 @@ const StyledSection = styled.section`
       margin-top: 0;
     }
 
+    h3 {
+      ${H3Black};
+      text-transform: capitalize;
+
+      span {
+        display: block;
+      }
+    }
+
     p {
       ${B1Black};
     }
@@ -138,6 +155,7 @@ export const query = graphql`
       acfOurTeam {
         bio
         department
+        title
         image {
           altText
           localFile {
