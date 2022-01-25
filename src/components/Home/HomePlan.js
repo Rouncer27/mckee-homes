@@ -34,8 +34,8 @@ const HomePlan = ({ home }) => {
         floorImgAlt={home?.acfHomePlans?.floorPlanImage?.altText}
         propelFloorPlanReq={home.acfHomePlans.floorPlanImageReq}
         propelFloorPlan={home.acfHomePlans.floorPlanImage}
-        designerFloorPlanReq={home.acfHomePlans.designerFloorPlanReq}
-        designerFloorPlan={home.acfHomePlans.designerFloorPlan}
+        // designerFloorPlanReq={home.acfHomePlans.designerFloorPlanReq}
+        // designerFloorPlan={home.acfHomePlans.designerFloorPlan}
         signatureFloorPlanReq={home.acfHomePlans.signatureFloorPlanReq}
         signatureFloorPlan={home.acfHomePlans.signatureFloorPlan}
         floorPlanPdf={home.acfHomePlans.floorPlanPdf.mediaItemUrl}

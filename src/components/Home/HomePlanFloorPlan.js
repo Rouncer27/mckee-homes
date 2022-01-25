@@ -50,13 +50,13 @@ const HomePlanFloorPlan = ({
 
   if (propelFloorPlanReq) {
     propel = getImage(
-      propelFloorPlan.localFile?.childImageSharp?.gatsbyImageData
+      propelFloorPlan?.localFile?.childImageSharp?.gatsbyImageData
     )
   }
 
   if (signatureFloorPlanReq) {
     signature = getImage(
-      signatureFloorPlan.localFile?.childImageSharp?.gatsbyImageData
+      signatureFloorPlan?.localFile?.childImageSharp?.gatsbyImageData
     )
   }
 
