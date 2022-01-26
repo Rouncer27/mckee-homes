@@ -88,7 +88,7 @@ const Layout = ({ children }) => {
     : []
   const showHomes = data.showHomes ? data.showHomes.edges : []
 
-  console.log(showHomes)
+  // console.log(showHomes)
 
   // console.log("userState LAYOUT: ", userState)
   // console.log("alertState LAYOUT: ", alertState)

@@ -211,12 +211,13 @@ const DisplayPosts = ({ data }) => {
               <Article key={post.node.id}>
                 <Link to={`/news-promotions/${post.node.slug}`}>
                   <div className="image">
-                    <GatsbyImage
-                      image={imageDisplay}
-                      alt={imageAlt}
-                      layout="fullWidth"
-                      formats={["auto", "webp", "avif"]}
-                    />
+                    <div className="image__wrapper">
+                      <GatsbyImage
+                        image={imageDisplay}
+                        alt={imageAlt}
+                        formats={["auto", "webp", "avif"]}
+                      />
+                    </div>
                   </div>
                   <div className="content">
                     <div className="title">
@@ -387,9 +388,26 @@ const Article = styled.div`
   .image {
     position: relative;
     width: 100%;
+    height: 25rem;
 
     @media (min-width: 768px) {
       width: calc(100%);
+    }
+
+    &__wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      .gatsby-image-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
