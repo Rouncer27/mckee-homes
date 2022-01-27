@@ -80,6 +80,9 @@ const DisplayTeam = ({ data }) => {
                   layout="fullWidth"
                   formats={["auto", "webp", "avif"]}
                 />
+                <div className="image__read-more">
+                  <p>Read More</p>
+                </div>
               </div>
               <div className="name">
                 <h2>
@@ -90,8 +93,9 @@ const DisplayTeam = ({ data }) => {
                 </h2>
 
                 <h3>
-                  {team.node.acfOurTeam.department}{" "}
-                  {team.node.acfOurTeam.department !== "principals" && "Team"}
+                  {team.node.acfOurTeam.department === "principals"
+                    ? "owner"
+                    : `${team.node.acfOurTeam.department} Team`}
                 </h3>
               </div>
             </Team>
@@ -122,6 +126,10 @@ const Team = styled(Link)`
 
   &:hover {
     background-color: ${colors.colorSecondary};
+
+    .image .image__read-more p {
+      opacity: 1;
+    }
   }
 
   @media (min-width: 768px) {
@@ -130,7 +138,22 @@ const Team = styled(Link)`
   }
 
   .image {
+    position: relative;
     width: 100%;
+
+    &__read-more {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+
+      p {
+        ${B2White};
+        margin: 0;
+        transition: all 0.3s ease-out;
+        text-transform: uppercase;
+        opacity: 0.4;
+      }
+    }
   }
 
   .name {

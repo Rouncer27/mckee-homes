@@ -233,7 +233,14 @@ const DisplayPosts = ({ data }) => {
                   <div className="cat-name">
                     <p>
                       {post.node.categories.nodes.map((catName, index) => {
-                        return <span key={index}>{catName.name}</span>
+                        const spaceReq =
+                          post.node.categories.nodes.length > index + 1
+                        return (
+                          <span key={index}>
+                            {catName.name}
+                            {spaceReq && " | "}
+                          </span>
+                        )
                       })}
                     </p>
                   </div>
