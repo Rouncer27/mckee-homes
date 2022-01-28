@@ -7,6 +7,7 @@ import HomePlansCommunities from "./HomePlansCommunities"
 import HomePlanGallery from "./HomePlanGallery"
 import HomePlanForms from "../PageComponents/Forms/HomePlanForms"
 import HomePlanFloorPlan from "./HomePlanFloorPlan"
+import HomeSimilar from "./HomeSimilar"
 
 const HomePlan = ({ home }) => {
   return (
@@ -41,6 +42,7 @@ const HomePlan = ({ home }) => {
         floorPlanPdf={home.acfHomePlans.floorPlanPdf.mediaItemUrl}
         appImage={home.acfHomePlans.mainImage.mediaItemUrl}
       />
+      <HomeSimilar home={home} />
       <HomePlanForms homeSlug="home-plans" homePlan={home.title} />
     </article>
   )
