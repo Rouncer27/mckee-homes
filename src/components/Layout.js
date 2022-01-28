@@ -36,9 +36,6 @@ const Layout = ({ children }) => {
             id
             databaseId
             acfHomePlans {
-              squareFootage
-              numberOfBathrooms
-              numberOfBedrooms
               mainImage {
                 sourceUrl
               }
