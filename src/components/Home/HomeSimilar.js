@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 
@@ -59,22 +59,30 @@ const getData = graphql`
   }
 `
 const HomeSimilar = ({ home }) => {
+  const [similarHomes, setSimilarHomes] = useState([])
+  const [similarHomesIndex, setSimilarHomesIndex] = useState([])
   const allData = useStaticQuery(getData)
   // Plans Post Types
   const homePlans = allData.homePlans.edges
-  const currentRemoved = homePlans.filter(plan => plan.node.id !== home.id)
-  const matchBedroomPlans = currentRemoved.filter(
-    plan =>
-      parseInt(plan.node.acfHomePlans.numberOfBedrooms) ===
-      parseInt(home.acfHomePlans.numberOfBedrooms)
-  )
-  const matchedSqFoot = matchBedroomPlans.filter(
-    plan =>
-      plan.node.acfHomePlans.squareFootage >=
-        home.acfHomePlans.squareFootage - 150 &&
-      plan.node.acfHomePlans.squareFootage <=
-        home.acfHomePlans.squareFootage + 150
-  )
+
+  // Find an array of homes that are similar to this current home plan. //
+  const getMatchedSimilarHomes = () => {
+    const currentRemoved = homePlans.filter(plan => plan.node.id !== home.id)
+    const matchBedroomPlans = currentRemoved.filter(
+      plan =>
+        parseInt(plan.node.acfHomePlans.numberOfBedrooms) ===
+        parseInt(home.acfHomePlans.numberOfBedrooms)
+    )
+    const matchedSqFoot = matchBedroomPlans.filter(
+      plan =>
+        plan.node.acfHomePlans.squareFootage >=
+          home.acfHomePlans.squareFootage - 150 &&
+        plan.node.acfHomePlans.squareFootage <=
+          home.acfHomePlans.squareFootage + 150
+    )
+
+    return matchedSqFoot
+  }
 
   const shuffle = a => {
     for (let i = a.length - 1; i > 0; i--) {
@@ -84,22 +92,23 @@ const HomeSimilar = ({ home }) => {
     return a
   }
 
-  const myBedroomArrayIndex = Array.apply(
-    null,
-    Array(matchBedroomPlans.length)
-  ).map(function (x, i) {
-    return i
-  })
+  useEffect(() => {
+    setSimilarHomes([...getMatchedSimilarHomes()])
+  }, [])
 
-  shuffle(myBedroomArrayIndex)
+  useEffect(() => {
+    // get an array of index numbers for the current matched list of home. //
+    setSimilarHomesIndex(
+      shuffle(
+        Array.apply(null, Array(similarHomes.length)).map(function (x, i) {
+          return i
+        })
+      )
+    )
+  }, [similarHomes])
 
-  const mySqFootArrayIndex = Array.apply(null, Array(matchedSqFoot.length)).map(
-    function (x, i) {
-      return i
-    }
-  )
-
-  shuffle(mySqFootArrayIndex)
+  console.log("similarHomes", similarHomes)
+  console.log("similarHomesIndex", similarHomesIndex)
 
   return (
     <SectionStyled>
@@ -108,10 +117,11 @@ const HomeSimilar = ({ home }) => {
           <h2>Similar Home Plans</h2>
         </div>
         <div className="card-wrapper">
-          {mySqFootArrayIndex.length <= 0 ? (
-            mySqFootArrayIndex.map((planNum, index) => {
+          {similarHomesIndex.length > 0 ? (
+            similarHomesIndex.map((planNum, index) => {
               if (index >= 3) return null
-              const plan = matchedSqFoot[planNum]
+              if (similarHomes.length <= 0) return null
+              const plan = similarHomes[planNum]
               return <HomeDisplay key={plan.node.slug} home={plan.node} />
             })
           ) : (
@@ -142,6 +152,7 @@ const SectionStyled = styled.section`
   }
 
   .card-wrapper {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
   }
