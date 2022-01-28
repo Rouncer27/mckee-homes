@@ -108,7 +108,7 @@ const HomeSimilar = ({ home }) => {
           <h2>Similar Home Plans</h2>
         </div>
         <div className="card-wrapper">
-          {mySqFootArrayIndex <= 0 ? (
+          {mySqFootArrayIndex.length <= 0 ? (
             mySqFootArrayIndex.map((planNum, index) => {
               if (index >= 3) return null
               const plan = matchedSqFoot[planNum]
