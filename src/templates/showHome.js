@@ -77,6 +77,15 @@ export const query = graphql`
           }
         }
 
+        mainImageGallery {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 2000)
+            }
+          }
+        }
+
         floorPlanImage {
           altText
           localFile {

@@ -119,7 +119,7 @@ const Stage = styled.div`
   position: relative;
   width: 35rem;
   margin: 2rem auto;
-  padding: 4.5rem 0.75rem;
+  padding: 1.5rem 0.75rem;
   border: 0.3rem solid ${colors.colorPrimary};
   background-color: ${props =>
     props.stagecomplete ? colors.colorPrimary : colors.white};
@@ -141,7 +141,7 @@ const StageLink = styled(Link)`
   display: block;
   width: 35rem;
   margin: 2rem auto;
-  padding: 4.5rem 0.75rem;
+  padding: 1.5rem 0.75rem;
   border: 0.3rem solid ${colors.colorPrimary};
   background-color: ${props =>
     props.stagecomplete ? colors.colorPrimary : colors.white};

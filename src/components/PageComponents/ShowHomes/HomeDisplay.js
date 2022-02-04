@@ -25,6 +25,8 @@ const HomeDisplay = ({ home }) => {
   )
   const imgAlt = home.acfShowHomes.mainImage.altText
 
+  console.log("Shw Homes: ", home)
+
   useEffect(() => {
     if (
       userState.profile &&
@@ -42,6 +44,9 @@ const HomeDisplay = ({ home }) => {
       }
     }
   }, [userState.profile])
+
+  const community =
+    home.communities.nodes.length > 0 ? home.communities.nodes[0].name : null
 
   return (
     <ShowHomeStyled to={`/show-homes/${home.slug}`}>
@@ -104,9 +109,7 @@ const HomeDisplay = ({ home }) => {
           <p>{home.acfShowHomes.address}</p>
           <p>
             {home?.communities?.nodes[0]?.name},{" "}
-            {home?.communities?.nodes[0]?.name === "Visa Crossing"
-              ? "Crossfield"
-              : "Airdrie"}
+            {home?.communities?.nodes[0]?.acfCommunities?.city}
           </p>
         </div>
       </div>
@@ -132,6 +135,7 @@ const ShowHomeStyled = styled(Link)`
   margin-bottom: 5rem;
   border: solid 0.3rem #a2a3a5;
   background-color: #efefef;
+  transition: all 0.3s ease-out;
 
   @media (min-width: 768px) {
     width: calc((100% / 2) - 2rem);
@@ -140,6 +144,11 @@ const ShowHomeStyled = styled(Link)`
 
   @media (min-width: 1025px) {
     width: calc((100% / 3) - 2rem);
+  }
+
+  &:hover {
+    box-shadow: 0.3rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.6);
+    box-shadow: 3px 7px 9px 0 rgba(77, 88, 113, 0.55);
   }
 
   .image {

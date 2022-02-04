@@ -235,6 +235,9 @@ export const pageTempQuery = graphql`
             content
             buttonText
             buttonSlug
+            button2Required
+            button2Text
+            button2Slug
             image {
               altText
               localFile {
@@ -744,6 +747,18 @@ export const pageTempQuery = graphql`
             displayCustomersVideos
             videos {
               video
+            }
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_GallerySlider {
+            fieldGroupName
+            sliderImages {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 2000)
+                }
+              }
             }
           }
 

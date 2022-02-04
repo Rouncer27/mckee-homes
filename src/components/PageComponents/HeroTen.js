@@ -7,6 +7,7 @@ import {
   H1Navy,
   H3Grey,
   medWrapper,
+  colors,
 } from "../../styles/helpers"
 import { Link } from "gatsby"
 
@@ -37,6 +38,9 @@ const HeroTen = ({ data }) => {
             <div dangerouslySetInnerHTML={{ __html: data.content }} />
             <div className="buttons-wrap">
               <Link to={`/${data.buttonSlug}`}>{data.buttonText}</Link>
+              {data.button2Required ? (
+                <Link to={`/${data.button2Slug}`}>{data.button2Text}</Link>
+              ) : null}
             </div>
           </div>
         </div>
@@ -125,6 +129,12 @@ const DivStyled = styled.div`
           margin-right: 1rem;
           margin-bottom: 2rem;
           margin-left: 1rem;
+
+          &[aria-current="page"] {
+            background-color: ${colors.colorPrimary};
+            cursor: inherit;
+            opacity: 0.5;
+          }
         }
       }
     }

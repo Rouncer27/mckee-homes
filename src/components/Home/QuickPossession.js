@@ -9,6 +9,8 @@ import QuickPossesionsForm from "../PageComponents/Forms/QuickPossesionsForm"
 import HomePlanFloorPlan from "./HomePlanFloorPlan"
 
 const QuickPossesion = ({ home }) => {
+  console.log("Gallery", home.acfQuickPossessions.gallery)
+
   return (
     <article>
       <QuickPossessionHeader home={home} />
@@ -19,16 +21,10 @@ const QuickPossesion = ({ home }) => {
           title={`Other features and details to note:`}
         />
       )}
-      <HomePlanGallery gallery={home.acfQuickPossessions.gallery} />
-      <QuickConnect
-        salesOne={home.acfQuickPossessions.salesPersonOne}
-        salesTwo={home.acfQuickPossessions.salesPersonTwo}
-      />
-      <QuickPossesionsForm
-        homeSlug="quick-possessions"
-        title={home.title}
-        community={home.communities.nodes[0].slug}
-      />
+      {home.acfQuickPossessions.gallery &&
+        home.acfQuickPossessions.gallery.length > 0 && (
+          <HomePlanGallery gallery={home.acfQuickPossessions.gallery} />
+        )}
       <HomePlanFloorPlan
         home={home}
         homeType="quick-possessions"
@@ -47,6 +43,15 @@ const QuickPossesion = ({ home }) => {
         signatureFloorPlan={home.acfQuickPossessions.signatureFloorPlan}
         floorPlanPdf={home.acfQuickPossessions.floorPlanPdf.mediaItemUrl}
         appImage={home.acfQuickPossessions.mainImage.mediaItemUrl}
+      />
+      <QuickConnect
+        salesOne={home.acfQuickPossessions.salesPersonOne}
+        salesTwo={home.acfQuickPossessions.salesPersonTwo}
+      />
+      <QuickPossesionsForm
+        homeSlug="quick-possessions"
+        title={home.title}
+        community={home.communities.nodes[0].slug}
       />
     </article>
   )

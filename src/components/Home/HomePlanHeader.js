@@ -21,6 +21,7 @@ import bath from "../../images/icons/bath.png"
 import whiteHeart from "../../images/heart-white.png"
 import redHeart from "../../images/heart-red.png"
 import Heart from "../Images/Heart"
+import HomeSlider from "./HomeSlider"
 
 import addPlan from "../AppRoutes/AppActions/addPlan"
 import JoinModal from "../Modals/JoinModal"
@@ -76,17 +77,25 @@ const HomePlanHeader = ({ home }) => {
     setIsJoinActive(!isJoinActive)
   }
 
+  const imageGallery = home.acfHomePlans.mainImageGallery
+    ? home.acfHomePlans.mainImageGallery
+    : []
+  const gallery = [home.acfHomePlans.mainImage, ...imageGallery]
+
   return (
     <>
       <StyledSection>
         <div className="wrapper">
           <div className="image">
-            <GatsbyImage
-              image={mainImg}
-              alt={mainImgAlt}
-              layout="fullWidth"
-              formats={["auto", "webp", "avif"]}
-            />
+            <div>
+              {/* <GatsbyImage
+                image={mainImg}
+                alt={mainImgAlt}
+                layout="fullWidth"
+                formats={["auto", "webp", "avif"]}
+              /> */}
+              <HomeSlider images={gallery} />
+            </div>
             <div className="my-favs-actions">
               {isLiked ? (
                 <div className="my-favs-actions__heart">

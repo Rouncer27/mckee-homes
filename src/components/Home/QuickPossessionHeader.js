@@ -100,8 +100,6 @@ const QuickPossessionHeader = ({ home }) => {
       home.acfQuickPossessions.mainImage.mediaItemUrl
     )
 
-  console.log(home.acfQuickPossessions.floorPlanPdf)
-
   return (
     <StyledSection>
       <div className="wrapper">
@@ -169,7 +167,7 @@ const QuickPossessionHeader = ({ home }) => {
           </div>
           <div className="header__address">
             <p className="header__address--details">
-              {home.acfQuickPossessions.address}
+              {`${home.acfQuickPossessions.address}, ${home.communities.nodes[0].name}, ${home.communities.nodes[0].acfCommunities.city}`}
             </p>
             <p className="header__address--features">
               Home Features: <br />{" "}

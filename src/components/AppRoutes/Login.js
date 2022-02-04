@@ -177,8 +177,14 @@ const DivStyled = styled.div`
       margin-bottom: 0.75rem;
     }
 
-    a:hover {
+    a {
       color: ${colors.colorPrimary};
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: ${colors.colorAccent};
     }
   }
 `

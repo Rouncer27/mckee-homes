@@ -68,7 +68,6 @@ const LightboxStyled = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-
   z-index: 99999999999;
 
   .lightbox-bg {
@@ -78,6 +77,7 @@ const LightboxStyled = styled.div`
     width: 100%;
     height: 100%;
     background-color: ${colors.colorPrimary};
+    opacity: 0.4;
     z-index: 5;
   }
 
@@ -166,8 +166,8 @@ const LightboxStyled = styled.div`
 
   .btn-close {
     position: absolute;
-    top: 3rem;
-    right: 3rem;
+    top: 5rem;
+    right: 5rem;
     z-index: 501;
 
     button {

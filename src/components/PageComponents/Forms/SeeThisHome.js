@@ -342,11 +342,11 @@ const SectionStyled = styled.div`
 
 const CheckboxField = styled.div`
   width: calc(100%);
-  margin: 1rem auto;
+  margin: 0 auto;
 
   @media (min-width: 768px) {
     width: calc(50% - 4rem);
-    margin: 1rem 2rem;
+    margin: 0 2rem;
     padding: 1rem 0;
   }
 
@@ -396,11 +396,11 @@ const CheckboxField = styled.div`
 
 const InputField = styled.div`
   width: calc(100%);
-  margin: 1rem auto;
+  margin: 0 auto;
 
   @media (min-width: 768px) {
     width: calc(50% - 4rem);
-    margin: 1rem 2rem;
+    margin: 0 2rem;
     padding: 1rem 0;
   }
 

@@ -4,7 +4,13 @@ import { graphql, useStaticQuery } from "gatsby"
 
 import HomeDisplay from "./ShowHomes/HomeDisplay"
 import FilterMain from "./HomePlans/FilterMain"
-import { B1Black, colors, medWrapper } from "../../styles/helpers"
+import {
+  B1Black,
+  medWrapper,
+  B2Navy,
+  colors,
+  Btn1Navy,
+} from "../../styles/helpers"
 
 const getData = graphql`
   {
@@ -52,6 +58,9 @@ const getData = graphql`
               databaseId
               slug
               name
+              acfCommunities {
+                city
+              }
             }
           }
         }
@@ -87,6 +96,9 @@ const getData = graphql`
           slug
           databaseId
           count
+          acfCommunities {
+            city
+          }
         }
       }
     }
@@ -102,6 +114,7 @@ const DisplayShowHomes = props => {
   const homeStyles = allData.homeStyles.edges
   const communities = allData.communities.edges
   // Load up the filters states. //
+  const [matchingHomes, setMatchingHomes] = useState([])
   const [filterActive, setFilterActive] = useState("")
   const [homeTypesFilter, setHomeTypesFilter] = useState([])
   const [homeStylesFilter, setHomeStylesFilter] = useState([])
@@ -113,6 +126,16 @@ const DisplayShowHomes = props => {
     setSqftFilter(500)
     setBedroomFilter({})
   }
+
+  const handleResetAllFilters = () => {
+    setFilterActive("")
+    setHomeTypesFilter([])
+    setHomeStylesFilter([])
+    setCommunityFilter([])
+    setSqftFilter(500)
+    setBedroomFilter([])
+  }
+
   useEffect(() => {
     const params = new URLSearchParams(props.location.search)
     const param = params.get("homeType")
@@ -120,11 +143,148 @@ const DisplayShowHomes = props => {
     setHomeTypesFilter([param])
   }, [props.location.search])
 
+  const closeAllFilters = () => {
+    setFilterActive("")
+  }
+
+  useEffect(() => {
+    const matched = []
+    showHomes.map(home => {
+      let typeMatch = true
+      let styleMatch = true
+      let communityMatch = true
+      let sqftMatch = true
+      let bedroomMatch = true
+
+      // Does this home match the home types filter?
+      if (homeTypesFilter.length > 0) {
+        typeMatch = homeTypesFilter.some(type => {
+          const matchFound = home.node.homeTypes.nodes.find(
+            homeType => homeType.slug === type
+          )
+          if (matchFound !== undefined) return true
+        })
+      }
+      // Does this home match the home styles filter?
+      if (homeStylesFilter.length > 0) {
+        styleMatch = homeStylesFilter.some(style => {
+          const matchFound = home.node.homeStyles.nodes.find(
+            homeStyle => homeStyle.slug === style
+          )
+          if (matchFound !== undefined) return true
+        })
+      }
+      // Does this home match the communities filter?
+      if (communityFilter.length > 0) {
+        communityMatch = communityFilter.some(community => {
+          const matchFound = home.node.communities.nodes.find(
+            homeCommunity => homeCommunity.slug === community
+          )
+          if (matchFound !== undefined) return true
+        })
+      }
+
+      // Does this house match the Square Footage filter
+      if (sqftFilter > 500) {
+        sqftMatch = home.node.acfShowHomes.squareFootage >= sqftFilter
+      }
+
+      // Does this house match the bedroom filter
+      if (bedroomFilter.length > 0) {
+        bedroomMatch = bedroomFilter.some(
+          bedrooms => bedrooms === home.node.acfShowHomes.numberOfBedrooms
+        )
+      }
+
+      const displayHome =
+        typeMatch && styleMatch && communityMatch && bedroomMatch && sqftMatch
+
+      if (displayHome) matched.push(home)
+    })
+    setMatchingHomes([...matched])
+  }, [
+    homeTypesFilter,
+    homeStylesFilter,
+    communityFilter,
+    sqftFilter,
+    bedroomFilter,
+  ])
+
   return (
     <SectionStyled filteractive={filterActive !== ""}>
+      {filterActive !== "" && (
+        <button
+          type="button"
+          onClick={closeAllFilters}
+          className="close-filter"
+        >
+          Close Filter
+        </button>
+      )}
       <div className="wrapper-filters">
         <div className="title">
           <h3>Expore By Filters:</h3>
+          <div className="filters-active">
+            <div className="filters-active__hometypes">
+              <p>
+                Home Types:{" "}
+                {homeTypesFilter.length > 0 ? (
+                  homeTypesFilter.map((item, index) => (
+                    <span key={index}>{item.split("-").join(" ")} </span>
+                  ))
+                ) : (
+                  <span>All Home Types</span>
+                )}
+              </p>
+            </div>
+            <div className="filters-active__homestyles">
+              <p>
+                Home Styles:{" "}
+                {homeStylesFilter.length > 0 ? (
+                  homeStylesFilter.map((item, index) => (
+                    <span key={index}>{item.split("-").join(" ")} </span>
+                  ))
+                ) : (
+                  <span>All Home Styles</span>
+                )}
+              </p>
+            </div>
+            <div className="filters-active__communities">
+              <p>
+                Communities:{" "}
+                {communityFilter.length > 0 ? (
+                  communityFilter.map((item, index) => (
+                    <span key={index}>{item.split("-").join(" ")} </span>
+                  ))
+                ) : (
+                  <span>All Communities</span>
+                )}
+              </p>
+            </div>
+            <div className="filters-active__bedrooms">
+              <p>
+                Bedrooms:{" "}
+                {bedroomFilter.length > 0 ? (
+                  bedroomFilter.map((item, index) => (
+                    <span key={index}>{item.split("-").join(" ")}</span>
+                  ))
+                ) : (
+                  <span>Homes All Bedrooms Amounts</span>
+                )}
+              </p>
+            </div>
+            <div className="filters-active__sqfootage">
+              <p>
+                Square Footage, showing homes <span>{sqftFilter}sqft</span> or
+                larger.
+              </p>
+            </div>
+          </div>
+          <div className="reset-all-filters">
+            <button type="button" onClick={handleResetAllFilters}>
+              Reset All Filters
+            </button>
+          </div>
         </div>
         <div className="filter">
           <FilterMain
@@ -151,63 +311,15 @@ const DisplayShowHomes = props => {
         </div>
       </div>
       <div className="wrapper">
-        {showHomes.map(home => {
-          let typeMatch = true
-          let styleMatch = true
-          let communityMatch = true
-          let sqftMatch = true
-          let bedroomMatch = true
-
-          // Does this home match the home types filter?
-          if (homeTypesFilter.length > 0) {
-            typeMatch = homeTypesFilter.some(type => {
-              const matchFound = home.node.homeTypes.nodes.find(
-                homeType => homeType.slug === type
-              )
-              if (matchFound !== undefined) return true
-            })
-          }
-          // Does this home match the home styles filter?
-          if (homeStylesFilter.length > 0) {
-            styleMatch = homeStylesFilter.some(style => {
-              const matchFound = home.node.homeStyles.nodes.find(
-                homeStyle => homeStyle.slug === style
-              )
-              if (matchFound !== undefined) return true
-            })
-          }
-          // Does this home match the communities filter?
-          if (communityFilter.length > 0) {
-            communityMatch = communityFilter.some(community => {
-              const matchFound = home.node.communities.nodes.find(
-                homeCommunity => homeCommunity.slug === community
-              )
-              if (matchFound !== undefined) return true
-            })
-          }
-
-          // Does this house match the Square Footage filter
-          if (sqftFilter > 500) {
-            sqftMatch = home.node.acfShowHomes.squareFootage >= sqftFilter
-          }
-
-          // Does this house match the bedroom filter
-          if (bedroomFilter.length > 0) {
-            bedroomMatch = bedroomFilter.some(
-              bedrooms => bedrooms === home.node.acfShowHomes.numberOfBedrooms
-            )
-          }
-
-          const displayHome =
-            typeMatch &&
-            styleMatch &&
-            communityMatch &&
-            bedroomMatch &&
-            sqftMatch
-
-          if (!displayHome) return null
-          return <HomeDisplay key={home.node.slug} home={home.node} />
-        })}
+        {matchingHomes.length > 0 ? (
+          matchingHomes.map(home => {
+            return <HomeDisplay key={home.node.slug} home={home.node} />
+          })
+        ) : (
+          <div>
+            <p>No Homes Found!</p>
+          </div>
+        )}
       </div>
       <div className="filters-background" onClick={() => setFilterActive("")} />
     </SectionStyled>
@@ -215,7 +327,32 @@ const DisplayShowHomes = props => {
 }
 
 const SectionStyled = styled.section`
-  min-height: 75rem;
+  position: relative;
+  min-height: ${props => (props.filteractive ? "100rem" : "auto")};
+  overflow: hidden;
+
+  .close-filter {
+    ${B2Navy};
+    display: block;
+    position: fixed;
+    top: 5rem;
+    right: 5rem;
+    width: 8rem;
+    height: 8rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    line-height: 1.11;
+    cursor: pointer;
+    z-index: 99999999999999;
+
+    &:hover {
+      background-color: ${colors.colorPrimary};
+      color: ${colors.white};
+    }
+  }
 
   .wrapper {
     ${medWrapper};
@@ -239,6 +376,40 @@ const SectionStyled = styled.section`
         ${B1Black};
         margin: 0;
         text-transform: uppercase;
+      }
+
+      .filters-active {
+        width: 100%;
+
+        &__communities {
+        }
+
+        p {
+          ${B2Navy};
+          margin: 0;
+
+          span {
+            display: inline-block;
+            padding: 0.35em 0.65em;
+            background-color: ${colors.colorPrimary};
+            border-radius: 50rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+          }
+        }
+      }
+
+      .reset-all-filters {
+        margin-top: 1rem;
+
+        button {
+          ${Btn1Navy};
+        }
       }
     }
 

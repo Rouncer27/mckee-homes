@@ -48,6 +48,7 @@ import CrossfieldMapPins from "./PageComponents/CommunitiesMaps/CrossfieldMapPin
 import AirdrieMapPins from "./PageComponents/CommunitiesMaps/AirdrieMapPins"
 import DisplayCustomersVideos from "./PageComponents/DisplayCustomersVideos"
 import BuildingFuturesStatus from "./PageComponents/BuildingFuturesStatus"
+import GallerySlider from "./PageComponents/GallerySlider"
 
 const PageComponentGroups = props => {
   const { components, location } = props
@@ -185,6 +186,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_ThreeImagesRow":
                 return <ThreeImagesRow key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_GallerySlider":
+                return <GallerySlider key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_CustomerStories":
                 return <CustomerStories key={index} data={component} />

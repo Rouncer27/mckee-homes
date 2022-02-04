@@ -76,6 +76,10 @@ const StyledDiv = styled.div`
     p {
       ${B1Black};
     }
+
+    .intro__para {
+      max-width: 65rem;
+    }
   }
 
   .intro__btn {

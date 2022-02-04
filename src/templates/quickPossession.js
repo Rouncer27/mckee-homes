@@ -28,6 +28,10 @@ export const query = graphql`
       communities {
         nodes {
           slug
+          name
+          acfCommunities {
+            city
+          }
         }
       }
       acfQuickPossessions {
@@ -73,6 +77,15 @@ export const query = graphql`
         mainImage {
           altText
           mediaItemUrl
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 2000)
+            }
+          }
+        }
+
+        mainImageGallery {
+          altText
           localFile {
             childImageSharp {
               gatsbyImageData(width: 2000)

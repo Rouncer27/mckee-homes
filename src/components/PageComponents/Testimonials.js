@@ -84,8 +84,15 @@ const SectionStyled = styled.section`
 
 const TestimonialSlide = styled.div`
   position: relative;
-  padding: 2rem 10rem;
+  padding: 2rem 0;
   text-align: center;
+
+  @media (min-width: 768px) {
+    padding: 2rem 5rem;
+  }
+  @media (min-width: 1025px) {
+    padding: 2rem 10rem;
+  }
 
   span {
     ${fontSizer(7, 10, 76.8, 150, 3)};

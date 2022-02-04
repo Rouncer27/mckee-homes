@@ -13,40 +13,40 @@ export const wrapRootElement = ({ element }) => {
   )
 }
 
-export const onRenderBody = ({
-  setPreBodyComponents,
-  setBodyAttributes,
-  setHeadComponents,
-  setPostBodyComponents,
-}) => {
-  setPreBodyComponents([
-    <div key="0" id="preloader">
-      <div className="welcome-top">
-        <p>Welcome</p>
-      </div>
-      <img
-        src="/images/mckee-full-logo.png"
-        alt="logo"
-        style={{ height: "calc(3.23625vw + 77.86408px)" }}
-      />
-      <div className="welcome-bottom">
-        <p>to your new home experience</p>
-      </div>
-      <div className="preloader_animation"></div>
-    </div>,
-  ])
+// export const onRenderBody = ({
+//   setPreBodyComponents,
+//   setBodyAttributes,
+//   setHeadComponents,
+//   setPostBodyComponents,
+// }) => {
+//   setPreBodyComponents([
+//     <div key="0" id="preloader">
+//       <div className="welcome-top">
+//         <p>Welcome</p>
+//       </div>
+//       <img
+//         src="/images/mckee-full-logo.png"
+//         alt="logo"
+//         style={{ height: "calc(3.23625vw + 77.86408px)" }}
+//       />
+//       <div className="welcome-bottom">
+//         <p>to your new home experience</p>
+//       </div>
+//       <div className="preloader_animation"></div>
+//     </div>,
+//   ])
 
-  setBodyAttributes({
-    className: "preloader_active",
-  })
+//   setBodyAttributes({
+//     className: "preloader_active",
+//   })
 
-  setHeadComponents([
-    <link key="1" as="script" rel="preload" href="/scripts/preloader.js" />,
-    <link key="2" rel="stylesheet" href="/styles/preloader.css" />,
-    <noscript key="3">
-      <link rel="stylesheet" href="/styles/noscript.css" />
-    </noscript>,
-  ])
+//   setHeadComponents([
+//     <link key="1" as="script" rel="preload" href="/scripts/preloader.js" />,
+//     <link key="2" rel="stylesheet" href="/styles/preloader.css" />,
+//     <noscript key="3">
+//       <link rel="stylesheet" href="/styles/noscript.css" />
+//     </noscript>,
+//   ])
 
-  setPostBodyComponents([<script key="4" src="/scripts/preloader.js" />])
-}
+//   setPostBodyComponents([<script key="4" src="/scripts/preloader.js" />])
+// }

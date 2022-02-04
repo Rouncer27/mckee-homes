@@ -17,6 +17,7 @@ import bath from "../../../images/icons/bath.png"
 import Heart from "../../Images/Heart"
 
 const HomeDisplay = ({ home }) => {
+  console.log("Quick Possession: ", home)
   const [isLiked, setIsLiked] = useState(false)
   const [userState] = useContext(UserContext)
   const imgSrc = getImage(
@@ -125,6 +126,10 @@ const HomeDisplay = ({ home }) => {
           <p className="content__meta--address">
             {home.acfQuickPossessions.address}
           </p>
+          <p>
+            {home?.communities?.nodes[0]?.name},{" "}
+            {home.communities.nodes[0].acfCommunities.city}
+          </p>
           <p>{timeframe} possession</p>
           <p>&#36;{priceComma}</p>
         </div>
@@ -151,6 +156,7 @@ const ShowHomeStyled = styled(Link)`
   margin-bottom: 5rem;
   border: solid 0.3rem #a2a3a5;
   background-color: #efefef;
+  transition: all 0.3s ease-out;
 
   @media (min-width: 768px) {
     width: calc((100% / 2) - 2rem);
@@ -160,6 +166,11 @@ const ShowHomeStyled = styled(Link)`
   @media (min-width: 1025px) {
     width: calc((100% / 3) - 2rem);
     margin: 1rem;
+  }
+
+  &:hover {
+    box-shadow: 0.3rem 0.5rem 1rem 0 rgba(0, 0, 0, 0.6);
+    box-shadow: 3px 7px 9px 0 rgba(77, 88, 113, 0.55);
   }
 
   .image {
@@ -261,10 +272,6 @@ const ShowHomeStyled = styled(Link)`
       p {
         ${B1Grey};
         margin: 0;
-      }
-
-      &--address {
-        margin-bottom: 2.5rem !important;
       }
     }
 

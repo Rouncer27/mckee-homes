@@ -19,19 +19,21 @@ const settings = {
   autoplay: true,
   autoplaySpeed: 15000,
   centerPadding: "350px",
-  centerMode: true,
+  centerMode: false,
   arrows: true,
   dots: false,
 
   responsive: [
     {
       breakpoint: 1025,
+      slidesToShow: 3,
       settings: {
         centerPadding: "100px",
       },
     },
     {
       breakpoint: 768,
+      slidesToShow: 3,
       settings: {
         centerPadding: "0px",
       },
