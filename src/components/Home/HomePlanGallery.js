@@ -9,9 +9,7 @@ import { colors } from "../../styles/helpers"
 
 import HomePlanLightbox from "./HomePlanLightbox"
 
-const settings = {
-  slidesToShow: 1,
-  slidesToScroll: 1,
+const settingsGallery = {
   fade: false,
   draggable: true,
   infinite: true,
@@ -22,27 +20,28 @@ const settings = {
   centerMode: false,
   arrows: true,
   dots: false,
-
+  slidesToShow: 3,
+  slidesToScroll: 1,
   responsive: [
     {
       breakpoint: 1025,
-      slidesToShow: 3,
       settings: {
         centerPadding: "100px",
+        slidesToShow: 3,
       },
     },
     {
       breakpoint: 768,
-      slidesToShow: 3,
       settings: {
         centerPadding: "0px",
+        slidesToShow: 3,
       },
     },
   ],
 }
 
 const HomePlanGallery = ({ gallery }) => {
-  const slickSlider = useRef(null)
+  const slickSliderGallery = useRef(null)
   const [lightboxActive, setLightboxActive] = useState(false)
   const [indexActive, setIndexActive] = useState(0)
 
@@ -82,7 +81,7 @@ const HomePlanGallery = ({ gallery }) => {
   return (
     <SectionStyled>
       <div className="gallery-wrapper">
-        <Slider ref={slickSlider} {...settings}>
+        <Slider ref={slickSliderGallery} {...settingsGallery}>
           {gallery.map((gal, index) => {
             const galImg = getImage(
               gal.localFile.childImageSharp.gatsbyImageData
@@ -91,7 +90,7 @@ const HomePlanGallery = ({ gallery }) => {
             return (
               <div
                 key={index}
-                className="slide"
+                className="gallery-slide"
                 onClick={event => handleSetLightboxActive(event)}
               >
                 <GatsbyImage
@@ -121,7 +120,7 @@ const SectionStyled = styled.div`
   .gallery-wrapper {
     padding-bottom: 5rem;
 
-    .slide {
+    .gallery-slide {
       position: relative;
       height: 35rem;
       z-index: 10;
