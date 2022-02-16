@@ -21,6 +21,7 @@ const FilterMore = ({
   homeFeaturesFilter,
   setHomeFeaturesFilter,
   clearMore,
+  filterSelected,
 }) => {
   const sqfootDisplay = useRef(null)
   const priceDisplay = useRef(null)
@@ -107,7 +108,8 @@ const FilterMore = ({
           return setFilterActive(filterId)
         }}
       >
-        More Filters
+        More Filters{" "}
+        {filterSelected && <span className="filter-active-icon">&#10005;</span>}
       </p>
 
       <div className="filter-wrap">
@@ -352,6 +354,21 @@ const DivStyled = styled.div`
 
   @media (min-width: 768px) {
     width: 20rem;
+  }
+
+  .filter-active-icon {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.35em 0.65em;
+    background-color: ${colors.colorPrimary};
+    border-radius: 50rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
   }
 
   .price-filter,

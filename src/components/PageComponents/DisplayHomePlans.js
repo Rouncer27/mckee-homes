@@ -215,7 +215,6 @@ const DisplayHomePlans = props => {
     sqftFilter,
     bedroomFilter,
   ])
-
   return (
     <SectionStyled filteractive={filterActive !== ""}>
       {filterActive !== "" && (
@@ -229,68 +228,7 @@ const DisplayHomePlans = props => {
       )}
       <div className="wrapper-filters">
         <div className="title">
-          <h3>Expore By Filters:</h3>
-          <div className="filters-active">
-            <div className="filters-active__hometypes">
-              <p>
-                Home Types:{" "}
-                {homeTypesFilter.length > 0 ? (
-                  homeTypesFilter.map((item, index) => (
-                    <span key={index}>{item.split("-").join(" ")} </span>
-                  ))
-                ) : (
-                  <span>All Home Types</span>
-                )}
-              </p>
-            </div>
-            <div className="filters-active__homestyles">
-              <p>
-                Home Styles:{" "}
-                {homeStylesFilter.length > 0 ? (
-                  homeStylesFilter.map((item, index) => (
-                    <span key={index}>{item.split("-").join(" ")} </span>
-                  ))
-                ) : (
-                  <span>All Home Styles</span>
-                )}
-              </p>
-            </div>
-            <div className="filters-active__communities">
-              <p>
-                Communities:{" "}
-                {communityFilter.length > 0 ? (
-                  communityFilter.map((item, index) => (
-                    <span key={index}>{item.split("-").join(" ")} </span>
-                  ))
-                ) : (
-                  <span>All Communities</span>
-                )}
-              </p>
-            </div>
-            <div className="filters-active__bedrooms">
-              <p>
-                Bedrooms:{" "}
-                {bedroomFilter.length > 0 ? (
-                  bedroomFilter.map((item, index) => (
-                    <span key={index}>{item.split("-").join(" ")}</span>
-                  ))
-                ) : (
-                  <span>Homes All Bedrooms Amounts</span>
-                )}
-              </p>
-            </div>
-            <div className="filters-active__sqfootage">
-              <p>
-                Square Footage, showing homes <span>{sqftFilter}sqft</span> or
-                larger.
-              </p>
-            </div>
-          </div>
-          <div className="reset-all-filters">
-            <button type="button" onClick={handleResetAllFilters}>
-              Reset All Filters
-            </button>
-          </div>
+          <h3>Expore By Filters</h3>
         </div>
         <div className="filter">
           <FilterMain
@@ -299,12 +237,15 @@ const DisplayHomePlans = props => {
             homeTypes={homeTypes}
             homeTypesFilter={homeTypesFilter}
             setHomeTypesFilter={setHomeTypesFilter}
+            homeTypeActive={homeTypesFilter.length > 0}
             homeStyles={homeStyles}
             homeStylesFilter={homeStylesFilter}
             setHomeStylesFilter={setHomeStylesFilter}
+            homeStylesActive={homeStylesFilter.length > 0}
             communities={communities}
             communityFilter={communityFilter}
             setCommunityFilter={setCommunityFilter}
+            communityActive={communityFilter.length > 0}
             sqftFilter={sqftFilter}
             setSqftFilter={setSqftFilter}
             bedroomFilter={bedroomFilter}
@@ -312,8 +253,14 @@ const DisplayHomePlans = props => {
             price={false}
             timeline={false}
             features={false}
+            moreActive={bedroomFilter.length > 0 || parseInt(sqftFilter) > 500}
             clearMore={handleClearMore}
           />
+          <div className="reset-all-filters">
+            <button type="button" onClick={handleResetAllFilters}>
+              Reset All Filters
+            </button>
+          </div>
         </div>
       </div>
       <div className="wrapper">
@@ -409,21 +356,30 @@ const SectionStyled = styled.section`
           }
         }
       }
-
-      .reset-all-filters {
-        margin-top: 1rem;
-
-        button {
-          ${Btn1Navy};
-        }
-      }
     }
 
     .filter {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
       width: 100%;
 
       @media (min-width: 768px) {
         padding: 0 4rem;
+      }
+      .reset-all-filters {
+        margin-top: 2rem;
+        width: 100%;
+
+        @media (min-width: 768px) {
+          margin-top: 0;
+          width: 10%;
+        }
+
+        button {
+          ${Btn1Navy};
+        }
       }
     }
   }

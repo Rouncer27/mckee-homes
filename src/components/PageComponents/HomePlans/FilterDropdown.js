@@ -10,6 +10,7 @@ const FilterDropDown = ({
   options,
   itemsSelected,
   setItemsSelected,
+  filterSelected,
 }) => {
   const handleAddItem = slug => {
     // Copy the state so we can safly chage it.
@@ -39,7 +40,8 @@ const FilterDropDown = ({
           return setFilterActive(filterId)
         }}
       >
-        {title}:
+        {title}
+        {filterSelected && <span className="filter-active-icon">&#10005;</span>}
       </span>
       <ul className="items">
         {options.map(option => {
@@ -87,6 +89,21 @@ const FilterStyled = styled.div`
     width: 20rem;
     margin-right: 0.5rem;
     margin-bottom: auto;
+  }
+
+  .filter-active-icon {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.35em 0.65em;
+    background-color: ${colors.colorPrimary};
+    border-radius: 50rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
   }
 
   .anchor {

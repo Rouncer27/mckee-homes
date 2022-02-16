@@ -10,12 +10,15 @@ const FilterMain = ({
   homeTypes,
   homeTypesFilter,
   setHomeTypesFilter,
+  homeTypeActive,
   homeStyles,
   homeStylesFilter,
   setHomeStylesFilter,
+  homeStylesActive,
   communities,
   communityFilter,
   setCommunityFilter,
+  communityActive,
   sqftFilter,
   setSqftFilter,
   bedroomFilter,
@@ -30,6 +33,7 @@ const FilterMain = ({
   homeFeaturesFilter,
   setHomeFeaturesFilter,
   clearMore,
+  moreActive,
 }) => {
   return (
     <DivStyled id="filters">
@@ -41,6 +45,7 @@ const FilterMain = ({
         options={homeTypes}
         itemsSelected={homeTypesFilter}
         setItemsSelected={setHomeTypesFilter}
+        filterSelected={homeTypeActive}
       />
       <FilterDropdown
         filterId="homeStyles"
@@ -50,6 +55,7 @@ const FilterMain = ({
         options={homeStyles}
         itemsSelected={homeStylesFilter}
         setItemsSelected={setHomeStylesFilter}
+        filterSelected={homeStylesActive}
       />
       <FilterDropdown
         filterId="homeCommunities"
@@ -59,6 +65,7 @@ const FilterMain = ({
         options={communities}
         itemsSelected={communityFilter}
         setItemsSelected={setCommunityFilter}
+        filterSelected={communityActive}
       />
       <FilterMore
         filterId="filterMore"
@@ -78,6 +85,7 @@ const FilterMain = ({
         homeFeaturesFilter={homeFeaturesFilter}
         setHomeFeaturesFilter={setHomeFeaturesFilter}
         clearMore={clearMore}
+        filterSelected={moreActive}
       />
     </DivStyled>
   )
@@ -88,6 +96,10 @@ const DivStyled = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
+
+  @media (min-width: 768px) {
+    width: 90%;
+  }
 `
 
 export default FilterMain
