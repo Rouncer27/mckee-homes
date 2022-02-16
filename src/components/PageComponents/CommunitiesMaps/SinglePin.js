@@ -13,6 +13,8 @@ const SinglePin = ({
   slug,
   classmodifier,
   setPinActive,
+  logo,
+  logoAlt,
 }) => {
   return (
     <DivStyled
@@ -37,6 +39,14 @@ const SinglePin = ({
       <div className="pin__details">
         <div className="pin__details--title">
           <h3>{title}</h3>
+        </div>
+        <div className="pin__details--logo">
+          <GatsbyImage
+            image={logo}
+            alt={logoAlt}
+            layout="fullWidth"
+            formats={["auto", "webp", "avif"]}
+          />
         </div>
         <div
           className="pin__details--content"
@@ -103,6 +113,10 @@ const DivStyled = styled.div`
         line-height: 1.25;
         text-transform: uppercase;
       }
+    }
+
+    &--logo {
+      max-width: 10rem;
     }
 
     &--content {

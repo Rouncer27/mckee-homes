@@ -14,6 +14,16 @@ const getData = graphql`
           title
           slug
           acfCommunity {
+            logo {
+              altText
+              sourceUrl
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
             popupDetails
             popupPinIcon {
               altText
@@ -53,6 +63,11 @@ const AirdrieMapPins = () => {
       <AirdrieMap />
       <div className="pins">
         <SinglePin
+          logo={getImage(
+            bayside.node.acfCommunity.logo.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          logoAlt={bayside.node.acfCommunity.logo.altText}
           imgSrc={getImage(
             bayside.node.acfCommunity.popupPinIcon.localFile.childImageSharp
               .gatsbyImageData
@@ -66,6 +81,11 @@ const AirdrieMapPins = () => {
         />
 
         <SinglePin
+          logo={getImage(
+            chinookgate.node.acfCommunity.logo.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          logoAlt={chinookgate.node.acfCommunity.logo.altText}
           imgSrc={getImage(
             chinookgate.node.acfCommunity.popupPinIcon.localFile.childImageSharp
               .gatsbyImageData
@@ -79,6 +99,11 @@ const AirdrieMapPins = () => {
         />
 
         <SinglePin
+          logo={getImage(
+            cooperscrossing.node.acfCommunity.logo.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          logoAlt={cooperscrossing.node.acfCommunity.logo.altText}
           imgSrc={getImage(
             cooperscrossing.node.acfCommunity.popupPinIcon.localFile
               .childImageSharp.gatsbyImageData
@@ -92,6 +117,11 @@ const AirdrieMapPins = () => {
         />
 
         <SinglePin
+          logo={getImage(
+            kingsHeights.node.acfCommunity.logo.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          logoAlt={kingsHeights.node.acfCommunity.logo.altText}
           imgSrc={getImage(
             kingsHeights.node.acfCommunity.popupPinIcon.localFile
               .childImageSharp.gatsbyImageData
@@ -105,6 +135,11 @@ const AirdrieMapPins = () => {
         />
 
         <SinglePin
+          logo={getImage(
+            lanark.node.acfCommunity.logo.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          logoAlt={lanark.node.acfCommunity.logo.altText}
           imgSrc={getImage(
             lanark.node.acfCommunity.popupPinIcon.localFile.childImageSharp
               .gatsbyImageData
@@ -118,6 +153,11 @@ const AirdrieMapPins = () => {
         />
 
         <SinglePin
+          logo={getImage(
+            ravenswood.node.acfCommunity.logo.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          logoAlt={ravenswood.node.acfCommunity.logo.altText}
           imgSrc={getImage(
             ravenswood.node.acfCommunity.popupPinIcon.localFile.childImageSharp
               .gatsbyImageData

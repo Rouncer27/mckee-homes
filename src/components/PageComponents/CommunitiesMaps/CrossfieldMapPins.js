@@ -14,6 +14,16 @@ const getData = graphql`
           title
           slug
           acfCommunity {
+            logo {
+              altText
+              sourceUrl
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
             popupDetails
             popupPinIcon {
               altText
@@ -44,6 +54,11 @@ const CrossfieldMapPins = () => {
       <CrossfieldMap />
       <div className="pins">
         <SinglePin
+          logo={getImage(
+            vista.node.acfCommunity.logo.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          logoAlt={vista.node.acfCommunity.logo.altText}
           imgSrc={getImage(
             vista.node.acfCommunity.popupPinIcon.localFile.childImageSharp
               .gatsbyImageData
