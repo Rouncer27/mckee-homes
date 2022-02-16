@@ -32,7 +32,13 @@ const BlueBlockContent = ({ data }) => {
                 <h2>{content.title}</h2>
                 <div dangerouslySetInnerHTML={{ __html: content.content }} />
                 <div className="button">
-                  <a href="#">{content.buttonText}</a>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={content.pdf.localFile.publicURL}
+                  >
+                    {content.buttonText}
+                  </a>
                 </div>
               </div>
             </Block>

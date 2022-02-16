@@ -691,6 +691,11 @@ export const pageTempQuery = graphql`
               title
               content
               buttonText
+              pdf {
+                localFile {
+                  publicURL
+                }
+              }
               icon {
                 altText
                 sourceUrl
