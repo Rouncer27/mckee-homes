@@ -7,6 +7,7 @@ import HomePlansCommunities from "./HomePlansCommunities"
 import HomePlanGallery from "./HomePlanGallery"
 import HomePlanForms from "../PageComponents/Forms/HomePlanForms"
 import HomePlanFloorPlan from "./HomePlanFloorPlan"
+import HomeFloorPlans from "./HomeFloorPlans"
 import HomeSimilar from "./HomeSimilar"
 
 const HomePlan = ({ home }) => {
@@ -22,7 +23,7 @@ const HomePlan = ({ home }) => {
       )}
       <HomePlansCommunities communities={home.communities.nodes} />
       <HomePlanGallery gallery={home.acfHomePlans.gallery} />
-      <HomePlanFloorPlan
+      {/* <HomePlanFloorPlan
         home={home}
         homeType="home-plans"
         homeId={home.databaseId}
@@ -39,6 +40,15 @@ const HomePlan = ({ home }) => {
         // designerFloorPlan={home.acfHomePlans.designerFloorPlan}
         signatureFloorPlanReq={home.acfHomePlans.signatureFloorPlanReq}
         signatureFloorPlan={home.acfHomePlans.signatureFloorPlan}
+        floorPlanPdf={home.acfHomePlans.floorPlanPdf.mediaItemUrl}
+        appImage={home.acfHomePlans.mainImage.mediaItemUrl}
+      /> */}
+      <HomeFloorPlans
+        home={home}
+        homeType="home-plans"
+        homeId={home.databaseId}
+        title={home.title}
+        data={home.acfHomePlans.floorPlans}
         floorPlanPdf={home.acfHomePlans.floorPlanPdf.mediaItemUrl}
         appImage={home.acfHomePlans.mainImage.mediaItemUrl}
       />

@@ -70,6 +70,18 @@ export const query = graphql`
           }
         }
 
+        floorPlans {
+          floorPlanName
+          floorPlanImage {
+            altText
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 1500)
+              }
+            }
+          }
+        }
+
         floorPlanImage {
           altText
           localFile {

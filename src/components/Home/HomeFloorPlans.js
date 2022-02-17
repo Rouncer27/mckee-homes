@@ -6,6 +6,7 @@ import { AlertContext } from "../../context/AlertContext"
 import {
   B1Navy,
   B2Black,
+  B2White,
   Btn1Grey,
   colors,
   H1Navy,
@@ -18,67 +19,22 @@ import Heart from "../Images/Heart"
 import addPlan from "../AppRoutes/AppActions/addPlan"
 import JoinModal from "../Modals/JoinModal"
 
-const HomePlanFloorPlan = ({
+const HomeFloorPlans = ({
   home,
   homeType,
   homeId,
-  floorPlanPdf,
+  data,
   title,
-  propelFloorPlanReq,
-  propelFloorPlan,
-  signatureFloorPlanReq,
-  signatureFloorPlan,
+  floorPlanPdf,
   appImage,
+  colors,
 }) => {
-  const [floorPlanDisplay, setFloorPlanDisplay] = useState("propel")
-  let propel
-  let signature
+  console.log("TREVOR TREOVR Home Floor Plans", data)
+  const [floorPlanDisplay, setFloorPlanDisplay] = useState(0)
 
-  useEffect(() => {
-    if (propelFloorPlanReq) {
-      setFloorPlanDisplay("propel")
-    } else if (signatureFloorPlanReq) {
-      setFloorPlanDisplay("signature")
-    } else {
-      setFloorPlanDisplay("")
-    }
-  }, [])
+  // ********************************************** Need to check if this plan is already liked ********************************************** //
 
-  if (propelFloorPlanReq) {
-    propel = getImage(
-      propelFloorPlan?.localFile?.childImageSharp?.gatsbyImageData
-    )
-  }
-
-  if (signatureFloorPlanReq) {
-    signature = getImage(
-      signatureFloorPlan?.localFile?.childImageSharp?.gatsbyImageData
-    )
-  }
-
-  let displayImage
-
-  if (floorPlanDisplay === "propel") {
-    displayImage = (
-      <GatsbyImage
-        image={propel}
-        alt={``}
-        layout="fullWidth"
-        formats={["auto", "webp", "avif"]}
-      />
-    )
-  } else if (floorPlanDisplay === "signature") {
-    displayImage = (
-      <GatsbyImage
-        image={signature}
-        alt={``}
-        layout="fullWidth"
-        formats={["auto", "webp", "avif"]}
-      />
-    )
-  }
-
-  // for the lick button. //
+  // for the like button. //
   const [isLiked, setIsLiked] = useState(false)
   const [isJoinActive, setIsJoinActive] = useState(false)
   const [userState, userDispatch] = useContext(UserContext)
@@ -158,8 +114,18 @@ const HomePlanFloorPlan = ({
     setIsJoinActive(!isJoinActive)
   }
 
-  if (floorPlanDisplay === "") return null
+  // ********************************************** END END Need to check if this plan is already liked END END ********************************************** //
 
+  const handleOnChange = event => {
+    setFloorPlanDisplay(event.target.value)
+  }
+
+  if (data === null) return
+
+  let displayImage = getImage(
+    data[floorPlanDisplay]?.floorPlanImage?.localFile?.childImageSharp
+      ?.gatsbyImageData
+  )
   return (
     <>
       <SectionStyled>
@@ -173,31 +139,26 @@ const HomePlanFloorPlan = ({
                 <p>{title}</p>
               </div>
               <div className="floorplan-wrapper__plan--nav">
-                <span>Specification Grade: </span>
-                {propelFloorPlanReq && (
-                  <button
-                    className={
-                      floorPlanDisplay === "propel" ? "active-plan" : ""
-                    }
-                    onClick={() => setFloorPlanDisplay("propel")}
+                <InputField>
+                  <label for="floor-plan">Specification Grade:</label>
+                  <select
+                    name="floor-plans"
+                    id="floor-plan"
+                    onChange={handleOnChange}
                   >
-                    Propel
-                  </button>
-                )}
-                {signatureFloorPlanReq && (
-                  <button
-                    className={
-                      floorPlanDisplay === "signature" ? "active-plan" : ""
-                    }
-                    onClick={() => setFloorPlanDisplay("signature")}
-                  >
-                    Signature
-                  </button>
-                )}
+                    {data.map((plan, index) => {
+                      return <option value={index}>{plan.floorPlanName}</option>
+                    })}
+                  </select>
+                </InputField>
               </div>
-
               <div className="floorplan-wrapper__plan--image">
-                {displayImage}
+                <GatsbyImage
+                  image={displayImage}
+                  alt={``}
+                  layout="fullWidth"
+                  formats={["auto", "webp", "avif"]}
+                />
               </div>
             </div>
             <div className="floorplan-wrapper__like">
@@ -391,4 +352,24 @@ const SectionStyled = styled.section`
   }
 `
 
-export default HomePlanFloorPlan
+const InputField = styled.div`
+  label {
+    ${B1Navy};
+    margin-right: 1rem;
+    text-transform: uppercase;
+
+    select {
+      display: block;
+      margin-left: 1rem;
+      padding: 0.9rem 1rem;
+      border-radius: 0.2rem;
+      color: #444;
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      border: 0.3rem ${colors.colorPrimary} solid;
+    }
+  }
+`
+
+export default HomeFloorPlans
