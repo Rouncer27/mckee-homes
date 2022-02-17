@@ -78,33 +78,34 @@ const HomePlanGallery = ({ gallery }) => {
     setLightboxActive(false)
   }
 
+  if (gallery === null) return null
+  if (gallery.length === 0) return null
+
   return (
     <SectionStyled>
       <div className="gallery-wrapper">
-        {gallery.length > 0 ? (
-          <Slider ref={slickSliderGallery} {...settingsGallery}>
-            {gallery.map((gal, index) => {
-              const galImg = getImage(
-                gal.localFile.childImageSharp.gatsbyImageData
-              )
-              const galImgAlt = gal.altText
-              return (
-                <div
-                  key={index}
-                  className="gallery-slide"
-                  onClick={event => handleSetLightboxActive(event)}
-                >
-                  <GatsbyImage
-                    image={galImg}
-                    alt={galImgAlt}
-                    layout="fullWidth"
-                    formats={["auto", "webp", "avif"]}
-                  />
-                </div>
-              )
-            })}
-          </Slider>
-        ) : null}
+        <Slider ref={slickSliderGallery} {...settingsGallery}>
+          {gallery.map((gal, index) => {
+            const galImg = getImage(
+              gal.localFile.childImageSharp.gatsbyImageData
+            )
+            const galImgAlt = gal.altText
+            return (
+              <div
+                key={index}
+                className="gallery-slide"
+                onClick={event => handleSetLightboxActive(event)}
+              >
+                <GatsbyImage
+                  image={galImg}
+                  alt={galImgAlt}
+                  layout="fullWidth"
+                  formats={["auto", "webp", "avif"]}
+                />
+              </div>
+            )
+          })}
+        </Slider>
       </div>
       {lightboxActive && (
         <HomePlanLightbox
