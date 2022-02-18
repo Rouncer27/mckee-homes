@@ -47,15 +47,6 @@ export const query = graphql`
         floorPlanPdf {
           mediaItemUrl
         }
-        designerFloorPlanReq
-        designerFloorPlan {
-          mediaItemUrl
-          localFile {
-            childImageSharp {
-              gatsbyImageData(width: 2000)
-            }
-          }
-        }
         floorPlans {
           floorPlanName
           floorPlanImage {

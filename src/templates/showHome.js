@@ -6,8 +6,6 @@ import ShowHome from "../components/Home/ShowHome"
 
 const showHome = props => {
   const { showHome } = props.data
-  // const prevPlan = props.pageContext.prev
-  // const nextPlan = props.pageContext.next
   return (
     <div>
       <Layout>
@@ -37,25 +35,17 @@ export const query = graphql`
         numberOfBedrooms
         squareFootage
         virtualTour
-        floorPlanImageReq
         floorPlanPdf {
           mediaItemUrl
         }
-        designerFloorPlanReq
-        designerFloorPlan {
-          mediaItemUrl
-          localFile {
-            childImageSharp {
-              gatsbyImageData(width: 2000)
-            }
-          }
-        }
-        signatureFloorPlanReq
-        signatureFloorPlan {
-          mediaItemUrl
-          localFile {
-            childImageSharp {
-              gatsbyImageData(width: 2000)
+        floorPlans {
+          floorPlanName
+          floorPlanImage {
+            altText
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 1500)
+              }
             }
           }
         }
@@ -82,15 +72,6 @@ export const query = graphql`
           localFile {
             childImageSharp {
               gatsbyImageData(width: 2000)
-            }
-          }
-        }
-
-        floorPlanImage {
-          altText
-          localFile {
-            childImageSharp {
-              gatsbyImageData(width: 1500)
             }
           }
         }

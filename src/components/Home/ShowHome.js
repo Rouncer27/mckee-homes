@@ -6,7 +6,7 @@ import HomePlanDetails from "./HomePlanDetails"
 import HomePlanGallery from "./HomePlanGallery"
 import HomePlanConnect from "./HomePlanConnect"
 import ShowHomeForm from "../PageComponents/Forms/ShowHomeForm"
-import HomePlanFloorPlan from "./HomePlanFloorPlan"
+import HomeFloorPlans from "./HomeFloorPlans"
 
 const ShowHome = ({ home }) => {
   return (
@@ -31,22 +31,12 @@ const ShowHome = ({ home }) => {
         showHome={home.title}
         community={home.communities.nodes[0].slug}
       />
-      <HomePlanFloorPlan
+      <HomeFloorPlans
         home={home}
         homeType="show-homes"
         homeId={home.databaseId}
         title={home.title}
-        floorImg={
-          home.acfShowHomes.floorPlanImage.localFile?.childImageSharp
-            ?.gatsbyImageData
-        }
-        floorImgAlt={home.acfShowHomes.floorPlanImage.altText}
-        propelFloorPlanReq={home.acfShowHomes.floorPlanImageReq}
-        propelFloorPlan={home.acfShowHomes.floorPlanImage}
-        // designerFloorPlanReq={home.acfShowHomes.designerFloorPlanReq}
-        // designerFloorPlan={home.acfShowHomes.designerFloorPlan}
-        signatureFloorPlanReq={home.acfShowHomes.signatureFloorPlanReq}
-        signatureFloorPlan={home.acfShowHomes.signatureFloorPlan}
+        data={home.acfShowHomes.floorPlans}
         floorPlanPdf={home.acfShowHomes.floorPlanPdf.mediaItemUrl}
         appImage={home.acfShowHomes.mainImage.mediaItemUrl}
       />
