@@ -6,11 +6,9 @@ import HomePlanDetails from "./HomePlanDetails"
 import HomePlanGallery from "./HomePlanGallery"
 import QuickConnect from "./QuickConnect"
 import QuickPossesionsForm from "../PageComponents/Forms/QuickPossesionsForm"
-import HomePlanFloorPlan from "./HomePlanFloorPlan"
+import HomeFloorPlans from "./HomeFloorPlans"
 
 const QuickPossesion = ({ home }) => {
-  console.log("Gallery", home.acfQuickPossessions.gallery)
-
   return (
     <article>
       <QuickPossessionHeader home={home} />
@@ -25,22 +23,12 @@ const QuickPossesion = ({ home }) => {
         home.acfQuickPossessions.gallery.length > 0 && (
           <HomePlanGallery gallery={home.acfQuickPossessions.gallery} />
         )}
-      <HomePlanFloorPlan
+      <HomeFloorPlans
         home={home}
         homeType="quick-possessions"
         homeId={home.databaseId}
         title={home.title}
-        floorImg={
-          home.acfQuickPossessions.floorPlanImage.localFile?.childImageSharp
-            ?.gatsbyImageData
-        }
-        floorImgAlt={home.acfQuickPossessions.floorPlanImage.altText}
-        propelFloorPlanReq={home.acfQuickPossessions.floorPlanImageReq}
-        propelFloorPlan={home.acfQuickPossessions.floorPlanImage}
-        // designerFloorPlanReq={home.acfQuickPossessions.designerFloorPlanReq}
-        // designerFloorPlan={home.acfQuickPossessions.designerFloorPlan}
-        signatureFloorPlanReq={home.acfQuickPossessions.signatureFloorPlanReq}
-        signatureFloorPlan={home.acfQuickPossessions.signatureFloorPlan}
+        data={home.acfQuickPossessions.floorPlans}
         floorPlanPdf={home.acfQuickPossessions.floorPlanPdf.mediaItemUrl}
         appImage={home.acfQuickPossessions.mainImage.mediaItemUrl}
       />

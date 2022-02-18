@@ -44,7 +44,6 @@ export const query = graphql`
         numberOfBedrooms
         squareFootage
         virtualTour
-        floorPlanImageReq
         floorPlanPdf {
           mediaItemUrl
         }
@@ -57,12 +56,14 @@ export const query = graphql`
             }
           }
         }
-        signatureFloorPlanReq
-        signatureFloorPlan {
-          mediaItemUrl
-          localFile {
-            childImageSharp {
-              gatsbyImageData(width: 2000)
+        floorPlans {
+          floorPlanName
+          floorPlanImage {
+            altText
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 1500)
+              }
             }
           }
         }
@@ -89,15 +90,6 @@ export const query = graphql`
           localFile {
             childImageSharp {
               gatsbyImageData(width: 2000)
-            }
-          }
-        }
-
-        floorPlanImage {
-          altText
-          localFile {
-            childImageSharp {
-              gatsbyImageData(width: 1500)
             }
           }
         }
