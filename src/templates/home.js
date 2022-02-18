@@ -6,6 +6,9 @@ import HomePlan from "../components/Home/HomePlan"
 
 const home = props => {
   const { home } = props.data
+  // const prevPlan = props.pageContext.prev
+  // const nextPlan = props.pageContext.next
+
   return (
     <Layout>
       <HomePlan home={home} />
@@ -27,6 +30,10 @@ export const query = graphql`
         numberOfBedrooms
         squareFootage
         virtualTour
+        floorPlanPdf {
+          mediaItemUrl
+        }
+
         gallery {
           altText
           localFile {
