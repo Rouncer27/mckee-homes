@@ -16,6 +16,7 @@ import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
 
 const ShowHomeForm = ({ homeSlug, showHome, community }) => {
+  console.log("community", community)
   const [formData, setFormData] = useState({
     yourname: "",
     email: "",
@@ -25,6 +26,8 @@ const ShowHomeForm = ({ homeSlug, showHome, community }) => {
     questions: "",
     newsletterChecked: false,
     newsletter: "No Thank You",
+    realtor: "unsure",
+    type: "Show Home",
   })
 
   const [formStatus, setFormStatus] = useState({
@@ -48,8 +51,16 @@ const ShowHomeForm = ({ homeSlug, showHome, community }) => {
       ...formData,
       showhome: showHome,
       community: community,
+      type: `Show Home - ${showHome}`,
     })
   }, [])
+
+  const onRealtorChange = value => {
+    setFormData({
+      ...formData,
+      realtor: value,
+    })
+  }
 
   const handleOnChange = event => {
     setFormData({
@@ -146,6 +157,7 @@ const ShowHomeForm = ({ homeSlug, showHome, community }) => {
       showhome: showHome,
       questions: "",
       newsletterChecked: false,
+      realtor: "unsure",
       newsletter: "No Thank You",
     })
   }
@@ -225,18 +237,39 @@ const ShowHomeForm = ({ homeSlug, showHome, community }) => {
               </label>
             </InputField>
 
-            <CheckboxField>
+            <RadioBtnField>
+              <p id="radio-btn-title">Are you working with a realtor?</p>
+
               <input
-                name="send"
-                type="checkbox"
-                value={formData.newsletterChecked}
-                id="send"
-                onChange={handleOnCheck}
+                type="radio"
+                id="realtorChoice3"
+                name="realtor"
+                value="unsure"
+                checked={formData.realtor === "unsure"}
+                onChange={() => onRealtorChange("unsure")}
               />
-              <label htmlFor="send">
-                Send me monthly news, promotions and updates
-              </label>
-            </CheckboxField>
+              <label htmlFor="realtorChoice3">Unsure</label>
+
+              <input
+                type="radio"
+                id="realtorChoice1"
+                name="realtor"
+                value="yes"
+                checked={formData.realtor === "yes"}
+                onChange={() => onRealtorChange("yes")}
+              />
+              <label htmlFor="realtorChoice1">Yes</label>
+
+              <input
+                type="radio"
+                id="realtorChoice2"
+                name="realtor"
+                value="no"
+                checked={formData.realtor === "no"}
+                onChange={() => onRealtorChange("no")}
+              />
+              <label htmlFor="realtorChoice2">No</label>
+            </RadioBtnField>
 
             <InputField>
               <label htmlFor="questions">
@@ -250,6 +283,19 @@ const ShowHomeForm = ({ homeSlug, showHome, community }) => {
                 />
               </label>
             </InputField>
+
+            <CheckboxField>
+              <input
+                name="send"
+                type="checkbox"
+                value={formData.newsletterChecked}
+                id="send"
+                onChange={handleOnCheck}
+              />
+              <label htmlFor="send">
+                Send me monthly news, promotions and updates
+              </label>
+            </CheckboxField>
 
             <div className="btn-submit">
               <button type="submit">Send Me More Info</button>
@@ -329,6 +375,73 @@ const SectionStyled = styled.div`
 
       button {
         ${Btn1Grey};
+      }
+    }
+  }
+`
+
+const RadioBtnField = styled.div`
+  width: calc(100%);
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    width: calc(50% - 4rem);
+    margin: 0 2rem;
+    padding: 1rem 0;
+  }
+
+  p#radio-btn-title {
+    ${B2White};
+    display: block;
+    position: relative;
+    margin-bottom: 1rem;
+    margin-left: 0;
+    padding-right: 5rem;
+    cursor: pointer;
+  }
+
+  label {
+    ${B2White};
+    display: block;
+    position: relative;
+    margin-bottom: 1rem;
+    padding-right: 7.5rem;
+    max-width: 5rem;
+    cursor: pointer;
+
+    &::before {
+      display: block;
+      position: absolute;
+      top: -1rem;
+      right: -2rem;
+      width: 3rem;
+      height: 3rem;
+      transition: all 0.3s ease-out;
+      color: ${colors.colorTertiary};
+      font-family: "FontAwesome";
+      font-size: 2.5rem;
+      content: "\f1db";
+    }
+
+    .error-message {
+      display: none;
+    }
+
+    .error-active {
+      display: inline-block;
+      color: red;
+      padding-left: 2rem;
+    }
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+
+    &:checked + label {
+      &::before {
+        color: #fff !important;
+        content: "\f058";
       }
     }
   }

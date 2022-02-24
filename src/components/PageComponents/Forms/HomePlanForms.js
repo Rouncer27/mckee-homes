@@ -25,8 +25,9 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
     questions: "",
     newsletterChecked: false,
     newsletter: "No Thank You",
-    realtor: "no",
-    price: "",
+    realtor: "unsure",
+    price: "All Pricing",
+    type: "homeplan",
   })
 
   const [formStatus, setFormStatus] = useState({
@@ -49,6 +50,7 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
     setFormData({
       ...formData,
       homeplan: homePlan,
+      type: `homeplan - ${homePlan}`,
     })
   }, [])
 
@@ -155,8 +157,8 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
       questions: "",
       newsletterChecked: false,
       newsletter: "No Thank You",
-      realtor: "no",
-      price: "300~450",
+      realtor: "unsure",
+      price: "AllPricing",
     })
   }
 
@@ -258,6 +260,17 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
 
             <RadioBtnField>
               <p id="radio-btn-title">Are you working with a realtor?</p>
+
+              <input
+                type="radio"
+                id="realtorChoice3"
+                name="realtor"
+                value="unsure"
+                checked={formData.realtor === "unsure"}
+                onChange={() => onRealtorChange("unsure")}
+              />
+              <label htmlFor="realtorChoice3">Unsure</label>
+
               <input
                 type="radio"
                 id="realtorChoice1"
@@ -288,6 +301,7 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
                   id="price"
                   onChange={handleOnChange}
                 >
+                  <option value="AllPricing">All Pricing</option>
                   <option value="300~450">$300,000 ~ $450,000</option>
                   <option value="451~550">$451,000 ~ $550,000</option>
                   <option value="551~700">$551,000 ~ $700,000</option>
@@ -428,7 +442,7 @@ const RadioBtnField = styled.div`
     display: block;
     position: relative;
     margin-bottom: 1rem;
-    padding-right: 5rem;
+    padding-right: 7.5rem;
     max-width: 5rem;
     cursor: pointer;
 
