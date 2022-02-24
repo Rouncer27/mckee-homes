@@ -16,11 +16,14 @@ import FormErrors from "../../FormParts/formModals/FormErrors"
 
 const CommunityForm = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    yourname: "",
     email: "",
     phone: "",
-    community: "",
+    community: "all",
+    realtor: "unsure",
+    price: "All Pricing",
+    questions: "",
+    type: "community request",
     send: false,
   })
 
@@ -42,6 +45,13 @@ const CommunityForm = () => {
     setFormData({
       ...formData,
       send: !formData.send,
+    })
+  }
+
+  const onRealtorChange = value => {
+    setFormData({
+      ...formData,
+      realtor: value,
     })
   }
 
@@ -97,11 +107,14 @@ const CommunityForm = () => {
     })
 
     setFormData({
-      firstName: "",
-      lastName: "",
+      yourname: "",
       email: "",
       phone: "",
-      community: "",
+      community: "all",
+      realtor: "unsure",
+      price: "All Pricing",
+      questions: "",
+      type: "community request",
       send: false,
     })
   }
@@ -119,12 +132,12 @@ const CommunityForm = () => {
           </p>
           <form onSubmit={handleOnSubmit}>
             <InputField>
-              <label htmlFor="firstName">
-                Frist Name <span className="required">(required)</span>
+              <label htmlFor="yourname">
+                Your Name <span className="required">(required)</span>
                 <span
                   className={`error-message${
                     formStatus.errors.findIndex(
-                      error => error.idref === "firstName"
+                      error => error.idref === "yourname"
                     ) !== -1
                       ? " error-active"
                       : " "
@@ -133,41 +146,17 @@ const CommunityForm = () => {
                   You must input a name.
                 </span>
                 <input
-                  name="firstName"
+                  name="yourname"
                   type="text"
-                  value={formData.firstName}
-                  id="firstName"
+                  value={formData.yourname}
+                  id="yourname"
                   onChange={handleOnChange}
                   aria-required="true"
                   required
                 />
               </label>
             </InputField>
-            <InputField>
-              <label htmlFor="lastName">
-                Last Name <span className="required">(required)</span>
-                <span
-                  className={`error-message${
-                    formStatus.errors.findIndex(
-                      error => error.idref === "lastName"
-                    ) !== -1
-                      ? " error-active"
-                      : " "
-                  }`}
-                >
-                  You must input a name.
-                </span>
-                <input
-                  name="lastName"
-                  type="text"
-                  value={formData.lastName}
-                  id="lastName"
-                  onChange={handleOnChange}
-                  aria-required="true"
-                  required
-                />
-              </label>
-            </InputField>
+
             <InputField>
               <label htmlFor="email">
                 Email <span className="required">(required)</span>
@@ -220,31 +209,88 @@ const CommunityForm = () => {
             </InputField>
             <InputField>
               <label htmlFor="community">
-                What Community are you interested in?{" "}
-                <span className="required">(required)</span>
-                <span
-                  className={`error-message${
-                    formStatus.errors.findIndex(
-                      error => error.idref === "community"
-                    ) !== -1
-                      ? " error-active"
-                      : " "
-                  }`}
-                >
-                  You must input a phone number.
-                </span>
-                <input
-                  name="community"
-                  type="text"
+                What Community are you looking at?
+                <select
                   value={formData.community}
+                  name="community"
                   id="community"
                   onChange={handleOnChange}
-                  aria-required="true"
-                  required
-                />
+                >
+                  <option value="all">All Communities</option>
+                  <option value="bayside-estates">Bayside Estates</option>
+                  <option value="chinook-gate">Chinook Gate</option>
+                  <option value="coopers-crossing">Coopers Crossing</option>
+                  <option value="kings-heights">King's Heights</option>
+                  <option value="lanark-landing">Lanark Landing</option>
+                  <option value="ravenswood">Ravenswood</option>
+                  <option value="vista-crossing">Vista Crossing</option>
+                </select>
               </label>
             </InputField>
 
+            <RadioBtnField>
+              <p id="radio-btn-title">Are you working with a realtor?</p>
+
+              <input
+                type="radio"
+                id="realtorChoice3"
+                name="realtor"
+                value="unsure"
+                checked={formData.realtor === "unsure"}
+                onChange={() => onRealtorChange("unsure")}
+              />
+              <label htmlFor="realtorChoice3">Unsure</label>
+
+              <input
+                type="radio"
+                id="realtorChoice1"
+                name="realtor"
+                value="yes"
+                checked={formData.realtor === "yes"}
+                onChange={() => onRealtorChange("yes")}
+              />
+              <label htmlFor="realtorChoice1">Yes</label>
+
+              <input
+                type="radio"
+                id="realtorChoice2"
+                name="realtor"
+                value="no"
+                checked={formData.realtor === "no"}
+                onChange={() => onRealtorChange("no")}
+              />
+              <label htmlFor="realtorChoice2">No</label>
+            </RadioBtnField>
+
+            <InputField>
+              <label htmlFor="price">
+                Price point you are looking for?
+                <select
+                  value={formData.price}
+                  name="price"
+                  id="price"
+                  onChange={handleOnChange}
+                >
+                  <option value="AllPricing">All Pricing</option>
+                  <option value="300~450">$300,000 ~ $450,000</option>
+                  <option value="451~550">$451,000 ~ $550,000</option>
+                  <option value="551~700">$551,000 ~ $700,000</option>
+                  <option value="700+">$700,000 +</option>
+                </select>
+              </label>
+            </InputField>
+            <InputField>
+              <label htmlFor="questions">
+                Questions/comments
+                <textarea
+                  name="questions"
+                  value={formData.questions}
+                  id="questions"
+                  onChange={handleOnChange}
+                  rows="12"
+                />
+              </label>
+            </InputField>
             <CheckboxField>
               <input
                 name="send"
@@ -338,6 +384,73 @@ const SectionStyled = styled.div`
   }
 `
 
+const RadioBtnField = styled.div`
+  width: calc(100%);
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    width: calc(50% - 4rem);
+    margin: 0 2rem;
+    padding: 1rem 0;
+  }
+
+  p#radio-btn-title {
+    ${B2White};
+    display: block;
+    position: relative;
+    margin-bottom: 1rem;
+    margin-left: 0;
+    padding-right: 5rem;
+    cursor: pointer;
+  }
+
+  label {
+    ${B2White};
+    display: block;
+    position: relative;
+    margin-bottom: 1rem;
+    padding-right: 7.5rem;
+    max-width: 5rem;
+    cursor: pointer;
+
+    &::before {
+      display: block;
+      position: absolute;
+      top: -1rem;
+      right: -2rem;
+      width: 3rem;
+      height: 3rem;
+      transition: all 0.3s ease-out;
+      color: ${colors.colorTertiary};
+      font-family: "FontAwesome";
+      font-size: 2.5rem;
+      content: "\f1db";
+    }
+
+    .error-message {
+      display: none;
+    }
+
+    .error-active {
+      display: inline-block;
+      color: red;
+      padding-left: 2rem;
+    }
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+
+    &:checked + label {
+      &::before {
+        color: #fff !important;
+        content: "\f058";
+      }
+    }
+  }
+`
+
 const CheckboxField = styled.div`
   width: calc(100%);
   margin: 0 auto;
@@ -419,7 +532,8 @@ const InputField = styled.div`
     }
 
     input,
-    textarea {
+    textarea,
+    select {
       display: block;
       margin-top: 0.25rem;
       margin-bottom: 0.5rem;
