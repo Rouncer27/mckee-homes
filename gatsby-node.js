@@ -78,6 +78,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `)
 
     const pages = data.pages.edges
+
     pages.forEach(({ node }) => {
       if (node.slug === "home") {
         createPage({
