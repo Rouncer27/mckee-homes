@@ -1,9 +1,12 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { B2White, colors, medWrapper, B1White } from "../../styles/helpers"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 
 const getData = graphql`
   {
@@ -62,6 +65,33 @@ const DisplayTeam = ({ data }) => {
     ...warranty,
   ]
 
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#our-team-list",
+          markers: false,
+          start: "top 45%",
+          toggleActions: "play none none none",
+        },
+      })
+      .fromTo(
+        "#our-team-list .team-item",
+        {
+          autoAlpha: 0,
+          y: 150,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          ease: "power1.inOut",
+          stagger: {
+            amount: 2.75,
+          },
+        }
+      )
+  }, [])
+
   if (!data.displayAllTeam) return null
   return (
     <SectionStyled id="our-team-list">
@@ -72,32 +102,34 @@ const DisplayTeam = ({ data }) => {
           )
           const imageAlt = team.node.acfOurTeam.image.altText
           return (
-            <Team key={index} to={`/our-team/${team.node.slug}`}>
-              <div className="image">
-                <GatsbyImage
-                  image={imageDisplay}
-                  alt={imageAlt}
-                  layout="fullWidth"
-                  formats={["auto", "webp", "avif"]}
-                />
-                <div className="image__read-more">
-                  <p>Read More</p>
+            <Team className="team-item" key={index}>
+              <Link to={`/our-team/${team.node.slug}`}>
+                <div className="image">
+                  <GatsbyImage
+                    image={imageDisplay}
+                    alt={imageAlt}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
+                  />
+                  <div className="image__read-more">
+                    <p>Read More</p>
+                  </div>
                 </div>
-              </div>
-              <div className="name">
-                <h2>
-                  <span>{team.node.title}</span>{" "}
-                  <span className="job-title">
-                    {team.node.acfOurTeam.title}
-                  </span>
-                </h2>
+                <div className="name">
+                  <h2>
+                    <span>{team.node.title}</span>{" "}
+                    <span className="job-title">
+                      {team.node.acfOurTeam.title}
+                    </span>
+                  </h2>
 
-                <h3>
-                  {team.node.acfOurTeam.department === "principals"
-                    ? "owner"
-                    : `${team.node.acfOurTeam.department} Team`}
-                </h3>
-              </div>
+                  <h3>
+                    {team.node.acfOurTeam.department === "principals"
+                      ? "owner"
+                      : `${team.node.acfOurTeam.department} Team`}
+                  </h3>
+                </div>
+              </Link>
             </Team>
           )
         })}
@@ -114,7 +146,7 @@ const SectionStyled = styled.section`
   }
 `
 
-const Team = styled(Link)`
+const Team = styled.div`
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;

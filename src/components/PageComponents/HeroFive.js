@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import {
@@ -8,14 +8,42 @@ import {
   H3Grey,
   medWrapper,
 } from "../../styles/helpers"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 
 const HeroFive = ({ data }) => {
   const imageDisplay = getImage(
     data.image.localFile.childImageSharp.gatsbyImageData
   )
   const imageAlt = data.image.altText
+
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#hero-five-tigger",
+          markers: false,
+          start: "top 25%",
+          toggleActions: "play none none none",
+        },
+      })
+      .fromTo(
+        "#hero-five-tigger .hero-content__inner",
+        {
+          autoAlpha: 0,
+          y: 150,
+          duration: 1,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+        }
+      )
+  }, [])
+
   return (
-    <HeroFourStyled>
+    <HeroFourStyled id="hero-five-tigger">
       <div className="hero-Wrap">
         <div className="hero-image">
           <GatsbyImage

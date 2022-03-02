@@ -1,13 +1,11 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import {
-  B1Black,
-  H3Black,
-  medWrapper,
-  standardWrapper,
-} from "../../styles/helpers"
+import { B1Black, H3Black, standardWrapper } from "../../styles/helpers"
 import { graphql, useStaticQuery } from "gatsby"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 
 const getData = graphql`
   {
@@ -38,9 +36,36 @@ const CustomerStories = ({ data }) => {
   const testData = useStaticQuery(getData)
   const testimonials = testData.testimonials.edges
 
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#customer-stories-trigger",
+          markers: false,
+          start: "top 45%",
+          toggleActions: "play none none none",
+        },
+      })
+      .fromTo(
+        "#customer-stories-trigger .story-item",
+        {
+          autoAlpha: 0,
+          y: 150,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          ease: "power1.inOut",
+          stagger: {
+            amount: 2.75,
+          },
+        }
+      )
+  }, [])
+
   if (!data.displayCustomerStories) return null
   return (
-    <StyledSection>
+    <StyledSection id="customer-stories-trigger">
       <div className="wrapper">
         {testimonials.map((test, index) => {
           const displayImg = getImage(
@@ -50,7 +75,7 @@ const CustomerStories = ({ data }) => {
           const displayImgAlt = test.node.acfTestimonials.image.altText
 
           return (
-            <Story key={index}>
+            <Story className="story-item" key={index}>
               <div className="image">
                 <GatsbyImage
                   image={displayImg}
