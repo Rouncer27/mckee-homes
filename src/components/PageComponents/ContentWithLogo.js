@@ -1,13 +1,59 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 
 import FullLogo from "../Logos/FullLogo"
 import HouseBlueprint from "../Images/HouseBlueprint"
 import { H3Black, medWrapper } from "../../styles/helpers"
 
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
+
 const ContentWithLogo = ({ data }) => {
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#content-with-logo-tigger",
+          markers: false,
+          start: "top 40%",
+          toggleActions: "play none none none",
+        },
+      })
+      .fromTo(
+        "#content-with-logo-tigger .images__logo",
+        {
+          autoAlpha: 0,
+          x: -150,
+          duration: 0.5,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+        }
+      )
+      .fromTo(
+        "#content-with-logo-tigger .content",
+        {
+          autoAlpha: 0,
+          y: 100,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          stagger: {
+            each: 0.3,
+          },
+        }
+      )
+  }, [])
+
   return (
-    <ContentWithLogoSection logoside={data.logoSide}>
+    <ContentWithLogoSection
+      id="content-with-logo-tigger"
+      logoside={data.logoSide}
+    >
       <div className="wrapper">
         <div className="images">
           <div className="images__logo">

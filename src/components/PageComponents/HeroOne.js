@@ -1,15 +1,58 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { B1Black, H1Navy } from "../../styles/helpers"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 
 const HeroOne = ({ data }) => {
   const imageDisplay = getImage(
     data.backgroundImage.localFile.childImageSharp.gatsbyImageData
   )
   const imageAlt = data.backgroundImage.altText
+
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#hero-one-tigger",
+          markers: false,
+          start: "top 40%",
+          toggleActions: "play none none none",
+        },
+      })
+      .fromTo(
+        "#hero-one-tigger .hero-content__inner .title",
+        {
+          autoAlpha: 0,
+          x: -150,
+          duration: 0.5,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+        }
+      )
+      .fromTo(
+        "#hero-one-tigger .hero-content__inner .content",
+        {
+          autoAlpha: 0,
+          y: 100,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          stagger: {
+            each: 0.3,
+          },
+        }
+      )
+  }, [])
+
   return (
-    <HeroOneSection>
+    <HeroOneSection id="hero-one-tigger">
       <div className="hero-image">
         <GatsbyImage
           image={imageDisplay}
@@ -23,7 +66,10 @@ const HeroOne = ({ data }) => {
           <div className="title">
             <h2>{data.title}</h2>
           </div>
-          <div dangerouslySetInnerHTML={{ __html: data.content }} />
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{ __html: data.content }}
+          />
         </div>
       </div>
     </HeroOneSection>

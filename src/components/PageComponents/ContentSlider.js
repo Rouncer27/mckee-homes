@@ -1,6 +1,6 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -12,6 +12,7 @@ import {
   H2Navy,
 } from "../../styles/helpers"
 import { Link } from "gatsby"
+import swipeImage from "../../images/swipe-finger.png"
 
 const settings = {
   slidesToShow: 1,
@@ -28,8 +29,15 @@ const settings = {
 }
 
 const ContentSlider = ({ data }) => {
+  const [hasSwiped, setHasSwiped] = useState(false)
+
+  useEffect(() => {}, [])
+
   return (
-    <ContentSliderSection>
+    <ContentSliderSection
+      onTouchStart={() => setHasSwiped(true)}
+      onClick={() => setHasSwiped(true)}
+    >
       <div className="wrapper">
         <Slider {...settings}>
           {data.slides.map((slide, index) => {
@@ -67,12 +75,50 @@ const ContentSlider = ({ data }) => {
             )
           })}
         </Slider>
+
+        <div className={`swipe-finger${!hasSwiped ? " active-notice" : ""}`}>
+          <img src={swipeImage} alt="Swipe to change slides" />
+        </div>
       </div>
     </ContentSliderSection>
   )
 }
 
+const swipeAnimation = keyframes`
+   0% {transform: translateX(0); }
+  25% { transform: translateX(-70px); }
+  75% { transform: translateX(70px);  }
+  100% { transform: translateX(0);  }
+`
+
 const ContentSliderSection = styled.section`
+  position: relative;
+
+  .swipe-finger {
+    position: absolute;
+    bottom: 0;
+    left: 35%;
+    width: 10rem;
+    transform: translateX(-50%);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+
+    &.active-notice {
+      display: block;
+      animation-name: ${swipeAnimation};
+      animation-duration: 2.5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
   .slick-slider {
     .slick-active.slick-current {
       z-index: 1000;
