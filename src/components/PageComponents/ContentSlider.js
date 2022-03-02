@@ -109,7 +109,6 @@ const ContentSliderSection = styled.section`
     }
 
     &.active-notice {
-      display: block;
       animation-name: ${swipeAnimation};
       animation-duration: 2.5s;
       animation-iteration-count: infinite;
