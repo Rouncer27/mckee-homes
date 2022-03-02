@@ -1,9 +1,13 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { B1Black, H2Navy, medWrapper, Btn1Grey } from "../../styles/helpers"
 import BgPatternOne from "../Graphics/BgPatternOne"
+
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 
 const ContentThreeImages = ({ data }) => {
   const topImg = getImage(
@@ -18,13 +22,118 @@ const ContentThreeImages = ({ data }) => {
     data.bottomRight.localFile.childImageSharp.gatsbyImageData
   )
   const rightImgAlt = data.bottomRight.altText
+
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#content-three-images",
+          markers: false,
+          start: "top 40%",
+          toggleActions: "play none none none",
+        },
+      })
+      .add("start")
+      .fromTo(
+        "#content-three-images .content h2",
+        {
+          autoAlpha: 0,
+          x: 150,
+          duration: 0.5,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+        }
+      )
+      .fromTo(
+        "#content-three-images .bg-pattern",
+        {
+          autoAlpha: 0,
+          duration: 0.25,
+        },
+        {
+          autoAlpha: 1,
+        },
+        "start"
+      )
+      .add("starttwo")
+      .fromTo(
+        "#content-three-images .content .paragraphs",
+        {
+          autoAlpha: 0,
+          y: 100,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+        }
+      )
+      .fromTo(
+        "#content-three-images .content .links",
+        {
+          autoAlpha: 0,
+          y: 100,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+        },
+        "-=0.5"
+      )
+      .fromTo(
+        "#content-three-images .images__top",
+        {
+          autoAlpha: 0,
+          x: 200,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+          duration: 1,
+        },
+        "starttwo"
+      )
+      .fromTo(
+        "#content-three-images .images__bot-left",
+        {
+          autoAlpha: 0,
+          y: 100,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+        },
+        "starttwo+=0.5"
+      )
+      .fromTo(
+        "#content-three-images .images__bot-right",
+        {
+          autoAlpha: 0,
+          x: 200,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+          duration: 1,
+        },
+        "starttwo+=0.5"
+      )
+  }, [])
+
   return (
-    <ContentThreeImagesSection>
+    <ContentThreeImagesSection id="content-three-images">
       <div className="wrapper">
         <div className="content">
           <h2>{data.title}</h2>
-          <div dangerouslySetInnerHTML={{ __html: data.content }} />
-          <div>
+          <div
+            className="paragraphs"
+            dangerouslySetInnerHTML={{ __html: data.content }}
+          />
+          <div className="links">
             <Link to={`/${data.buttonSlug}`}>{data.buttonText}</Link>
           </div>
           <div className="bg-pattern">

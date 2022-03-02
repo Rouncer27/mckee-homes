@@ -1,16 +1,60 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Btn1Grey, H3Grey } from "../../styles/helpers"
 import { Link } from "gatsby"
+
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 
 const HeroTwo = ({ data }) => {
   const imageDisplay = getImage(
     data.image.localFile.childImageSharp.gatsbyImageData
   )
   const imageAlt = data.image.altText
+
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#hero-two-tigger",
+          markers: false,
+          start: "top 40%",
+          toggleActions: "play none none none",
+        },
+      })
+      .fromTo(
+        "#hero-two-tigger .hero-content__inner",
+        {
+          autoAlpha: 0,
+          x: 150,
+          duration: 0.5,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+        }
+      )
+      .fromTo(
+        "#hero-two-tigger .hero-content__link",
+        {
+          autoAlpha: 0,
+          y: 100,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          stagger: {
+            each: 0.3,
+          },
+        }
+      )
+  }, [])
+
   return (
-    <HeroTwoStyled>
+    <HeroTwoStyled id="hero-two-tigger">
       <div className="hero-image">
         <GatsbyImage
           image={imageDisplay}

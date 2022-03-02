@@ -1,16 +1,76 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Btn1GreyBlue, B1White, H2White } from "../../styles/helpers"
 import { Link } from "gatsby"
+
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 
 const HeroThree = ({ data }) => {
   const imageDisplay = getImage(
     data.image.localFile.childImageSharp.gatsbyImageData
   )
   const imageAlt = data.image.altText
+
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#hero-three-tigger",
+          markers: false,
+          start: "top 40%",
+          toggleActions: "play none none none",
+        },
+      })
+      .fromTo(
+        "#hero-three-tigger .hero-content__title",
+        {
+          autoAlpha: 0,
+          x: 150,
+          duration: 0.5,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+        }
+      )
+      .fromTo(
+        "#hero-three-tigger .hero-content__content",
+        {
+          autoAlpha: 0,
+          y: 100,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          stagger: {
+            each: 0.3,
+          },
+        }
+      )
+      .fromTo(
+        "#hero-three-tigger .hero-content__link",
+        {
+          autoAlpha: 0,
+          y: 100,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          stagger: {
+            each: 0.3,
+          },
+        },
+        "-=0.5"
+      )
+  }, [])
+
   return (
-    <HeroThreeStyled>
+    <HeroThreeStyled id="hero-three-tigger">
       <div className="hero-image">
         <GatsbyImage
           image={imageDisplay}
@@ -24,7 +84,10 @@ const HeroThree = ({ data }) => {
           <div className="hero-content__title">
             <h2>{data.title}</h2>
           </div>
-          <div dangerouslySetInnerHTML={{ __html: data.content }} />
+          <div
+            className="hero-content__content"
+            dangerouslySetInnerHTML={{ __html: data.content }}
+          />
           <div className="hero-content__link">
             <Link to={`/${data.buttonSlug}`}>{data.buttonText}</Link>
           </div>
