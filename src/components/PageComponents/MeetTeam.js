@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import { Link } from "gatsby"
@@ -10,6 +10,9 @@ import {
   medWrapper,
   H2White,
 } from "../../styles/helpers"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 
 const getData = graphql`
   {
@@ -40,6 +43,68 @@ const MeetTeam = ({ data }) => {
   const teamData = useStaticQuery(getData)
   const team = teamData.team.edges.sort((a, b) => 0.5 - Math.random())
 
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#meet-team-intro",
+          markers: false,
+          start: "top 45%",
+          toggleActions: "play none none none",
+        },
+      })
+      .fromTo(
+        "#meet-team-intro .title",
+        {
+          autoAlpha: 0,
+          y: 150,
+          duration: 1,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+        }
+      )
+      .fromTo(
+        "#meet-team-intro .images",
+        {
+          autoAlpha: 0,
+          y: 150,
+          duration: 1,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+        }
+      )
+      .fromTo(
+        "#meet-team-intro .button",
+        {
+          autoAlpha: 0,
+          x: -150,
+          duration: 1,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+        }
+      )
+      .fromTo(
+        "#meet-team-intro .team-item",
+        {
+          autoAlpha: 0,
+          y: 150,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          stagger: {
+            each: 0.3,
+          },
+        }
+      )
+  }, [])
+
   if (!data.displayMeetTeam) return null
 
   return (
@@ -66,15 +131,17 @@ const MeetTeam = ({ data }) => {
             )
             const imageAlt = team.node.acfOurTeam.image.altText
             return (
-              <Team to={`/our-team/${team.node.slug}`} key={index}>
-                <div className="image">
-                  <GatsbyImage
-                    image={imageDisplay}
-                    alt={imageAlt}
-                    layout="fullWidth"
-                    formats={["auto", "webp", "avif"]}
-                  />
-                </div>
+              <Team className="team-item" key={index}>
+                <Link to={`/our-team/${team.node.slug}`}>
+                  <div className="image">
+                    <GatsbyImage
+                      image={imageDisplay}
+                      alt={imageAlt}
+                      layout="fullWidth"
+                      formats={["auto", "webp", "avif"]}
+                    />
+                  </div>
+                </Link>
               </Team>
             )
           })}
@@ -151,7 +218,7 @@ const SectionStyled = styled.section`
   }
 `
 
-const Team = styled(Link)`
+const Team = styled.div`
   width: calc((100% / 2) - 2rem);
   margin: 1rem;
 

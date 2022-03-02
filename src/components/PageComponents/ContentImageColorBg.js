@@ -1,8 +1,11 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { B1Black, Btn1Grey, H2Black, medWrapper } from "../../styles/helpers"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 
 const ContentImageColorBg = ({ data }) => {
   const imageTopDisplay = getImage(
@@ -10,8 +13,46 @@ const ContentImageColorBg = ({ data }) => {
   )
   const imageTopAlt = data.imageTop.altText
 
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#content-image-color-bg",
+          markers: false,
+          start: "top 45%",
+          toggleActions: "play none none none",
+        },
+      })
+      .add("start")
+      .fromTo(
+        "#content-image-color-bg .content",
+        {
+          autoAlpha: 0,
+          x: -250,
+          duration: 1,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+        }
+      )
+      .fromTo(
+        "#content-image-color-bg .image",
+        {
+          autoAlpha: 0,
+          x: 250,
+          duration: 1,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+        },
+        "start"
+      )
+  }, [])
+
   return (
-    <SectionStyled>
+    <SectionStyled id="content-image-color-bg">
       <div className="wrapper">
         <div className="content">
           <div className="title">

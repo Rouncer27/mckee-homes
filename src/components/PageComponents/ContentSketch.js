@@ -1,14 +1,52 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { medWrapper, H3Black, H2Black } from "../../styles/helpers"
-
 import HouseBlueprint from "../Images/HouseBlueprint"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 
 const ContentSketch = ({ data }) => {
   const secID = data.sectionId ? data.sectionId : ""
 
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".content-sketch-section",
+          markers: false,
+          start: "top 45%",
+          toggleActions: "play none none none",
+        },
+      })
+      .fromTo(
+        ".content-sketch-section .content .title",
+        {
+          autoAlpha: 0,
+          y: 150,
+          duration: 1,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+        }
+      )
+      .fromTo(
+        ".content-sketch-section .content .paragraph",
+        {
+          autoAlpha: 0,
+          y: 150,
+          duration: 1,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+        }
+      )
+  }, [])
+
   return (
-    <ContentSketchSection id={secID}>
+    <ContentSketchSection className="content-sketch-section" id={secID}>
       <div className="wrapper">
         <div className="images">
           <div className="images__blueprint">

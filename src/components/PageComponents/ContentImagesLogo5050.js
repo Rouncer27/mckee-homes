@@ -1,7 +1,10 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { medWrapper } from "../../styles/helpers"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
 
 const ContentImagesLogo5050 = ({ data }) => {
   const botImg = getImage(
@@ -21,8 +24,44 @@ const ContentImagesLogo5050 = ({ data }) => {
   const logoUrl = getImage(data.logo.localFile.childImageSharp.gatsbyImageData)
   const logoAlt = data.logo.altText
 
+  useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: "#content-images-logo",
+          markers: false,
+          start: "top 45%",
+          toggleActions: "play none none none",
+        },
+      })
+      .fromTo(
+        "#content-images-logo .content",
+        {
+          autoAlpha: 0,
+          y: 150,
+          duration: 1,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+        }
+      )
+      .fromTo(
+        "#content-images-logo .images",
+        {
+          autoAlpha: 0,
+          x: -150,
+          duration: 1,
+        },
+        {
+          autoAlpha: 1,
+          x: 0,
+        }
+      )
+  }, [])
+
   return (
-    <SectionStyled>
+    <SectionStyled id="content-images-logo">
       <div className="wrapper">
         <div className="content">
           <div dangerouslySetInnerHTML={{ __html: data.content }} />
