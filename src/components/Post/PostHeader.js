@@ -1,6 +1,13 @@
 import React from "react"
 import styled from "styled-components"
-import { B2White, colors, H1Navy, H3Black } from "../../styles/helpers"
+import {
+  B1Black,
+  B2White,
+  colors,
+  H1Navy,
+  H3Black,
+  fontSizer,
+} from "../../styles/helpers"
 
 import {
   FacebookShareButton,
@@ -13,7 +20,7 @@ import {
 
 const PostHeader = ({ title, date, categories, slug }) => {
   const options = { year: "numeric", month: "long", day: "numeric" }
-  // const postDate = new Date(date).toLocaleDateString(undefined, options)
+  const postDate = new Date(date).toLocaleDateString(undefined, options)
 
   return (
     <PostHeaderStyled>
@@ -22,13 +29,15 @@ const PostHeader = ({ title, date, categories, slug }) => {
           categories.nodes.map((cat, index) => {
             return (
               <span key={index}>
-                {index !== 0 ? " ," : ""}
+                {index !== 0 ? ", " : ""}
                 {cat.name}
               </span>
             )
           })}
       </p>
+
       <h1>{title}</h1>
+      <p className="meta-post-date">{postDate}</p>
       <div className="social-share-btns">
         <p>Share</p>
         <FacebookShareButton
@@ -74,16 +83,35 @@ const PostHeaderStyled = styled.header`
     text-transform: uppercase;
   }
 
+  p.meta-post-date {
+    ${B1Black};
+    ${fontSizer(1.4, 1.8, 76.8, 150, 1.6)};
+    margin-bottom: 0;
+  }
+
   .social-share-btns {
-    position: absolute;
-    top: 0;
-    left: 90%;
-    width: 100%;
+    position: relative;
+    width: 30rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 1rem;
     padding: 0.75rem 2rem 0.5rem;
     background-color: ${colors.colorTertiary};
+
+    @media (min-width: 1100px) {
+      position: absolute;
+      top: 0;
+      left: 85%;
+      width: 100%;
+      margin-top: 0;
+    }
+
+    @media (min-width: 1200px) {
+      position: absolute;
+      top: 0;
+      left: 85%;
+    }
 
     p {
       ${B2White};

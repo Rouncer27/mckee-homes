@@ -20,17 +20,6 @@ const ShowHome = ({ home }) => {
         />
       )}
       <HomePlanGallery gallery={home.acfShowHomes.gallery} />
-      <HomePlanConnect
-        salesOne={home.acfShowHomes.salesPersonOne}
-        salesTwo={home.acfShowHomes.salesPersonTwo}
-        showHomeHours={home.acfShowHomes.showHomeHours}
-        googleMapLink={home.acfShowHomes.googleMapLink}
-      />
-      <ShowHomeForm
-        homeSlug="show-homes"
-        showHome={home.title}
-        community={home.communities.nodes[0].slug}
-      />
       <HomeFloorPlans
         home={home}
         homeType="show-homes"
@@ -39,6 +28,18 @@ const ShowHome = ({ home }) => {
         data={home.acfShowHomes.floorPlans}
         floorPlanPdf={home.acfShowHomes.floorPlanPdf.mediaItemUrl}
         appImage={home.acfShowHomes.mainImage.mediaItemUrl}
+      />
+      <HomePlanConnect
+        salesOne={home.acfShowHomes.salesPersonOne}
+        salesTwo={home.acfShowHomes.salesPersonTwo}
+        showHomeHours={home.acfShowHomes.showHomeHours}
+        googleMapLink={home.acfShowHomes.googleMapLink}
+      />
+
+      <ShowHomeForm
+        homeSlug="show-homes"
+        showHome={home.title}
+        community={home.communities.nodes[0].slug}
       />
     </article>
   )

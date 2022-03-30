@@ -144,8 +144,7 @@ const DisplayHomePlans = props => {
   useEffect(() => {
     const params = new URLSearchParams(props.location.search)
     const param = params.get("homeType")
-    if (param === "AllHomes" || param === null) return
-    setHomeTypesFilter([param])
+    setHomeTypesFilter(param === "AllHomes" || param === null ? [] : [param])
   }, [props.location.search])
 
   const closeAllFilters = () => {

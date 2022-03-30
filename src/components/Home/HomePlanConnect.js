@@ -120,7 +120,9 @@ const HomePlanConnect = ({
                 }}
               />
               <div className="directions-btn">
-                <a href={`mailto:${googleMapLink}`}>Directions To Show Home</a>
+                <a target="_blank" rel="noreferrer" href={`${googleMapLink}`}>
+                  Directions To Show Home
+                </a>
               </div>
             </div>
           </div>

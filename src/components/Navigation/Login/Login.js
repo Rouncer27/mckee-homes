@@ -21,14 +21,17 @@ const Login = () => {
             <span> &#9829;</span>My Favourites
           </Link>
         </li>
-        <li>
-          {Object.keys(userState.user).length === 0 ? (
-            <Link to={`/login`}>My Home Sign In</Link>
-          ) : (
+        {Object.keys(userState.user).length !== 0 && (
+          <li>
             <button onClick={() => handleLogout(userDispatch, alertDispatch)}>
               Logout
             </button>
-          )}
+          </li>
+        )}
+        <li className="coming-soon">
+          <a href={`#`}>
+            My Home - <span>Coming Soon!</span>
+          </a>
         </li>
       </ul>
     </LoginStyled>
@@ -93,6 +96,25 @@ const LoginStyled = styled.div`
           span {
             color: #ff0000;
           }
+        }
+      }
+
+      &.coming-soon {
+        a {
+          span {
+            display: inline-block;
+            font-size: 0.7em;
+          }
+        }
+      }
+
+      &.coming-soon a:hover {
+        cursor: not-allowed;
+        background: transparent;
+        color: #42454a;
+
+        span {
+          color: #42454a;
         }
       }
     }
