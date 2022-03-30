@@ -19,7 +19,7 @@ import Error from "./Modals/Error"
 import getUserCheck from "./AppRoutes/AppActions/getUserCheck"
 import getProfile from "./AppRoutes/AppActions/getProfile"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   const data = useStaticQuery(graphql`
     query layout {
       site {
@@ -122,7 +122,10 @@ const Layout = ({ children }) => {
         {alertState.success && <Success />}
         {alertState.alert && <Alert />}
         {alertState.error && <Error />}
-        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+        <Header
+          siteTitle={data.site.siteMetadata?.title || `Title`}
+          location={location}
+        />
         <BackToTop />
         <main id="main" role="main">
           {children}

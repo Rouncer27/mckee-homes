@@ -9,7 +9,7 @@ import PageComponentGroups from "../components/PageComponentGroups"
 const Page = props => {
   const { components } = props.data
   return (
-    <Layout>
+    <Layout location={props.location}>
       {/* <Seo
         title={seo.pageSeoData.swbThemeMetaTitle}
         description={seo.pageSeoData.swbThemeDescription}

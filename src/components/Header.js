@@ -22,7 +22,7 @@ const getData = graphql`
   }
 `
 
-const Header = ({ siteTitle }) => {
+const Header = ({ siteTitle, location }) => {
   const data = useStaticQuery(getData)
   const bannerActive =
     data.banner.acfOptionsSiteWideSettings.acfSiteWideSettings.bannerActive
@@ -37,7 +37,7 @@ const Header = ({ siteTitle }) => {
         </h1>
       </div>
       <Login />
-      <TopNav />
+      <TopNav location={location} />
       <Vertical />
       <TopBanner />
       <MobileNav />

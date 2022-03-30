@@ -7,12 +7,14 @@ import HomeTypes from "./HomeTypes"
 import Communities from "./Communities"
 import Building from "./Building"
 
-const TopNav = () => {
+const TopNav = ({ location }) => {
   const [homePlanSubActive, setHomePlanSubActive] = useState(false)
   const [quickSubActive, setQuickSubActive] = useState(false)
   const [communitiesSubActive, setCommunitiesSubActive] = useState(false)
   const [buildSubActive, setBuildSubActive] = useState(false)
   const [showSubActive, setShowSubActive] = useState(false)
+
+  console.log("location", location)
 
   return (
     <TopNavStyled>
@@ -57,7 +59,14 @@ const TopNav = () => {
               communitiesSubActive ? " active-sub" : ""
             }`}
           >
-            <Link className="top-nav-item__link" to="/airdrie">
+            <Link
+              className={`top-nav-item__link ${
+                location && location?.pathname === "/crossfield"
+                  ? "active-page"
+                  : ""
+              }`}
+              to="/airdrie"
+            >
               Communities <span className="sub-icon">&#8964;</span>
             </Link>
             <Communities activesubstate={communitiesSubActive} />
@@ -171,6 +180,7 @@ const TopNavStyled = styled.div`
           color: ${colors.black};
         }
       }
+      &.active-page,
       &[aria-current="page"] {
         background-color: ${colors.colorAccent};
         color: ${colors.black};

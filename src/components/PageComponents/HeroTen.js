@@ -8,6 +8,7 @@ import {
   H3Grey,
   medWrapper,
   colors,
+  Btn1Navy,
 } from "../../styles/helpers"
 import { Link } from "gatsby"
 
@@ -125,13 +126,14 @@ const DivStyled = styled.div`
         text-align: center;
 
         a {
-          ${Btn1Grey};
+          ${Btn1Navy};
           margin-right: 1rem;
           margin-bottom: 2rem;
           margin-left: 1rem;
 
           &[aria-current="page"] {
-            background-color: ${colors.colorPrimary};
+            background-color: ${colors.colorAccent};
+            border-color: ${colors.colorAccent};
             cursor: inherit;
             opacity: 0.5;
           }
