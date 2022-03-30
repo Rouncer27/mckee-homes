@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { colors, standardWrapper, B1Black } from "../../styles/helpers"
+import { Link } from "gatsby"
 
 const HomePlansCommunities = ({ communities }) => {
   return (
@@ -12,6 +13,7 @@ const HomePlansCommunities = ({ communities }) => {
         </div>
         <div className="wrapper-communities__logos">
           {communities.map((community, index) => {
+            console.log(community)
             const logoImg = getImage(
               community.acfCommunities.logo.localFile.childImageSharp
                 .gatsbyImageData
@@ -19,12 +21,14 @@ const HomePlansCommunities = ({ communities }) => {
             const logoImgAlt = community.acfCommunities.logo.altText
             return (
               <div key={index} className="wrapper-communities__logos--logo">
-                <GatsbyImage
-                  image={logoImg}
-                  alt={logoImgAlt}
-                  layout="fullWidth"
-                  formats={["auto", "webp", "avif"]}
-                />
+                <Link to={`/communities/${community.slug}`}>
+                  <GatsbyImage
+                    image={logoImg}
+                    alt={logoImgAlt}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
+                  />
+                </Link>
               </div>
             )
           })}

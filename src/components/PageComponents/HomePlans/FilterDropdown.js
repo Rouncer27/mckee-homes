@@ -31,17 +31,26 @@ const FilterDropDown = ({
 
   return (
     <FilterStyled className={`dropdown-check-list`} filteractive={filterActive}>
-      <span
-        className="anchor"
-        onClick={() => {
-          if (filterActive) {
-            return setFilterActive("")
-          }
-          return setFilterActive(filterId)
-        }}
-      >
-        {title}
-        {filterSelected && <span className="filter-active-icon">&#10005;</span>}
+      <span className="anchor">
+        <span
+          className="filter-title"
+          onClick={() => {
+            if (filterActive) {
+              return setFilterActive("")
+            }
+            return setFilterActive(filterId)
+          }}
+        >
+          {title}
+        </span>
+        {filterSelected && (
+          <span
+            onClick={() => handleAddItem("all")}
+            className="filter-active-icon"
+          >
+            &#10005;
+          </span>
+        )}
       </span>
       <ul className="items">
         {options.map(option => {
@@ -92,6 +101,9 @@ const FilterStyled = styled.div`
   }
 
   .filter-active-icon {
+    position: absolute;
+    top: 0.75rem;
+    right: 3.5rem;
     display: inline-block;
     margin-left: 0.5rem;
     padding: 0.35em 0.65em;
@@ -104,18 +116,26 @@ const FilterStyled = styled.div`
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
+    cursor: pointer;
   }
 
   .anchor {
     ${B1Base};
     display: block;
     position: relative;
-    padding: 0.5rem 5rem 0.5rem 1rem;
+    width: 100%;
     background-color: #fff;
+  }
+
+  .filter-title {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 0.5rem 5rem 0.5rem 1rem;
     cursor: pointer;
   }
 
-  .anchor:after {
+  .filter-title:after {
     position: absolute;
     content: "";
     border-left: 0.2rem solid black;
@@ -130,7 +150,7 @@ const FilterStyled = styled.div`
     transform: rotate(-135deg);
   }
 
-  .anchor:active:after {
+  .filter-title:active:after {
     right: 0.8rem;
     top: 21%;
   }

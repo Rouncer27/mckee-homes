@@ -308,8 +308,12 @@ const StyledSection = styled.section`
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        margin-right: 5rem;
+        margin-right: 1rem;
         margin-left: 0;
+
+        @media (min-width: 768px) {
+          margin-right: 5rem;
+        }
       }
 
       .icon {

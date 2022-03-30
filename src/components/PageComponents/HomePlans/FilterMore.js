@@ -100,16 +100,22 @@ const FilterMore = ({
 
   return (
     <DivStyled filteractive={filterActive}>
-      <p
-        onClick={() => {
-          if (filterActive) {
-            return setFilterActive("")
-          }
-          return setFilterActive(filterId)
-        }}
-      >
-        More Filters{" "}
-        {filterSelected && <span className="filter-active-icon">&#10005;</span>}
+      <p>
+        <span
+          onClick={() => {
+            if (filterActive) {
+              return setFilterActive("")
+            }
+            return setFilterActive(filterId)
+          }}
+        >
+          More Filters{" "}
+        </span>
+        {filterSelected && (
+          <span onClick={clearMore} className="filter-active-icon">
+            &#10005;
+          </span>
+        )}
       </p>
 
       <div className="filter-wrap">

@@ -56,27 +56,44 @@ const StyledDiv = styled.div`
     top: 50%;
     left: 50%;
     min-width: 32rem;
-    width: 60vw;
+    width: 100%;
     transform: translate(-50%, -50%);
     background-color: ${colors.colorPrimary};
     z-index: 99999999;
+
+    @media (min-width: 768px) {
+      width: 60vw;
+    }
 
     &__wrap {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin: 5rem;
-      padding: 5rem;
+      margin: 1rem;
+      padding: 1rem;
       border: solid 0.2rem ${colors.colorAlt};
+
+      @media (min-width: 768px) {
+        margin: 5rem;
+        padding: 5rem;
+      }
 
       .icon {
         width: calc(15% - 1rem);
         margin-right: 1rem;
+
+        @media (min-width: 768px) {
+          width: calc(15% - 1rem);
+        }
       }
 
       .content {
-        width: calc(85% - 1rem);
-        margin-left: 1rem;
+        width: calc(100%);
+
+        @media (min-width: 768px) {
+          width: calc(85% - 1rem);
+          margin-left: 1rem;
+        }
 
         h3 {
           ${H2White};

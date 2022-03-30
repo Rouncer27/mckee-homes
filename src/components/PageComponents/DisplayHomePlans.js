@@ -258,7 +258,7 @@ const DisplayHomePlans = props => {
           />
           <div className="reset-all-filters">
             <button type="button" onClick={handleResetAllFilters}>
-              Reset All Filters
+              Reset Filter
             </button>
           </div>
         </div>
@@ -375,6 +375,16 @@ const SectionStyled = styled.section`
         @media (min-width: 768px) {
           margin-top: 0;
           width: 10%;
+        }
+
+        @media (min-width: 1025px) {
+          margin-top: 2rem;
+          width: 100%;
+        }
+
+        @media (min-width: 1200px) {
+          margin-top: 0;
+          width: 20%;
         }
 
         button {

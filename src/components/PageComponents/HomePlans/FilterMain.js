@@ -100,6 +100,14 @@ const DivStyled = styled.div`
   @media (min-width: 768px) {
     width: 90%;
   }
+
+  @media (min-width: 1025px) {
+    width: 100%;
+  }
+
+  @media (min-width: 1200px) {
+    width: 80%;
+  }
 `
 
 export default FilterMain

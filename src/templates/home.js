@@ -76,6 +76,7 @@ export const query = graphql`
 
       communities {
         nodes {
+          slug
           acfCommunities {
             logo {
               altText

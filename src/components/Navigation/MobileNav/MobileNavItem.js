@@ -57,14 +57,14 @@ const MobileNavItemStyled = styled.li`
       right: 0;
       bottom: 0;
       width: 7.5rem;
-      height: 100%;
+      height: 7.5rem;
       background-color: transparent;
       font-size: 3rem;
       font-weight: bold;
       color: ${colors.white};
       border: none;
       border-radius: 0 !important;
-      z-index: 10;
+      line-height: 0;
 
       &:hover {
         cursor: pointer;

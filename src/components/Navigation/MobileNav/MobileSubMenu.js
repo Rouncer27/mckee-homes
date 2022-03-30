@@ -20,7 +20,7 @@ const MobileSubMenuStyled = styled.ul`
   position: relative;
   width: 100%;
   height: ${props =>
-    props.subactive ? `calc(6rem * ${props.sublenght})` : `0rem`};
+    props.subactive ? `calc((4.75rem * ${props.sublenght}))` : `0rem`};
   transition: all 0.3s ease-out;
   opacity: ${props => (props.subactive ? 1 : 0)};
   visibility: ${props => (props.subactive ? "visible" : "hidden")};
