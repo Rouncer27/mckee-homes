@@ -128,13 +128,13 @@ const ShowHomeHeader = ({ home }) => {
               <span className="icon icon-bed">
                 <img src={bed} alt="Logo" />
               </span>
-              <span>{home.acfShowHomes.numberOfBedrooms}BEDROOM</span>
+              <span>{home.acfShowHomes.numberOfBedrooms} BEDROOM</span>
             </p>
             <p>
               <span className="icon icon-bath">
                 <img src={bath} alt="Logo" />
               </span>
-              <span>{home.acfShowHomes.numberOfBathrooms}BATHROOM</span>
+              <span>{home.acfShowHomes.numberOfBathrooms} BATHROOM</span>
             </p>
           </div>
           <div className="header__address">

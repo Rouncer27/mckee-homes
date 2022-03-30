@@ -19,27 +19,18 @@ const HeroFive = ({ data }) => {
   const imageAlt = data.image.altText
 
   useEffect(() => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: "#hero-five-tigger",
-          markers: false,
-          start: "top 25%",
-          toggleActions: "play none none none",
-        },
-      })
-      .fromTo(
-        "#hero-five-tigger .hero-content__inner",
-        {
-          autoAlpha: 0,
-          y: 150,
-          duration: 1,
-        },
-        {
-          autoAlpha: 1,
-          y: 0,
-        }
-      )
+    gsap.fromTo(
+      "#hero-five-tigger .hero-content__inner",
+      {
+        autoAlpha: 0,
+        y: 150,
+        duration: 1,
+      },
+      {
+        autoAlpha: 1,
+        y: 0,
+      }
+    )
   }, [])
 
   return (

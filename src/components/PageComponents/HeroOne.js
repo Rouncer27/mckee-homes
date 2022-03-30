@@ -13,42 +13,33 @@ const HeroOne = ({ data }) => {
   const imageAlt = data.backgroundImage.altText
 
   useEffect(() => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: "#hero-one-tigger",
-          markers: false,
-          start: "top 40%",
-          toggleActions: "play none none none",
+    gsap.fromTo(
+      "#hero-one-tigger .hero-content__inner .title",
+      {
+        autoAlpha: 0,
+        x: -150,
+        duration: 0.5,
+      },
+      {
+        autoAlpha: 1,
+        x: 0,
+      }
+    )
+    gsap.fromTo(
+      "#hero-one-tigger .hero-content__inner .content",
+      {
+        autoAlpha: 0,
+        y: 100,
+      },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 1,
+        stagger: {
+          each: 0.3,
         },
-      })
-      .fromTo(
-        "#hero-one-tigger .hero-content__inner .title",
-        {
-          autoAlpha: 0,
-          x: -150,
-          duration: 0.5,
-        },
-        {
-          autoAlpha: 1,
-          x: 0,
-        }
-      )
-      .fromTo(
-        "#hero-one-tigger .hero-content__inner .content",
-        {
-          autoAlpha: 0,
-          y: 100,
-        },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 1,
-          stagger: {
-            each: 0.3,
-          },
-        }
-      )
+      }
+    )
   }, [])
 
   return (

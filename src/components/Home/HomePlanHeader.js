@@ -140,13 +140,13 @@ const HomePlanHeader = ({ home }) => {
                 <span className="icon icon-bed">
                   <img src={bed} alt="Logo" />
                 </span>
-                <span>{home.acfHomePlans.numberOfBedrooms}BEDROOM</span>
+                <span>{home.acfHomePlans.numberOfBedrooms} BEDROOM</span>
               </p>
               <p>
                 <span className="icon icon-bath">
                   <img src={bath} alt="Logo" />
                 </span>
-                <span>{home.acfHomePlans.numberOfBathrooms}BATHROOM</span>
+                <span>{home.acfHomePlans.numberOfBathrooms} BATHROOM</span>
               </p>
             </div>
 

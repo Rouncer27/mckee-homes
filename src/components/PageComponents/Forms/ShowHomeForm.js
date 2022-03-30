@@ -279,7 +279,7 @@ const ShowHomeForm = ({ homeSlug, showHome, community }) => {
                   value={formData.questions}
                   id="questions"
                   onChange={handleOnChange}
-                  rows="12"
+                  rows="3"
                 />
               </label>
             </InputField>

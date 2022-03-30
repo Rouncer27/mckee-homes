@@ -156,13 +156,13 @@ const QuickPossessionHeader = ({ home }) => {
               <span className="icon icon-bed">
                 <img src={bed} alt="Logo" />
               </span>
-              <span>{home.acfQuickPossessions.numberOfBedrooms}BEDROOM</span>
+              <span>{home.acfQuickPossessions.numberOfBedrooms} BEDROOM</span>
             </p>
             <p>
               <span className="icon icon-bath">
                 <img src={bath} alt="Logo" />
               </span>
-              <span>{home.acfQuickPossessions.numberOfBathrooms}BATHROOM</span>
+              <span>{home.acfQuickPossessions.numberOfBathrooms} BATHROOM</span>
             </p>
           </div>
           <div className="header__address">

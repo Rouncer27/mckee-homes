@@ -164,6 +164,11 @@ const ShowHomeStyled = styled(Link)`
   }
 
   @media (min-width: 1025px) {
+    width: calc((100% / 2) - 2rem);
+    margin: 1rem;
+  }
+
+  @media (min-width: 1200px) {
     width: calc((100% / 3) - 2rem);
     margin: 1rem;
   }

@@ -31,27 +31,18 @@ const HeroFour = ({ data }) => {
   const imageRightAlt = data.smallImageRight.altText
 
   useEffect(() => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: "#hero-four-tigger",
-          markers: false,
-          start: "top 25%",
-          toggleActions: "play none none none",
-        },
-      })
-      .fromTo(
-        "#hero-four-tigger .hero-content__inner",
-        {
-          autoAlpha: 0,
-          y: 150,
-          duration: 1,
-        },
-        {
-          autoAlpha: 1,
-          y: 0,
-        }
-      )
+    gsap.fromTo(
+      "#hero-four-tigger .hero-content__inner",
+      {
+        autoAlpha: 0,
+        y: 150,
+        duration: 1,
+      },
+      {
+        autoAlpha: 1,
+        y: 0,
+      }
+    )
   }, [])
 
   return (
