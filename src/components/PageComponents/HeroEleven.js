@@ -101,7 +101,6 @@ const HeroElevenStyled = styled.div`
     @media (min-width: 768px) {
       bottom: -20rem;
       width: 70rem;
-
       padding: 2.5rem 10rem;
     }
 
@@ -133,8 +132,22 @@ const HeroElevenStyled = styled.div`
   }
 
   .side-content {
-    margin-left: 55%;
-    padding-top: 5.85rem;
+    padding-top: 8.5rem;
+
+    @media (min-width: 768px) {
+      margin-left: 10%;
+      padding-top: 18rem;
+    }
+
+    @media (min-width: 1025px) {
+      margin-left: 0%;
+      padding-top: 20rem;
+    }
+
+    @media (min-width: 1250px) {
+      margin-left: 55%;
+      padding-top: 5.85rem;
+    }
 
     &__wrapper {
       ${standardWrapper};
