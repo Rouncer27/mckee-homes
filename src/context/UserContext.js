@@ -7,6 +7,7 @@ const initialState = {
   profile: {},
   exclusive: [],
   loading: false,
+  mountCheck: false,
 }
 
 const reducer = (state, action) => {
@@ -23,6 +24,7 @@ const reducer = (state, action) => {
         profile: {},
         exclusive: [],
         loading: false,
+        mountCheck: false,
       }
     case "USER_LOGIN":
       return {
@@ -43,6 +45,12 @@ const reducer = (state, action) => {
         ...state,
         exclusive: action.payload.exclusive,
         loading: false,
+      }
+
+    case "MOUNTED_USER_CHECKED":
+      return {
+        ...state,
+        mountCheck: true,
       }
 
     default:

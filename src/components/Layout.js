@@ -104,7 +104,7 @@ const Layout = ({ children, location }) => {
       },
     })
     if (Object.keys(userState.user).length === 0) {
-      getUserCheck(userDispatch)
+      getUserCheck(userDispatch, userState.mountCheck)
     }
   }, [])
 

@@ -14,9 +14,12 @@ const FeaturedImage = ({ image, alt }) => {
 }
 
 const PostFeaturedImageStyled = styled.div`
+  overflow: hidden;
+
   .imageWrap {
     position: relative;
     height: 30rem;
+    overflow: hidden;
 
     @media (min-width: 768px) {
       height: 40rem;
@@ -34,12 +37,12 @@ const PostFeaturedImageStyled = styled.div`
     width: 101%;
     height: 100%;
 
-    .gatsby-image-wrapper {
-      position: absolute;
+    img {
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 `

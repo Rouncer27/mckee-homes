@@ -1,6 +1,8 @@
 import axios from "axios"
 
-const getUserCheck = async userDispatch => {
+const getUserCheck = async (userDispatch, mountCheck) => {
+  console.log("USER ALREADY CHECK", mountCheck)
+  if (mountCheck) return
   try {
     const response = await axios.get(`${process.env.GATSBY_API_URL}/users/me`, {
       withCredentials: true,
@@ -15,6 +17,7 @@ const getUserCheck = async userDispatch => {
     })
   } catch (err) {
     userDispatch({ type: "USER_LOGOUT" })
+    userDispatch({ type: "MOUNTED_USER_CHECKED" })
     console.log("ERROR: ", err)
   }
 }
