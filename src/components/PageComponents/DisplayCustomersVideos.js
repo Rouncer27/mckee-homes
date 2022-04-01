@@ -6,17 +6,34 @@ import "slick-carousel/slick/slick-theme.css"
 import { colors } from "../../styles/helpers"
 
 const settings = {
-  slidesToShow: 3,
-  slidesToScroll: 1,
   fade: false,
   draggable: true,
   infinite: true,
   speed: 500,
   autoplay: true,
   autoplaySpeed: 15000,
-  centerPadding: "0",
+  centerPadding: "350px",
+  centerMode: false,
   arrows: true,
-  dots: true,
+  dots: false,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1025,
+      settings: {
+        centerPadding: "100px",
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        centerPadding: "0px",
+        slidesToShow: 1,
+      },
+    },
+  ],
 }
 
 const DisplayCustomersVideos = ({ data }) => {
@@ -104,6 +121,11 @@ const DivStyled = styled.div`
 
 const Slide = styled.div`
   width: 100%;
+  padding: 0.5rem;
+
+  iframe {
+    max-width: 100% !important;
+  }
 `
 
 export default DisplayCustomersVideos
