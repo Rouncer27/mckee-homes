@@ -17,7 +17,7 @@ const PostNav = ({ allPosts, prevPost, nextPost }) => {
         <nav>
           {nextPostData && (
             <Link to={`/news-promotions/${nextPostData.node.slug}`}>
-              <span>&gt; </span>
+              <span>&lt; </span>
               Next Article
             </Link>
           )}
@@ -25,8 +25,8 @@ const PostNav = ({ allPosts, prevPost, nextPost }) => {
           <Link to="/news-promotions">Home</Link>
           {prevPostData && (
             <Link to={`/news-promotions/${prevPostData.node.slug}`}>
-              <span>&lt; </span>
               Previous Article
+              <span> &gt;</span>
             </Link>
           )}
         </nav>

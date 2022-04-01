@@ -334,10 +334,17 @@ const CatNav = styled.div`
     justify-content: center;
 
     li {
-      margin: 0 3rem;
+      width: 100%;
+      margin: 1rem auto;
+
+      @media (min-width: 768px) {
+        width: auto;
+        margin: 0 3rem;
+      }
 
       button {
         ${B1White}
+        width: 100%;
         padding-top: 0.25rem;
         background-color: transparent;
         border: none;
@@ -346,13 +353,18 @@ const CatNav = styled.div`
         border-bottom: 0.2rem solid transparent;
         cursor: pointer;
 
+        @media (min-width: 768px) {
+          width: auto;
+        }
+
         &:focus {
           box-shadow: none;
         }
 
         &.activeCat {
-          border-top: 0.2rem solid ${colors.colorSecondary};
-          border-bottom: 0.2rem solid ${colors.colorSecondary};
+          color: ${colors.colorTertiary};
+          border-top: 0.2rem solid ${colors.white};
+          border-bottom: 0.2rem solid ${colors.white};
         }
       }
     }
