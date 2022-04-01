@@ -58,7 +58,7 @@ const HeroElevenStyled = styled.div`
 
   .hero-Wrap {
     position: relative;
-    height: 50rem;
+    height: auto;
 
     @media (min-width: 768px) {
       height: 60rem;
@@ -70,11 +70,16 @@ const HeroElevenStyled = styled.div`
   }
 
   .hero-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 101%;
-    height: 100%;
+    position: relative;
+    height: 30rem;
+
+    @media (min-width: 768px) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 101%;
+      height: 100%;
+    }
 
     .gatsby-image-wrapper {
       position: absolute;
@@ -90,15 +95,14 @@ const HeroElevenStyled = styled.div`
   }
 
   .hero-content {
-    position: absolute;
-    bottom: -10rem;
-    left: 0;
+    position: relative;
     width: calc(100%);
     padding: 2.5rem;
     background-color: #fff;
     z-index: 100;
 
     @media (min-width: 768px) {
+      position: absolute;
       bottom: -20rem;
       width: 70rem;
       padding: 2.5rem 10rem;
@@ -132,8 +136,6 @@ const HeroElevenStyled = styled.div`
   }
 
   .side-content {
-    padding-top: 8.5rem;
-
     @media (min-width: 768px) {
       margin-left: 10%;
       padding-top: 18rem;

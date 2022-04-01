@@ -143,21 +143,32 @@ const SectionStyled = styled.section`
       &--sales {
         position: relative;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         width: calc(100%);
-        padding-top: 4.7rem;
+        padding-top: 1rem;
 
         @media (min-width: 768px) {
           width: calc(50%);
+          padding-top: 4.7rem;
         }
 
         .image {
-          width: calc(50%);
-          padding: 0 3rem 3rem 0;
+          width: calc(100%);
+          padding: 0 10rem 3rem 0;
+
+          @media (min-width: 768px) {
+            width: calc(50%);
+            padding: 0 3rem 3rem 0;
+          }
         }
 
         .contact {
-          width: calc(50%);
+          width: calc(100%);
+
+          @media (min-width: 768px) {
+            width: calc(50%);
+          }
 
           p {
             ${B1Black};
@@ -173,11 +184,15 @@ const SectionStyled = styled.section`
           }
 
           .sales-btn {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            width: 100%;
             margin-top: 2.5rem;
+
+            @media (min-width: 768px) {
+              position: absolute;
+              bottom: 3rem;
+              left: 50%;
+              width: 100%;
+              margin-top: 2.5rem;
+            }
 
             a {
               ${Btn1Grey};

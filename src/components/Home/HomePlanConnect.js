@@ -212,11 +212,14 @@ const SectionStyled = styled.section`
           }
 
           .sales-btn {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            width: 100%;
             margin-top: 2.5rem;
+
+            @media (min-width: 768px) {
+              position: absolute;
+              bottom: 3rem;
+              left: 50%;
+              width: 100%;
+            }
 
             a {
               ${Btn1Grey};

@@ -56,10 +56,10 @@ const SectionStyled = styled.section`
 
   .details {
     width: calc(100%);
-    padding: 0 2.5rem;
 
     @media (min-width: 768px) {
       width: calc(70%);
+      padding: 0 2.5rem;
     }
 
     &__title {

@@ -48,8 +48,12 @@ const BuildingFuturesStatus = ({ data }) => {
 }
 
 const SectionStyled = styled.section`
-  margin: 5rem auto;
+  margin: 5rem auto 0;
   background-color: #efefef;
+
+  @media (min-width: 768px) {
+    margin: 5rem auto;
+  }
 
   .wrapper {
     ${standardWrapper};
@@ -77,9 +81,14 @@ const SectionStyled = styled.section`
     position: relative;
     width: 100%;
     margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
     padding-top: 7.5rem;
-    padding-bottom: 7.5rem;
+    padding-bottom: 0;
+
+    @media (min-width: 768px) {
+      margin-bottom: 5rem;
+      padding-bottom: 7.5rem;
+    }
 
     &__progress {
       position: absolute;
@@ -117,7 +126,8 @@ const SectionStyled = styled.section`
 
 const Stage = styled.div`
   position: relative;
-  width: 35rem;
+  width: 100%;
+  max-width: 35rem;
   margin: 2rem auto;
   padding: 1.5rem 0.75rem;
   border: 0.3rem solid ${colors.colorPrimary};
@@ -125,6 +135,10 @@ const Stage = styled.div`
     props.stagecomplete ? colors.colorPrimary : colors.white};
   text-align: center;
   z-index: 50;
+
+  @media (min-width: 768px) {
+    width: 35rem;
+  }
 
   h3 {
     ${H3Black};
@@ -139,7 +153,8 @@ const Stage = styled.div`
 const StageLink = styled(Link)`
   position: relative;
   display: block;
-  width: 35rem;
+  width: 100%;
+  max-width: 35rem;
   margin: 2rem auto;
   padding: 1.5rem 0.75rem;
   border: 0.3rem solid ${colors.colorPrimary};
@@ -147,6 +162,10 @@ const StageLink = styled(Link)`
     props.stagecomplete ? colors.colorPrimary : colors.white};
   text-align: center;
   z-index: 50;
+
+  @media (min-width: 768px) {
+    width: 35rem;
+  }
 
   &:hover {
     background-color: ${props =>

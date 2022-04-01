@@ -215,7 +215,11 @@ const HomePlanStyled = styled(Link)`
 
   .content {
     width: 100%;
-    padding: 2rem 3rem;
+    padding: 2rem 1rem;
+
+    @media (min-width: 768px) {
+      padding: 2rem 3rem;
+    }
 
     &__title {
       h2 {
@@ -235,7 +239,12 @@ const HomePlanStyled = styled(Link)`
         align-items: center;
         padding: 0 1rem;
         border-right: 0.1rem solid ${colors.colorAlt};
+        font-size: 1.2rem;
         line-height: 1;
+
+        @media (min-width: 768px) {
+          ${B2Grey};
+        }
 
         &:first-of-type {
           padding-left: 0;

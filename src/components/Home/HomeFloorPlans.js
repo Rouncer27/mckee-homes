@@ -243,11 +243,19 @@ const SectionStyled = styled.section`
       }
 
       &--title {
-        width: 50%;
+        width: 100%;
+
+        @media (min-width: 768px) {
+          width: 50%;
+        }
       }
 
       &--nav {
-        width: 50%;
+        width: 100%;
+
+        @media (min-width: 768px) {
+          width: 50%;
+        }
 
         span {
           ${B1Navy};
@@ -297,7 +305,12 @@ const SectionStyled = styled.section`
 
       &--download {
         ${Btn1Grey};
+        margin-bottom: 2.5rem;
         margin-right: 2.5rem;
+
+        @media (min-width: 768px) {
+          margin-bottom: 0;
+        }
       }
 
       .my-favs-actions__save {

@@ -27,14 +27,14 @@ const settingsGallery = {
       breakpoint: 1025,
       settings: {
         centerPadding: "100px",
-        slidesToShow: 3,
+        slidesToShow: 1,
       },
     },
     {
       breakpoint: 768,
       settings: {
         centerPadding: "0px",
-        slidesToShow: 3,
+        slidesToShow: 1,
       },
     },
   ],

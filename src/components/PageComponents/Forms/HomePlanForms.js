@@ -399,8 +399,13 @@ const SectionStyled = styled.div`
 
     p {
       ${B1White};
-      margin: 2rem;
       width: calc(100%);
+      margin: 2rem auto;
+
+      @media (min-width: 768px) {
+        width: calc(100% - 4rem);
+        margin: 2rem;
+      }
     }
 
     .btn-submit {

@@ -104,7 +104,7 @@ const HeroFour = ({ data }) => {
 const HeroFourStyled = styled.div`
   .hero-Wrap {
     position: relative;
-    height: 50rem;
+    height: 35rem;
 
     @media (min-width: 768px) {
       height: 60rem;

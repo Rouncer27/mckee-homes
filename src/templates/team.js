@@ -78,8 +78,12 @@ const StyledSection = styled.section`
   }
 
   .image {
-    width: calc(30% - 5rem);
-    margin-right: 5rem;
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(30% - 5rem);
+      margin-right: 5rem;
+    }
 
     &__back {
       width: 100%;
@@ -92,8 +96,12 @@ const StyledSection = styled.section`
   }
 
   .bio {
-    width: calc(70%);
-    padding: 0 3rem;
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(70%);
+      padding: 0 3rem;
+    }
 
     h2 {
       ${H2Black};

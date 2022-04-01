@@ -340,18 +340,17 @@ const DisplayQuickPossessions = props => {
         </div>
       </div>
       <div className="wrapper">
-        <div className="wrapper">
-          {matchingHomes.length > 0 ? (
-            matchingHomes.map(home => {
-              return <HomeDisplay key={home.node.slug} home={home.node} />
-            })
-          ) : (
-            <div>
-              <p>No Homes Found!</p>
-            </div>
-          )}
-        </div>
+        {matchingHomes.length > 0 ? (
+          matchingHomes.map(home => {
+            return <HomeDisplay key={home.node.slug} home={home.node} />
+          })
+        ) : (
+          <div>
+            <p>No Homes Found!</p>
+          </div>
+        )}
       </div>
+
       <div className="filters-background" onClick={() => setFilterActive("")} />
     </SectionStyled>
   )

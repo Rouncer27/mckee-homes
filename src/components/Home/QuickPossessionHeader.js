@@ -355,11 +355,16 @@ const StyledSection = styled.section`
 
       p {
         ${B2Grey};
+        ${fontSizer(1, 1.4, 76.8, 150, 1.2)};
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        margin-right: 5rem;
+        margin-right: 1.5rem;
         margin-left: 0;
+
+        @media (min-width: 768px) {
+          margin-right: 5rem;
+        }
       }
 
       .icon {

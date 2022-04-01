@@ -77,7 +77,7 @@ const HeroTwo = ({ data }) => {
 
 const HeroTwoStyled = styled.section`
   position: relative;
-  height: 50rem;
+  height: 45rem;
 
   @media (min-width: 768px) {
     height: 60rem;
@@ -119,8 +119,12 @@ const HeroTwoStyled = styled.section`
     }
 
     &__inner {
-      padding: 2.5rem 10rem 2.5rem 5rem;
+      padding: 2.5rem 2rem 2.5rem 5rem;
       background-color: rgba(255, 255, 255, 0.7);
+
+      @media (min-width: 768px) {
+        padding: 2.5rem 10rem 2.5rem 5rem;
+      }
 
       p {
         ${H3Grey};

@@ -63,7 +63,6 @@ const HeroFive = ({ data }) => {
 const HeroFourStyled = styled.div`
   .hero-Wrap {
     position: relative;
-    height: 30rem;
 
     @media (min-width: 768px) {
       height: 45rem;
@@ -75,11 +74,16 @@ const HeroFourStyled = styled.div`
   }
 
   .hero-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 101%;
-    height: 100%;
+    position: relative;
+    height: 30rem;
+
+    @media (min-width: 768px) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 101%;
+      height: 100%;
+    }
 
     .gatsby-image-wrapper {
       position: absolute;

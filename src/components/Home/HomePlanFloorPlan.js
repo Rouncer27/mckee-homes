@@ -336,7 +336,12 @@ const SectionStyled = styled.section`
 
       &--download {
         ${Btn1Grey};
+        margin-bottom: 2.5rem;
         margin-right: 2.5rem;
+
+        @media (min-width: 768px) {
+          margin-bottom: 0;
+        }
       }
 
       .my-favs-actions__save {

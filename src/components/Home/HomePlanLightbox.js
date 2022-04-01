@@ -26,6 +26,7 @@ const HomePlanLightbox = ({
     centerMode: false,
     arrows: true,
     dots: false,
+    adaptiveHeight: true,
   }
 
   useEffect(() => {
@@ -77,7 +78,7 @@ const LightboxStyled = styled.div`
     width: 100%;
     height: 100%;
     background-color: ${colors.colorPrimary};
-    opacity: 0.4;
+    opacity: 0.8;
     z-index: 5;
   }
 
@@ -100,7 +101,7 @@ const LightboxStyled = styled.div`
     width: 100%;
 
     button {
-      top: calc(100% + 5rem);
+      top: calc(100% + 2rem);
       width: 10rem;
       height: 10rem;
       z-index: 999999;

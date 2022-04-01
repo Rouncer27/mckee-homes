@@ -212,7 +212,11 @@ const ShowHomeStyled = styled(Link)`
 
   .content {
     width: 100%;
-    padding: 2rem 3rem;
+    padding: 2rem 1rem;
+
+    @media (min-width: 768px) {
+      padding: 2rem 3rem;
+    }
 
     &__title {
       h2 {
