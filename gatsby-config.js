@@ -41,6 +41,21 @@ module.exports = {
         url: process.env.WORDPRESS_URL,
       },
     },
+    `gatsby-plugin-sitemap`,
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://www.mckeehomes.com/",
+        sitemap: "https://www.mckeehomes.com/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://www.mckeehomes.com/`,
+      },
+    },
     `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-smoothscroll`,
     `gatsby-plugin-netlify`,
