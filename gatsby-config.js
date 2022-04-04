@@ -6,7 +6,9 @@ module.exports = {
     title: `McKee Homes`,
     description: `McKee Homes`,
     author: `@switchback4ever`,
-    siteUrl: `https://switchbackcreative.ca`,
+    metaImg: `src/images/social-media-default.png`,
+    siteLogo: `src/images/mckee-full-logo.png`,
+    siteUrl: `https://www.mckeehomes.com/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

@@ -2,20 +2,20 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
-// import Seo from "../components/SEO"
+import Seo from "../components/SEO"
 
 import PageComponentGroups from "../components/PageComponentGroups"
 
 const Page = props => {
-  const { components } = props.data
+  const { components, seoInfo } = props.data
   return (
     <Layout location={props.location}>
-      {/* <Seo
-        title={seo.pageSeoData.swbThemeMetaTitle}
-        description={seo.pageSeoData.swbThemeDescription}
-        // metaImg={seo.pageSeoData.swbThemeImage.localFile.relativePath}
+      <Seo
+        title={seoInfo.seoFields.swbThemeMetaTitle}
+        description={seoInfo.seoFields.swbThemeDescription}
+        //metaImg={seoInfo.seoFields.swbThemeImage.localFile.relativePath}
         location={props.location.pathname}
-      />*/}
+      />
       <PageComponentGroups location={props.location} components={components} />
     </Layout>
   )
@@ -23,6 +23,18 @@ const Page = props => {
 
 export const pageTempQuery = graphql`
   query pageTempPage($id: String!) {
+    seoInfo: wpPage(id: { eq: $id }) {
+      seoFields {
+        swbThemeDescription
+        swbThemeMetaTitle
+        swbThemeImage {
+          localFile {
+            relativePath
+          }
+        }
+      }
+    }
+
     components: wpPage(id: { eq: $id }) {
       acfMainTemplateFields {
         pageComponents {
