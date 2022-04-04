@@ -79,6 +79,19 @@ function Seo({ description, lang, meta, title, metaImg, location }) {
         {/* <meta name="google-site-verification" content="" />
         <meta name="msvalidate.01" content="" /> */}
       </Helmet>
+      <SchemaOrg
+        isBlogPost={false}
+        url={site.siteMetadata.siteUrl}
+        title={title}
+        image={siteLogoUrl}
+        logo={siteLogoUrl}
+        description={description}
+        datePublished="April 15, 2022"
+        canonicalUrl="https://www.mckeehomes.com/"
+        author=""
+        organization="McKee Homes"
+        defaultTitle="McKee Homes"
+      />
     </>
   )
 }
