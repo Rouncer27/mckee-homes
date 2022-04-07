@@ -169,21 +169,23 @@ const QuickPossessionHeader = ({ home }) => {
             <p className="header__address--details">
               {`${home.acfQuickPossessions.address}, ${home.communities.nodes[0].name}, ${home.communities.nodes[0].acfCommunities.city}`}
             </p>
-            <p className="header__address--features">
-              Home Features: <br />{" "}
-              {home?.acfQuickPossessions?.homeFeatures?.map(
-                (feature, index) => {
-                  const isLast =
-                    index >= home.acfQuickPossessions.homeFeatures.length - 1
-                  return (
-                    <>
-                      {feature.split(/(?=[A-Z])/).join(" ")}
-                      {isLast ? "" : ", "}
-                    </>
-                  )
-                }
-              )}
-            </p>
+            {home?.acfQuickPossessions?.homeFeatures?.length > 0 && (
+              <p className="header__address--features">
+                Home Features: <br />{" "}
+                {home?.acfQuickPossessions?.homeFeatures?.map(
+                  (feature, index) => {
+                    const isLast =
+                      index >= home.acfQuickPossessions.homeFeatures.length - 1
+                    return (
+                      <>
+                        {feature.split(/(?=[A-Z])/).join(" ")}
+                        {isLast ? "" : ", "}
+                      </>
+                    )
+                  }
+                )}
+              </p>
+            )}
             <p className="header__address--possession">
               Time to possession: {timeframe}
             </p>
