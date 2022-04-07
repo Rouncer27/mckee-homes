@@ -63,6 +63,9 @@ const Footer = () => {
           <li>
             <Link to="/disclaimer">Disclaimer</Link>
           </li>
+          <li>
+            <Link to="/usage-agreement">Usage Agreement</Link>
+          </li>
         </ul>
       </div>
     </FooterStyled>
@@ -195,6 +198,10 @@ const FooterStyled = styled.footer`
           border-right: solid 0.1rem ${colors.white};
 
           &:hover {
+            color: ${colors.colorPrimary};
+          }
+
+          &[aria-current="page"] {
             color: ${colors.colorPrimary};
           }
         }
