@@ -67,6 +67,19 @@ const Footer = () => {
             <Link to="/usage-agreement">Usage Agreement</Link>
           </li>
         </ul>
+        <div className="foot-copy">
+          <p>
+            McKee Homes © {new Date().getFullYear()}. Designed, and developed in
+            Airdrie by{" "}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://switchbackcreative.ca/"
+            >
+              Switchback Creative
+            </a>
+          </p>
+        </div>
       </div>
     </FooterStyled>
   )
@@ -210,6 +223,22 @@ const FooterStyled = styled.footer`
       li:last-of-type {
         a {
           border-right: solid 0 ${colors.white};
+        }
+      }
+    }
+
+    .foot-copy {
+      width: 100%;
+
+      p,
+      a {
+        ${B2White};
+        margin-top: 1rem;
+        margin-bottom: 0;
+        text-align: center;
+
+        a:hover {
+          color: ${colors.colorTertiary};
         }
       }
     }
