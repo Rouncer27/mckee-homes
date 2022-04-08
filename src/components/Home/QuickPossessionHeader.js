@@ -218,7 +218,7 @@ const QuickPossessionHeader = ({ home }) => {
           ) : null}
 
           <div className="header__more">
-            <button onClick={() => scrollTo("#see-this-home")}>
+            <button onClick={() => scrollTo("#more-information-form")}>
               <span>&gt; </span>Need More Information?
             </button>
           </div>
