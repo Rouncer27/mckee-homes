@@ -51,7 +51,13 @@ const Footer = () => {
         </div>
         <div className="foot-mail">
           <p>
-            <a href="#">Join our mailing list</a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://mckeehomes.us14.list-manage.com/subscribe?u=36afd56e810927aff589fc4a6&id=9a6520c912"
+            >
+              Join our mailing list
+            </a>
           </p>
         </div>
       </div>
