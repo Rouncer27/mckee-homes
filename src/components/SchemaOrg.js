@@ -18,14 +18,19 @@ export default React.memo(
     const baseSchema = [
       {
         "@context": "http://schema.org",
-        "@type": "ProfessionalService",
+        "@type": "GeneralContractor",
         "@id": "https://www.mckeehomes.com/",
         name: "McKee Homes",
         alternateName: "McKee Homes",
         logo: logo,
         telephone: "403-948-6595",
         email: "info@mckeehomes.com",
-        sameAs: [],
+        sameAs: [
+          "https://www.facebook.com/mckeeairdrie/",
+          "https://www.instagram.com/mckeehomesairdrie/",
+          "https://www.linkedin.com/company/mckee-homes-ltd",
+          "https://www.youtube.com/channel/UC1tluXFxzQMAW5uJf6mmoWw",
+        ],
         url: "https://www.mckeehomes.com/",
         image: image,
         priceRange: "$$",
