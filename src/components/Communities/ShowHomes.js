@@ -5,9 +5,15 @@ import { medWrapper, colors, B1Black } from "../../styles/helpers"
 import HomeDisplay from "../PageComponents/ShowHomes/HomeDisplay"
 
 const ShowHomes = ({ currentSlug, showHomes }) => {
-  const currentCommunityShowHomes = showHomes.edges.filter(
-    home => home.node.acfShowHomes.community.slug === currentSlug
-  )
+  const currentCommunityShowHomes = showHomes.edges.filter(home => {
+    console.log(home.node.acfShowHomes.community)
+    const displayHere =
+      home.node.acfShowHomes.community.filter(community => {
+        return community.slug === currentSlug
+      }).length > 0
+
+    return displayHere
+  })
 
   return (
     <SectionStyled>
@@ -17,8 +23,8 @@ const ShowHomes = ({ currentSlug, showHomes }) => {
         </div>
         {currentCommunityShowHomes.length > 0 ? (
           <div className="show-homes">
-            {currentCommunityShowHomes.map(home => {
-              return <HomeDisplay home={home.node} />
+            {currentCommunityShowHomes.map((home, index) => {
+              return <HomeDisplay key={index} home={home.node} />
             })}
           </div>
         ) : (
