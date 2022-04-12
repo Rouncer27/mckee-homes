@@ -20,7 +20,7 @@ const CommunityForm = () => {
     email: "",
     phone: "",
     community: "all",
-    realtor: "unsure",
+    realtor: "no",
     price: "All Pricing",
     questions: "",
     type: "community request",
@@ -111,7 +111,7 @@ const CommunityForm = () => {
       email: "",
       phone: "",
       community: "all",
-      realtor: "unsure",
+      realtor: "no",
       price: "All Pricing",
       questions: "",
       type: "community request",
@@ -230,16 +230,6 @@ const CommunityForm = () => {
 
             <RadioBtnField>
               <p id="radio-btn-title">Are you working with a realtor?</p>
-
-              <input
-                type="radio"
-                id="realtorChoice3"
-                name="realtor"
-                value="unsure"
-                checked={formData.realtor === "unsure"}
-                onChange={() => onRealtorChange("unsure")}
-              />
-              <label htmlFor="realtorChoice3">Unsure</label>
 
               <input
                 type="radio"

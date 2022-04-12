@@ -42,7 +42,7 @@ const CustomerStories = ({ data }) => {
         scrollTrigger: {
           trigger: "#customer-stories-trigger",
           markers: false,
-          start: "top 45%",
+          start: "top 85%",
           toggleActions: "play none none none",
         },
       })

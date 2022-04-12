@@ -25,7 +25,7 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
     questions: "",
     newsletterChecked: false,
     newsletter: "No Thank You",
-    realtor: "unsure",
+    realtor: "no",
     price: "All Pricing",
     type: "homeplan",
   })
@@ -157,7 +157,7 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
       questions: "",
       newsletterChecked: false,
       newsletter: "No Thank You",
-      realtor: "unsure",
+      realtor: "no",
       price: "AllPricing",
     })
   }
@@ -260,17 +260,6 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
 
             <RadioBtnField>
               <p id="radio-btn-title">Are you working with a realtor?</p>
-
-              <input
-                type="radio"
-                id="realtorChoice3"
-                name="realtor"
-                value="unsure"
-                checked={formData.realtor === "unsure"}
-                onChange={() => onRealtorChange("unsure")}
-              />
-              <label htmlFor="realtorChoice3">Unsure</label>
-
               <input
                 type="radio"
                 id="realtorChoice1"

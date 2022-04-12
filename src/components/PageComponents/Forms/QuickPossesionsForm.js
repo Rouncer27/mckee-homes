@@ -24,7 +24,7 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
     title: "",
     questions: "",
     newsletterChecked: false,
-    realtor: "unsure",
+    realtor: "no",
     newsletter: "No Thank You",
     type: "Quick Possessions",
   })
@@ -156,7 +156,7 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
       title: "",
       questions: "",
       newsletterChecked: false,
-      realtor: "unsure",
+      realtor: "no",
       newsletter: "No Thank You",
       type: "Quick Possessions",
     })
@@ -240,17 +240,6 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
 
             <RadioBtnField>
               <p id="radio-btn-title">Are you working with a realtor?</p>
-
-              <input
-                type="radio"
-                id="realtorChoice3"
-                name="realtor"
-                value="unsure"
-                checked={formData.realtor === "unsure"}
-                onChange={() => onRealtorChange("unsure")}
-              />
-              <label htmlFor="realtorChoice3">Unsure</label>
-
               <input
                 type="radio"
                 id="realtorChoice1"

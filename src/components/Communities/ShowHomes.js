@@ -6,7 +6,6 @@ import HomeDisplay from "../PageComponents/ShowHomes/HomeDisplay"
 
 const ShowHomes = ({ currentSlug, showHomes }) => {
   const currentCommunityShowHomes = showHomes.edges.filter(home => {
-    console.log(home.node.acfShowHomes.community)
     const displayHere =
       home.node.acfShowHomes.community.filter(community => {
         return community.slug === currentSlug
