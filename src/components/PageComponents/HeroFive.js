@@ -61,6 +61,9 @@ const HeroFive = ({ data }) => {
 }
 
 const HeroFourStyled = styled.div`
+  max-width: 180rem;
+  margin: 0 auto;
+
   .hero-Wrap {
     position: relative;
 
@@ -88,8 +91,8 @@ const HeroFourStyled = styled.div`
     .gatsby-image-wrapper {
       position: absolute;
       top: 0;
-      left: 0;
-      width: 100%;
+      left: -1rem;
+      width: calc(100% + 1rem);
       height: 100%;
     }
   }
