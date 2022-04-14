@@ -2,15 +2,30 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
+import Seo from "../components/Seo"
 import HomePlan from "../components/Home/HomePlan"
 
 const home = props => {
-  const { home } = props.data
+  const { home, seoInfo } = props.data
   // const prevPlan = props.pageContext.prev
   // const nextPlan = props.pageContext.next
 
   return (
     <Layout>
+      <Seo
+        title={
+          seoInfo?.seoFields?.swbThemeMetaTitle
+            ? seoInfo.seoFields.swbThemeMetaTitle
+            : "McKee Homes - Home Plan"
+        }
+        description={
+          seoInfo?.seoFields?.swbThemeDescription
+            ? seoInfo.seoFields.swbThemeDescription
+            : "McKee Homes - Home Plan"
+        }
+        //metaImg={seoInfo.seoFields.swbThemeImage.localFile.relativePath}
+        location={props.location.pathname}
+      />
       <HomePlan home={home} />
     </Layout>
   )
@@ -18,6 +33,18 @@ const home = props => {
 
 export const query = graphql`
   query homePlanQuery($slug: String!) {
+    seoInfo: wpHomePlan(slug: { eq: $slug }) {
+      seoFields {
+        swbThemeDescription
+        swbThemeMetaTitle
+        swbThemeImage {
+          localFile {
+            relativePath
+          }
+        }
+      }
+    }
+
     home: wpHomePlan(slug: { eq: $slug }) {
       title
       id
