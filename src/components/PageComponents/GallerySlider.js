@@ -37,7 +37,6 @@ const settings = {
 }
 
 const GallerySlider = ({ data }) => {
-  console.log("GallerySlider", data)
   return (
     <StyledDiv>
       <div className="wrapper">

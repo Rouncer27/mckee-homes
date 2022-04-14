@@ -2,15 +2,30 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
+import Seo from "../components/SEO"
 import QuickPossession from "../components/Home/QuickPossession"
 
 const quickPossession = props => {
-  const { quickPossession } = props.data
+  const { quickPossession, seoInfo } = props.data
   // const prevPlan = props.pageContext.prev
   // const nextPlan = props.pageContext.next
   return (
     <div>
       <Layout>
+        <Seo
+          title={
+            seoInfo?.seoFields?.swbThemeMetaTitle
+              ? seoInfo.seoFields.swbThemeMetaTitle
+              : "McKee Homes - Quick Possession"
+          }
+          description={
+            seoInfo?.seoFields?.swbThemeDescription
+              ? seoInfo.seoFields.swbThemeDescription
+              : "McKee Homes - Quick Possession"
+          }
+          //metaImg={seoInfo.seoFields.swbThemeImage.localFile.relativePath}
+          location={props.location.pathname}
+        />
         <QuickPossession home={quickPossession} />
       </Layout>
     </div>
@@ -19,6 +34,18 @@ const quickPossession = props => {
 
 export const query = graphql`
   query quickPossessionPlanQuery($slug: String!) {
+    seoInfo: wpQuickPossession(slug: { eq: $slug }) {
+      seoFields {
+        swbThemeDescription
+        swbThemeMetaTitle
+        swbThemeImage {
+          localFile {
+            relativePath
+          }
+        }
+      }
+    }
+
     quickPossession: wpQuickPossession(slug: { eq: $slug }) {
       title
       id

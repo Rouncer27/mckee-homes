@@ -177,10 +177,10 @@ const QuickPossessionHeader = ({ home }) => {
                     const isLast =
                       index >= home.acfQuickPossessions.homeFeatures.length - 1
                     return (
-                      <>
+                      <React.Fragment key={index}>
                         {feature.split(/(?=[A-Z])/).join(" ")}
                         {isLast ? "" : ", "}
-                      </>
+                      </React.Fragment>
                     )
                   }
                 )}

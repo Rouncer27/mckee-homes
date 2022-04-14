@@ -14,8 +14,6 @@ const TopNav = ({ location }) => {
   const [buildSubActive, setBuildSubActive] = useState(false)
   const [showSubActive, setShowSubActive] = useState(false)
 
-  console.log("location", location)
-
   return (
     <TopNavStyled>
       <nav className="main-nav">

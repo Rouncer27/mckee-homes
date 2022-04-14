@@ -107,9 +107,6 @@ const HomeSimilar = ({ home }) => {
     )
   }, [similarHomes])
 
-  console.log("similarHomes", similarHomes)
-  console.log("similarHomesIndex", similarHomesIndex)
-
   return (
     <SectionStyled>
       <div className="wrapper">

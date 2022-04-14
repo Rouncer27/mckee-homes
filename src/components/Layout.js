@@ -88,12 +88,6 @@ const Layout = ({ children, location }) => {
     : []
   const showHomes = data.showHomes ? data.showHomes.edges : []
 
-  // console.log(showHomes)
-
-  // console.log("userState LAYOUT: ", userState)
-  // console.log("alertState LAYOUT: ", alertState)
-  // console.log("homesState LAYOUT", homesState)
-
   useEffect(() => {
     homesDispatch({
       type: "LOAD_HOMES",

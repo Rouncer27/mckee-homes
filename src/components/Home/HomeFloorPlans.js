@@ -29,7 +29,6 @@ const HomeFloorPlans = ({
   appImage,
   colors,
 }) => {
-  console.log("TREVOR TREOVR Home Floor Plans", data)
   const [floorPlanDisplay, setFloorPlanDisplay] = useState(0)
 
   // ********************************************** Need to check if this plan is already liked ********************************************** //
@@ -140,14 +139,18 @@ const HomeFloorPlans = ({
               </div>
               <div className="floorplan-wrapper__plan--nav">
                 <InputField>
-                  <label for="floor-plan">Specification Grade:</label>
+                  <label htmlFor="floor-plan">Specification Grade:</label>
                   <select
                     name="floor-plans"
                     id="floor-plan"
                     onChange={handleOnChange}
                   >
                     {data.map((plan, index) => {
-                      return <option value={index}>{plan.floorPlanName}</option>
+                      return (
+                        <option key={index} value={index}>
+                          {plan.floorPlanName}
+                        </option>
+                      )
                     })}
                   </select>
                 </InputField>

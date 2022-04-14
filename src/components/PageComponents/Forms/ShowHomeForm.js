@@ -16,7 +16,6 @@ import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
 
 const ShowHomeForm = ({ homeSlug, showHome, community }) => {
-  console.log("community", community)
   const [formData, setFormData] = useState({
     yourname: "",
     email: "",

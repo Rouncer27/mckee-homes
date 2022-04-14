@@ -13,7 +13,6 @@ const HomePlansCommunities = ({ communities }) => {
         </div>
         <div className="wrapper-communities__logos">
           {communities.map((community, index) => {
-            console.log(community)
             const logoImg = getImage(
               community.acfCommunities.logo.localFile.childImageSharp
                 .gatsbyImageData

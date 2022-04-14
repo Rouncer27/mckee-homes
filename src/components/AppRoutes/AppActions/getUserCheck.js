@@ -1,7 +1,6 @@
 import axios from "axios"
 
 const getUserCheck = async (userDispatch, mountCheck) => {
-  console.log("USER ALREADY CHECK", mountCheck)
   if (mountCheck) return
   try {
     const response = await axios.get(`${process.env.GATSBY_API_URL}/users/me`, {
