@@ -2,13 +2,28 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
+import Seo from "../components/Seo"
 import ShowHome from "../components/Home/ShowHome"
 
 const showHome = props => {
-  const { showHome } = props.data
+  const { showHome, seoInfo } = props.data
   return (
     <div>
       <Layout>
+        <Seo
+          title={
+            seoInfo?.seoFields?.swbThemeMetaTitle
+              ? seoInfo.seoFields.swbThemeMetaTitle
+              : "McKee Homes - Show Home"
+          }
+          description={
+            seoInfo?.seoFields?.swbThemeDescription
+              ? seoInfo.seoFields.swbThemeDescription
+              : "McKee Homes - Show Home"
+          }
+          //metaImg={seoInfo.seoFields.swbThemeImage.localFile.relativePath}
+          location={props.location.pathname}
+        />
         <ShowHome home={showHome} />
       </Layout>
     </div>
@@ -17,6 +32,18 @@ const showHome = props => {
 
 export const query = graphql`
   query showHomePlanQuery($slug: String!) {
+    seoInfo: wpShowHome(slug: { eq: $slug }) {
+      seoFields {
+        swbThemeDescription
+        swbThemeMetaTitle
+        swbThemeImage {
+          localFile {
+            relativePath
+          }
+        }
+      }
+    }
+
     showHome: wpShowHome(slug: { eq: $slug }) {
       title
       id
