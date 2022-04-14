@@ -2,16 +2,29 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
-// import Seo from "../components/SEO"
+import Seo from "../components/Seo"
 import PostSingle from "../components/Post/PostSingle"
 
 const Post = props => {
-  const { post, allPosts } = props.data
+  const { post, allPosts, seoInfo } = props.data
   const prevPost = props.pageContext.prev
   const nextPost = props.pageContext.next
   return (
     <Layout>
-      {/* <Seo /> */}
+      <Seo
+        title={
+          seoInfo?.seoFields?.swbThemeMetaTitle
+            ? seoInfo.seoFields.swbThemeMetaTitle
+            : "McKee Homes - News and Events"
+        }
+        description={
+          seoInfo?.seoFields?.swbThemeDescription
+            ? seoInfo.seoFields.swbThemeDescription
+            : "McKee Homes - News and Events"
+        }
+        //metaImg={seoInfo.seoFields.swbThemeImage.localFile.relativePath}
+        location={props.location.pathname}
+      />
       <PostSingle
         post={post}
         allPosts={allPosts}
@@ -24,6 +37,18 @@ const Post = props => {
 
 export const query = graphql`
   query singlePostQuery($slug: String!) {
+    seoInfo: wpPost(slug: { eq: $slug }) {
+      seoFields {
+        swbThemeDescription
+        swbThemeMetaTitle
+        swbThemeImage {
+          localFile {
+            relativePath
+          }
+        }
+      }
+    }
+
     post: wpPost(slug: { eq: $slug }) {
       title
       id
