@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
+import Seo from "../components/Seo"
 import Header from "../components/Communities/Header"
 import Details from "../components/Communities/Details"
 import ShowHomes from "../components/Communities/ShowHomes"
@@ -12,10 +13,24 @@ import LotPicker from "../components/Communities/LotPicker"
 import RelatedPosts from "../components/Communities/RelatedPosts"
 
 const communities = props => {
-  const { community, allWpShowHome } = props.data
+  const { community, allWpShowHome, seoInfo } = props.data
   return (
     <div>
       <Layout>
+        <Seo
+          title={
+            seoInfo?.seoFields?.swbThemeMetaTitle
+              ? seoInfo.seoFields.swbThemeMetaTitle
+              : "McKee Homes - Community"
+          }
+          description={
+            seoInfo?.seoFields?.swbThemeDescription
+              ? seoInfo.seoFields.swbThemeDescription
+              : "McKee Homes - Community"
+          }
+          //metaImg={seoInfo.seoFields.swbThemeImage.localFile.relativePath}
+          location={props.location.pathname}
+        />
         <Header hero={community.acfCommunity.heroImage} />
         <Details
           city={community.cities.nodes[0].name}
@@ -47,6 +62,18 @@ const communities = props => {
 
 export const query = graphql`
   query communitiesPlanQuery($slug: String!) {
+    seoInfo: wpCommunityPost(slug: { eq: $slug }) {
+      seoFields {
+        swbThemeDescription
+        swbThemeMetaTitle
+        swbThemeImage {
+          localFile {
+            relativePath
+          }
+        }
+      }
+    }
+
     community: wpCommunityPost(slug: { eq: $slug }) {
       title
       id
