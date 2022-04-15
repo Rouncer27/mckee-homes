@@ -102,7 +102,9 @@ const FilterStyled = styled.div`
 
   .filter-active-icon {
     position: absolute;
-    top: 0.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    top: 0.5rem;
     right: 3.5rem;
     display: inline-block;
     margin-left: 0.5rem;
@@ -111,7 +113,7 @@ const FilterStyled = styled.div`
     border-radius: 50rem;
     font-size: 1.4rem;
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.4;
     color: #fff;
     text-align: center;
     white-space: nowrap;

@@ -100,7 +100,7 @@ const FilterMore = ({
 
   return (
     <DivStyled filteractive={filterActive}>
-      <p>
+      <p className="more-filter-wrap">
         <span
           onClick={() => {
             if (filterActive) {
@@ -362,19 +362,32 @@ const DivStyled = styled.div`
     width: 20rem;
   }
 
-  .filter-active-icon {
-    display: inline-block;
-    margin-left: 0.5rem;
-    padding: 0.35em 0.65em;
-    background-color: ${colors.colorPrimary};
-    border-radius: 50rem;
-    font-size: 1.4rem;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
+  .more-filter-wrap {
+    display: flex;
+    padding-right: 0;
+    justify-content: flex-start;
+
+    span {
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .filter-active-icon {
+      width: 3rem;
+      height: 3rem;
+      margin-right: 1.5rem;
+      margin-left: 0.5rem;
+      padding: 0.35em 0.65em;
+      background-color: ${colors.colorPrimary};
+      border-radius: 50rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: baseline;
+    }
   }
 
   .price-filter,

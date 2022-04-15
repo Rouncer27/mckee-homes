@@ -124,7 +124,7 @@ const DisplayShowHomes = props => {
 
   const handleClearMore = () => {
     setSqftFilter(500)
-    setBedroomFilter({})
+    setBedroomFilter([])
   }
 
   const handleResetAllFilters = () => {
