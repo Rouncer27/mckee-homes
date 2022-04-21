@@ -268,8 +268,11 @@ const DisplayHomePlans = props => {
             return <HomeDisplay key={home.node.slug} home={home.node} />
           })
         ) : (
-          <div>
-            <p>No Homes Found!</p>
+          <div className="no-homes-found">
+            <p>
+              Sorry, it doesn't look like we have anything to fit that criteria.
+              Good thing we are a custom home builder. so we can help you.
+            </p>
           </div>
         )}
       </div>
@@ -391,6 +394,10 @@ const SectionStyled = styled.section`
         }
       }
     }
+  }
+
+  .no-homes-found {
+    text-align: center;
   }
 
   .filters-background {

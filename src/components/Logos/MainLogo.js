@@ -10,6 +10,7 @@ const getData = graphql`
         acfSiteWideSettings {
           mainLogo {
             altText
+            sourceUrl
             localFile {
               childImageSharp {
                 gatsbyImageData(width: 1000)
@@ -31,7 +32,16 @@ const MainLogo = () => {
 
   return (
     <MainLogoStyled>
-      <GatsbyImage image={image} alt="Key" layout="fixed" />
+      <img
+        src={
+          data.logo.acfOptionsSiteWideSettings.acfSiteWideSettings.mainLogo
+            .sourceUrl
+        }
+        alt={
+          data.logo.acfOptionsSiteWideSettings.acfSiteWideSettings.mainLogo
+            .altText
+        }
+      />
     </MainLogoStyled>
   )
 }
