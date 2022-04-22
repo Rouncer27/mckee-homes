@@ -1,14 +1,16 @@
 import React, { useState, useContext } from "react"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import styled from "styled-components"
 import axios from "axios"
 
 import { UserContext } from "../../context/UserContext"
+import { AlertContext } from "../../context/AlertContext"
 import Input from "./Input"
 import { B1Black, Btn1Navy, colors, H3Navy } from "../../styles/helpers"
 
 const Forgot = () => {
   const [, dispatch] = useContext(UserContext)
+  const [, alertDispatch] = useContext(AlertContext)
 
   const [formData, setFormData] = useState({
     email: "",
@@ -29,6 +31,10 @@ const Forgot = () => {
 
   const handleOnSubmit = async event => {
     event.preventDefault()
+    dispatch({
+      type: "USER_LOADING",
+      payload: { loading: true },
+    })
     try {
       const response = await axios.post(
         `${process.env.GATSBY_API_URL}/auth/forgot-password`,
@@ -38,10 +44,41 @@ const Forgot = () => {
       )
 
       if (response.data.ok) {
-        dispatch({ type: "USER_RESET" })
+        dispatch({
+          type: "USER_LOADING",
+          payload: { loading: false },
+        })
         resetFormData()
+        alertDispatch({
+          type: "USER_SUCCESS",
+          payload: {
+            successMessage:
+              "Please check your email, we have sent you a reset link.",
+            successAutoClear: true,
+            successAnimateOut: true,
+          },
+        })
+        navigate("/login", { replace: true })
       }
     } catch (err) {
+      const errMessage =
+        err.response.data &&
+        err.response.data.message &&
+        typeof err.response.data.message === "object"
+          ? err.response.data.message[0] &&
+            err.response.data.message[0].messages[0] &&
+            err.response.data.message[0].messages[0].message
+          : typeof err.response.data.message === "string"
+          ? err.response.data.message
+          : "Something went wrong. Please try again later"
+      alertDispatch({
+        type: "USER_ERROR",
+        payload: { errMessage },
+      })
+      dispatch({
+        type: "USER_LOADING",
+        payload: { loading: false },
+      })
       console.dir(err)
     }
   }

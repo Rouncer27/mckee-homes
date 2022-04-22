@@ -7,7 +7,7 @@ import Reset from "../components/AppRoutes/Reset"
 const ResetPassword = props => {
   return (
     <Layout>
-      <SEO />
+      <SEO title="Password Reset" />
       <Reset location={props.location.search} />
     </Layout>
   )

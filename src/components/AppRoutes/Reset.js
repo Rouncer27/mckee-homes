@@ -1,9 +1,11 @@
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import queryString from "query-string"
 import React, { useState, useContext, useEffect } from "react"
 import styled from "styled-components"
 import axios from "axios"
+
 import { UserContext } from "../../context/UserContext"
+import { AlertContext } from "../../context/AlertContext"
 
 import Input from "./Input"
 
@@ -12,6 +14,7 @@ import { B1Black, Btn1Navy, colors, H3Navy } from "../../styles/helpers"
 const Reset = ({ location }) => {
   const [code, setCode] = useState("")
   const [, dispatch] = useContext(UserContext)
+  const [, alertDispatch] = useContext(AlertContext)
 
   useEffect(() => {
     const queryData = queryString.parse(location)
@@ -39,6 +42,10 @@ const Reset = ({ location }) => {
 
   const handleOnSubmit = async event => {
     event.preventDefault()
+    dispatch({
+      type: "USER_LOADING",
+      payload: { loading: true },
+    })
     try {
       const response = await axios.post(
         `${process.env.GATSBY_API_URL}/auth/reset-password`,
@@ -49,11 +56,53 @@ const Reset = ({ location }) => {
         }
       )
 
-      if (response.data.ok) {
-        dispatch({ type: "USER_RESET" })
+      if (response.status === 200) {
+        dispatch({
+          type: "USER_LOADING",
+          payload: { loading: false },
+        })
         resetFormData()
+        alertDispatch({
+          type: "USER_SUCCESS",
+          payload: {
+            successMessage:
+              "You have successfully reset your password. Please contiune to login with new password",
+            successAutoClear: true,
+            successAnimateOut: true,
+          },
+        })
+        navigate("/app/dashboard", { replace: true })
+      } else {
+        alertDispatch({
+          type: "USER_ERROR",
+          payload: {
+            errMessage: "Something when wrong. Please try again later.",
+          },
+        })
+        dispatch({
+          type: "USER_LOADING",
+          payload: { loading: false },
+        })
       }
     } catch (err) {
+      const errMessage =
+        err.response.data &&
+        err.response.data.message &&
+        typeof err.response.data.message === "object"
+          ? err.response.data.message[0] &&
+            err.response.data.message[0].messages[0] &&
+            err.response.data.message[0].messages[0].message
+          : typeof err.response.data.message === "string"
+          ? err.response.data.message
+          : "Something went wrong. Please try again later"
+      alertDispatch({
+        type: "USER_ERROR",
+        payload: { errMessage },
+      })
+      dispatch({
+        type: "USER_LOADING",
+        payload: { loading: false },
+      })
       console.dir(err)
     }
   }

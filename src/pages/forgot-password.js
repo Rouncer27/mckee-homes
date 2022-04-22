@@ -7,7 +7,7 @@ import Forgot from "../components/AppRoutes/Forgot"
 const FotgotPassword = () => {
   return (
     <Layout>
-      <SEO />
+      <SEO title="Forgot Password" />
       <Forgot />
     </Layout>
   )
