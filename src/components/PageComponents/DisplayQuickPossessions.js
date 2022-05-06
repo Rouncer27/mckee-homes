@@ -109,6 +109,24 @@ const DisplayQuickPossessions = props => {
   const allData = useStaticQuery(getData)
   // Plans Post Types
   const quickPossessions = allData.quickPossessions.edges
+  const sortedQuickPossessions = quickPossessions.sort(
+    (a, b) =>
+      Date.parse(
+        new Date(
+          a.node.acfQuickPossessions.possessionTimeline.split("/")[2],
+          a.node.acfQuickPossessions.possessionTimeline.split("/")[1],
+          a.node.acfQuickPossessions.possessionTimeline.split("/")[0]
+        )
+      ) -
+      Date.parse(
+        new Date(
+          b.node.acfQuickPossessions.possessionTimeline.split("/")[2],
+          b.node.acfQuickPossessions.possessionTimeline.split("/")[1],
+          b.node.acfQuickPossessions.possessionTimeline.split("/")[0]
+        )
+      )
+  )
+
   // Filters Information
   const homeTypes = allData.homeTypes.edges
   const homeStyles = allData.homeStyles.edges
@@ -159,7 +177,7 @@ const DisplayQuickPossessions = props => {
   useEffect(() => {
     const matched = []
 
-    quickPossessions.map(home => {
+    sortedQuickPossessions.map(home => {
       let typeMatch = true
       let styleMatch = true
       let communityMatch = true
@@ -346,7 +364,10 @@ const DisplayQuickPossessions = props => {
           })
         ) : (
           <div className="no-homes-found">
-            <p>Sorry, it doesn't look like we have anything to fit that criteria. Good thing we are a custom home builder. so we can help you.</p>
+            <p>
+              Sorry, it doesn't look like we have anything to fit that criteria.
+              Good thing we are a custom home builder. so we can help you.
+            </p>
           </div>
         )}
       </div>

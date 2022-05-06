@@ -35,13 +35,21 @@ const HomeDisplay = ({ home }) => {
   )
   const dateNow = Date.parse(new Date())
   const difference = (possessionDate - dateNow) / (1000 * 3600 * 24) / 30
+  // console.log("home.slug: ", home.slug)
+  // console.log(
+  //   "home.acfQuickPossessions.possessionTimeline",
+  //   home.acfQuickPossessions.possessionTimeline
+  // )
+  // console.log("possessionDate: ", possessionDate)
+  // console.log("dateNow: ", dateNow)
+  // console.log("difference: ", difference)
 
   const timeframe =
     difference > 3
       ? "> 3 Months"
-      : difference > 0 && difference < 3
+      : difference > 1 && difference < 3
       ? "< 3 Months"
-      : difference < 0
+      : difference < 1
       ? "Immediate"
       : ""
 
