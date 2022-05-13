@@ -365,8 +365,9 @@ const DisplayQuickPossessions = props => {
         ) : (
           <div className="no-homes-found">
             <p>
-              Sorry, it doesn't look like we have anything to fit that criteria.
-              Good thing we are a custom home builder. so we can help you.
+              Sorry, it doesn’t look like we have anything to fit that
+              criterial. We are a custom home builder, we can help you find your
+              dream home.
             </p>
           </div>
         )}
