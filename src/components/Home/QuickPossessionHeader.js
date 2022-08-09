@@ -39,8 +39,11 @@ const QuickPossessionHeader = ({ home }) => {
   const mainImgAlt = home.acfQuickPossessions.mainImage.altText
 
   const priceComma = home.acfQuickPossessions.price
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    ? home.acfQuickPossessions.price
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    : null
+
   const possessionDate = Date.parse(
     new Date(
       home.acfQuickPossessions.possessionTimeline.split("/")[2],
@@ -139,7 +142,7 @@ const QuickPossessionHeader = ({ home }) => {
           <div className="header__title">
             <p>Quick Possessions</p>
             <h1>{home.title}</h1>
-            <p className="price">&#36;{priceComma}</p>
+            {priceComma && <p className="price">&#36;{priceComma}</p>}
             <p className="disclaimer">
               The images and elevations supplied my not be indicative of
               included items.

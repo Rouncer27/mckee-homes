@@ -24,8 +24,11 @@ const HomeDisplay = ({ home }) => {
   )
   const imgAlt = home.acfQuickPossessions.mainImage.altText
   const priceComma = home.acfQuickPossessions.price
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    ? home.acfQuickPossessions.price
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    : null
+
   const possessionDate = Date.parse(
     new Date(
       home.acfQuickPossessions.possessionTimeline.split("/")[2],
@@ -138,7 +141,7 @@ const HomeDisplay = ({ home }) => {
             {home.communities.nodes[0].acfCommunities.city}
           </p>
           <p>{timeframe} possession</p>
-          <p>&#36;{priceComma}</p>
+          {priceComma && <p>&#36;{priceComma}</p>}
         </div>
       </div>
     </ShowHomeStyled>

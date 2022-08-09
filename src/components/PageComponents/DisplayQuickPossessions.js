@@ -230,7 +230,9 @@ const DisplayQuickPossessions = props => {
 
       // Does this house match the price filter
       if (priceFilter > 0) {
-        priceMatch = home.node.acfQuickPossessions.price >= priceFilter
+        priceMatch =
+          home.node.acfQuickPossessions.price >= priceFilter ||
+          home.node.acfQuickPossessions.price === null
       }
 
       // Does this house match the timeline filter
