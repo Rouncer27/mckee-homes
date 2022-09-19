@@ -236,6 +236,7 @@ const DisplayQuickPossessions = props => {
       }
 
       // Does this house match the timeline filter
+
       if (timelineFilter.length > 0) {
         const possessionDate = Date.parse(
           new Date(
@@ -253,7 +254,7 @@ const DisplayQuickPossessions = props => {
             : difference > 0 && difference < 3
             ? "less"
             : difference < 0
-            ? "Immediate"
+            ? "immediate"
             : ""
 
         timelineMatch = timelineFilter.some(timeline => timeline === timeframe)
