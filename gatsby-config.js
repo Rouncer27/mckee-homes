@@ -38,13 +38,7 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        verbose: true,
         url: process.env.WORDPRESS_URL,
-        schema: {
-          perPage: 50,
-          timeout: 60000,
-          requestConcurrency: 5,
-        },
       },
     },
     `gatsby-plugin-sitemap`,
