@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 import { B1Black, colors, H3Navy, H4Navy } from "../../styles/helpers"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import MainLogo from "../Logos/MainLogo"
+import SalesPerson from "./SalesPerson"
 
 const SidePanelDisplay = ({ community, lotWidth, buildPocket, lotAddress }) => {
   console.log("community", community)
@@ -32,49 +32,36 @@ const SidePanelDisplay = ({ community, lotWidth, buildPocket, lotAddress }) => {
         {community.acfCommunity && community.acfCommunity.salesPersonOne ? (
           <div className="sales">
             <h4>Sales Team</h4>
-            <div className="sales__one">
-              <div className="image">
-                <GatsbyImage
-                  image={getImage(
-                    community.acfCommunity.salesPersonOne.acfSalesTeam.image
-                      .localFile.childImageSharp.gatsbyImageData
-                  )}
-                  alt={
-                    community.acfCommunity.salesPersonOne.acfSalesTeam.image
-                      .altText
-                  }
-                  layout="fullWidth"
-                  formats={["auto", "webp", "avif"]}
-                />
-              </div>
-              <div className="contact">
-                <p>{community.acfCommunity.salesPersonOne.title}</p>
-                <p>
-                  cell:{" "}
-                  <a
-                    href={`tel: +1${community.acfCommunity.salesPersonOne.acfSalesTeam.cell}`}
-                  >
-                    {community.acfCommunity.salesPersonOne.acfSalesTeam.cell}
-                  </a>
-                </p>
-                <p>
-                  office:{" "}
-                  <a
-                    href={`tel: +1${community.acfCommunity.salesPersonOne.acfSalesTeam.phone}`}
-                  >
-                    {community.acfCommunity.salesPersonOne.acfSalesTeam.phone}
-                  </a>
-                </p>
-                <p>
-                  email:{" "}
-                  <a
-                    href={`mailto:${community.acfCommunity.salesPersonOne.acfSalesTeam.email}`}
-                  >
-                    {community.acfCommunity.salesPersonOne.acfSalesTeam.email}
-                  </a>
-                </p>
-              </div>
-            </div>
+            <SalesPerson
+              image={
+                community.acfCommunity.salesPersonOne.acfSalesTeam.image
+                  .localFile.childImageSharp.gatsbyImageData
+              }
+              imageAlt={
+                community.acfCommunity.salesPersonOne.acfSalesTeam.image.altText
+              }
+              name={community.acfCommunity.salesPersonOne.title}
+              cell={community.acfCommunity.salesPersonOne.acfSalesTeam.cell}
+              phone={community.acfCommunity.salesPersonOne.acfSalesTeam.phone}
+              email={community.acfCommunity.salesPersonOne.acfSalesTeam.email}
+            />
+
+            {community.acfCommunity.salesPersonTwo ? (
+              <SalesPerson
+                image={
+                  community.acfCommunity.salesPersonTwo.acfSalesTeam.image
+                    .localFile.childImageSharp.gatsbyImageData
+                }
+                imageAlt={
+                  community.acfCommunity.salesPersonTwo.acfSalesTeam.image
+                    .altText
+                }
+                name={community.acfCommunity.salesPersonTwo.title}
+                cell={community.acfCommunity.salesPersonTwo.acfSalesTeam.cell}
+                phone={community.acfCommunity.salesPersonTwo.acfSalesTeam.phone}
+                email={community.acfCommunity.salesPersonTwo.acfSalesTeam.email}
+              />
+            ) : null}
           </div>
         ) : null}
       </div>
@@ -128,6 +115,10 @@ const StyledDiv = styled.div`
     h4 {
       ${H4Navy};
       margin-bottom: 1rem;
+    }
+
+    &__one:nth-of-type(2) {
+      margin-top: 4rem;
     }
 
     &__one {
