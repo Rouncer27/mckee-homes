@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { B1Black, colors, H2Navy, H3Navy, H4Navy } from "../../styles/helpers"
+import { B1Black, colors, H3Navy, H4Navy } from "../../styles/helpers"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import MainLogo from "../Logos/MainLogo"
@@ -92,12 +92,13 @@ const StyledDiv = styled.div`
 
   .logo {
     width: 100%;
-    max-width: 20rem;
-    margin: 2rem 0rem 4rem;
+    max-width: 15rem;
+    margin: 2rem 0rem;
   }
 
   .title {
     width: 100%;
+    margin-bottom: 1.5rem;
 
     h2 {
       ${H3Navy};
@@ -107,6 +108,7 @@ const StyledDiv = styled.div`
 
     p {
       ${H4Navy};
+      margin: 0;
     }
   }
 
@@ -124,14 +126,15 @@ const StyledDiv = styled.div`
 
     h4 {
       ${H4Navy};
+      margin-bottom: 1rem;
     }
 
     &__one {
       width: 100%;
 
       .image {
-        max-width: 25rem;
-        margin-bottom: 1.5rem;
+        max-width: 10rem;
+        margin-bottom: 1rem;
       }
 
       .contact {
@@ -140,7 +143,7 @@ const StyledDiv = styled.div`
         p {
           ${B1Black};
           margin: 0;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.25rem;
 
           a {
             ${B1Black};
