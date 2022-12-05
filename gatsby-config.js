@@ -70,6 +70,30 @@ module.exports = {
     },
     `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-smoothscroll`,
-    `gatsby-plugin-netlify`,
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        mergeSecurityHeaders: false,
+        headers: {
+          "/*": [
+            "cache-control: public,max-age=60",
+            "X-Frame-Options: sameorigin",
+            "X-XSS-Protection: 1; mode=block",
+            "X-Content-Type-Options: nosniff",
+            "Feature-Policy: camera 'none'; geolocation 'none'; microphone 'none'",
+            "strict-transport-security: max-age=31536000",
+            "referrer-policy: same-origin",
+          ],
+          "/side-panel": [
+            "cache-control: public,max-age=60",
+            "X-XSS-Protection: 1; mode=block",
+            "X-Content-Type-Options: nosniff",
+            "Feature-Policy: camera 'none'; geolocation 'none'; microphone 'none'",
+            "X-Frame-Options: ALLOWALL",
+            "Referrer-Policy: no-referrer",
+          ],
+        },
+      },
+    },
   ],
 }
