@@ -23,6 +23,9 @@ const SidePanel = props => {
   console.log("lotworks: ", lotworks)
 
   const community = communities.find(com => {
+    if (lotworks.community === "Bayside") {
+      return com.node.title === "Bayside Estates"
+    }
     return com.node.title === lotworks.community
   })
 
