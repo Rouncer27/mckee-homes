@@ -88,6 +88,7 @@ const StyledDiv = styled.div`
   .wrapper {
     max-width: 40rem;
     margin: 2rem auto;
+    padding: 0 2rem;
   }
 
   .logo {
