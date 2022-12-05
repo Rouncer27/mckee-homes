@@ -1,15 +1,20 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { B1Black } from "../../styles/helpers"
 
 const NotFound = () => {
+  const [text, setText] = useState("")
+  useEffect(() => {
+    setTimeout(function () {
+      setText(
+        "Sorry, there was no information on this lot. Please pick another lot, thank you."
+      )
+    }, 2000)
+  }, [])
   return (
     <NotFoundDiv>
       <div className="wrapper">
-        <p>
-          Sorry, there was no data found on this lot. Please pick another lot,
-          thank you.
-        </p>
+        <p>{text}</p>
       </div>
     </NotFoundDiv>
   )
