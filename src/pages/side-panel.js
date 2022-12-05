@@ -7,6 +7,7 @@ import theme from "../styles/theme/Theme"
 import GlobalStyle from "../styles/global/Golbal"
 
 import SidePanelDisplay from "../components/sidePanel/SidePanelDisplay"
+import NotFound from "../components/sidePanel/NotFound"
 
 const SidePanel = props => {
   const [lotworks, setLotworks] = useState({})
@@ -41,7 +42,9 @@ const SidePanel = props => {
           buildPocket={lotworks.buildpocket}
           lotAddress={lotworks.lotaddress}
         />
-      ) : null}
+      ) : (
+        <NotFound />
+      )}
     </ThemeProvider>
   )
 }
