@@ -50,7 +50,9 @@ const communities = props => {
           directions={community.acfCommunity.directions}
         />
         <CommunityForm />
-        <LotPicker />
+        {community.acfCommunity.lotPickerEmbed ? (
+          <LotPicker lotPicker={community.acfCommunity.lotPickerEmbed} />
+        ) : null}
         <RelatedPosts
           communitySlug={community.slug}
           communityTitle={community.title}
