@@ -17,18 +17,18 @@ const SidePanelDisplay = ({ community, lotWidth, buildPocket, lotAddress }) => {
           <h2>{lotAddress}</h2>
           <p>{community.title}</p>
         </div>
-        <div className="details">
+        {/* <div className="details">
           {lotWidth ? (
             <p>
               Lot Width: <span>{lotWidth} Metres</span>
             </p>
           ) : null}
-          {/* {buildPocket ? (
+          {buildPocket ? (
             <p>
               Build pocket: <span>{buildPocket}</span>
             </p>
-          ) : null} */}
-        </div>
+          ) : null}
+        </div> */}
         {community.acfCommunity && community.acfCommunity.salesPersonOne ? (
           <div className="sales">
             <h4>Sales Team</h4>
