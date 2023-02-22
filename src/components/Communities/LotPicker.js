@@ -4,7 +4,7 @@ import { standardWrapper, H2Grey } from "../../styles/helpers"
 
 const LotPicker = ({ lotPicker }) => {
   return (
-    <StyledSection>
+    <StyledSection id="lot-picker-map">
       <div className="wrapper">
         <div className="title">
           <h2>Find your perfect lot</h2>

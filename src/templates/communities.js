@@ -38,6 +38,7 @@ const communities = props => {
           details={community.acfCommunity.content}
           logo={community.acfCommunity.logo}
           url={community.acfCommunity.communityUrl}
+          scroll={community.acfCommunity.communityMapScrollButton}
         />
         <ShowHomes currentSlug={community.slug} showHomes={allWpShowHome} />
         <Connect
@@ -93,6 +94,7 @@ export const query = graphql`
         directions
         lotPickerEmbed
         communityUrl
+        communityMapScrollButton
         logo {
           altText
           localFile {

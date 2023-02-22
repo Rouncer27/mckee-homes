@@ -8,8 +8,9 @@ import {
   H3Grey,
   standardWrapper,
 } from "../../styles/helpers"
+import scrollTo from "gatsby-plugin-smoothscroll"
 
-const Details = ({ city, title, details, logo, url }) => {
+const Details = ({ city, title, details, logo, url, scroll }) => {
   const imageDisplay = getImage(logo.localFile.childImageSharp.gatsbyImageData)
   const imageAlt = logo.altText
   return (
@@ -39,6 +40,17 @@ const Details = ({ city, title, details, logo, url }) => {
               <a rel="noreferrer" target="_blank" href={url}>
                 Explore Community
               </a>
+            </div>
+          )}
+          {scroll && (
+            <div className="logo__btn">
+              <button
+                onClick={() => {
+                  scrollTo("#lot-picker-map")
+                }}
+              >
+                Explore Lots
+              </button>
             </div>
           )}
         </div>
@@ -97,8 +109,14 @@ const SectionStyled = styled.section`
     }
 
     &__btn {
-      a {
+      a,
+      button {
         ${Btn1Grey};
+        width: 100%;
+      }
+
+      a {
+        margin-bottom: 1.5rem;
       }
     }
   }
