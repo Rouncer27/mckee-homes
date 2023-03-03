@@ -76,8 +76,11 @@ function Seo({ description, lang, meta, title, metaImg, location }) {
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={image} />
         {/* Google Ownership Verification */}
-        {/* <meta name="google-site-verification" content="" />
-        <meta name="msvalidate.01" content="" /> */}
+        <meta
+          name="google-site-verification"
+          content="PBwSplbyJ8do47pr3347gHMZzGCIJy2gr1VaDWFh4h4"
+        />
+        {/* <meta name="msvalidate.01" content="" /> */}
       </Helmet>
       <SchemaOrg
         isBlogPost={false}
