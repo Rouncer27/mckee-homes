@@ -46,6 +46,7 @@ import TradePartner from "./PageComponents/Forms/TradePartner"
 import ContentSimpleWysiwyg from "./PageComponents/ContentSimpleWysiwyg"
 import CrossfieldMapPins from "./PageComponents/CommunitiesMaps/CrossfieldMapPins"
 import AirdrieMapPins from "./PageComponents/CommunitiesMaps/AirdrieMapPins"
+import CarstairsMapPins from "./PageComponents/CommunitiesMaps/CarstairsMapPins"
 import DisplayCustomersVideos from "./PageComponents/DisplayCustomersVideos"
 import BuildingFuturesStatus from "./PageComponents/BuildingFuturesStatus"
 import GallerySlider from "./PageComponents/GallerySlider"
@@ -57,6 +58,7 @@ const PageComponentGroups = props => {
       <>
         {components?.acfMainTemplateFields?.pageComponents.map(
           (component, index) => {
+            console.log("component?.fieldGroupName", component?.fieldGroupName)
             switch (component?.fieldGroupName) {
               case "Page_Acfmaintemplatefields_PageComponents_HeroOne":
                 return <HeroOne key={index} data={component} />
@@ -216,6 +218,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_CrossfieldMapPins":
                 return <CrossfieldMapPins key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_CarstairsMapPins":
+                return <CarstairsMapPins key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_DisplayCustomersVideos":
                 return <DisplayCustomersVideos key={index} data={component} />

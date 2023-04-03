@@ -37,6 +37,14 @@ const Communities = ({ activesubstate }) => {
           <Link to="/communities/vista-crossing">Vista Crossing</Link>
         </li>
       </ul>
+      <ul>
+        <p>
+          <Link to="/carstairs">Carstairs</Link>
+        </p>
+        <li>
+          <Link to="/communities/mandalay-estates">Mandalay Estates</Link>
+        </li>
+      </ul>
     </SubMenu>
   )
 }
@@ -44,11 +52,11 @@ const Communities = ({ activesubstate }) => {
 const SubMenu = styled.div`
   position: absolute;
   top: 100%;
-  left: -20rem;
+  left: -30rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 50rem;
+  width: 75rem;
   padding: 2.5rem 2.5rem;
   background-color: #efefef;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
@@ -59,17 +67,27 @@ const SubMenu = styled.div`
 
   ul {
     position: relative;
-    width: calc(50% - 4rem);
+    width: calc(33.333333% - 4rem);
     margin: 0 2rem;
 
-    &:first-of-type {
+    &::before {
+      position: absolute;
+      top: 7rem;
+      right: -2rem;
+      bottom: 0;
+      width: 0.2rem;
+      background-color: ${colors.colorPrimary};
+      content: "";
+    }
+
+    &:last-of-type {
       &::before {
         position: absolute;
         top: 7rem;
         right: -2rem;
         bottom: 0;
         width: 0.2rem;
-        background-color: ${colors.colorPrimary};
+        background-color: transparent;
         content: "";
       }
     }

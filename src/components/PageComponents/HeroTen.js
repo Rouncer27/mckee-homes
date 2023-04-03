@@ -42,6 +42,12 @@ const HeroTen = ({ data }) => {
               {data.button2Required ? (
                 <Link to={`/${data.button2Slug}`}>{data.button2Text}</Link>
               ) : null}
+              {data.button3Required ? (
+                <Link to={`/${data.button3Slug}`}>{data.button3Text}</Link>
+              ) : null}
+              {data.button4Required ? (
+                <Link to={`/${data.button4Slug}`}>{data.button4Text}</Link>
+              ) : null}
             </div>
           </div>
         </div>

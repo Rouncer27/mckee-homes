@@ -224,6 +224,7 @@ const CommunityForm = () => {
                   <option value="lanark-landing">Lanark Landing</option>
                   <option value="ravenswood">Ravenswood</option>
                   <option value="vista-crossing">Vista Crossing</option>
+                  <option value="mandalay-estates">Mandalay Estates</option>
                 </select>
               </label>
             </InputField>

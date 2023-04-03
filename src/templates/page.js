@@ -250,6 +250,12 @@ export const pageTempQuery = graphql`
             button2Required
             button2Text
             button2Slug
+            button3Required
+            button3Text
+            button3Slug
+            button4Required
+            button4Text
+            button4Slug
             image {
               altText
               localFile {
@@ -757,6 +763,11 @@ export const pageTempQuery = graphql`
           ... on WpPage_Acfmaintemplatefields_PageComponents_CrossfieldMapPins {
             fieldGroupName
             displayCrossfieldMap
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_CarstairsMapPins {
+            fieldGroupName
+            displayCarstairsMap
           }
 
           ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayCustomersVideos {

@@ -261,6 +261,21 @@ const DivStyled = styled.div`
       }
     }
   }
+
+  &.pins__mandalayEstates {
+    right: 27vw;
+    top: 27%;
+
+    .pin__details {
+      left: -3.5rem;
+      top: -20rem;
+
+      @media (min-width: 768px) {
+        top: -100%;
+        left: 100%;
+      }
+    }
+  }
 `
 
 export default SinglePin

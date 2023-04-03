@@ -56,7 +56,11 @@ const RelatedPosts = ({ communitySlug, communityTitle }) => {
   const community = postsData.community.edges
   const relatedPosts = community.find(com => {
     return com.node.slug === communitySlug
-  }).node.posts.nodes
+  })?.node?.posts?.nodes
+    ? community.find(com => {
+        return com.node.slug === communitySlug
+      })?.node?.posts?.nodes
+    : []
 
   return (
     <StyledSection>
