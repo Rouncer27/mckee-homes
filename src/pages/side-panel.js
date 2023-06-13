@@ -19,19 +19,14 @@ const SidePanel = props => {
       setLotworks(queryData)
     }
   }, [])
-  console.log("HERE I AM one")
-  console.log("HERE I AM one")
 
   console.log("communities: ", communities)
   console.log("lotworks: ", lotworks)
-  console.log("HERE I AM one")
 
   const community = communities.find(com => {
-    console.log("HERE I AM one", com)
     if (lotworks.community === "Bayside") {
       return com.node.title === "Bayside Estates"
     } else if (lotworks.community === "Coopers Crossing") {
-      console.log("HERE I AM", com)
       return com.node.title === "Cooper’s Crossing"
     }
     return com.node.title === lotworks.community
