@@ -26,6 +26,8 @@ const SidePanel = props => {
   const community = communities.find(com => {
     if (lotworks.community === "Bayside") {
       return com.node.title === "Bayside Estates"
+    } else if (lotworks.community === "Coopers Crossing") {
+      return com.node.title === "Cooper's Crossing"
     }
     return com.node.title === lotworks.community
   })
