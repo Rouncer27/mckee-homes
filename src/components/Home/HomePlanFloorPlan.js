@@ -17,6 +17,7 @@ import redHeart from "../../images/heart-red.png"
 import Heart from "../Images/Heart"
 import addPlan from "../AppRoutes/AppActions/addPlan"
 import JoinModal from "../Modals/JoinModal"
+import HomePlanPDFPopUp from "./HomePlanPDFPopUp"
 
 const HomePlanFloorPlan = ({
   home,
@@ -31,6 +32,7 @@ const HomePlanFloorPlan = ({
   appImage,
 }) => {
   const [floorPlanDisplay, setFloorPlanDisplay] = useState("propel")
+  const [floorPlanPopUpActive, setFloorPlanPopUpActive] = useState(false)
   let propel
   let signature
 
@@ -196,7 +198,12 @@ const HomePlanFloorPlan = ({
                 )}
               </div>
 
-              <div className="floorplan-wrapper__plan--image">
+              <div
+                className="floorplan-wrapper__plan--image"
+                onClick={() => {
+                  setFloorPlanPopUpActive(true)
+                }}
+              >
                 {displayImage}
               </div>
             </div>
@@ -247,6 +254,12 @@ const HomePlanFloorPlan = ({
           </div>
         </div>
       </SectionStyled>
+      {floorPlanPopUpActive && (
+        <HomePlanPDFPopUp
+          setFloorPlanPopUpActive={setFloorPlanPopUpActive}
+          pdf={displayImage}
+        />
+      )}
       {isJoinActive && <JoinModal closeModal={setIsJoinActive} />}
     </>
   )

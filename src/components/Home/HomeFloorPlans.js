@@ -18,6 +18,7 @@ import redHeart from "../../images/heart-red.png"
 import Heart from "../Images/Heart"
 import addPlan from "../AppRoutes/AppActions/addPlan"
 import JoinModal from "../Modals/JoinModal"
+import HomePlanPDFPopUp from "./HomePlanPDFPopUp"
 
 const HomeFloorPlans = ({
   home,
@@ -30,6 +31,7 @@ const HomeFloorPlans = ({
   colors,
 }) => {
   const [floorPlanDisplay, setFloorPlanDisplay] = useState(0)
+  const [floorPlanPopUpActive, setFloorPlanPopUpActive] = useState(false)
 
   // ********************************************** Need to check if this plan is already liked ********************************************** //
 
@@ -155,7 +157,12 @@ const HomeFloorPlans = ({
                   </select>
                 </InputField>
               </div>
-              <div className="floorplan-wrapper__plan--image">
+              <div
+                className="floorplan-wrapper__plan--image"
+                onClick={() => {
+                  setFloorPlanPopUpActive(true)
+                }}
+              >
                 <GatsbyImage
                   image={displayImage}
                   alt={``}
@@ -211,6 +218,12 @@ const HomeFloorPlans = ({
           </div>
         </div>
       </SectionStyled>
+      {floorPlanPopUpActive && (
+        <HomePlanPDFPopUp
+          setFloorPlanPopUpActive={setFloorPlanPopUpActive}
+          pdf={displayImage}
+        />
+      )}
       {isJoinActive && <JoinModal closeModal={setIsJoinActive} />}
     </>
   )
@@ -293,6 +306,7 @@ const SectionStyled = styled.section`
       &--image {
         max-width: 60rem;
         margin: auto;
+        cursor: zoom-in;
       }
     }
 
