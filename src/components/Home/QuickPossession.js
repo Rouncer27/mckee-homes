@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import styled from "styled-components"
 
 import QuickPossessionHeader from "./QuickPossessionHeader"
 import HomePlanBest from "./HomePlanBest"
@@ -44,7 +45,7 @@ const QuickPossesion = ({ home }) => {
         salesOne={home.acfQuickPossessions.salesPersonOne}
         salesTwo={home.acfQuickPossessions.salesPersonTwo}
       />
-      <div>
+      <StyledDiv className="mortgage-calculator">
         <div
           className="bendigi-calculators"
           apikey="1c7846d9ece674ca:cbUuDusAJAPYKlG-MR9Dvn3TLLYNL8aR"
@@ -52,7 +53,7 @@ const QuickPossesion = ({ home }) => {
           navpositiontop="0px"
           tools="all"
         ></div>{" "}
-      </div>
+      </StyledDiv>
       <QuickPossesionsForm
         homeSlug="quick-possessions"
         title={home.title}
@@ -61,5 +62,11 @@ const QuickPossesion = ({ home }) => {
     </article>
   )
 }
+
+const StyledDiv = styled.div`
+  width: 100%;
+  max-width: 100rem;
+  margin: 5rem auto;
+`
 
 export default QuickPossesion
