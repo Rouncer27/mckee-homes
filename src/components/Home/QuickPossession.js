@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 
 import QuickPossessionHeader from "./QuickPossessionHeader"
 import HomePlanBest from "./HomePlanBest"
@@ -9,6 +9,14 @@ import QuickPossesionsForm from "../PageComponents/Forms/QuickPossesionsForm"
 import HomeFloorPlans from "./HomeFloorPlans"
 
 const QuickPossesion = ({ home }) => {
+  useEffect(() => {
+    const script = document.createElement("script")
+    script.src = "https://tools.bendigi.com/assets/calculators.js"
+    script.async = true
+    const embedSection = document.querySelector(".bendigi-calculators")
+    embedSection.appendChild(script)
+  }, [])
+
   return (
     <article>
       <QuickPossessionHeader home={home} />
@@ -44,7 +52,6 @@ const QuickPossesion = ({ home }) => {
           navpositiontop="0px"
           tools="all"
         ></div>{" "}
-        <script src="https://tools.bendigi.com/assets/calculators.js"></script>
       </div>
       <QuickPossesionsForm
         homeSlug="quick-possessions"
