@@ -36,6 +36,16 @@ const QuickPossesion = ({ home }) => {
         salesOne={home.acfQuickPossessions.salesPersonOne}
         salesTwo={home.acfQuickPossessions.salesPersonTwo}
       />
+      <div>
+        <div
+          className="bendigi-calculators"
+          apikey="1c7846d9ece674ca:cbUuDusAJAPYKlG-MR9Dvn3TLLYNL8aR"
+          terms="https://canadianmortgageapp.com/terms"
+          navpositiontop="0px"
+          tools="all"
+        ></div>{" "}
+        <script src="https://tools.bendigi.com/assets/calculators.js"></script>
+      </div>
       <QuickPossesionsForm
         homeSlug="quick-possessions"
         title={home.title}
