@@ -12,10 +12,11 @@ import CommunityForm from "../components/PageComponents/Forms/CommunityForm"
 import LotPicker from "../components/Communities/LotPicker"
 import RelatedPosts from "../components/Communities/RelatedPosts"
 
-const communities = props => {
+const Communities = props => {
   const { community, allWpShowHome, seoInfo } = props.data
+
   return (
-    <div>
+    <div className="single-community-page">
       <Layout>
         <Seo
           title={
@@ -190,4 +191,4 @@ export const query = graphql`
   }
 `
 
-export default communities
+export default Communities
