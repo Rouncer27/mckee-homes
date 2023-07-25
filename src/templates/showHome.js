@@ -1,12 +1,23 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import ShowHome from "../components/Home/ShowHome"
 
-const showHome = props => {
+const ShowHomes = props => {
   const { showHome, seoInfo } = props.data
+
+  useEffect(() => {
+    window.dataLayer.push({
+      event: "pageview",
+      page: {
+        url: props.location.pathname,
+        title: seoInfo?.seoFields?.swbThemeMetaTitle,
+      },
+    })
+  }, [])
+
   return (
     <div>
       <Layout>
@@ -162,4 +173,4 @@ export const query = graphql`
   }
 `
 
-export default showHome
+export default ShowHomes
