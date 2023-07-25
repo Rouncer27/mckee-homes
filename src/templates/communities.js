@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/Layout"
@@ -14,6 +14,16 @@ import RelatedPosts from "../components/Communities/RelatedPosts"
 
 const Communities = props => {
   const { community, allWpShowHome, seoInfo } = props.data
+
+  useEffect(() => {
+    window.dataLayer.push({
+      event: "pageview",
+      page: {
+        url: props.location.pathname,
+        title: seoInfo?.seoFields?.swbThemeMetaTitle,
+      },
+    })
+  }, [])
 
   return (
     <div className="single-community-page">
