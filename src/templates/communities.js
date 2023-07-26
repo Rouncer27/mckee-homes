@@ -19,6 +19,7 @@ const Communities = props => {
     window.dataLayer.push({
       event: "pageview",
       pageTitle: seoInfo?.seoFields?.swbThemeMetaTitle,
+      send_to: "AW-780800236/yKA1CL7avcIYEOyhqPQC",
       page: {
         url: props.location.pathname,
         title: seoInfo?.seoFields?.swbThemeMetaTitle,
