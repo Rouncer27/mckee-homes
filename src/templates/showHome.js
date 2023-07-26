@@ -10,7 +10,7 @@ const ShowHomes = props => {
 
   useEffect(() => {
     window.dataLayer.push({
-      event: "pageview",
+      event: "conversion",
       pageTitle: seoInfo?.seoFields?.swbThemeMetaTitle,
       send_to: "AW-780800236/zrSICID8vcIYEOyhqPQC",
       page: {
