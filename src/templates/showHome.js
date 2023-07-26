@@ -11,6 +11,7 @@ const ShowHomes = props => {
   useEffect(() => {
     window.dataLayer.push({
       event: "pageview",
+      PageTitle: seoInfo?.seoFields?.swbThemeMetaTitle,
       page: {
         url: props.location.pathname,
         title: seoInfo?.seoFields?.swbThemeMetaTitle,
