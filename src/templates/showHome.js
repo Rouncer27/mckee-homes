@@ -9,11 +9,26 @@ const ShowHomes = props => {
   const { showHome, seoInfo } = props.data
 
   useEffect(() => {
-    window.dataLayer.push({
-      event: "conversion",
-      pageTitle: seoInfo?.seoFields?.swbThemeMetaTitle,
-      sendTo: "AW-780800236/zrSICID8vcIYEOyhqPQC",
-    })
+    function gtag_report_conversion(url) {
+      // var callback = function () {
+      //   if (typeof url != "undefined") {
+      //     window.location = url
+      //   }
+      // }
+      window.gtag("event", "conversion", {
+        send_to: "AW-780800236/zrSICID8vcIYEOyhqPQC",
+        // event_callback: callback,
+      })
+      return false
+    }
+
+    gtag_report_conversion()
+
+    // window.dataLayer.push({
+    //   event: "conversion",
+    //   pageTitle: seoInfo?.seoFields?.swbThemeMetaTitle,
+    //   sendTo: "AW-780800236/zrSICID8vcIYEOyhqPQC",
+    // })
   }, [])
 
   return (
