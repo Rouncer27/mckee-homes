@@ -81,6 +81,14 @@ function Seo({ description, lang, meta, title, metaImg, location }) {
           content="PBwSplbyJ8do47pr3347gHMZzGCIJy2gr1VaDWFh4h4"
         />
         {/* <meta name="msvalidate.01" content="" /> */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-780800236"
+        ></script>
+
+        <script>
+          {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-780800236');`}
+        </script>
       </Helmet>
       <SchemaOrg
         isBlogPost={false}

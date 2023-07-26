@@ -16,11 +16,26 @@ const Communities = props => {
   const { community, allWpShowHome, seoInfo } = props.data
 
   useEffect(() => {
-    window.dataLayer.push({
-      event: "conversion",
-      pageTitle: seoInfo?.seoFields?.swbThemeMetaTitle,
-      sendTo: "AW-780800236/yKA1CL7avcIYEOyhqPQC",
-    })
+    function gtag_report_conversion(url) {
+      // var callback = function () {
+      //   if (typeof url != "undefined") {
+      //     window.location = url
+      //   }
+      // }
+      window.gtag("event", "conversion", {
+        send_to: "AW-780800236/yKA1CL7avcIYEOyhqPQC",
+        // event_callback: callback,
+      })
+      return false
+    }
+
+    gtag_report_conversion()
+
+    // window.dataLayer.push({
+    //   event: "conversion",
+    //   pageTitle: seoInfo?.seoFields?.swbThemeMetaTitle,
+    //   sendTo: "AW-780800236/yKA1CL7avcIYEOyhqPQC",
+    // })
   }, [])
 
   return (
