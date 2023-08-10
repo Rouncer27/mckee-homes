@@ -24,12 +24,13 @@ const ShowHours = ({ hours, map, directions }) => {
             className="hours__content"
             dangerouslySetInnerHTML={{ __html: hours }}
           />
-
-          <div className="hours__directions">
-            <a target="_blank" rel="noreferrer" href={directions}>
-              Directions to show home
-            </a>
-          </div>
+          {directions ? (
+            <div className="hours__directions">
+              <a target="_blank" rel="noreferrer" href={directions}>
+                Directions to show home
+              </a>
+            </div>
+          ) : null}
         </div>
       </div>
     </StyledDiv>
