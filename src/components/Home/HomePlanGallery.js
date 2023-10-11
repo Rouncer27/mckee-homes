@@ -87,9 +87,9 @@ const HomePlanGallery = ({ gallery }) => {
         <Slider ref={slickSliderGallery} {...settingsGallery}>
           {gallery.map((gal, index) => {
             const galImg = getImage(
-              gal.localFile.childImageSharp.gatsbyImageData
+              gal?.localFile?.childImageSharp?.gatsbyImageData
             )
-            const galImgAlt = gal.altText
+            const galImgAlt = gal?.altText
             return (
               <div
                 key={index}
