@@ -15,6 +15,8 @@ import RelatedPosts from "../components/Communities/RelatedPosts"
 const Communities = props => {
   const { community, allWpShowHome, seoInfo } = props.data
 
+  console.log("props: ", props)
+
   useEffect(() => {
     function gtag_report_conversion(url) {
       // var callback = function () {

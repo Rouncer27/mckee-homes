@@ -34,6 +34,14 @@ const Communities = ({ activesubstate }) => {
       </ul>
       <ul>
         <p>
+          <Link to="/calgary">Calgary</Link>
+        </p>
+        <li>
+          <Link to="/communities/lewiston">Lewiston</Link>
+        </li>
+      </ul>
+      <ul>
+        <p>
           <Link to="/crossfield">Crossfield</Link>
         </p>
         <li>
@@ -55,11 +63,11 @@ const Communities = ({ activesubstate }) => {
 const SubMenu = styled.div`
   position: absolute;
   top: 100%;
-  left: -30rem;
+  left: -52.5vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 75rem;
+  width: 100vw;
   padding: 2.5rem 2.5rem;
   background-color: #efefef;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
@@ -68,9 +76,18 @@ const SubMenu = styled.div`
   visibility: ${props => (props.activesub ? "visable" : "hidden")};
   z-index: 10000;
 
+  @media (min-width: 830px) {
+    left: -39vw;
+  }
+
+  @media (min-width: 1025px) {
+    width: 100rem;
+    left: -42rem;
+  }
+
   ul {
     position: relative;
-    width: calc(33.333333% - 4rem);
+    width: calc(25% - 4rem);
     margin: 0 2rem;
 
     &::before {

@@ -54,6 +54,13 @@ const NavDrawer = styled.div`
   opacity: ${props => (props.isOpen ? 1 : 0)};
   z-index: ${props => (props.isOpen ? 999999999 : -9999999)};
   overflow-y: scroll;
+  background: linear-gradient(
+    to bottom,
+    #fff 0%,
+    #fff 18.5rem,
+    ${colors.colorPrimary} 18.5rem,
+    ${colors.colorPrimary} 100%
+  );
 
   @media (min-width: 768px) {
     display: none !important;
@@ -75,6 +82,7 @@ const NavDrawer = styled.div`
 
   .mobileLogo {
     width: 100%;
+    max-width: 25rem;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
     margin: 0 auto;

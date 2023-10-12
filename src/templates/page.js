@@ -760,6 +760,11 @@ export const pageTempQuery = graphql`
             displayAirdrieMap
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_CalgaryMapPins {
+            fieldGroupName
+            displayCalgaryMap
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_CrossfieldMapPins {
             fieldGroupName
             displayCrossfieldMap

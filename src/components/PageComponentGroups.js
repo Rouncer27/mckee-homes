@@ -46,6 +46,7 @@ import TradePartner from "./PageComponents/Forms/TradePartner"
 import ContentSimpleWysiwyg from "./PageComponents/ContentSimpleWysiwyg"
 import CrossfieldMapPins from "./PageComponents/CommunitiesMaps/CrossfieldMapPins"
 import AirdrieMapPins from "./PageComponents/CommunitiesMaps/AirdrieMapPins"
+import CalgaryMapPins from "./PageComponents/CommunitiesMaps/CalgaryMapPins"
 import CarstairsMapPins from "./PageComponents/CommunitiesMaps/CarstairsMapPins"
 import DisplayCustomersVideos from "./PageComponents/DisplayCustomersVideos"
 import BuildingFuturesStatus from "./PageComponents/BuildingFuturesStatus"
@@ -218,6 +219,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_AirdrieMapPins":
                 return <AirdrieMapPins key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_CalgaryMapPins":
+                return <CalgaryMapPins key={index} data={component} />
 
               case "Page_Acfmaintemplatefields_PageComponents_CrossfieldMapPins":
                 return <CrossfieldMapPins key={index} data={component} />

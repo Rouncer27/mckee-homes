@@ -276,6 +276,15 @@ const DivStyled = styled.div`
       }
     }
   }
+
+  &.pins__lewiston {
+    top: 40%;
+    right: 31.5vw;
+    .pin__details {
+      @media (min-width: 768px) {
+      }
+    }
+  }
 `
 
 export default SinglePin
