@@ -52,11 +52,11 @@ const AirdrieMapPins = () => {
   const cooperscrossing = community.find(
     item => item.node.slug === "coopers-crossing"
   )
-  const kingsHeights = community.find(
-    item => item.node.slug === "kings-heights"
-  )
+  // const kingsHeights = community.find(
+  //   item => item.node.slug === "kings-heights"
+  // )
   const lanark = community.find(item => item.node.slug === "lanark-landing")
-  const ravenswood = community.find(item => item.node.slug === "ravenswood")
+  // const ravenswood = community.find(item => item.node.slug === "ravenswood")
 
   return (
     <DivStyled pinactive={pinActive}>
@@ -116,7 +116,7 @@ const AirdrieMapPins = () => {
           setPinActive={setPinActive}
         />
 
-        <SinglePin
+        {/* <SinglePin
           logo={getImage(
             kingsHeights.node.acfCommunity.logo.localFile.childImageSharp
               .gatsbyImageData
@@ -132,7 +132,7 @@ const AirdrieMapPins = () => {
           slug={kingsHeights.node.slug}
           classmodifier={`pins__kingsHeights`}
           setPinActive={setPinActive}
-        />
+        /> */}
 
         <SinglePin
           logo={getImage(
@@ -152,7 +152,7 @@ const AirdrieMapPins = () => {
           setPinActive={setPinActive}
         />
 
-        <SinglePin
+        {/* <SinglePin
           logo={getImage(
             ravenswood.node.acfCommunity.logo.localFile.childImageSharp
               .gatsbyImageData
@@ -168,7 +168,7 @@ const AirdrieMapPins = () => {
           slug={ravenswood.node.slug}
           classmodifier={`pins__ravenswood`}
           setPinActive={setPinActive}
-        />
+        /> */}
       </div>
       <div className="bg-overlay" />
     </DivStyled>

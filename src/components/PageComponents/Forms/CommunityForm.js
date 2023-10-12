@@ -220,9 +220,9 @@ const CommunityForm = () => {
                   <option value="bayside-estates">Bayside Estates</option>
                   <option value="chinook-gate">Chinook Gate</option>
                   <option value="coopers-crossing">Coopers Crossing</option>
-                  <option value="kings-heights">King's Heights</option>
+                  {/* <option value="kings-heights">King's Heights</option> */}
                   <option value="lanark-landing">Lanark Landing</option>
-                  <option value="ravenswood">Ravenswood</option>
+                  {/* <option value="ravenswood">Ravenswood</option> */}
                   <option value="vista-crossing">Vista Crossing</option>
                   <option value="mandalay-estates">Mandalay Estates</option>
                 </select>
