@@ -5,14 +5,13 @@ import {
   Btn1Grey,
   Btn1Navy,
   colors,
-  standardWrapper,
   B1Black,
   medWrapper,
 } from "../../styles/helpers"
 
 const QuickConnect = ({ salesOne, salesTwo }) => {
   return (
-    <SectionStyled>
+    <SectionStyled id="connect-with-us">
       <div className="connect-wrapper">
         <div className="connect-wrapper__inner">
           <div className="connect-wrapper__titles">

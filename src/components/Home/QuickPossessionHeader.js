@@ -224,6 +224,9 @@ const QuickPossessionHeader = ({ home }) => {
             <button onClick={() => scrollTo("#more-information-form")}>
               <span>&gt; </span>Need More Information?
             </button>
+            <button onClick={() => scrollTo("#connect-with-us")}>
+              <span>&gt; </span>Connect With Us
+            </button>
           </div>
         </div>
       </div>
@@ -417,6 +420,9 @@ const StyledSection = styled.section`
     }
 
     &__more {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
       margin-top: 4rem;
 
       button {
@@ -424,6 +430,10 @@ const StyledSection = styled.section`
         background-color: transparent;
         border: none;
         cursor: pointer;
+
+        &:nth-of-type(2) {
+          margin-left: 2rem;
+        }
       }
     }
   }

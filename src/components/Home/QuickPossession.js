@@ -10,13 +10,13 @@ import QuickPossesionsForm from "../PageComponents/Forms/QuickPossesionsForm"
 import HomeFloorPlans from "./HomeFloorPlans"
 
 const QuickPossesion = ({ home }) => {
-  useEffect(() => {
-    const script = document.createElement("script")
-    script.src = "https://tools.bendigi.com/assets/calculators.js"
-    script.async = true
-    const embedSection = document.querySelector(".bendigi-calculators")
-    embedSection.appendChild(script)
-  }, [])
+  // useEffect(() => {
+  //   const script = document.createElement("script")
+  //   script.src = "https://tools.bendigi.com/assets/calculators.js"
+  //   script.async = true
+  //   const embedSection = document.querySelector(".bendigi-calculators")
+  //   embedSection.appendChild(script)
+  // }, [])
 
   return (
     <article>
@@ -45,7 +45,7 @@ const QuickPossesion = ({ home }) => {
         salesOne={home.acfQuickPossessions.salesPersonOne}
         salesTwo={home.acfQuickPossessions.salesPersonTwo}
       />
-      <StyledDiv className="mortgage-calculator">
+      {/* <StyledDiv className="mortgage-calculator">
         <div
           className="bendigi-calculators"
           apikey="1c7846d9ece674ca:cbUuDusAJAPYKlG-MR9Dvn3TLLYNL8aR"
@@ -53,7 +53,7 @@ const QuickPossesion = ({ home }) => {
           navpositiontop="0px"
           tools="all"
         ></div>{" "}
-      </StyledDiv>
+      </StyledDiv> */}
       <QuickPossesionsForm
         homeSlug="quick-possessions"
         title={home.title}

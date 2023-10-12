@@ -16,7 +16,7 @@ const HomePlanConnect = ({
   googleMapLink,
 }) => {
   return (
-    <SectionStyled>
+    <SectionStyled id="connect-with-us">
       <div className="connect-wrapper">
         <div className="connect-wrapper__inner">
           <div className="connect-wrapper__titles">
