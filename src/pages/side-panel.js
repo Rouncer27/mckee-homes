@@ -34,12 +34,14 @@ const SidePanel = props => {
     return com.node.title === lotworks.community
   })
 
-  console.log("community", community)
-  const matchedFloorPlans = allHomePlans.filter(
-    home =>
+  const matchedFloorPlans = allHomePlans.filter(home => {
+    console.log("HOME: ", home?.node?.acfHomePlans?.floorPlanWidth)
+    console.log("LOTWORK: ", lotworks?.buildpocket)
+    return (
       parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) <=
       parseInt(lotworks?.buildpocket, 10)
-  )
+    )
+  })
 
   console.log("matchedFloorPlans", matchedFloorPlans)
 
