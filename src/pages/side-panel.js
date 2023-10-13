@@ -17,15 +17,15 @@ const SidePanel = props => {
   useEffect(() => {
     if (props.location && props.location.search) {
       const queryData = queryString.parse(props.location.search)
-      console.log("queryData", queryData)
+      // console.log("queryData", queryData)
       setLotworks(queryData)
     }
   }, [])
 
-  console.log("communities: ", communities)
+  // console.log("communities: ", communities)
   console.log("lotworks: ", lotworks)
-  console.log("allHomePlans", allHomePlans)
-  console.log("allQuickPossessions", allQuickPossessions)
+  // console.log("allHomePlans", allHomePlans)
+  // console.log("allQuickPossessions", allQuickPossessions)
 
   const community = communities.find(com => {
     if (lotworks.community === "Bayside") {
@@ -53,8 +53,6 @@ const SidePanel = props => {
       home => home?.node.acfQuickPossessions.lotworksLotid === lotworks.lotid
     )
   }
-
-  console.log("matchedQPHome", matchedQPHome)
 
   return (
     <ThemeProvider theme={theme}>
