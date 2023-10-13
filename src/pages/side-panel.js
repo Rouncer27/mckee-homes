@@ -13,6 +13,7 @@ const SidePanel = props => {
   const [lotworks, setLotworks] = useState({})
   const communities = props.data.communities.edges
   const allHomePlans = props.data.allHomePlans.edges
+  const allQuickPossessions = props.data.allQuickPossessions.edges
   useEffect(() => {
     if (props.location && props.location.search) {
       const queryData = queryString.parse(props.location.search)
@@ -24,6 +25,7 @@ const SidePanel = props => {
   console.log("communities: ", communities)
   console.log("lotworks: ", lotworks)
   console.log("allHomePlans", allHomePlans)
+  console.log("allQuickPossessions", allQuickPossessions)
 
   const community = communities.find(com => {
     if (lotworks.community === "Bayside") {
@@ -65,6 +67,15 @@ const SidePanel = props => {
 
 export const sidePanelQuery = graphql`
   {
+    allQuickPossessions: allWpQuickPossession {
+      edges {
+        node {
+          title
+          slug
+        }
+      }
+    }
+
     allHomePlans: allWpHomePlan {
       edges {
         node {
