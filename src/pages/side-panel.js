@@ -45,7 +45,7 @@ const SidePanel = props => {
         parseInt(lotworks?.buildpocket, 10),
       "--------------------------------------------------------------------------------------------------------------------------"
     )
-    console.log("LOTWORK: ", lotworks?.buildpocket)
+    console.log("LOTWORK buildpocket number: ", lotworks?.buildpocket)
     return (
       parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) <=
       parseInt(lotworks?.buildpocket, 10)
