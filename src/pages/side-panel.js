@@ -41,7 +41,7 @@ const SidePanel = props => {
   )
   let matchedFloorPlans = []
 
-  if (!matchedQPHome) {
+  if (matchedQPHome === undefined) {
     matchedFloorPlans = allHomePlans.filter(home => {
       return (
         parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) <=
