@@ -36,12 +36,21 @@ const SidePanel = props => {
     return com.node.title === lotworks.community
   })
 
-  const matchedFloorPlans = allHomePlans.filter(home => {
-    return (
-      parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) <=
-      parseInt(lotworks?.buildpocket, 10)
-    )
-  })
+  const matchedQPHome = allQuickPossessions.find(
+    home => home?.node.acfQuickPossessions.lotworksLotid === lotworks.lotid
+  )
+  let matchedFloorPlans = []
+
+  if (!matchedQPHome) {
+    matchedFloorPlans = allHomePlans.filter(home => {
+      return (
+        parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) <=
+        parseInt(lotworks?.buildpocket, 10)
+      )
+    })
+  }
+
+  console.log("matchedQPHome", matchedQPHome)
 
   return (
     <ThemeProvider theme={theme}>
@@ -53,6 +62,7 @@ const SidePanel = props => {
           buildPocket={lotworks.buildpocket}
           lotAddress={lotworks.lotaddress}
           matchedFloorPlans={matchedFloorPlans}
+          matchedQPHome={matchedQPHome}
         />
       ) : (
         <NotFound />
@@ -68,6 +78,9 @@ export const sidePanelQuery = graphql`
         node {
           title
           slug
+          acfQuickPossessions {
+            lotworksLotid
+          }
         }
       }
     }
