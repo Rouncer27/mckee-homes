@@ -37,22 +37,11 @@ const SidePanel = props => {
   })
 
   const matchedFloorPlans = allHomePlans.filter(home => {
-    console.log(
-      "HOME: ",
-      home?.node?.title,
-      home?.node?.acfHomePlans?.floorPlanWidth,
-      parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) <=
-        parseInt(lotworks?.buildpocket, 10),
-      "--------------------------------------------------------------------------------------------------------------------------"
-    )
-    console.log("LOTWORK buildpocket number: ", lotworks?.buildpocket)
     return (
       parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) <=
       parseInt(lotworks?.buildpocket, 10)
     )
   })
-
-  console.log("matchedFloorPlans", matchedFloorPlans)
 
   return (
     <ThemeProvider theme={theme}>
