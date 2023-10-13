@@ -6,6 +6,7 @@ import Seo from "../components/Seo"
 import Header from "../components/Communities/Header"
 import Details from "../components/Communities/Details"
 import ShowHomes from "../components/Communities/ShowHomes"
+import QuickPosessions from "../components/Communities/QuickPosessions"
 import Connect from "../components/Communities/Connect"
 import ShowHours from "../components/Communities/ShowHours"
 import CommunityForm from "../components/PageComponents/Forms/CommunityForm"
@@ -13,9 +14,7 @@ import LotPicker from "../components/Communities/LotPicker"
 import RelatedPosts from "../components/Communities/RelatedPosts"
 
 const Communities = props => {
-  const { community, allWpShowHome, seoInfo } = props.data
-
-  console.log("props: ", props)
+  const { community, allWpShowHome, quickPossessions, seoInfo } = props.data
 
   useEffect(() => {
     function gtag_report_conversion(url) {
@@ -67,6 +66,10 @@ const Communities = props => {
           scroll={community.acfCommunity.communityMapScrollButton}
         />
         <ShowHomes currentSlug={community.slug} showHomes={allWpShowHome} />
+        <QuickPosessions
+          currentSlug={community.slug}
+          quickPossessions={quickPossessions}
+        />
         <Connect
           salesOne={community.acfCommunity.salesPersonOne}
           salesTwo={community.acfCommunity.salesPersonTwo}
@@ -208,6 +211,78 @@ export const query = graphql`
             nodes {
               name
               slug
+            }
+          }
+        }
+      }
+    }
+
+    quickPossessions: allWpQuickPossession {
+      edges {
+        node {
+          title
+          id
+          date
+          slug
+          databaseId
+          communities {
+            nodes {
+              slug
+              name
+              acfCommunities {
+                city
+              }
+            }
+          }
+          acfQuickPossessions {
+            address
+            homeFeatures
+            price
+            possessionTimeline
+            details
+            numberOfBathrooms
+            numberOfBedrooms
+            squareFootage
+            virtualTour
+            floorPlanPdf {
+              mediaItemUrl
+            }
+            floorPlans {
+              floorPlanName
+              floorPlanImage {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(width: 1500)
+                  }
+                }
+              }
+            }
+            gallery {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 2000)
+                }
+              }
+            }
+            mainImage {
+              altText
+              mediaItemUrl
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 2000)
+                }
+              }
+            }
+
+            mainImageGallery {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 2000)
+                }
+              }
             }
           }
         }
