@@ -77,7 +77,9 @@ const SidePanelDisplay = ({
             {matchedFloorPlans.map((plan, index) => {
               return (
                 <div key={index}>
-                  <Link to={`/home-plans/${plan.slug}`}>{plan.title}</Link>
+                  <Link to={`/home-plans/${plan.node.slug}`}>
+                    {plan.node.title}
+                  </Link>
                 </div>
               )
             })}
