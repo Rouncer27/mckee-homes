@@ -36,18 +36,22 @@ const SidePanel = props => {
     return com.node.title === lotworks.community
   })
 
-  const matchedQPHome = allQuickPossessions.find(
-    home => home?.node.acfQuickPossessions.lotworksLotid === lotworks.lotid
-  )
+  let matchedQPHome = undefined
   let matchedFloorPlans = []
 
-  if (matchedQPHome === undefined) {
+  console.log("lotworks.status: --> ", lotworks.status)
+
+  if (lotworks.status === "available") {
     matchedFloorPlans = allHomePlans.filter(home => {
       return (
         parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) <=
         parseInt(lotworks?.buildpocket, 10)
       )
     })
+  } else if (lotworks.status === "spec") {
+    matchedQPHome = allQuickPossessions.find(
+      home => home?.node.acfQuickPossessions.lotworksLotid === lotworks.lotid
+    )
   }
 
   console.log("matchedQPHome", matchedQPHome)
