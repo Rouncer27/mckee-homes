@@ -14,9 +14,9 @@ const SidePanelDisplay = ({
   matchedFloorPlans,
   matchedQPHome,
 }) => {
-  console.log("community", community)
-  console.log("INSIDE SIDE PANEL: ", matchedFloorPlans)
-  console.log("INSIDE matchedQPHome", matchedQPHome)
+  // console.log("community", community)
+  // console.log("INSIDE SIDE PANEL: ", matchedFloorPlans)
+  // console.log("INSIDE matchedQPHome", matchedQPHome)
   return (
     <StyledDiv>
       <div className="wrapper">
