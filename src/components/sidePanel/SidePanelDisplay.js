@@ -74,6 +74,20 @@ const SidePanelDisplay = ({
             ) : null}
           </div>
         ) : null}
+        {!!matchedQPHome ? (
+          <div className="floor-plans-list">
+            <h4>Quick Possession Details</h4>
+            <div>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={`https://www.mckeehomes.com/quick-possessions/${matchedQPHome.node.slug}`}
+              >
+                {matchedQPHome.node.title}
+              </a>
+            </div>
+          </div>
+        ) : null}
         {matchedFloorPlans.length > 0 ? (
           <div className="floor-plans-list">
             <h4>Home Plans for this lot</h4>
