@@ -74,12 +74,17 @@ const SidePanelDisplay = ({
         ) : null}
         {matchedFloorPlans.length > 0 ? (
           <div className="floor-plans-list">
+            <h4>Floor Plans that fit on that lot</h4>
             {matchedFloorPlans.map((plan, index) => {
               return (
                 <div key={index}>
-                  <Link to={`/home-plans/${plan.node.slug}`}>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`https://www.mckeehomes.com/home-plans/${plan.node.slug}`}
+                  >
                     {plan.node.title}
-                  </Link>
+                  </a>
                 </div>
               )
             })}
@@ -172,6 +177,12 @@ const StyledDiv = styled.div`
 
   .floor-plans-list {
     width: 100%;
+
+    h4 {
+      ${H4Navy};
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
 
     a {
       ${B1Black};
