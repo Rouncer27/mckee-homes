@@ -82,10 +82,14 @@ const ShowHomeForm = ({ homeSlug, showHome, community }) => {
         return 2207
       case "coopers-crossing":
         return 2208
+      case "goldwyn":
+        return 8566
       case "kings-heights":
         return 2209
       case "lanark-landing":
         return 2210
+      case "lewiston":
+        return 8567
       case "ravenswood":
         return 2211
       case "vista-crossing":

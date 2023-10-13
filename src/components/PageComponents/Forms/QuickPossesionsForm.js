@@ -82,10 +82,14 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
         return 2199
       case "coopers-crossing":
         return 2200
+      case "goldwyn":
+        return 8564
       case "kings-heights":
         return 2201
       case "lanark-landing":
         return 2202
+      case "lewiston":
+        return 8565
       case "ravenswood":
         return 2203
       case "vista-crossing":

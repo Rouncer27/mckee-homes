@@ -78,6 +78,8 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
     switch (community) {
       case "bayside-estates":
         return 2190
+      case "goldwyn":
+        return 8556
       case "chinook-gate":
         return 2191
       case "coopers-crossing":
@@ -86,6 +88,8 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
         return 2193
       case "lanark-landing":
         return 2194
+      case "lewiston":
+        return 8557
       case "ravenswood":
         return 2195
       case "vista-crossing":
@@ -250,8 +254,11 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
                   <option value="bayside-estates">Bayside Estates</option>
                   <option value="chinook-gate">Chinook Gate</option>
                   <option value="coopers-crossing">Coopers Crossing</option>
+                  <option value="goldwyn">Goldwyn</option>
                   {/* <option value="kings-heights">King's Heights</option> */}
+
                   <option value="lanark-landing">Lanark Landing</option>
+                  <option value="lewiston">Lewiston</option>
                   {/* <option value="ravenswood">Ravenswood</option> */}
                   <option value="vista-crossing">Vista Crossing</option>
                 </select>
