@@ -40,7 +40,9 @@ const SidePanel = props => {
     console.log(
       "HOME: ",
       home?.node?.title,
-      home?.node?.acfHomePlans?.floorPlanWidth
+      home?.node?.acfHomePlans?.floorPlanWidth,
+      parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) <=
+        parseInt(lotworks?.buildpocket, 10)
     )
     console.log("LOTWORK: ", lotworks?.buildpocket)
     return (
