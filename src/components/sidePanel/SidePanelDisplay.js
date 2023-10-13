@@ -4,9 +4,17 @@ import { B1Black, colors, H3Navy, H4Navy } from "../../styles/helpers"
 
 import MainLogo from "../Logos/MainLogo"
 import SalesPerson from "./SalesPerson"
+import { Link } from "gatsby"
 
-const SidePanelDisplay = ({ community, lotWidth, buildPocket, lotAddress }) => {
+const SidePanelDisplay = ({
+  community,
+  lotWidth,
+  buildPocket,
+  lotAddress,
+  matchedFloorPlans,
+}) => {
   console.log("community", community)
+  console.log("INSIDE SIDE PANEL: ", matchedFloorPlans)
   return (
     <StyledDiv>
       <div className="wrapper">
@@ -62,6 +70,17 @@ const SidePanelDisplay = ({ community, lotWidth, buildPocket, lotAddress }) => {
                 email={community.acfCommunity.salesPersonTwo.acfSalesTeam.email}
               />
             ) : null}
+          </div>
+        ) : null}
+        {matchedFloorPlans.length > 0 ? (
+          <div className="floor-plans-list">
+            {matchedFloorPlans.map((plan, index) => {
+              return (
+                <div key={index}>
+                  <Link to={`/home-plans/${plan.slug}`}>{plan.title}</Link>
+                </div>
+              )
+            })}
           </div>
         ) : null}
       </div>
@@ -145,6 +164,18 @@ const StyledDiv = styled.div`
             }
           }
         }
+      }
+    }
+  }
+
+  .floor-plans-list {
+    width: 100%;
+
+    a {
+      ${B1Black};
+
+      &:hover {
+        color: ${colors.colorPrimary};
       }
     }
   }

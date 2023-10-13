@@ -38,7 +38,7 @@ const SidePanel = props => {
   const matchedFloorPlans = allHomePlans.filter(
     home =>
       parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) <=
-      parseInt(lotworks?.block, 10)
+      parseInt(lotworks?.buildpocket, 10)
   )
 
   console.log("matchedFloorPlans", matchedFloorPlans)
@@ -52,6 +52,7 @@ const SidePanel = props => {
           lotWidth={lotworks.frontage}
           buildPocket={lotworks.buildpocket}
           lotAddress={lotworks.lotaddress}
+          matchedFloorPlans={matchedFloorPlans}
         />
       ) : (
         <NotFound />
