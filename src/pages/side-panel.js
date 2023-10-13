@@ -35,6 +35,13 @@ const SidePanel = props => {
   })
 
   console.log("community", community)
+  const matchedFloorPlans = allHomePlans.filter(
+    home =>
+      parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) <=
+      parseInt(lotworks?.block, 10)
+  )
+
+  console.log("matchedFloorPlans", matchedFloorPlans)
 
   return (
     <ThemeProvider theme={theme}>
@@ -60,6 +67,9 @@ export const sidePanelQuery = graphql`
         node {
           title
           slug
+          acfHomePlans {
+            floorPlanWidth
+          }
         }
       }
     }
