@@ -12,6 +12,7 @@ import NotFound from "../components/sidePanel/NotFound"
 const SidePanel = props => {
   const [lotworks, setLotworks] = useState({})
   const communities = props.data.communities.edges
+  const allHomePlans = props.data.allHomePlans.edges
   useEffect(() => {
     if (props.location && props.location.search) {
       const queryData = queryString.parse(props.location.search)
@@ -22,6 +23,7 @@ const SidePanel = props => {
 
   console.log("communities: ", communities)
   console.log("lotworks: ", lotworks)
+  console.log("allHomePlans", allHomePlans)
 
   const community = communities.find(com => {
     if (lotworks.community === "Bayside") {
@@ -53,6 +55,15 @@ const SidePanel = props => {
 
 export const sidePanelQuery = graphql`
   {
+    allHomePlans: allWpHomePlan {
+      edges {
+        node {
+          title
+          slug
+        }
+      }
+    }
+
     communities: allWpCommunityPost {
       edges {
         node {
