@@ -6,7 +6,6 @@ import HomeDisplay from "../PageComponents/QuickPossessions/HomeDisplay"
 
 const QuickPosessions = ({ currentSlug, quickPossessions }) => {
   const currentCommunityQP = quickPossessions.edges.filter(home => {
-    console.log("home: ", home.node.communities.nodes)
     const displayHere =
       home?.node?.communities?.nodes?.filter(community => {
         return community.slug === currentSlug
@@ -14,9 +13,6 @@ const QuickPosessions = ({ currentSlug, quickPossessions }) => {
 
     return displayHere
   })
-
-  console.log("currentCommunityQP", currentCommunityQP)
-
   if (currentCommunityQP.length <= 0) return null
 
   return (
