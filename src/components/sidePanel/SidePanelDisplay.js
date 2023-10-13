@@ -74,7 +74,7 @@ const SidePanelDisplay = ({
         ) : null}
         {matchedFloorPlans.length > 0 ? (
           <div className="floor-plans-list">
-            <h4>Floor Plans that fit on that lot</h4>
+            <h4>Home Plans for this lot</h4>
             {matchedFloorPlans.map((plan, index) => {
               return (
                 <div key={index}>
