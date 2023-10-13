@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { B1Black, colors, H3Navy, H4Navy } from "../../styles/helpers"
+import { B1Black, B1Navy, colors, H3Navy, H4Navy } from "../../styles/helpers"
 
 import MainLogo from "../Logos/MainLogo"
 import SalesPerson from "./SalesPerson"
@@ -179,16 +179,18 @@ const StyledDiv = styled.div`
     width: 100%;
 
     h4 {
-      ${H4Navy};
+      ${H3Navy};
+      font-weight: bold;
       margin-top: 1rem;
       margin-bottom: 1rem;
     }
 
     a {
-      ${B1Black};
+      ${B1Navy};
+      font-weight: bold;
 
       &:hover {
-        color: ${colors.colorPrimary};
+        color: ${colors.colorAccent};
       }
     }
   }
