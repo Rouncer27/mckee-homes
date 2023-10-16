@@ -98,6 +98,12 @@ export const sidePanelQuery = graphql`
           acfHomePlans {
             floorPlanWidth
           }
+
+          communities {
+            nodes {
+              slug
+            }
+          }
         }
       }
     }
