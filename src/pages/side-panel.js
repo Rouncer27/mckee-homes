@@ -17,7 +17,7 @@ const SidePanel = props => {
   useEffect(() => {
     if (props.location && props.location.search) {
       const queryData = queryString.parse(props.location.search)
-      // console.log("queryData", queryData)
+      console.log("queryData", queryData)
       setLotworks(queryData)
     }
   }, [])
@@ -39,8 +39,6 @@ const SidePanel = props => {
   let matchedQPHome = undefined
   let matchedFloorPlans = []
 
-  console.log("lotworks.status: --> ", lotworks.status)
-
   if (lotworks.status === "available") {
     matchedFloorPlans = allHomePlans.filter(home => {
       return (
@@ -48,6 +46,11 @@ const SidePanel = props => {
         parseInt(lotworks?.buildpocket, 10)
       )
     })
+
+    console.log("matchedFloorPlans", matchedFloorPlans)
+    const queryData = queryString.parse(props.location.search)
+    console.log("queryData", queryData)
+    console.log("lotworks.community", lotworks.community)
   } else if (lotworks.status === "spec") {
     matchedQPHome = allQuickPossessions.find(
       home => home?.node.acfQuickPossessions.lotworksLotid === lotworks.lotid
