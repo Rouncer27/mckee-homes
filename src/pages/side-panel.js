@@ -52,27 +52,37 @@ const SidePanel = props => {
     matchedFloorPlans = matchedFloorPlans.filter(home => {
       if (
         lotworks.community === "Bayside" &&
-        home.node.nodes.find(community => community === "bayside-estates")
+        home.node.communities.nodes.find(
+          community => community === "bayside-estates"
+        )
       ) {
         return true
       } else if (
         lotworks.community === "Coopers Crossing" &&
-        home.node.nodes.find(community => community === "coopers-crossing")
+        home.node.communities.nodes.find(
+          community => community === "coopers-crossing"
+        )
       ) {
         return true
       } else if (
         lotworks.community === "Chinook Gate" &&
-        home.node.nodes.find(community => community === "chinook-gate")
+        home.node.communities.nodes.find(
+          community => community === "chinook-gate"
+        )
       ) {
         return true
       } else if (
         lotworks.community === "Lanark Landing" &&
-        home.node.nodes.find(community => community === "lanark-landing")
+        home.node.communities.nodes.find(
+          community => community === "lanark-landing"
+        )
       ) {
         return true
       } else if (
         lotworks.community === "Vista Crossing" &&
-        home.node.nodes.find(community => community === "vista-crossing")
+        home.node.communities.nodes.find(
+          community => community === "vista-crossing"
+        )
       ) {
         return true
       } else {
