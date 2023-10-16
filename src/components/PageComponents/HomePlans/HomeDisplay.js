@@ -14,6 +14,7 @@ import { UserContext } from "../../../context/UserContext"
 import sqft from "../../../images/icons/sqft.png"
 import bed from "../../../images/icons/bed.png"
 import bath from "../../../images/icons/bath.png"
+import widthIcon from "../../../images/icons/width.png"
 import Heart from "../../Images/Heart"
 
 const HomeDisplay = ({ home }) => {
@@ -99,6 +100,14 @@ const HomeDisplay = ({ home }) => {
               BATHROOM
             </span>
           </p>
+          {home.acfHomePlans.floorPlanWidth ? (
+            <p>
+              <span className="icon icon-width">
+                <img src={widthIcon} alt="Logo" />
+              </span>
+              <span>{home.acfHomePlans.floorPlanWidth} FT WIDE LOT</span>
+            </p>
+          ) : null}
         </div>
         <div className="content__type">
           <p>
@@ -231,10 +240,11 @@ const HomePlanStyled = styled(Link)`
 
     &__details {
       display: flex;
+      flex-wrap: wrap;
 
       p {
         ${B2Grey};
-        width: 100%;
+        width: 33.3333%;
         display: flex;
         align-items: center;
         padding: 0 1rem;
@@ -250,8 +260,14 @@ const HomePlanStyled = styled(Link)`
           padding-left: 0;
         }
 
-        &:last-of-type {
+        &:last-of-type,
+        &:nth-of-type(3) {
           border-right: none;
+        }
+
+        &:nth-of-type(4) {
+          width: 100%;
+          padding-left: 0;
         }
 
         .icon {
