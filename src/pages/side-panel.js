@@ -53,35 +53,35 @@ const SidePanel = props => {
       if (
         lotworks.community === "Bayside" &&
         home.node.communities.nodes.find(
-          community => community === "bayside-estates"
+          community => community.slug === "bayside-estates"
         )
       ) {
         return true
       } else if (
         lotworks.community === "Coopers Crossing" &&
         home.node.communities.nodes.find(
-          community => community === "coopers-crossing"
+          community => community.slug === "coopers-crossing"
         )
       ) {
         return true
       } else if (
         lotworks.community === "Chinook Gate" &&
         home.node.communities.nodes.find(
-          community => community === "chinook-gate"
+          community => community.slug === "chinook-gate"
         )
       ) {
         return true
       } else if (
         lotworks.community === "Lanark Landing" &&
         home.node.communities.nodes.find(
-          community => community === "lanark-landing"
+          community => community.slug === "lanark-landing"
         )
       ) {
         return true
       } else if (
         lotworks.community === "Vista Crossing" &&
         home.node.communities.nodes.find(
-          community => community === "vista-crossing"
+          community => community.slug === "vista-crossing"
         )
       ) {
         return true
