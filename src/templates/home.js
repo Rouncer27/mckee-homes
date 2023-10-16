@@ -53,6 +53,7 @@ export const query = graphql`
       databaseId
       acfHomePlans {
         details
+        floorPlanWidth
         numberOfBathrooms
         numberOfBedrooms
         squareFootage

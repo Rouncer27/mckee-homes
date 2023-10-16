@@ -20,6 +20,7 @@ import bed from "../../images/icons/bed.png"
 import bath from "../../images/icons/bath.png"
 import whiteHeart from "../../images/heart-white.png"
 import redHeart from "../../images/heart-red.png"
+import widthIcon from "../../images/icons/width.png"
 import Heart from "../Images/Heart"
 import HomeSlider from "./HomeSlider"
 
@@ -148,6 +149,15 @@ const HomePlanHeader = ({ home }) => {
                 </span>
                 <span>{home.acfHomePlans.numberOfBathrooms} BATHROOM</span>
               </p>
+
+              {home.acfHomePlans.floorPlanWidth ? (
+                <p>
+                  <span className="icon icon-width">
+                    <img src={widthIcon} alt="Logo" />
+                  </span>
+                  <span>{home.acfHomePlans.floorPlanWidth} FT WIDE LOT</span>
+                </p>
+              ) : null}
             </div>
 
             {home.acfHomePlans.floorPlanPdf.mediaItemUrl !== null ||
@@ -299,6 +309,7 @@ const StyledSection = styled.section`
 
     &__sizes {
       display: flex;
+      flex-wrap: wrap;
       justify-content: flex-start;
       width: 100%;
       padding-top: 2.5rem;
