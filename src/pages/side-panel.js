@@ -47,10 +47,43 @@ const SidePanel = props => {
       )
     })
 
-    console.log("matchedFloorPlans", matchedFloorPlans)
+    console.log("matchedFloorPlans BEFORE", matchedFloorPlans)
+
+    matchedFloorPlans = matchedFloorPlans.filter(home => {
+      if (
+        lotworks.community === "Bayside" &&
+        home.node.nodes.find(community => community === "bayside-estates")
+      ) {
+        return true
+      } else if (
+        lotworks.community === "Coopers Crossing" &&
+        home.node.nodes.find(community => community === "coopers-crossing")
+      ) {
+        return true
+      } else if (
+        lotworks.community === "Chinook Gate" &&
+        home.node.nodes.find(community => community === "chinook-gate")
+      ) {
+        return true
+      } else if (
+        lotworks.community === "Lanark Landing" &&
+        home.node.nodes.find(community => community === "lanark-landing")
+      ) {
+        return true
+      } else if (
+        lotworks.community === "Vista Crossing" &&
+        home.node.nodes.find(community => community === "vista-crossing")
+      ) {
+        return true
+      } else {
+        return false
+      }
+    })
+
+    console.log("matchedFloorPlans AFTER", matchedFloorPlans)
     const queryData = queryString.parse(props.location.search)
     console.log("queryData", queryData)
-    console.log("lotworks.community", lotworks.community)
+    console.log("lotworks.community", lotworks.community.communities)
   } else if (lotworks.status === "spec") {
     matchedQPHome = allQuickPossessions.find(
       home => home?.node.acfQuickPossessions.lotworksLotid === lotworks.lotid
