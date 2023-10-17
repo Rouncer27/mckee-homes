@@ -182,6 +182,7 @@ export const sidePanelQuery = graphql`
               databaseId
               slug
               name
+              description
             }
           }
         }
