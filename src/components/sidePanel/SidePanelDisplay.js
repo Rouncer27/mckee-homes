@@ -5,6 +5,7 @@ import { B1Black, B1Navy, colors, H3Navy, H4Navy } from "../../styles/helpers"
 import MainLogo from "../Logos/MainLogo"
 import SalesPerson from "./SalesPerson"
 import { Link } from "gatsby"
+import HomeDisplay from "../PageComponents/HomePlans/HomeDisplay"
 
 const SidePanelDisplay = ({
   community,
@@ -89,22 +90,25 @@ const SidePanelDisplay = ({
           </div>
         ) : null}
         {matchedFloorPlans.length > 0 ? (
-          <div className="floor-plans-list">
-            <h4>Home Plans for this lot</h4>
-            {matchedFloorPlans.map((plan, index) => {
-              return (
-                <div key={index}>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`https://www.mckeehomes.com/home-plans/${plan.node.slug}`}
-                  >
-                    {plan.node.title}
-                  </a>
-                </div>
-              )
-            })}
-          </div>
+          <>
+            <div className="floor-plans-list">
+              <h4>Home Plans for this lot</h4>
+              {matchedFloorPlans.map((plan, index) => {
+                return (
+                  <div key={index}>
+                    <HomeDisplay home={plan.node} />
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href={`https://www.mckeehomes.com/home-plans/${plan.node.slug}`}
+                    >
+                      {plan.node.title}
+                    </a>
+                  </div>
+                )
+              })}
+            </div>
+          </>
         ) : null}
       </div>
     </StyledDiv>

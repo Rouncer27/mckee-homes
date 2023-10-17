@@ -41,6 +41,7 @@ const SidePanel = props => {
   let matchedQPHome = undefined
   let matchedFloorPlans = []
 
+  // Check if this is a quick posession or a open lot. //
   if (lotworks.status === "available") {
     matchedFloorPlans = allHomePlans.filter(home => {
       return (
@@ -172,8 +173,23 @@ export const sidePanelQuery = graphql`
         node {
           title
           slug
+          databaseId
           acfHomePlans {
             floorPlanWidth
+            optionalAddedNoteReq
+            optionalAddedNote
+            squareFootage
+            numberOfBedrooms
+            numberOfBathrooms
+            mainImage {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1500)
+                }
+              }
+            }
           }
 
           communities {
