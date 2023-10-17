@@ -266,7 +266,13 @@ const DisplayHomePlans = props => {
       <div className="wrapper">
         {matchingHomes.length > 0 ? (
           matchingHomes.map(home => {
-            return <HomeDisplay key={home.node.slug} home={home.node} />
+            return (
+              <HomeDisplay
+                key={home.node.slug}
+                home={home.node}
+                externalLink={null}
+              />
+            )
           })
         ) : (
           <div className="no-homes-found">
