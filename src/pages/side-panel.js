@@ -168,6 +168,22 @@ export const sidePanelQuery = graphql`
               slug
             }
           }
+
+          homeStyles {
+            nodes {
+              databaseId
+              slug
+              name
+            }
+          }
+
+          homeTypes {
+            nodes {
+              databaseId
+              slug
+              name
+            }
+          }
         }
       }
     }
