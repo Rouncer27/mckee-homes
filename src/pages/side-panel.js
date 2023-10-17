@@ -135,6 +135,8 @@ const SidePanel = props => {
     )
   }
 
+  console.log("matchedQPHome: ", matchedQPHome)
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
