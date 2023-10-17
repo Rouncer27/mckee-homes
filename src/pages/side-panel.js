@@ -183,6 +183,30 @@ export const sidePanelQuery = graphql`
               }
             }
           }
+          homeStyles {
+            nodes {
+              databaseId
+              slug
+              name
+            }
+          }
+          homeTypes {
+            nodes {
+              databaseId
+              slug
+              name
+            }
+          }
+          communities {
+            nodes {
+              databaseId
+              slug
+              name
+              acfCommunities {
+                city
+              }
+            }
+          }
         }
       }
     }
