@@ -83,15 +83,6 @@ const SidePanelDisplay = ({
               home={matchedQPHome.node}
               externalLink={`https://www.mckeehomes.com/quick-possessions/${matchedQPHome.node.slug}`}
             />
-            <div>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={`https://www.mckeehomes.com/quick-possessions/${matchedQPHome.node.slug}`}
-              >
-                {matchedQPHome.node.title}
-              </a>
-            </div>
           </div>
         ) : null}
         {matchedFloorPlans.length > 0 ? (
