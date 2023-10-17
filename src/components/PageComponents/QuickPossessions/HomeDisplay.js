@@ -17,6 +17,7 @@ import bath from "../../../images/icons/bath.png"
 import Heart from "../../Images/Heart"
 
 const HomeDisplay = ({ home, externalLink }) => {
+  console.log("TREVOR HELLO home, externalLink", home, externalLink)
   const [isLiked, setIsLiked] = useState(false)
   const [userState] = useContext(UserContext)
   const imgSrc = getImage(
