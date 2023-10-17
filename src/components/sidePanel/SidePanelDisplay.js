@@ -6,7 +6,7 @@ import MainLogo from "../Logos/MainLogo"
 import SalesPerson from "./SalesPerson"
 import { Link } from "gatsby"
 import HomeDisplay from "../PageComponents/HomePlans/HomeDisplay"
-import { HomeDisplay as QuickPosession } from "./QuickPossessions/HomeDisplay"
+import { HomeDisplay as QuickPosession } from "../PageComponents/QuickPossessions/HomeDisplay"
 
 const SidePanelDisplay = ({
   community,
