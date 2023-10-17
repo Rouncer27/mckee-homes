@@ -112,6 +112,21 @@ const SidePanel = props => {
     })
 
     console.log("matchedFloorPlans AFTER", matchedFloorPlans)
+
+    matchedFloorPlans = matchedFloorPlans.filter(home => {
+      if (
+        home.node.homeTypes.nodes.find(
+          type => type.description === lotworks.stdproducttype
+        )
+      ) {
+        return true
+      } else {
+        return false
+      }
+    })
+
+    console.log("matchedFloorPlans AFTER FILTER #2", matchedFloorPlans)
+
     const queryData = queryString.parse(props.location.search)
     console.log("queryData", queryData)
     console.log("lotworks.community", lotworks.community.communities)
