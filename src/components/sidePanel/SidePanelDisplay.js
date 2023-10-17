@@ -95,19 +95,11 @@ const SidePanelDisplay = ({
               <h4>Home Plans for this lot</h4>
               {matchedFloorPlans.map((plan, index) => {
                 return (
-                  <div key={index}>
-                    <HomeDisplay
-                      home={plan.node}
-                      externalLink={`https://www.mckeehomes.com/home-plans/${plan.node.slug}`}
-                    />
-                    <a
-                      target="_blank"
-                      rel="noreferrer"
-                      href={`https://www.mckeehomes.com/home-plans/${plan.node.slug}`}
-                    >
-                      {plan.node.title}
-                    </a>
-                  </div>
+                  <HomeDisplay
+                    key={index}
+                    home={plan.node}
+                    externalLink={`https://www.mckeehomes.com/home-plans/${plan.node.slug}`}
+                  />
                 )
               })}
             </div>
