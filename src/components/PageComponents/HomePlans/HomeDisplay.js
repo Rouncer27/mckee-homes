@@ -223,6 +223,7 @@ const OptionalNotes = styled.div`
 `
 
 const HomePlanExternal = styled.a`
+  display: block;
   width: 100%;
   margin-bottom: 5rem;
   border: solid 0.3rem #a2a3a5;
