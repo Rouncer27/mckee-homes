@@ -24,7 +24,9 @@ const SidePanel = props => {
 
   // console.log("communities: ", communities)
   console.log("lotworks: ", lotworks)
-  // console.log("allHomePlans", allHomePlans)
+  const queryData = queryString.parse(props.location.search)
+  console.log("queryData", queryData)
+  console.log("allHomePlans", allHomePlans)
   // console.log("allQuickPossessions", allQuickPossessions)
 
   const community = communities.find(com => {
@@ -126,10 +128,6 @@ const SidePanel = props => {
     })
 
     console.log("matchedFloorPlans AFTER FILTER #2", matchedFloorPlans)
-
-    const queryData = queryString.parse(props.location.search)
-    console.log("queryData", queryData)
-    console.log("lotworks.community", lotworks.community.communities)
   } else if (lotworks.status === "spec") {
     matchedQPHome = allQuickPossessions.find(
       home => home?.node.acfQuickPossessions.lotworksLotid === lotworks.lotid
