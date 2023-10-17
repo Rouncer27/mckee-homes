@@ -6,6 +6,7 @@ import MainLogo from "../Logos/MainLogo"
 import SalesPerson from "./SalesPerson"
 import { Link } from "gatsby"
 import HomeDisplay from "../PageComponents/HomePlans/HomeDisplay"
+import { HomeDisplay as QuickPosession } from "./QuickPossessions/HomeDisplay"
 
 const SidePanelDisplay = ({
   community,
@@ -78,6 +79,10 @@ const SidePanelDisplay = ({
         {!!matchedQPHome ? (
           <div className="floor-plans-list">
             <h4>Quick Possession Details</h4>
+            <QuickPosession
+              home={matchedQPHome.node}
+              externalLink={`https://www.mckeehomes.com/quick-possessions/${matchedQPHome.node.slug}`}
+            />
             <div>
               <a
                 target="_blank"

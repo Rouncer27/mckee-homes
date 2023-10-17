@@ -161,8 +161,27 @@ export const sidePanelQuery = graphql`
         node {
           title
           slug
+          databaseId
           acfQuickPossessions {
             lotworksLotid
+            optionalAddedNoteReq
+            optionalAddedNote
+            address
+            homeFeatures
+            price
+            possessionTimeline
+            squareFootage
+            numberOfBedrooms
+            numberOfBathrooms
+            mainImage {
+              altText
+              localFile {
+                url
+                childImageSharp {
+                  gatsbyImageData(width: 1500)
+                }
+              }
+            }
           }
         }
       }
