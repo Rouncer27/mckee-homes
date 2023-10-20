@@ -155,7 +155,7 @@ const HomePlanHeader = ({ home }) => {
                   <span className="icon icon-width">
                     <img src={widthIcon} alt="Logo" />
                   </span>
-                  <span>{home.acfHomePlans.floorPlanWidth} FT</span>
+                  <span>{home.acfHomePlans.floorPlanWidth} FT WIDE HOME</span>
                 </p>
               ) : null}
             </div>
