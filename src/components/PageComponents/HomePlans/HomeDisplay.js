@@ -107,7 +107,7 @@ const HomeDisplay = ({ home, externalLink }) => {
                   <span className="icon icon-width">
                     <img src={widthIcon} alt="Logo" />
                   </span>
-                  <span>{home.acfHomePlans.floorPlanWidth} FT WIDE LOT</span>
+                  <span>{home.acfHomePlans.floorPlanWidth} FT WIDE</span>
                 </p>
               ) : null}
             </div>
