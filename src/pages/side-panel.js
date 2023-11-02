@@ -32,7 +32,7 @@ const SidePanel = props => {
   // console.log("queryData", queryData)
   console.log("allHomePlans", allHomePlans)
 
-  // Just using this for the correct title display.//
+  // Just using this for the correct title display and to find the correct salesperson inside the sidepanel display. //
   const community = communities.find(com => {
     if (lotworks.community === "Bayside") {
       return com.node.title === "Bayside Estates"
@@ -48,6 +48,8 @@ const SidePanel = props => {
     lotworks.stdproducttype === "Single Family Front"
       ? "Front Drive"
       : lotworks.stdproducttype === "Single Family Front — zero Line"
+      ? "Front Drive"
+      : lotworks.stdproducttype === "Single Family"
       ? "Front Drive"
       : lotworks.stdproducttype === "Duplex Front"
       ? "Front Drive"
