@@ -9,7 +9,7 @@ import GlobalStyle from "../styles/global/Golbal"
 import SidePanelDisplay from "../components/sidePanel/SidePanelDisplay"
 import NotFound from "../components/sidePanel/NotFound"
 
-import communityFilter from "../components/sidePanel/filters/CommunityFilter"
+import communityFilter from "../components/sidePanel/filters/communityFilter"
 import floorPlanTypeFilter from "../components/sidePanel/filters/floorPlanTypeFilter"
 import floorPlanWidthFilter from "../components/sidePanel/filters/floorPlanWidthFilter"
 
