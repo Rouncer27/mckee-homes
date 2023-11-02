@@ -43,15 +43,16 @@ const SidePanel = props => {
 
   // Check if this is a quick posession or a open lot. //
   if (lotworks.status === "available") {
+    // Check if the build pocket matches the floor plan width. //
     matchedFloorPlans = allHomePlans.filter(home => {
       return (
-        parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) <=
+        parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) ===
         parseInt(lotworks?.buildpocket, 10)
       )
     })
 
     console.log("matchedFloorPlans BEFORE", matchedFloorPlans)
-
+    // Check if it in the correct community. //
     matchedFloorPlans = matchedFloorPlans.filter(home => {
       if (
         lotworks.community === "Bayside" &&
@@ -116,10 +117,29 @@ const SidePanel = props => {
 
     console.log("matchedFloorPlans AFTER", matchedFloorPlans)
 
+    const lotworksType =
+      lotworks.stdproducttype === "Single Family Front"
+        ? "Front Drive"
+        : lotworks.stdproducttype === "Single Family Front — zero Line"
+        ? "Front Drive"
+        : lotworks.stdproducttype === "Duplex Front"
+        ? "Front Drive"
+        : lotworks.stdproducttype === "Single Family Rear"
+        ? "Laned Homes"
+        : lotworks.stdproducttype === "Duplex Rear"
+        ? "Laned Homes"
+        : lotworks.stdproducttype === "Townhomes"
+        ? "Townhomes"
+        : lotworks.stdproducttype === "Row home"
+        ? "Townhomes"
+        : null
+
+    console.log("lotworksType", lotworksType)
+
     matchedFloorPlans = matchedFloorPlans.filter(home => {
       if (
         home.node.homeTypes.nodes.find(
-          type => type.description === lotworks.stdproducttype
+          type => type.name === lotworks.stdproducttype
         )
       ) {
         return true
