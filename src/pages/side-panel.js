@@ -13,6 +13,9 @@ import communityFilter from "../components/sidePanel/filters/communityFilter"
 import floorPlanTypeFilter from "../components/sidePanel/filters/floorPlanTypeFilter"
 import floorPlanWidthFilter from "../components/sidePanel/filters/floorPlanWidthFilter"
 
+import getRightType from "../components/sidePanel/dataMassage/getRightType"
+import getRightCommunity from "../components/sidePanel/dataMassage/getRightCommunity"
+
 const SidePanel = props => {
   const [lotworks, setLotworks] = useState({})
   const communities = props.data.communities.edges
@@ -27,41 +30,15 @@ const SidePanel = props => {
   }, [])
 
   // console.log("communities: ", communities)
-  console.log("lotworks: ", lotworks)
   // const queryData = queryString.parse(props.location.search)
   // console.log("queryData", queryData)
+  console.log("lotworks: ", lotworks)
   console.log("allHomePlans", allHomePlans)
-
-  // Just using this for the correct title display and to find the correct salesperson inside the sidepanel display. //
-  const community = communities.find(com => {
-    if (lotworks.community === "Bayside") {
-      return com.node.title === "Bayside Estates"
-    } else if (lotworks.community === "Coopers Crossing") {
-      return com.node.title === "Cooper’s Crossing"
-    }
-    return com.node.title === lotworks.community
-  })
-
+  // Massaging the community name data from lotworks to match our database name here. //
+  const community = getRightCommunity(communities, lotworks)
   console.log("community = ", community)
-
-  const lotworksType =
-    lotworks.stdproducttype === "Single Family Front"
-      ? "Front Drive"
-      : lotworks.stdproducttype === "Single Family Front — zero Line"
-      ? "Front Drive"
-      : lotworks.stdproducttype === "Single Family"
-      ? "Front Drive"
-      : lotworks.stdproducttype === "Duplex Front"
-      ? "Front Drive"
-      : lotworks.stdproducttype === "Single Family Rear"
-      ? "Laned Homes"
-      : lotworks.stdproducttype === "Duplex Rear"
-      ? "Laned Homes"
-      : lotworks.stdproducttype === "Townhomes"
-      ? "Townhomes"
-      : lotworks.stdproducttype === "Row home"
-      ? "Townhomes"
-      : null
+  // Massages the data from lotworks to match our database type name. //
+  const lotworksType = getRightType(lotworks.stdproducttype)
 
   let matchedQPHome = undefined
   let matchedFloorPlans = []
