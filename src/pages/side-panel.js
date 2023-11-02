@@ -42,6 +42,8 @@ const SidePanel = props => {
     return com.node.title === lotworks.community
   })
 
+  console.log("community = ", community)
+
   const lotworksType =
     lotworks.stdproducttype === "Single Family Front"
       ? "Front Drive"
@@ -65,16 +67,12 @@ const SidePanel = props => {
   // Check if this is a quick posession or a open lot. //
   if (lotworks.status === "available") {
     // 1. Check if it in the correct community. //
-    console.log("allHomePlans BEFORE communityFilter", allHomePlans)
-    console.log("matchedFloorPlans BEFORE communityFilter", matchedFloorPlans)
+    console.log("lotworks.community = ", lotworks.community)
     matchedFloorPlans = communityFilter(allHomePlans, lotworks)
     console.log("matchedFloorPlans AFTER communityFilter", matchedFloorPlans)
 
     // 2. Check to see if this is the correct home plan type. //
-    console.log(
-      "matchedFloorPlans BEFORE floorPlanTypeFilter",
-      matchedFloorPlans
-    )
+    console.log("TYPE FROM LOTWORKS = ", lotworksType)
     matchedFloorPlans = floorPlanTypeFilter(matchedFloorPlans, lotworksType)
     console.log(
       "matchedFloorPlans AFTER floorPlanTypeFilter",
@@ -82,10 +80,7 @@ const SidePanel = props => {
     )
 
     // 3. Check if the build pocket matches the floor plan width. //
-    console.log(
-      "matchedFloorPlans BEFORE floorPlanWidthFilter",
-      matchedFloorPlans
-    )
+    console.log(" lotworks?.buildpocket = ", lotworks?.buildpocket)
     matchedFloorPlans = floorPlanWidthFilter(
       matchedFloorPlans,
       lotworks?.buildpocket
@@ -103,11 +98,6 @@ const SidePanel = props => {
   console.log(
     "matchedQPHome THAT ARE DISPLAYED DONE FILTER PROCESS: ",
     matchedQPHome
-  )
-
-  console.log(
-    "matchedFloorPlans THAT ARE DISPLAYED DONE FILTER PROCESS: ",
-    matchedFloorPlans
   )
 
   return (
