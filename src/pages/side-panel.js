@@ -9,6 +9,10 @@ import GlobalStyle from "../styles/global/Golbal"
 import SidePanelDisplay from "../components/sidePanel/SidePanelDisplay"
 import NotFound from "../components/sidePanel/NotFound"
 
+import communityFilter from "../components/sidePanel/filters/CommunityFilter"
+import floorPlanTypeFilter from "../components/sidePanel/filters/floorPlanTypeFilter"
+import floorPlanWidthFilter from "../components/sidePanel/filters/floorPlanWidthFilter"
+
 const SidePanel = props => {
   const [lotworks, setLotworks] = useState({})
   const communities = props.data.communities.edges
@@ -24,11 +28,11 @@ const SidePanel = props => {
 
   // console.log("communities: ", communities)
   console.log("lotworks: ", lotworks)
-  const queryData = queryString.parse(props.location.search)
-  console.log("queryData", queryData)
+  // const queryData = queryString.parse(props.location.search)
+  // console.log("queryData", queryData)
   console.log("allHomePlans", allHomePlans)
-  // console.log("allQuickPossessions", allQuickPossessions)
 
+  // Just using this for the correct title display.//
   const community = communities.find(com => {
     if (lotworks.community === "Bayside") {
       return com.node.title === "Bayside Estates"
@@ -38,124 +42,73 @@ const SidePanel = props => {
     return com.node.title === lotworks.community
   })
 
+  const lotworksType =
+    lotworks.stdproducttype === "Single Family Front"
+      ? "Front Drive"
+      : lotworks.stdproducttype === "Single Family Front — zero Line"
+      ? "Front Drive"
+      : lotworks.stdproducttype === "Duplex Front"
+      ? "Front Drive"
+      : lotworks.stdproducttype === "Single Family Rear"
+      ? "Laned Homes"
+      : lotworks.stdproducttype === "Duplex Rear"
+      ? "Laned Homes"
+      : lotworks.stdproducttype === "Townhomes"
+      ? "Townhomes"
+      : lotworks.stdproducttype === "Row home"
+      ? "Townhomes"
+      : null
+
   let matchedQPHome = undefined
   let matchedFloorPlans = []
 
   // Check if this is a quick posession or a open lot. //
   if (lotworks.status === "available") {
-    // Check if the build pocket matches the floor plan width. //
-    matchedFloorPlans = allHomePlans.filter(home => {
-      return (
-        parseInt(home?.node?.acfHomePlans?.floorPlanWidth, 10) ===
-        parseInt(lotworks?.buildpocket, 10)
-      )
-    })
+    // 1. Check if it in the correct community. //
+    console.log("allHomePlans BEFORE communityFilter", allHomePlans)
+    console.log("matchedFloorPlans BEFORE communityFilter", matchedFloorPlans)
+    matchedFloorPlans = communityFilter(allHomePlans, lotworks)
+    console.log("matchedFloorPlans AFTER communityFilter", matchedFloorPlans)
 
-    console.log("matchedFloorPlans BEFORE", matchedFloorPlans)
-    // Check if it in the correct community. //
-    matchedFloorPlans = matchedFloorPlans.filter(home => {
-      if (
-        lotworks.community === "Bayside" &&
-        home.node.communities.nodes.find(
-          community => community.slug === "bayside-estates"
-        )
-      ) {
-        return true
-      } else if (
-        lotworks.community === "Coopers Crossing" &&
-        home.node.communities.nodes.find(
-          community => community.slug === "coopers-crossing"
-        )
-      ) {
-        return true
-      } else if (
-        lotworks.community === "Chinook Gate" &&
-        home.node.communities.nodes.find(
-          community => community.slug === "chinook-gate"
-        )
-      ) {
-        return true
-      } else if (
-        lotworks.community === "Lanark Landing" &&
-        home.node.communities.nodes.find(
-          community => community.slug === "lanark-landing"
-        )
-      ) {
-        return true
-      } else if (
-        lotworks.community === "Lewiston" &&
-        home.node.communities.nodes.find(
-          community => community.slug === "lewiston"
-        )
-      ) {
-        return true
-      } else if (
-        lotworks.community === "Goldwyn" &&
-        home.node.communities.nodes.find(
-          community => community.slug === "goldwyn"
-        )
-      ) {
-        return true
-      } else if (
-        lotworks.community === "Vista Crossing" &&
-        home.node.communities.nodes.find(
-          community => community.slug === "vista-crossing"
-        )
-      ) {
-        return true
-      } else if (
-        lotworks.community === "Mandalay Estates" &&
-        home.node.communities.nodes.find(
-          community => community.slug === "mandalay-estates"
-        )
-      ) {
-        return true
-      } else {
-        return false
-      }
-    })
+    // 2. Check to see if this is the correct home plan type. //
+    console.log(
+      "matchedFloorPlans BEFORE floorPlanTypeFilter",
+      matchedFloorPlans
+    )
+    matchedFloorPlans = floorPlanTypeFilter(matchedFloorPlans, lotworksType)
+    console.log(
+      "matchedFloorPlans AFTER floorPlanTypeFilter",
+      matchedFloorPlans
+    )
 
-    console.log("matchedFloorPlans AFTER", matchedFloorPlans)
-
-    const lotworksType =
-      lotworks.stdproducttype === "Single Family Front"
-        ? "Front Drive"
-        : lotworks.stdproducttype === "Single Family Front — zero Line"
-        ? "Front Drive"
-        : lotworks.stdproducttype === "Duplex Front"
-        ? "Front Drive"
-        : lotworks.stdproducttype === "Single Family Rear"
-        ? "Laned Homes"
-        : lotworks.stdproducttype === "Duplex Rear"
-        ? "Laned Homes"
-        : lotworks.stdproducttype === "Townhomes"
-        ? "Townhomes"
-        : lotworks.stdproducttype === "Row home"
-        ? "Townhomes"
-        : null
-
-    console.log("lotworksType", lotworksType)
-
-    matchedFloorPlans = matchedFloorPlans.filter(home => {
-      if (
-        home.node.homeTypes.nodes.find(
-          type => type.name === lotworks.stdproducttype
-        )
-      ) {
-        return true
-      } else {
-        return false
-      }
-    })
-
-    console.log("matchedFloorPlans AFTER FILTER #2", matchedFloorPlans)
+    // 3. Check if the build pocket matches the floor plan width. //
+    console.log(
+      "matchedFloorPlans BEFORE floorPlanWidthFilter",
+      matchedFloorPlans
+    )
+    matchedFloorPlans = floorPlanWidthFilter(
+      matchedFloorPlans,
+      lotworks?.buildpocket
+    )
+    console.log(
+      "matchedFloorPlans AFTER floorPlanWidthFilter",
+      matchedFloorPlans
+    )
   } else if (lotworks.status === "spec") {
     matchedQPHome = allQuickPossessions.find(
       home => home?.node.acfQuickPossessions.lotworksLotid === lotworks.lotid
     )
   }
 
-  console.log("matchedQPHome: ", matchedQPHome)
+  console.log(
+    "matchedQPHome THAT ARE DISPLAYED DONE FILTER PROCESS: ",
+    matchedQPHome
+  )
+
+  console.log(
+    "matchedFloorPlans THAT ARE DISPLAYED DONE FILTER PROCESS: ",
+    matchedFloorPlans
+  )
 
   return (
     <ThemeProvider theme={theme}>
