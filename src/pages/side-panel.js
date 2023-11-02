@@ -29,6 +29,7 @@ const SidePanel = props => {
     }
   }, [])
 
+  console.clear()
   // console.log("communities: ", communities)
   // const queryData = queryString.parse(props.location.search)
   // console.log("queryData", queryData)
