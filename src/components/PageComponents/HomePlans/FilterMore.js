@@ -155,7 +155,7 @@ const FilterMore = ({
         {lotWidth !== false && (
           <StyledSelector>
             <div>
-              <p>Lot Max Width In Feet</p>
+              <p>Home Plan Max Width In Feet</p>
             </div>
             <div ref={lotWidthDisplay} className="lotvalue">
               40 &#43;
