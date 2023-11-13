@@ -335,6 +335,7 @@ const DisplayQuickPossessions = props => {
             setSqftFilter={setSqftFilter}
             bedroomFilter={bedroomFilter}
             setBedroomFilter={setBedroomFilter}
+            lotWidth={false}
             price={true}
             priceFilter={priceFilter}
             setPriceFilter={setPriceFilter}

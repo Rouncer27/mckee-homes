@@ -105,6 +105,8 @@ const DisplayHomePlans = props => {
   // Plans Post Types
   const homePlans = allData.homePlans.edges
 
+  console.log("homePlans", homePlans)
+
   const plansSorted = homePlans.sort(function (a, b) {
     if (a.node.slug < b.node.slug) {
       return -1
@@ -127,6 +129,7 @@ const DisplayHomePlans = props => {
   const [communityFilter, setCommunityFilter] = useState([])
   const [sqftFilter, setSqftFilter] = useState(500)
   const [bedroomFilter, setBedroomFilter] = useState([])
+  const [lotWidthFilter, setLotWidthFilter] = useState(40)
 
   const handleClearMore = () => {
     setSqftFilter(500)
@@ -160,6 +163,7 @@ const DisplayHomePlans = props => {
       let communityMatch = true
       let sqftMatch = true
       let bedroomMatch = true
+      let lotWidthMatch = true
 
       // Does this home match the home types filter?
       if (homeTypesFilter.length > 0) {
@@ -194,6 +198,11 @@ const DisplayHomePlans = props => {
         sqftMatch = home.node.acfHomePlans.squareFootage >= sqftFilter
       }
 
+      // Does this house match the Lot Width  filter
+      if (lotWidthFilter < 40) {
+        lotWidthMatch = home.node.acfHomePlans.floorPlanWidth <= lotWidthFilter
+      }
+
       // Does this house match the bedroom filter
       if (bedroomFilter.length > 0) {
         bedroomMatch = bedroomFilter.some(
@@ -202,7 +211,12 @@ const DisplayHomePlans = props => {
       }
 
       const displayHome =
-        typeMatch && styleMatch && communityMatch && bedroomMatch && sqftMatch
+        typeMatch &&
+        styleMatch &&
+        communityMatch &&
+        bedroomMatch &&
+        sqftMatch &&
+        lotWidthMatch
 
       if (displayHome) matched.push(home)
     })
@@ -214,6 +228,7 @@ const DisplayHomePlans = props => {
     communityFilter,
     sqftFilter,
     bedroomFilter,
+    lotWidthFilter,
   ])
   return (
     <SectionStyled filteractive={filterActive !== ""}>
@@ -250,6 +265,9 @@ const DisplayHomePlans = props => {
             setSqftFilter={setSqftFilter}
             bedroomFilter={bedroomFilter}
             setBedroomFilter={setBedroomFilter}
+            lotWidthFilter={lotWidthFilter}
+            setLotWidthFilter={setLotWidthFilter}
+            lotWidth={true}
             price={false}
             timeline={false}
             features={false}

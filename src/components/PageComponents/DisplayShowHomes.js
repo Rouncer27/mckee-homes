@@ -248,6 +248,7 @@ const DisplayShowHomes = props => {
             price={false}
             timeline={false}
             features={false}
+            lotWidth={false}
             clearMore={handleClearMore}
             moreActive={bedroomFilter.length > 0 || parseInt(sqftFilter) > 500}
           />

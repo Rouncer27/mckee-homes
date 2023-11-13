@@ -34,6 +34,9 @@ const FilterMain = ({
   setHomeFeaturesFilter,
   clearMore,
   moreActive,
+  lotWidthFilter,
+  setLotWidthFilter,
+  lotWidth,
 }) => {
   return (
     <DivStyled id="filters">
@@ -84,6 +87,9 @@ const FilterMain = ({
         features={features}
         homeFeaturesFilter={homeFeaturesFilter}
         setHomeFeaturesFilter={setHomeFeaturesFilter}
+        lotWidth={lotWidth}
+        lotWidthFilter={lotWidthFilter}
+        setLotWidthFilter={setLotWidthFilter}
         clearMore={clearMore}
         filterSelected={moreActive}
       />

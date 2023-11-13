@@ -22,9 +22,13 @@ const FilterMore = ({
   setHomeFeaturesFilter,
   clearMore,
   filterSelected,
+  lotWidthFilter,
+  setLotWidthFilter,
+  lotWidth,
 }) => {
   const sqfootDisplay = useRef(null)
   const priceDisplay = useRef(null)
+  const lotWidthDisplay = useRef(null)
 
   useEffect(() => {
     if (sqfootDisplay.current === null) return
@@ -37,12 +41,21 @@ const FilterMore = ({
       "&#36;" + commaAdder(priceFilter) + " &#43;"
   }, [priceFilter])
 
+  useEffect(() => {
+    if (lotWidthDisplay.current === null) return
+    lotWidthDisplay.current.innerHTML = lotWidthFilter + " &#43;"
+  }, [lotWidthFilter])
+
   const handleOnSquareFootChange = event => {
     setSqftFilter(event.target.value)
   }
 
   const handleOnPriceChange = event => {
     setPriceFilter(event.target.value)
+  }
+
+  const handleOnLotWidthChange = event => {
+    setLotWidthFilter(event.target.value)
   }
 
   const handleAddBedroomItem = rooms => {
@@ -138,6 +151,25 @@ const FilterMore = ({
             onChange={handleOnSquareFootChange}
           />
         </StyledSelector>
+
+        {lotWidth !== false && (
+          <StyledSelector>
+            <div>
+              <p>Lot Max Width In Feet</p>
+            </div>
+            <div ref={lotWidthDisplay} className="lotvalue">
+              40 &#43;
+            </div>
+            <input
+              type="range"
+              min="15"
+              max="40"
+              step="1"
+              value={lotWidthFilter}
+              onChange={handleOnLotWidthChange}
+            />
+          </StyledSelector>
+        )}
 
         {price !== false && (
           <StyledSelector>
@@ -332,6 +364,7 @@ const StyledSelector = styled.div`
   margin-bottom: 5rem;
 
   .sqftvalue,
+  .lotvalue,
   .pricevalue {
     width: 100%;
     margin: 1rem auto;
