@@ -41,6 +41,33 @@ const SidePanelDisplay = ({
             </p>
           ) : null}
         </div> */}
+
+        {!!matchedQPHome ? (
+          <div className="floor-plans-list">
+            <h4>Quick Possession Details</h4>
+            <HomeDisplayQP
+              home={matchedQPHome.node}
+              externalLink={`https://www.mckeehomes.com/quick-possessions/${matchedQPHome.node.slug}`}
+            />
+          </div>
+        ) : null}
+        {matchedFloorPlans.length > 0 ? (
+          <>
+            <div className="floor-plans-list">
+              <h4>Home Plans for this lot</h4>
+              {matchedFloorPlans.map((plan, index) => {
+                return (
+                  <HomeDisplay
+                    key={index}
+                    home={plan.node}
+                    externalLink={`https://www.mckeehomes.com/home-plans/${plan.node.slug}`}
+                  />
+                )
+              })}
+            </div>
+          </>
+        ) : null}
+
         {community.acfCommunity && community.acfCommunity.salesPersonOne ? (
           <div className="sales">
             <h4>Sales Team</h4>
@@ -75,31 +102,6 @@ const SidePanelDisplay = ({
               />
             ) : null}
           </div>
-        ) : null}
-        {!!matchedQPHome ? (
-          <div className="floor-plans-list">
-            <h4>Quick Possession Details</h4>
-            <HomeDisplayQP
-              home={matchedQPHome.node}
-              externalLink={`https://www.mckeehomes.com/quick-possessions/${matchedQPHome.node.slug}`}
-            />
-          </div>
-        ) : null}
-        {matchedFloorPlans.length > 0 ? (
-          <>
-            <div className="floor-plans-list">
-              <h4>Home Plans for this lot</h4>
-              {matchedFloorPlans.map((plan, index) => {
-                return (
-                  <HomeDisplay
-                    key={index}
-                    home={plan.node}
-                    externalLink={`https://www.mckeehomes.com/home-plans/${plan.node.slug}`}
-                  />
-                )
-              })}
-            </div>
-          </>
         ) : null}
       </div>
     </StyledDiv>
