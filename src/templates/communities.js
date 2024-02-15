@@ -235,6 +235,8 @@ export const query = graphql`
             }
           }
           acfQuickPossessions {
+            optionalAddedNote
+            optionalAddedNoteReq
             address
             homeFeatures
             price

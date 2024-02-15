@@ -29,7 +29,7 @@ const QuickPosessions = ({ currentSlug, quickPossessions }) => {
           </div>
         ) : (
           <div>
-            <p>No show homes in this community</p>
+            <p>No Quick Posessions homes in this community</p>
           </div>
         )}
       </div>
