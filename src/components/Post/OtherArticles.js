@@ -21,7 +21,7 @@ const OtherArticles = ({ allPosts, postSlug }) => {
     <DivStyled>
       <div className="wrapper">
         <div className="main-title">
-          <h3>Other Articels you might enjoy</h3>
+          <h3>Other Articles you might enjoy</h3>
         </div>
         <div className="articles">
           {posts.map((post, index) => {
