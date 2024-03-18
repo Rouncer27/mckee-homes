@@ -806,6 +806,27 @@ export const pageTempQuery = graphql`
               link
             }
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_BuildingFuturesTimeline {
+            fieldGroupName
+            title
+            classYear {
+              classYear
+              yearDetails {
+                title
+                icon
+                content
+                images {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData(width: 2000)
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

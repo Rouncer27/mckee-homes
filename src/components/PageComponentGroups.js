@@ -51,6 +51,7 @@ import CarstairsMapPins from "./PageComponents/CommunitiesMaps/CarstairsMapPins"
 import DisplayCustomersVideos from "./PageComponents/DisplayCustomersVideos"
 import BuildingFuturesStatus from "./PageComponents/BuildingFuturesStatus"
 import GallerySlider from "./PageComponents/GallerySlider"
+import BuildingFuturesTimeline from "./PageComponents/BuildingFuturesTimeline"
 
 const PageComponentGroups = props => {
   const { components, location } = props
@@ -234,6 +235,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_BuildingFuturesStatus":
                 return <BuildingFuturesStatus key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_BuildingFuturesTimeline":
+                return <BuildingFuturesTimeline key={index} data={component} />
 
               default:
                 return (
