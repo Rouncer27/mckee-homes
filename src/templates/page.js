@@ -827,6 +827,14 @@ export const pageTempQuery = graphql`
               }
             }
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_SideBySideParagraphs {
+            fieldGroupName
+            titleLeft
+            contentLeft
+            titleRight
+            contentRight
+          }
         }
       }
     }
