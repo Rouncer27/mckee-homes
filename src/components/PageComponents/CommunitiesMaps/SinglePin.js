@@ -157,6 +157,21 @@ const DivStyled = styled.div`
     }
   }
 
+  &.pins__bayview {
+    left: 15vw;
+    bottom: 55%;
+
+    .pin__details {
+      top: -10rem;
+      left: -7.5rem;
+
+      @media (min-width: 768px) {
+        top: -100%;
+        left: 0%;
+      }
+    }
+  }
+
   &.pins__baysideEstates {
     left: 30vw;
     bottom: 50%;

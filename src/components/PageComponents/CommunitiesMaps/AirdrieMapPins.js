@@ -57,6 +57,7 @@ const AirdrieMapPins = () => {
   // )
   const lanark = community.find(item => item.node.slug === "lanark-landing")
   // const ravenswood = community.find(item => item.node.slug === "ravenswood")
+  const bayview = community.find(item => item.node.slug === "bayview")
 
   return (
     <DivStyled pinactive={pinActive}>
@@ -149,6 +150,24 @@ const AirdrieMapPins = () => {
           details={lanark.node.acfCommunity.popupDetails}
           slug={lanark.node.slug}
           classmodifier={`pins__lanarklanding`}
+          setPinActive={setPinActive}
+        />
+
+        <SinglePin
+          logo={getImage(
+            bayview.node.acfCommunity.logo.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          logoAlt={bayview.node.acfCommunity.logo.altText}
+          imgSrc={getImage(
+            bayview.node.acfCommunity.popupPinIcon.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          alt={bayview.node.acfCommunity.popupPinIcon.altText}
+          title={bayview.node.title}
+          details={bayview.node.acfCommunity.popupDetails}
+          slug={bayview.node.slug}
+          classmodifier={`pins__bayview`}
           setPinActive={setPinActive}
         />
 
