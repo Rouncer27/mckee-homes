@@ -37,7 +37,7 @@ const Details = ({ city, title, details, logo, url, scroll }) => {
           </div>
           {url && (
             <div className="logo__btn">
-              <a rel="noreferrer" target="_blank" href={url}>
+              <a rel="noopener" target="_blank" href={url}>
                 Explore Community
               </a>
             </div>
