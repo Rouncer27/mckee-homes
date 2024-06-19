@@ -58,6 +58,9 @@ const AirdrieMapPins = () => {
   const lanark = community.find(item => item.node.slug === "lanark-landing")
   // const ravenswood = community.find(item => item.node.slug === "ravenswood")
   const bayview = community.find(item => item.node.slug === "bayview")
+  const vantageRise = community.find(item => item.node.slug === "vantage-rise")
+
+  console.log("vantageRise", vantageRise)
 
   return (
     <DivStyled pinactive={pinActive}>
@@ -188,6 +191,24 @@ const AirdrieMapPins = () => {
           classmodifier={`pins__ravenswood`}
           setPinActive={setPinActive}
         /> */}
+
+        <SinglePin
+          logo={getImage(
+            vantageRise.node.acfCommunity.logo.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          logoAlt={vantageRise.node.acfCommunity.logo.altText}
+          imgSrc={getImage(
+            vantageRise.node.acfCommunity.popupPinIcon.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          alt={vantageRise.node.acfCommunity.popupPinIcon.altText}
+          title={vantageRise.node.title}
+          details={vantageRise.node.acfCommunity.popupDetails}
+          slug={vantageRise.node.slug}
+          classmodifier={`pins__vantageRise`}
+          setPinActive={setPinActive}
+        />
       </div>
       <div className="bg-overlay" />
     </DivStyled>

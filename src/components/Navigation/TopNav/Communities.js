@@ -34,6 +34,9 @@ const Communities = ({ activesubstate }) => {
         {/* <li>
           <Link to="/communities/ravenswood">Ravenswood</Link>
         </li> */}
+        <li>
+          <Link to="/communities/vantage-rise">Vantage Rise</Link>
+        </li>
       </ul>
       <ul>
         <p>
@@ -140,6 +143,7 @@ const SubMenu = styled.div`
         padding: 0.5rem 1rem;
         transition: all 0.3s ease-out;
         text-transform: uppercase;
+        cursor: pointer;
 
         &:hover {
           background-color: ${colors.colorAccent};
