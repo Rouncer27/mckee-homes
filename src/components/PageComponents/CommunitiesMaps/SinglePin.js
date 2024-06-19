@@ -188,7 +188,7 @@ const DivStyled = styled.div`
   }
 
   &.pins__chinookgate {
-    left: 15vw;
+    left: 18vw;
     bottom: 30%;
 
     .pin__details {
@@ -279,7 +279,7 @@ const DivStyled = styled.div`
 
   &.pins__vantageRise {
     left: 12vw;
-    top: 42%;
+    top: 50%;
 
     .pin__details {
       left: -3.5rem;
