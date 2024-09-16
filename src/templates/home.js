@@ -52,6 +52,53 @@ export const query = graphql`
       slug
       databaseId
       acfHomePlans {
+        floorPlansSelectionComponent {
+          floorPlansSelectionComponentRequired
+          mainFloor {
+            planTitle
+            planImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 2000)
+                }
+              }
+            }
+            planPdf {
+              mediaItemUrl
+            }
+          }
+          upperFloorFloor {
+            planTitle
+            planImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 2000)
+                }
+              }
+            }
+            planPdf {
+              mediaItemUrl
+            }
+          }
+
+          basementFloorFloor {
+            planTitle
+            planImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 2000)
+                }
+              }
+            }
+            planPdf {
+              mediaItemUrl
+            }
+          }
+        }
+
         details
         floorPlanWidth
         numberOfBathrooms

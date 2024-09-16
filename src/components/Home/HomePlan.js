@@ -8,8 +8,10 @@ import HomePlanGallery from "./HomePlanGallery"
 import HomePlanForms from "../PageComponents/Forms/HomePlanForms"
 import HomeFloorPlans from "./HomeFloorPlans"
 import HomeSimilar from "./HomeSimilar"
+import HomeSelectFloorPlans from "./HomeSelectFloorPlans"
 
 const HomePlan = ({ home }) => {
+  console.log("home: ", home.acfHomePlans.floorPlansSelectionComponent)
   return (
     <article>
       <HomePlanHeader home={home} />
@@ -31,6 +33,10 @@ const HomePlan = ({ home }) => {
         floorPlanPdf={home.acfHomePlans.floorPlanPdf.mediaItemUrl}
         appImage={home.acfHomePlans.mainImage.mediaItemUrl}
       />
+      {home.acfHomePlans.floorPlansSelectionComponent
+        .floorPlansSelectionComponentRequired && (
+        <HomeSelectFloorPlans data={home} />
+      )}
       <HomeSimilar home={home} />
       <HomePlanForms homeSlug="home-plans" homePlan={home.title} />
     </article>
