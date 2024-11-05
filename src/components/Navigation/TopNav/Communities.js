@@ -35,6 +35,9 @@ const Communities = ({ activesubstate }) => {
           <Link to="/communities/ravenswood">Ravenswood</Link>
         </li> */}
         <li>
+          <Link to="/communities/sawgrass-park">Sawgrass Park</Link>
+        </li>
+        <li>
           <Link to="/communities/vantage-rise">Vantage Rise</Link>
         </li>
       </ul>
