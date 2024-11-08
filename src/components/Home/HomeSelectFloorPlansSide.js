@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
 import {
   colors,
   H1Navy,
@@ -10,44 +13,14 @@ import {
   fonts,
   BigWrapper,
 } from "../../styles/helpers"
-import Slider from "react-slick"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
 
 import MainFloor from "./SelectorParts/MainFloor"
 import UpperFloor from "./SelectorParts/UpperFloor"
 import BasementFloor from "./SelectorParts/BasementFloor"
 import Form from "./SelectorParts/Form"
+gsap.registerPlugin(ScrollTrigger)
 
-const settingsPlans = {
-  fade: false,
-  draggable: false,
-  infinite: false,
-  speed: 750,
-  autoplay: false,
-  centerPadding: "300px",
-  centerMode: true,
-  arrows: true,
-  dots: false,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  responsive: [
-    {
-      breakpoint: 1025,
-      settings: {
-        centerPadding: "100px",
-      },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        centerPadding: "0px",
-      },
-    },
-  ],
-}
-
-const HomeSelectFloorPlans = ({ data }) => {
+const HomeSelectFloorPlansSide = ({ data }) => {
   const [isActive, setIsActive] = useState(false)
   const [selectedPlans, setSeletedPlans] = useState({
     mainFloor: "",
@@ -59,6 +32,46 @@ const HomeSelectFloorPlans = ({ data }) => {
   })
 
   useEffect(() => {
+    let container = document.querySelector(".select-floorplan-plans")
+    let races = document.querySelector(".select-floorplan-plans-slides")
+
+    function getScrollAmount() {
+      let racesWidth = races.scrollWidth
+      return -(racesWidth - window.innerWidth)
+    }
+
+    const tween = gsap.to(races, {
+      x: getScrollAmount,
+      duration: 3,
+      ease: "none",
+    })
+
+    let mm = gsap.matchMedia()
+
+    mm.add(
+      {
+        isMobile: "(max-width: 767px)",
+        isDesktop: "(min-width: 768px)",
+      },
+      context => {
+        let { isMobile, isDesktop } = context.conditions
+
+        if (isDesktop) {
+          console.log("Hello")
+          ScrollTrigger.create({
+            trigger: container,
+            start: "top 0%",
+            end: () => `+=${getScrollAmount() * -1}`,
+            pin: true,
+            animation: tween,
+            scrub: 1,
+            invalidateOnRefresh: true,
+            markers: false,
+          })
+        }
+      }
+    )
+
     setSeletedPlans({
       mainFloor:
         data.acfHomePlans.floorPlansSelectionComponent.mainFloor[0].planPdf
@@ -128,7 +141,7 @@ const HomeSelectFloorPlans = ({ data }) => {
       ?.basementFloorBackgroundImage?.altText
 
   return (
-    <StyledSection>
+    <StyledSection className="select-floorplan-main-container">
       <div className="select-floorplan-wrapper">
         <div className="select-floorplan-title">
           <div className="select-floorplan-title-inner">
@@ -136,8 +149,8 @@ const HomeSelectFloorPlans = ({ data }) => {
           </div>
         </div>
         <div className="select-floorplan-plans">
-          <Slider {...settingsPlans}>
-            <div className="select-floorplan-plans-main">
+          <div className="select-floorplan-plans-slides">
+            <div id="plan-slides" className="select-floorplan-plans-main">
               <div className="select-floorplan-plans-main-wrapper">
                 {data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloor
                   ?.length > 0 && (
@@ -160,7 +173,7 @@ const HomeSelectFloorPlans = ({ data }) => {
               </div>
               <div className="select-floorplan-plans-main-overlay" />
             </div>
-            <div className="select-floorplan-plans-upper">
+            <div id="plan-slides" className="select-floorplan-plans-upper">
               <div className="select-floorplan-plans-upper-wrapper">
                 {data?.acfHomePlans?.floorPlansSelectionComponent
                   ?.upperFloorFloor?.length > 0 && (
@@ -183,7 +196,7 @@ const HomeSelectFloorPlans = ({ data }) => {
               </div>
               <div className="select-floorplan-plans-upper-overlay" />
             </div>
-            <div className="select-floorplan-plans-basement">
+            <div id="plan-slides" className="select-floorplan-plans-basement">
               <div className="select-floorplan-plans-basement-wrapper">
                 {data?.acfHomePlans?.floorPlansSelectionComponent
                   ?.basementFloorFloor?.length > 0 && (
@@ -206,7 +219,7 @@ const HomeSelectFloorPlans = ({ data }) => {
               </div>
               <div className="select-floorplan-plans-basement-overlay" />
             </div>
-            <div className="select-floorplan-plans-form">
+            <div id="plan-slides" className="select-floorplan-plans-form">
               <Form
                 selectedPlans={selectedPlans}
                 setPlansBackToStart={setPlansBackToStart}
@@ -214,7 +227,10 @@ const HomeSelectFloorPlans = ({ data }) => {
                 setIsActive={setIsActive}
               />
             </div>
-          </Slider>
+            {isActive && (
+              <div className="select-floorplan-plans-main-submit-overlay" />
+            )}
+          </div>
         </div>
       </div>
     </StyledSection>
@@ -224,43 +240,44 @@ const HomeSelectFloorPlans = ({ data }) => {
 const StyledSection = styled.section`
   padding: 2.5rem 0;
 
-  .slick-arrow {
-    position: absolute !important;
-    z-index: 100;
+  .select-floorplan-plans-main-submit-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+  }
 
-    &::before {
-      color: ${colors.colorPrimary};
-    }
+  .select-floorplan-plans-form {
+    position: relative;
+    z-index: 10 !important;
+  }
 
-    &.slick-disabled {
-      display: none !important;
+  .select-floorplan-wrapper {
+    @media (min-width: 768px) {
+      overflow-x: hidden;
+      overflow-y: hidden;
     }
   }
 
-  .slick-prev {
-    left: 5rem;
-    width: 10rem;
-
+  .select-floorplan-plans-slides {
     @media (min-width: 768px) {
-      left: 2rem;
-    }
-    &::before {
-      font-family: ${fonts.fontPrimary};
-      content: "‹ Back";
-    }
-  }
-
-  .slick-next {
-    right: 5rem;
-    width: 10rem;
-
-    @media (min-width: 768px) {
-      right: 40%;
+      width: fit-content;
+      display: flex;
+      flex-wrap: nowrap;
+      max-height: 80vh;
+      padding: 0 5rem;
     }
 
-    &::before {
-      font-family: ${fonts.fontPrimary};
-      content: "Next ›";
+    #plan-slides {
+      position: relative;
+      width: 60vw;
+      height: 80vh;
+      margin: 0;
+      z-index: 5;
     }
   }
 
@@ -381,4 +398,4 @@ const StyledSection = styled.section`
   }
 `
 
-export default HomeSelectFloorPlans
+export default HomeSelectFloorPlansSide

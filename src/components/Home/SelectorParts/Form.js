@@ -6,8 +6,12 @@ import FormSuccess from "../../FormParts/formModals/FormSuccess"
 import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
 
-const Form = ({ selectedPlans, setPlansBackToStart }) => {
-  console.log("selectedPlans", selectedPlans)
+const Form = ({
+  selectedPlans,
+  setPlansBackToStart,
+  isActive,
+  setIsActive,
+}) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -135,13 +139,17 @@ const Form = ({ selectedPlans, setPlansBackToStart }) => {
     }
   }
 
-  const isActive = formStatus.submitting
-    ? true
-    : formStatus.success
-    ? true
-    : formStatus.errorWarnDisplay
-    ? true
-    : false
+  useEffect(() => {
+    if (formStatus.submitting) {
+      setIsActive(true)
+    } else if (formStatus.success) {
+      setIsActive(true)
+    } else if (formStatus.errorWarnDisplay) {
+      setIsActive(true)
+    } else {
+      setIsActive(false)
+    }
+  }, [formStatus])
 
   return (
     <StyledSection>
@@ -284,6 +292,7 @@ const Form = ({ selectedPlans, setPlansBackToStart }) => {
 const StyledSection = styled.section`
   position: relative;
   width: calc(100%);
+  height: 100%;
 
   .floor-plans-form {
     width: calc(100% - 15rem);
@@ -332,6 +341,7 @@ const StyledSection = styled.section`
     left: 0%;
     width: 100%;
     height: 100%;
+    z-index: 99999999;
 
     & > div {
       position: absolute !important;

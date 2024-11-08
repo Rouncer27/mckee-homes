@@ -27,7 +27,7 @@
     "gatsby-source-filesystem": "^4.4.0",
     "gatsby-source-wordpress": "^6.4.0",
     "gatsby-transformer-sharp": "^4.4.0",
-    "gsap": "^3.9.1",
+    "gsap": "^3.12.5",
     "prop-types": "^15.8.0",
     "query-string": "^7.0.1",
     "react": "^17.0.2",

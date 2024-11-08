@@ -9,6 +9,7 @@ import HomePlanForms from "../PageComponents/Forms/HomePlanForms"
 import HomeFloorPlans from "./HomeFloorPlans"
 import HomeSimilar from "./HomeSimilar"
 import HomeSelectFloorPlans from "./HomeSelectFloorPlans"
+import HomeSelectFloorPlansSide from "./HomeSelectFloorPlansSide"
 
 const HomePlan = ({ home }) => {
   return (
@@ -34,7 +35,7 @@ const HomePlan = ({ home }) => {
       />
       {home.acfHomePlans.floorPlansSelectionComponent
         .floorPlansSelectionComponentRequired && (
-        <HomeSelectFloorPlans data={home} />
+        <HomeSelectFloorPlansSide data={home} />
       )}
       <HomeSimilar home={home} />
       <HomePlanForms homeSlug="home-plans" homePlan={home.title} />
