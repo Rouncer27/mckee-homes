@@ -105,7 +105,7 @@ const SuccessModal = styled.div`
   }
 `
 
-const FormSuccess = ({ isActive, handleClose }) => {
+const FormSuccess = ({ isActive, handleClose, message }) => {
   return (
     <SuccessModal isActive={isActive}>
       <div className="modalInner">
@@ -119,8 +119,17 @@ const FormSuccess = ({ isActive, handleClose }) => {
             />
           </div>
           <h2>
-            Your from has been successfully sent. <br />
-            We will be in touch shortly, thank you
+            {message ? (
+              <>
+                Your from has been successfully sent. <br />
+                {message}
+              </>
+            ) : (
+              <>
+                Your from has been successfully sent. <br />
+                We will be in touch shortly, thank you.
+              </>
+            )}
           </h2>
         </div>
         <div className="closeButton">

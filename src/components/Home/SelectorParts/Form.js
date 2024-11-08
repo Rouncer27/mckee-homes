@@ -151,13 +151,14 @@ const Form = ({ selectedPlans, setPlansBackToStart }) => {
       <div className="floor-plans-form">
         <h3>Email Me This Floor Plan</h3>
         <p>
-          We will email you the floor plan you selected and we will add you to
-          our McKee Homes communications including promotions, events etc.
+          Fill out this form to receive your customized floorplan in your email.
+          We will also add you to our McKee Homes communications including
+          promotions and events etc.
         </p>
         <form onSubmit={handleOnSubmit}>
           <InputField>
             <label htmlFor="firstName">
-              Frist Name <span className="required">(required)</span>
+              First Name <span className="required">(required)</span>
               <span
                 className={`error-message${
                   formStatus.errors.findIndex(
@@ -254,7 +255,11 @@ const Form = ({ selectedPlans, setPlansBackToStart }) => {
             </label>
           </InputField>
           <div className="btn-submit">
-            <button type="submit">Submit</button>
+            <button type="submit">Receive my customized floorplan</button>
+            <p>
+              &#42; Disclaimer: selected upgrades may change the price of the
+              home.
+            </p>
           </div>
         </form>
       </div>
@@ -264,6 +269,7 @@ const Form = ({ selectedPlans, setPlansBackToStart }) => {
           <FormSuccess
             isActive={formStatus.success}
             handleClose={handleSuccessModalClose}
+            message="Check your email for your customized floorplan details."
           />
           <FormErrors
             isActive={formStatus.errorWarnDisplay}
@@ -310,6 +316,11 @@ const StyledSection = styled.section`
         button {
           ${Btn1Navy};
           cursor: pointer;
+        }
+
+        p {
+          ${B2Black};
+          margin-top: 1rem;
         }
       }
     }

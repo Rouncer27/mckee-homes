@@ -47,7 +47,7 @@ const MainFloor = ({ data, setSeletedPlans }) => {
         </div>
         <div className="select-floorplan-plans-main-selector-options">
           <RadioStyles>
-            <p>Plan Options</p>
+            <p>Available Upgrades</p>
             {data.map((optionTitle, index) => {
               return (
                 <div key={index}>
