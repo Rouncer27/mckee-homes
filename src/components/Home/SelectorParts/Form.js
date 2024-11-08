@@ -295,10 +295,15 @@ const StyledSection = styled.section`
   height: 100%;
 
   .floor-plans-form {
-    width: calc(100% - 15rem);
-    margin: 2rem 7.5rem 0 0;
+    width: calc(100% - 2rem);
+    margin: 1rem;
     padding: 5rem;
     border: 0.2rem solid ${colors.colorPrimary};
+
+    @media (min-width: 768xp) {
+      width: calc(100% - 15rem);
+      margin: 2rem 7.5rem 0 0;
+    }
 
     h3 {
       ${H3Navy};

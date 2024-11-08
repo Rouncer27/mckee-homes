@@ -273,11 +273,16 @@ const StyledSection = styled.section`
     }
 
     #plan-slides {
-      position: relative;
-      width: 60vw;
-      height: 80vh;
-      margin: 0;
-      z-index: 5;
+      width: calc(100% - 2rem);
+      margin: 1rem;
+
+      @media (min-width: 768px) {
+        position: relative;
+        width: 60vw;
+        height: 80vh;
+        margin: 0;
+        z-index: 5;
+      }
     }
   }
 
