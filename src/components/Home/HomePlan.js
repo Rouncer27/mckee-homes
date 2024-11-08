@@ -11,7 +11,6 @@ import HomeSimilar from "./HomeSimilar"
 import HomeSelectFloorPlans from "./HomeSelectFloorPlans"
 
 const HomePlan = ({ home }) => {
-  console.log("home: ", home.acfHomePlans.floorPlansSelectionComponent)
   return (
     <article>
       <HomePlanHeader home={home} />

@@ -54,6 +54,14 @@ export const query = graphql`
       acfHomePlans {
         floorPlansSelectionComponent {
           floorPlansSelectionComponentRequired
+          mainFloorBackgroundImage {
+            altText
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 2000)
+              }
+            }
+          }
           mainFloor {
             planTitle
             planImage {
@@ -66,6 +74,14 @@ export const query = graphql`
             }
             planPdf {
               mediaItemUrl
+            }
+          }
+          upperFloorBackgroundImage {
+            altText
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 2000)
+              }
             }
           }
           upperFloorFloor {
@@ -82,7 +98,14 @@ export const query = graphql`
               mediaItemUrl
             }
           }
-
+          basementFloorBackgroundImage {
+            altText
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 2000)
+              }
+            }
+          }
           basementFloorFloor {
             planTitle
             planImage {

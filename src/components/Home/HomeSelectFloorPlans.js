@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 
 import {
@@ -100,6 +101,31 @@ const HomeSelectFloorPlans = ({ data }) => {
     })
   }
 
+  const mainImg = getImage(
+    data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloorBackgroundImage
+      ?.localFile?.childImageSharp?.gatsbyImageData
+  )
+  const mainImgAlt =
+    data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloorBackgroundImage
+      ?.altText
+
+  const upperImg = getImage(
+    data?.acfHomePlans?.floorPlansSelectionComponent?.upperFloorBackgroundImage
+      ?.localFile?.childImageSharp?.gatsbyImageData
+  )
+  const upperImgAlt =
+    data?.acfHomePlans?.floorPlansSelectionComponent?.upperFloorBackgroundImage
+      ?.altText
+
+  const baseImg = getImage(
+    data?.acfHomePlans?.floorPlansSelectionComponent
+      ?.basementFloorBackgroundImage?.localFile?.childImageSharp
+      ?.gatsbyImageData
+  )
+  const baseImgAlt =
+    data?.acfHomePlans?.floorPlansSelectionComponent
+      ?.basementFloorBackgroundImage?.altText
+
   return (
     <StyledSection>
       <div className="select-floorplan-wrapper">
@@ -111,39 +137,73 @@ const HomeSelectFloorPlans = ({ data }) => {
         <div className="select-floorplan-plans">
           <Slider {...settingsPlans}>
             <div className="select-floorplan-plans-main">
-              {data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloor
-                ?.length > 0 && (
-                <MainFloor
-                  data={
-                    data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloor
-                  }
-                  setSeletedPlans={setSeletedPlans}
+              <div className="select-floorplan-plans-main-wrapper">
+                {data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloor
+                  ?.length > 0 && (
+                  <MainFloor
+                    data={
+                      data?.acfHomePlans?.floorPlansSelectionComponent
+                        ?.mainFloor
+                    }
+                    setSeletedPlans={setSeletedPlans}
+                  />
+                )}
+              </div>
+              <div className="select-floorplan-plans-main-bgimage">
+                <GatsbyImage
+                  image={mainImg}
+                  alt={mainImgAlt}
+                  layout="fullWidth"
+                  formats={["auto", "webp", "avif"]}
                 />
-              )}
+              </div>
+              <div className="select-floorplan-plans-main-overlay" />
             </div>
             <div className="select-floorplan-plans-upper">
-              {data?.acfHomePlans?.floorPlansSelectionComponent?.upperFloorFloor
-                ?.length > 0 && (
-                <UpperFloor
-                  data={
-                    data?.acfHomePlans?.floorPlansSelectionComponent
-                      ?.upperFloorFloor
-                  }
-                  setSeletedPlans={setSeletedPlans}
+              <div className="select-floorplan-plans-upper-wrapper">
+                {data?.acfHomePlans?.floorPlansSelectionComponent
+                  ?.upperFloorFloor?.length > 0 && (
+                  <UpperFloor
+                    data={
+                      data?.acfHomePlans?.floorPlansSelectionComponent
+                        ?.upperFloorFloor
+                    }
+                    setSeletedPlans={setSeletedPlans}
+                  />
+                )}
+              </div>
+              <div className="select-floorplan-plans-upper-bgimage">
+                <GatsbyImage
+                  image={upperImg}
+                  alt={upperImgAlt}
+                  layout="fullWidth"
+                  formats={["auto", "webp", "avif"]}
                 />
-              )}
+              </div>
+              <div className="select-floorplan-plans-upper-overlay" />
             </div>
             <div className="select-floorplan-plans-basement">
-              {data?.acfHomePlans?.floorPlansSelectionComponent
-                ?.basementFloorFloor?.length > 0 && (
-                <BasementFloor
-                  data={
-                    data?.acfHomePlans?.floorPlansSelectionComponent
-                      ?.basementFloorFloor
-                  }
-                  setSeletedPlans={setSeletedPlans}
+              <div className="select-floorplan-plans-basement-wrapper">
+                {data?.acfHomePlans?.floorPlansSelectionComponent
+                  ?.basementFloorFloor?.length > 0 && (
+                  <BasementFloor
+                    data={
+                      data?.acfHomePlans?.floorPlansSelectionComponent
+                        ?.basementFloorFloor
+                    }
+                    setSeletedPlans={setSeletedPlans}
+                  />
+                )}
+              </div>
+              <div className="select-floorplan-plans-basement-bgimage">
+                <GatsbyImage
+                  image={baseImg}
+                  alt={baseImgAlt}
+                  layout="fullWidth"
+                  formats={["auto", "webp", "avif"]}
                 />
-              )}
+              </div>
+              <div className="select-floorplan-plans-basement-overlay" />
             </div>
             <div className="select-floorplan-plans-form">
               <Form
@@ -228,6 +288,50 @@ const StyledSection = styled.section`
 
   .select-floorplan-plans {
     width: calc(100%);
+
+    &-main,
+    &-upper,
+    &-basement {
+      position: relative;
+    }
+
+    &-main-wrapper,
+    &-upper-wrapper,
+    &-basement-wrapper {
+      position: relative;
+      z-index: 10;
+    }
+
+    &-main-bgimage,
+    &-upper-bgimage,
+    &-basement-bgimage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+
+      .gatsby-image-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-main-overlay,
+    &-upper-overlay,
+    &-basement-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.75);
+      z-index: 1;
+    }
 
     &-main {
       width: 100%;
