@@ -256,7 +256,7 @@ const FilterMore = ({
                   checked={timelineFilter.some(bed => bed === "less")}
                   type="checkbox"
                 />
-                <label htmlFor="ltThree">&lt; 3months</label>
+                <label htmlFor="ltThree">- 90 days</label>
               </li>
 
               <li value="greater">
@@ -266,7 +266,7 @@ const FilterMore = ({
                   checked={timelineFilter.some(bed => bed === "greater")}
                   type="checkbox"
                 />
-                <label htmlFor="gtThree">&gt; 3months</label>
+                <label htmlFor="gtThree">+ 90 days</label>
               </li>
             </ul>
           </div>
