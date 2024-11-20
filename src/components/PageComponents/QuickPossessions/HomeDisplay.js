@@ -45,13 +45,13 @@ const HomeDisplay = ({ home, externalLink }) => {
   // )
   // console.log("possessionDate: ", possessionDate)
   // console.log("dateNow: ", dateNow)
-  // console.log("difference: ", difference)
+  // console.log("difference: ", difference > 1)
 
   const timeframe =
     difference > 3
-      ? "> 3 Months"
+      ? "+ 90 days"
       : difference > 1 && difference < 3
-      ? "< 3 Months"
+      ? "- 90 days"
       : difference < 1
       ? "Immediate"
       : ""
