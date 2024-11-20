@@ -38,15 +38,6 @@ const HomeDisplay = ({ home, externalLink }) => {
   )
   const dateNow = Date.parse(new Date())
   const difference = (possessionDate - dateNow) / (1000 * 3600 * 24) / 30
-  // console.log("home.slug: ", home.slug)
-  // console.log(
-  //   "home.acfQuickPossessions.possessionTimeline",
-  //   home.acfQuickPossessions.possessionTimeline
-  // )
-  // console.log("possessionDate: ", possessionDate)
-  // console.log("dateNow: ", dateNow)
-  // console.log("difference: ", difference > 1)
-
   const timeframe =
     difference > 3
       ? "+ 90 days"
@@ -55,7 +46,6 @@ const HomeDisplay = ({ home, externalLink }) => {
       : difference < 1
       ? "Immediate"
       : ""
-
   useEffect(() => {
     if (
       userState.profile &&

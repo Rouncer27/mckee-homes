@@ -251,12 +251,11 @@ const DisplayQuickPossessions = props => {
         const timeframe =
           difference > 3
             ? "greater"
-            : difference > 0 && difference < 3
+            : difference > 1 && difference < 3
             ? "less"
-            : difference < 0
+            : difference < 1
             ? "immediate"
             : ""
-
         timelineMatch = timelineFilter.some(timeline => timeline === timeframe)
       }
 
@@ -299,6 +298,8 @@ const DisplayQuickPossessions = props => {
   ])
 
   if (!props.data.displayQuickPossessions) return null
+
+  console.log("matchingHomes: ", matchingHomes)
 
   return (
     <SectionStyled filteractive={filterActive !== ""}>
