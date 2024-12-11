@@ -32,7 +32,7 @@ const HomeSelectFloorPlansSide = ({ data }) => {
   })
 
   useEffect(() => {
-    let container = document.querySelector(".select-floorplan-plans")
+    let container = document.querySelector(".select-floorplan-main-container")
     let races = document.querySelector(".select-floorplan-plans-slides")
 
     function getScrollAmount() {
