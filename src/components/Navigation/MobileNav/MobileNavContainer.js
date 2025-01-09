@@ -33,19 +33,32 @@ const MobileNavContainer = ({ navitems }) => {
         ))}
 
         <li>
-          <Link to={`/${linkSlug}`}>
-            <span> &#9829;</span>My Favourites
-          </Link>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`https://portal.virtuo.com/login`}
+          >
+            <span> &#9829;</span>My Home
+          </a>
         </li>
-        <li>
-          {Object.keys(userState.user).length === 0 ? (
-            <Link to={`/login`}>My Home Sign In</Link>
-          ) : (
-            <button onClick={() => handleLogout(userDispatch, alertDispatch)}>
-              Logout
-            </button>
-          )}
-        </li>
+        {Object.keys(userState.user).length === 0 ? (
+          <li>
+            <Link to={`/login`}>My Favourites</Link>
+          </li>
+        ) : (
+          <>
+            <li>
+              <Link to={`/${linkSlug}`}>
+                <span> &#9829;</span>My Favourites
+              </Link>
+            </li>
+            <li>
+              <button onClick={() => handleLogout(userDispatch, alertDispatch)}>
+                Logout
+              </button>
+            </li>
+          </>
+        )}
       </ul>
       <MobileNavSocial />
     </MobileNavContainerStyled>
