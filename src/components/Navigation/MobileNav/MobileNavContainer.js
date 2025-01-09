@@ -38,7 +38,7 @@ const MobileNavContainer = ({ navitems }) => {
             rel="noopener noreferrer"
             href={`https://portal.virtuo.com/login`}
           >
-            <span> &#9829;</span>Homeowner Portal
+            <span></span>Homeowner Portal
           </a>
         </li>
         {Object.keys(userState.user).length === 0 ? (
