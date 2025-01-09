@@ -28,9 +28,13 @@ const Login = () => {
             </button>
           </li>
         )}
-        <li className="coming-soon">
-          <a href={`#`}>
-            My Home - <span>Coming Soon!</span>
+        <li>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`https://portal.virtuo.com/login`}
+          >
+            My Home
           </a>
         </li>
       </ul>
