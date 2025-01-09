@@ -34,7 +34,7 @@ const Login = () => {
             rel="noopener noreferrer"
             href={`https://portal.virtuo.com/login`}
           >
-            My Home
+            Homeowner Portal
           </a>
         </li>
       </ul>
