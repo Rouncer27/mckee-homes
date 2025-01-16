@@ -21,13 +21,13 @@ const QuickPossesion = ({ home }) => {
   return (
     <article>
       <QuickPossessionHeader home={home} />
-      <HomePlanBest />
       {home.acfQuickPossessions.details && (
         <HomePlanDetails
           details={home.acfQuickPossessions.details}
           title={`Other features and details to note:`}
         />
       )}
+      <HomePlanBest />
       {home.acfQuickPossessions.gallery &&
         home.acfQuickPossessions.gallery.length > 0 && (
           <HomePlanGallery gallery={home.acfQuickPossessions.gallery} />
