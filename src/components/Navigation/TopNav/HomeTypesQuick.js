@@ -9,7 +9,7 @@ import townhomes from "../../../images/icons/townhomes.png"
 import pairedHomes from "../../../images/icons/paired-home.png"
 import allHomes from "../../../images/icons/all-homes.png"
 
-const HomeTypes = ({ activesubstate, title, slug }) => {
+const HomeTypesQuick = ({ activesubstate, title, slug }) => {
   return (
     <SubMenu activesub={activesubstate} className="main-sub-nav">
       <p>{title}</p>
@@ -37,14 +37,14 @@ const HomeTypes = ({ activesubstate, title, slug }) => {
           <span className="nav-label">Townhomes</span>
         </Link>
       </li>
-      {/* <li>
+      <li>
         <Link to={`${slug}?homeType=paired#filters`}>
           <span className="nav-icon">
             <img src={pairedHomes} alt="Logo" />
           </span>
           <span className="nav-label">Paired Homes</span>
         </Link>
-      </li> */}
+      </li>
       <li>
         <Link to={`${slug}?homeType=AllHomes#filters`}>
           <span className="nav-icon nav-icon__all-homes">
@@ -114,4 +114,4 @@ const SubMenu = styled.ul`
   }
 `
 
-export default HomeTypes
+export default HomeTypesQuick

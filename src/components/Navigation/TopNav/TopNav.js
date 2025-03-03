@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { B1Black, B2White, B2Black, colors } from "../../../styles/helpers"
 
 import HomeTypes from "./HomeTypes"
+import HomeTypesQuick from "./HomeTypesQuick"
 import Communities from "./Communities"
 import Building from "./Building"
 
@@ -44,7 +45,7 @@ const TopNav = ({ location }) => {
             <Link className="top-nav-item__link" to="/quick-possessions">
               Quick Possessions <span className="sub-icon">&#8964;</span>
             </Link>
-            <HomeTypes
+            <HomeTypesQuick
               slug="/quick-possessions"
               activesubstate={quickSubActive}
               title="Quick Possessions"
