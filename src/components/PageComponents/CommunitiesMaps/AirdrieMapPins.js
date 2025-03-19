@@ -59,13 +59,66 @@ const AirdrieMapPins = () => {
   // const ravenswood = community.find(item => item.node.slug === "ravenswood")
   const bayview = community.find(item => item.node.slug === "bayview")
   const vantageRise = community.find(item => item.node.slug === "vantage-rise")
+  const sawgrassPark = community.find(
+    item => item.node.slug === "sawgrass-park"
+  )
+  const goldwyn = community.find(item => item.node.slug === "goldwyn")
 
   console.log("vantageRise", vantageRise)
 
   return (
     <DivStyled pinactive={pinActive}>
-      <AirdrieMap />
+      <div className="embed-map">
+        <iframe
+          src={
+            "https://www.pampam.city/p/3Go7YabjnxwRDTRecAOt/wkulham32wUahNhAzk8V?51.261515%2C-113.980584%2C16= allowfullscreen"
+          }
+        ></iframe>
+      </div>
+
+      {/* TODO: This was removed. <AirdrieMap /> */}
+      {/* 
+      TODO: This was removed.
       <div className="pins">
+      
+      */}
+      {/* TODO: This was removed. 
+        <SinglePin
+          logo={getImage(
+            sawgrassPark.node.acfCommunity.logo.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          logoAlt={sawgrassPark.node.acfCommunity.logo.altText}
+          imgSrc={getImage(
+            sawgrassPark.node.acfCommunity.popupPinIcon.localFile
+              .childImageSharp.gatsbyImageData
+          )}
+          alt={sawgrassPark.node.acfCommunity.popupPinIcon.altText}
+          title={sawgrassPark.node.title}
+          details={sawgrassPark.node.acfCommunity.popupDetails}
+          slug={sawgrassPark.node.slug}
+          classmodifier={`pins__sawgrassPark`}
+          setPinActive={setPinActive}
+        />
+
+        <SinglePin
+          logo={getImage(
+            goldwyn.node.acfCommunity.logo.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          logoAlt={goldwyn.node.acfCommunity.logo.altText}
+          imgSrc={getImage(
+            goldwyn.node.acfCommunity.popupPinIcon.localFile.childImageSharp
+              .gatsbyImageData
+          )}
+          alt={goldwyn.node.acfCommunity.popupPinIcon.altText}
+          title={goldwyn.node.title}
+          details={goldwyn.node.acfCommunity.popupDetails}
+          slug={goldwyn.node.slug}
+          classmodifier={`pins__goldwyn`}
+          setPinActive={setPinActive}
+        />
+
         <SinglePin
           logo={getImage(
             bayside.node.acfCommunity.logo.localFile.childImageSharp
@@ -118,9 +171,11 @@ const AirdrieMapPins = () => {
           slug={cooperscrossing.node.slug}
           classmodifier={`pins__cooperscrossing`}
           setPinActive={setPinActive}
-        />
+        /> 
+        TODO: END
+        */}
 
-        {/* <SinglePin
+      {/* <SinglePin
           logo={getImage(
             kingsHeights.node.acfCommunity.logo.localFile.childImageSharp
               .gatsbyImageData
@@ -137,7 +192,7 @@ const AirdrieMapPins = () => {
           classmodifier={`pins__kingsHeights`}
           setPinActive={setPinActive}
         /> */}
-
+      {/* TODO: This was removed. 
         <SinglePin
           logo={getImage(
             lanark.node.acfCommunity.logo.localFile.childImageSharp
@@ -172,9 +227,9 @@ const AirdrieMapPins = () => {
           slug={bayview.node.slug}
           classmodifier={`pins__bayview`}
           setPinActive={setPinActive}
-        />
+        /> TODO: END */}
 
-        {/* <SinglePin
+      {/* <SinglePin
           logo={getImage(
             ravenswood.node.acfCommunity.logo.localFile.childImageSharp
               .gatsbyImageData
@@ -192,6 +247,9 @@ const AirdrieMapPins = () => {
           setPinActive={setPinActive}
         /> */}
 
+      {/* TODO: This was removed
+
+        
         <SinglePin
           logo={getImage(
             vantageRise.node.acfCommunity.logo.localFile.childImageSharp
@@ -210,7 +268,7 @@ const AirdrieMapPins = () => {
           setPinActive={setPinActive}
         />
       </div>
-      <div className="bg-overlay" />
+      <div className="bg-overlay" /> TODO: End */}
     </DivStyled>
   )
 }
@@ -237,6 +295,15 @@ const DivStyled = styled.div`
 
     @media (min-width: 768px) {
       display: none;
+    }
+  }
+
+  .embed-map {
+    width: 100%;
+
+    iframe {
+      width: 100%;
+      height: 50rem;
     }
   }
 `
