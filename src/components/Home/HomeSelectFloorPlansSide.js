@@ -30,6 +30,16 @@ const HomeSelectFloorPlansSide = ({ data }) => {
     basement: "",
     basementTitle: "",
   })
+  const mainNeeded =
+    data?.acfHomePlans?.floorPlansSelectionComponent.mainFloorNeeded
+  const upperNeeded =
+    data?.acfHomePlans?.floorPlansSelectionComponent.upperFloorNeeded
+  const baseNeeded =
+    data?.acfHomePlans?.floorPlansSelectionComponent.basementNeeded
+
+  console.log("mainNeeded", mainNeeded)
+  console.log("upperNeeded", upperNeeded)
+  console.log("baseNeeded", baseNeeded)
 
   useEffect(() => {
     let container = document.querySelector(".select-floorplan-main-container")
@@ -57,7 +67,6 @@ const HomeSelectFloorPlansSide = ({ data }) => {
         let { isMobile, isDesktop } = context.conditions
 
         if (isDesktop) {
-          console.log("Hello")
           ScrollTrigger.create({
             trigger: container,
             start: "top 0%",
@@ -73,72 +82,96 @@ const HomeSelectFloorPlansSide = ({ data }) => {
     )
 
     setSeletedPlans({
-      mainFloor:
-        data.acfHomePlans.floorPlansSelectionComponent.mainFloor[0].planPdf
-          .mediaItemUrl,
-      mainFloorTitle:
-        data.acfHomePlans.floorPlansSelectionComponent.mainFloor[0].planTitle,
-      upperFloor:
-        data.acfHomePlans.floorPlansSelectionComponent.upperFloorFloor[0]
-          .planPdf.mediaItemUrl,
-      upperFloorTitle:
-        data.acfHomePlans.floorPlansSelectionComponent.upperFloorFloor[0]
-          .planTitle,
-      basement:
-        data.acfHomePlans.floorPlansSelectionComponent.basementFloorFloor[0]
-          .planPdf.mediaItemUrl,
-      basementTitle:
-        data.acfHomePlans.floorPlansSelectionComponent.basementFloorFloor[0]
-          .planTitle,
+      mainFloor: mainNeeded
+        ? data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloor[0]
+            ?.planPdf?.mediaItemUrl
+        : "",
+      mainFloorTitle: mainNeeded
+        ? data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloor[0]
+            ?.planTitle
+        : "",
+      upperFloor: upperNeeded
+        ? data?.acfHomePlans?.floorPlansSelectionComponent?.upperFloorFloor[0]
+            ?.planPdf.mediaItemUrl
+        : "",
+      upperFloorTitle: upperNeeded
+        ? data?.acfHomePlans?.floorPlansSelectionComponent?.upperFloorFloor[0]
+            ?.planTitle
+        : "",
+      basement: baseNeeded
+        ? data?.acfHomePlans?.floorPlansSelectionComponent
+            ?.basementFloorFloor[0]?.planPdf?.mediaItemUrl
+        : "",
+      basementTitle: baseNeeded
+        ? data?.acfHomePlans?.floorPlansSelectionComponent
+            ?.basementFloorFloor[0]?.planTitle
+        : "",
     })
   }, [])
 
   const setPlansBackToStart = () => {
     setSeletedPlans({
-      mainFloor:
-        data.acfHomePlans.floorPlansSelectionComponent.mainFloor[0].planPdf
-          .mediaItemUrl,
-      mainFloorTitle:
-        data.acfHomePlans.floorPlansSelectionComponent.mainFloor[0].planTitle,
-      upperFloor:
-        data.acfHomePlans.floorPlansSelectionComponent.upperFloorFloor[0]
-          .planPdf.mediaItemUrl,
-      upperFloorTitle:
-        data.acfHomePlans.floorPlansSelectionComponent.upperFloorFloor[0]
-          .planTitle,
-      basement:
-        data.acfHomePlans.floorPlansSelectionComponent.basementFloorFloor[0]
-          .planPdf.mediaItemUrl,
-      basementTitle:
-        data.acfHomePlans.floorPlansSelectionComponent.basementFloorFloor[0]
-          .planTitle,
+      mainFloor: mainNeeded
+        ? data.acfHomePlans.floorPlansSelectionComponent.mainFloor[0].planPdf
+            .mediaItemUrl
+        : "",
+      mainFloorTitle: mainNeeded
+        ? data.acfHomePlans.floorPlansSelectionComponent.mainFloor[0].planTitle
+        : "",
+      upperFloor: upperNeeded
+        ? data.acfHomePlans.floorPlansSelectionComponent.upperFloorFloor[0]
+            .planPdf.mediaItemUrl
+        : "",
+      upperFloorTitle: upperNeeded
+        ? data.acfHomePlans.floorPlansSelectionComponent.upperFloorFloor[0]
+            .planTitle
+        : "",
+      basement: baseNeeded
+        ? data.acfHomePlans.floorPlansSelectionComponent.basementFloorFloor[0]
+            .planPdf.mediaItemUrl
+        : "",
+      basementTitle: baseNeeded
+        ? data.acfHomePlans.floorPlansSelectionComponent.basementFloorFloor[0]
+            .planTitle
+        : "",
     })
   }
 
-  const mainImg = getImage(
-    data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloorBackgroundImage
-      ?.localFile?.childImageSharp?.gatsbyImageData
-  )
-  const mainImgAlt =
-    data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloorBackgroundImage
-      ?.altText
+  const mainImg = mainNeeded
+    ? getImage(
+        data?.acfHomePlans?.floorPlansSelectionComponent
+          ?.mainFloorBackgroundImage?.localFile?.childImageSharp
+          ?.gatsbyImageData
+      )
+    : ""
+  const mainImgAlt = mainNeeded
+    ? data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloorBackgroundImage
+        ?.altText
+    : ""
 
-  const upperImg = getImage(
-    data?.acfHomePlans?.floorPlansSelectionComponent?.upperFloorBackgroundImage
-      ?.localFile?.childImageSharp?.gatsbyImageData
-  )
-  const upperImgAlt =
-    data?.acfHomePlans?.floorPlansSelectionComponent?.upperFloorBackgroundImage
-      ?.altText
+  const upperImg = upperNeeded
+    ? getImage(
+        data?.acfHomePlans?.floorPlansSelectionComponent
+          ?.upperFloorBackgroundImage?.localFile?.childImageSharp
+          ?.gatsbyImageData
+      )
+    : ""
+  const upperImgAlt = upperNeeded
+    ? data?.acfHomePlans?.floorPlansSelectionComponent
+        ?.upperFloorBackgroundImage?.altText
+    : ""
 
-  const baseImg = getImage(
-    data?.acfHomePlans?.floorPlansSelectionComponent
-      ?.basementFloorBackgroundImage?.localFile?.childImageSharp
-      ?.gatsbyImageData
-  )
-  const baseImgAlt =
-    data?.acfHomePlans?.floorPlansSelectionComponent
-      ?.basementFloorBackgroundImage?.altText
+  const baseImg = baseNeeded
+    ? getImage(
+        data?.acfHomePlans?.floorPlansSelectionComponent
+          ?.basementFloorBackgroundImage?.localFile?.childImageSharp
+          ?.gatsbyImageData
+      )
+    : ""
+  const baseImgAlt = baseNeeded
+    ? data?.acfHomePlans?.floorPlansSelectionComponent
+        ?.basementFloorBackgroundImage?.altText
+    : ""
 
   return (
     <StyledSection className="select-floorplan-main-container">
@@ -150,75 +183,83 @@ const HomeSelectFloorPlansSide = ({ data }) => {
         </div>
         <div className="select-floorplan-plans">
           <div className="select-floorplan-plans-slides">
-            <div id="plan-slides" className="select-floorplan-plans-main">
-              <div className="select-floorplan-plans-main-wrapper">
-                {data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloor
-                  ?.length > 0 && (
-                  <MainFloor
-                    data={
-                      data?.acfHomePlans?.floorPlansSelectionComponent
-                        ?.mainFloor
-                    }
-                    setSeletedPlans={setSeletedPlans}
+            {mainNeeded ? (
+              <div id="plan-slides" className="select-floorplan-plans-main">
+                <div className="select-floorplan-plans-main-wrapper">
+                  {data?.acfHomePlans?.floorPlansSelectionComponent?.mainFloor
+                    ?.length > 0 && (
+                    <MainFloor
+                      data={
+                        data?.acfHomePlans?.floorPlansSelectionComponent
+                          ?.mainFloor
+                      }
+                      setSeletedPlans={setSeletedPlans}
+                    />
+                  )}
+                </div>
+                <div className="select-floorplan-plans-main-bgimage">
+                  <GatsbyImage
+                    image={mainImg}
+                    alt={mainImgAlt}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
                   />
-                )}
+                </div>
+                <div className="select-floorplan-plans-main-overlay" />
               </div>
-              <div className="select-floorplan-plans-main-bgimage">
-                <GatsbyImage
-                  image={mainImg}
-                  alt={mainImgAlt}
-                  layout="fullWidth"
-                  formats={["auto", "webp", "avif"]}
-                />
-              </div>
-              <div className="select-floorplan-plans-main-overlay" />
-            </div>
-            <div id="plan-slides" className="select-floorplan-plans-upper">
-              <div className="select-floorplan-plans-upper-wrapper">
-                {data?.acfHomePlans?.floorPlansSelectionComponent
-                  ?.upperFloorFloor?.length > 0 && (
-                  <UpperFloor
-                    data={
-                      data?.acfHomePlans?.floorPlansSelectionComponent
-                        ?.upperFloorFloor
-                    }
-                    setSeletedPlans={setSeletedPlans}
+            ) : null}
+
+            {upperNeeded ? (
+              <div id="plan-slides" className="select-floorplan-plans-upper">
+                <div className="select-floorplan-plans-upper-wrapper">
+                  {data?.acfHomePlans?.floorPlansSelectionComponent
+                    ?.upperFloorFloor?.length > 0 && (
+                    <UpperFloor
+                      data={
+                        data?.acfHomePlans?.floorPlansSelectionComponent
+                          ?.upperFloorFloor
+                      }
+                      setSeletedPlans={setSeletedPlans}
+                    />
+                  )}
+                </div>
+                <div className="select-floorplan-plans-upper-bgimage">
+                  <GatsbyImage
+                    image={upperImg}
+                    alt={upperImgAlt}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
                   />
-                )}
+                </div>
+                <div className="select-floorplan-plans-upper-overlay" />
               </div>
-              <div className="select-floorplan-plans-upper-bgimage">
-                <GatsbyImage
-                  image={upperImg}
-                  alt={upperImgAlt}
-                  layout="fullWidth"
-                  formats={["auto", "webp", "avif"]}
-                />
-              </div>
-              <div className="select-floorplan-plans-upper-overlay" />
-            </div>
-            <div id="plan-slides" className="select-floorplan-plans-basement">
-              <div className="select-floorplan-plans-basement-wrapper">
-                {data?.acfHomePlans?.floorPlansSelectionComponent
-                  ?.basementFloorFloor?.length > 0 && (
-                  <BasementFloor
-                    data={
-                      data?.acfHomePlans?.floorPlansSelectionComponent
-                        ?.basementFloorFloor
-                    }
-                    setSeletedPlans={setSeletedPlans}
+            ) : null}
+
+            {baseNeeded ? (
+              <div id="plan-slides" className="select-floorplan-plans-basement">
+                <div className="select-floorplan-plans-basement-wrapper">
+                  {data?.acfHomePlans?.floorPlansSelectionComponent
+                    ?.basementFloorFloor?.length > 0 && (
+                    <BasementFloor
+                      data={
+                        data?.acfHomePlans?.floorPlansSelectionComponent
+                          ?.basementFloorFloor
+                      }
+                      setSeletedPlans={setSeletedPlans}
+                    />
+                  )}
+                </div>
+                <div className="select-floorplan-plans-basement-bgimage">
+                  <GatsbyImage
+                    image={baseImg}
+                    alt={baseImgAlt}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
                   />
-                )}
+                </div>
+                <div className="select-floorplan-plans-basement-overlay" />
               </div>
-              <div className="select-floorplan-plans-basement-bgimage">
-                <GatsbyImage
-                  image={baseImg}
-                  alt={baseImgAlt}
-                  layout="fullWidth"
-                  formats={["auto", "webp", "avif"]}
-                />
-              </div>
-              <div className="select-floorplan-plans-basement-overlay" />
-            </div>
+            ) : null}
             <div id="plan-slides" className="select-floorplan-plans-form">
               <Form
                 selectedPlans={selectedPlans}

@@ -54,6 +54,9 @@ export const query = graphql`
       acfHomePlans {
         floorPlansSelectionComponent {
           floorPlansSelectionComponentRequired
+          mainFloorNeeded
+          upperFloorNeeded
+          basementNeeded
           mainFloorBackgroundImage {
             altText
             localFile {
