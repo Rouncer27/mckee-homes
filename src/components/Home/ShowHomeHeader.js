@@ -143,6 +143,10 @@ const ShowHomeHeader = ({ home }) => {
               {home.communities.nodes[0].name},{" "}
               {home.communities.nodes[0].name === "Vista Crossing"
                 ? "Crossfield"
+                : home.communities.nodes[0].name === "Lewiston"
+                ? "Calgary"
+                : home.communities.nodes[0].name === "Mandalay Estates"
+                ? "Carstairs"
                 : "Airdrie"}
             </p>
           </div>
