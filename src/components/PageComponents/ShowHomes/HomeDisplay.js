@@ -46,6 +46,8 @@ const HomeDisplay = ({ home }) => {
   const community =
     home.communities.nodes.length > 0 ? home.communities.nodes[0].name : null
 
+  console.log("home?.communities?.nodes[0]", home?.communities?.nodes)
+
   return (
     <ShowHomeStyled to={`/show-homes/${home.slug}`}>
       <div className="image">

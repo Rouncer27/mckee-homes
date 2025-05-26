@@ -141,13 +141,7 @@ const ShowHomeHeader = ({ home }) => {
             <p>{home.acfShowHomes.address}</p>
             <p>
               {home.communities.nodes[0].name},{" "}
-              {home.communities.nodes[0].name === "Vista Crossing"
-                ? "Crossfield"
-                : home.communities.nodes[0].name === "Lewiston"
-                ? "Calgary"
-                : home.communities.nodes[0].name === "Mandalay Estates"
-                ? "Carstairs"
-                : "Airdrie"}
+              {home.communities.nodes[0]?.acfCommunities?.city}
             </p>
           </div>
 
