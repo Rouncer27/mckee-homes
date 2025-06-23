@@ -53,6 +53,7 @@ import BuildingFuturesStatus from "./PageComponents/BuildingFuturesStatus"
 import GallerySlider from "./PageComponents/GallerySlider"
 import BuildingFuturesTimeline from "./PageComponents/BuildingFuturesTimeline"
 import SideBySideParagraphs from "./PageComponents/SideBySideParagraphs"
+import GalleryVideoSlider from "./PageComponents/GalleryVideoSlider"
 
 const PageComponentGroups = props => {
   const { components, location } = props
@@ -242,6 +243,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_SideBySideParagraphs":
                 return <SideBySideParagraphs key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_GalleryVideoSlider":
+                return <GalleryVideoSlider key={index} data={component} />
 
               default:
                 return (

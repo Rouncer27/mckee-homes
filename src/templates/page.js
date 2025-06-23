@@ -795,6 +795,13 @@ export const pageTempQuery = graphql`
             }
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_GalleryVideoSlider {
+            fieldGroupName
+            sliderVideos {
+              video
+            }
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_BuildingFuturesStatus {
             fieldGroupName
             title
