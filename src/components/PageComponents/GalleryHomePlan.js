@@ -1,66 +1,243 @@
-import styled from "styled-components"
+import React, { useState, useEffect } from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import styled from "styled-components"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import { medWrapper } from "../../styles/helpers"
+
+const settings = {
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  fade: false,
+  draggable: true,
+  infinite: true,
+  autoplay: false,
+  arrows: true,
+  dots: true,
+}
 
 const GalleryHomePlan = ({ data }) => {
+  const [activeCat, setActiveCat] = useState("all")
+  const [activeSlider, setActiveSlider] = useState(false)
+
+  const handleCatChange = cat => {
+    setActiveCat(cat)
+  }
+
+  console.log("activeCat", activeCat)
+
   return (
     <StyledDiv>
       <div className="wrapper">
-        <div className="sliderWarpper">
-          {data.sliderVideos.map((gal, index) => {
-            const galImg = getImage(
-              gal.localFile.childImageSharp.gatsbyImageData
-            )
-            const galImgAlt = gal.altText
-            return (
-              <div key={index} className="slide">
-                <GatsbyImage
-                  image={galImg}
-                  alt={galImgAlt}
-                  layout="fullWidth"
-                  formats={["auto", "webp", "avif"]}
-                />
-              </div>
-            )
+        <div className="categories-warpper">
+          <ul>
+            <li>
+              {" "}
+              <button
+                type="button"
+                onClick={() => {
+                  handleCatChange("all")
+                }}
+              >
+                All
+              </button>
+            </li>
+            {data.images.map((gal, index) => {
+              return (
+                <li key={index}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleCatChange(gal.imageCategory)
+                    }}
+                  >
+                    {gal.imageCategory}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+
+        <div className="gallery-warpper">
+          {data.images.map((gal, index) => {
+            if (activeCat === "all" || activeCat === gal.imageCategory) {
+              const galImg = getImage(
+                gal.image.localFile.childImageSharp.gatsbyImageData
+              )
+              const galImgAlt = gal.image.altText
+              return (
+                <div
+                  key={index}
+                  className="gallery-image"
+                  onClick={() => {
+                    setActiveSlider(!activeSlider)
+                  }}
+                >
+                  <GatsbyImage
+                    image={galImg}
+                    alt={galImgAlt}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
+                  />
+                </div>
+              )
+            } else {
+              return null
+            }
           })}
         </div>
+
+        {activeSlider && (
+          <div className="gallery-slider">
+            <div className="gallery-slider-container">
+              <Slider {...settings}>
+                {data.images.map((gal, index) => {
+                  if (activeCat === "all" || activeCat === gal.imageCategory) {
+                    const galImg = getImage(
+                      gal.image.localFile.childImageSharp.gatsbyImageData
+                    )
+                    const galImgAlt = gal.image.altText
+
+                    console.log("TREVOR", galImgAlt)
+                    return (
+                      <div
+                        key={index}
+                        className="gallery-slider-image"
+                        onClick={() => {
+                          setActiveSlider(!activeSlider)
+                        }}
+                      >
+                        <img src={galImg.images.fallback.src} alt={galImgAlt} />
+                        {/* <GatsbyImage
+                          image={galImg}
+                          alt={galImgAlt}
+                          layout="fullWidth"
+                          formats={["auto", "webp", "avif"]}
+                        /> */}
+                      </div>
+                    )
+                  } else {
+                    return null
+                  }
+                })}
+              </Slider>
+            </div>
+            <div
+              className="gallery-slider-overlay"
+              onClick={() => {
+                setActiveSlider(!activeSlider)
+              }}
+            />
+          </div>
+        )}
       </div>
     </StyledDiv>
   )
 }
 
 const StyledDiv = styled.div`
+  position: relative;
+  padding: 5rem 0;
+
   .wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    ${medWrapper};
   }
 
-  .sliderWarpper {
+  .categories-warpper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     width: 100%;
 
-    .slide {
-      position: relative;
-      height: 40rem;
-      z-index: 10;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+
+      li {
+        text-align: center;
+        margin: 1rem 0;
+        padding: 0 2rem;
+        border-right: solid 0.2rem #000;
+        line-height: 1;
+
+        &:last-of-type {
+          border-right: none;
+        }
+
+        button {
+          line-height: 1;
+          background-color: transparent;
+          border: none;
+          text-transform: uppercase;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .gallery-warpper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+
+    .gallery-image {
+      width: calc((100% / 1) - 3rem);
+      margin: 1.5rem;
 
       @media (min-width: 768px) {
-        height: 50rem;
-        margin-right: 2rem;
-        margin-left: 2rem;
+        width: calc((100% / 2) - 3rem);
+        margin: 1.5rem;
       }
 
       @media (min-width: 1025px) {
-        height: 50rem;
-        margin-right: 2rem;
-        margin-left: 2rem;
+        width: calc((100% / 3) - 3rem);
+        margin: 1.5rem;
       }
+    }
+  }
 
-      &-inner {
-        position: absolute;
-        top: 0%;
-        left: 0;
-        width: 100%;
-        height: 100%;
+  .gallery-slider {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999;
+
+    &-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      z-index: 1;
+    }
+
+    &-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80%;
+      height: auto;
+      margin: auto;
+      padding: 2rem;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+    }
+
+    &-image {
+      width: 100%;
+      padding: 7rem;
+
+      img {
+        width: 100% !important;
       }
     }
   }

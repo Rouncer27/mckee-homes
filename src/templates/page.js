@@ -802,6 +802,29 @@ export const pageTempQuery = graphql`
             }
           }
 
+          ... on WpPage_Acfmaintemplatefields_PageComponents_GalleryHomePlan {
+            fieldGroupName
+            images {
+              image {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(width: 2000)
+                  }
+                }
+              }
+
+              homePlan {
+                ... on WpHomePlan {
+                  id
+                  slug
+                  uri
+                }
+              }
+              imageCategory
+            }
+          }
+
           ... on WpPage_Acfmaintemplatefields_PageComponents_BuildingFuturesStatus {
             fieldGroupName
             title
