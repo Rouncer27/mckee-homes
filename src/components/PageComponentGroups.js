@@ -55,6 +55,8 @@ import BuildingFuturesTimeline from "./PageComponents/BuildingFuturesTimeline"
 import SideBySideParagraphs from "./PageComponents/SideBySideParagraphs"
 import GalleryVideoSlider from "./PageComponents/GalleryVideoSlider"
 import GalleryHomePlan from "./PageComponents/GalleryHomePlan"
+import DisplayCommunityCities from "./PageComponents/DisplayCommunityCities"
+import MapEmbed from "./PageComponents/MapEmbed"
 
 const PageComponentGroups = props => {
   const { components, location } = props
@@ -250,6 +252,12 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_GalleryHomePlan":
                 return <GalleryHomePlan key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_DisplayCommunityCities":
+                return <DisplayCommunityCities key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_MapEmbed":
+                return <MapEmbed key={index} data={component} />
 
               default:
                 return (

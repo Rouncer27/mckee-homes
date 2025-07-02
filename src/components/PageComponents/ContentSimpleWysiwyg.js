@@ -34,6 +34,8 @@ const SectionStyled = styled.section`
   }
 
   .content {
+    width: 100%;
+
     &__wysiwyg {
       ${standardWysiwyg};
     }

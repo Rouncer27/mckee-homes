@@ -865,6 +865,16 @@ export const pageTempQuery = graphql`
             titleRight
             contentRight
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayCommunityCities {
+            displayCitiesCommunityLinks
+            fieldGroupName
+          }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_MapEmbed {
+            mapEmbed
+            fieldGroupName
+          }
         }
       }
     }

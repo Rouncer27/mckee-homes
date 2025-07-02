@@ -6,26 +6,30 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { medWrapper } from "../../styles/helpers"
 
-const settings = {
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  fade: false,
-  draggable: true,
-  infinite: true,
-  autoplay: false,
-  arrows: true,
-  dots: true,
-}
-
 const GalleryHomePlan = ({ data }) => {
   const [activeCat, setActiveCat] = useState("all")
   const [activeSlider, setActiveSlider] = useState(false)
+  const [firstImage, setFirstImage] = useState(null)
+
+  const settings = {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    fade: false,
+    draggable: true,
+    infinite: true,
+    autoplay: false,
+    arrows: true,
+    dots: true,
+    initialSlide: firstImage || 0,
+  }
 
   const handleCatChange = cat => {
     setActiveCat(cat)
   }
 
-  console.log("activeCat", activeCat)
+  const filteredImages = data.images.filter(
+    gal => activeCat === "all" || gal.imageCategory === activeCat
+  )
 
   return (
     <StyledDiv>
@@ -61,31 +65,28 @@ const GalleryHomePlan = ({ data }) => {
         </div>
 
         <div className="gallery-warpper">
-          {data.images.map((gal, index) => {
-            if (activeCat === "all" || activeCat === gal.imageCategory) {
-              const galImg = getImage(
-                gal.image.localFile.childImageSharp.gatsbyImageData
-              )
-              const galImgAlt = gal.image.altText
-              return (
-                <div
-                  key={index}
-                  className="gallery-image"
-                  onClick={() => {
-                    setActiveSlider(!activeSlider)
-                  }}
-                >
-                  <GatsbyImage
-                    image={galImg}
-                    alt={galImgAlt}
-                    layout="fullWidth"
-                    formats={["auto", "webp", "avif"]}
-                  />
-                </div>
-              )
-            } else {
-              return null
-            }
+          {filteredImages.map((gal, index) => {
+            const galImg = getImage(
+              gal.image.localFile.childImageSharp.gatsbyImageData
+            )
+            const galImgAlt = gal.image.altText
+            return (
+              <div
+                key={index}
+                className="gallery-image"
+                onClick={() => {
+                  setFirstImage(index)
+                  setActiveSlider(!activeSlider)
+                }}
+              >
+                <GatsbyImage
+                  image={galImg}
+                  alt={galImgAlt}
+                  layout="fullWidth"
+                  formats={["auto", "webp", "avif"]}
+                />
+              </div>
+            )
           })}
         </div>
 
@@ -93,34 +94,30 @@ const GalleryHomePlan = ({ data }) => {
           <div className="gallery-slider">
             <div className="gallery-slider-container">
               <Slider {...settings}>
-                {data.images.map((gal, index) => {
-                  if (activeCat === "all" || activeCat === gal.imageCategory) {
-                    const galImg = getImage(
-                      gal.image.localFile.childImageSharp.gatsbyImageData
-                    )
-                    const galImgAlt = gal.image.altText
+                {filteredImages.map((gal, index) => {
+                  const galImg = getImage(
+                    gal.image.localFile.childImageSharp.gatsbyImageData
+                  )
+                  const galImgAlt = gal.image.altText
 
-                    console.log("TREVOR", galImgAlt)
-                    return (
-                      <div
-                        key={index}
-                        className="gallery-slider-image"
-                        onClick={() => {
-                          setActiveSlider(!activeSlider)
-                        }}
-                      >
-                        <img src={galImg.images.fallback.src} alt={galImgAlt} />
-                        {/* <GatsbyImage
+                  console.log("TREVOR", galImgAlt)
+                  return (
+                    <div
+                      key={index}
+                      className="gallery-slider-image"
+                      onClick={() => {
+                        setActiveSlider(!activeSlider)
+                      }}
+                    >
+                      <img src={galImg.images.fallback.src} alt={galImgAlt} />
+                      {/* <GatsbyImage
                           image={galImg}
                           alt={galImgAlt}
                           layout="fullWidth"
                           formats={["auto", "webp", "avif"]}
                         /> */}
-                      </div>
-                    )
-                  } else {
-                    return null
-                  }
+                    </div>
+                  )
                 })}
               </Slider>
             </div>
