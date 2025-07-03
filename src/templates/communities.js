@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Header from "../components/Communities/Header"
+import Intro from "../components/Communities/Intro"
 import Details from "../components/Communities/Details"
 import ShowHomes from "../components/Communities/ShowHomes"
 import QuickPosessions from "../components/Communities/QuickPosessions"
@@ -39,6 +40,8 @@ const Communities = props => {
     // })
   }, [])
 
+  console.log("community.acfCommunity", community.acfCommunity)
+
   return (
     <div className="single-community-page">
       <Layout>
@@ -57,14 +60,28 @@ const Communities = props => {
           location={props.location.pathname}
         />
         <Header hero={community.acfCommunity.heroImage} />
-        <Details
+        <Intro
+          logo={community.acfCommunity.logo}
+          title={community.acfCommunity.communityIntroTitle}
+          content={community.acfCommunity.communityIntroContent}
+          blocks={
+            community.acfCommunity.communityIntroBlocks
+              ? community.acfCommunity.communityIntroBlocks
+              : []
+          }
+          details={community.acfCommunity.communityIntroDetails}
+          url={community.acfCommunity.communityUrl}
+          scroll={community.acfCommunity.communityMapScrollButton}
+        />
+        {/* <Details
           city={community.cities.nodes[0].name}
           title={community.title}
           details={community.acfCommunity.content}
           logo={community.acfCommunity.logo}
           url={community.acfCommunity.communityUrl}
           scroll={community.acfCommunity.communityMapScrollButton}
-        />
+        /> */}
+
         <ShowHomes currentSlug={community.slug} showHomes={allWpShowHome} />
         <QuickPosessions
           currentSlug={community.slug}
@@ -124,6 +141,25 @@ export const query = graphql`
         lotPickerEmbed
         communityUrl
         communityMapScrollButton
+        communityIntroTitle
+        communityIntroContent
+        communityIntroBlocks {
+          imageText
+          imageBigText
+          content
+          buttonRequired
+          buttonText
+          buttonLink
+          image {
+            altText
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 2000)
+              }
+            }
+          }
+        }
+        communityIntroDetails
         logo {
           altText
           localFile {
