@@ -5,6 +5,7 @@ import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Header from "../components/Communities/Header"
 import Intro from "../components/Communities/Intro"
+import GallerySlider from "../components/Communities/GallerySlider"
 import Details from "../components/Communities/Details"
 import ShowHomes from "../components/Communities/ShowHomes"
 import QuickPosessions from "../components/Communities/QuickPosessions"
@@ -73,6 +74,7 @@ const Communities = props => {
           url={community.acfCommunity.communityUrl}
           scroll={community.acfCommunity.communityMapScrollButton}
         />
+        <GallerySlider gallery={community.acfCommunity.gallery} />
         {/* <Details
           city={community.cities.nodes[0].name}
           title={community.title}
@@ -160,6 +162,14 @@ export const query = graphql`
           }
         }
         communityIntroDetails
+        gallery {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 2000)
+            }
+          }
+        }
         logo {
           altText
           localFile {
