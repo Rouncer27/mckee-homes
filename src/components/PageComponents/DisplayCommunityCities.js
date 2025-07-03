@@ -168,9 +168,13 @@ const StyledSection = styled.section`
 
     &-main {
       position: relative;
-      width: calc(25% - 2rem);
-      margin: 1rem;
+      width: calc(100%);
       min-height: 35rem;
+
+      @media (min-width: 768px) {
+        width: calc(25% - 2rem);
+        margin: 1rem;
+      }
 
       &-name {
         position: absolute;
@@ -221,17 +225,28 @@ const StyledSection = styled.section`
       flex-wrap: wrap;
       align-items: center;
       justify-content: flex-start;
-      width: calc(75% - 2rem);
-      margin: 1rem;
+      width: calc(100%);
+
+      @media (min-width: 768px) {
+        width: calc(75% - 2rem);
+        margin: 1rem;
+      }
 
       &-community {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: calc((100% / 4) - 2rem);
+        width: calc((100% / 2) - 2rem);
         margin: 1rem;
         padding: 2rem;
         background-color: rgba(255, 255, 255, 1);
+
+        @media (min-width: 768px) {
+          width: calc((100% / 3) - 2rem);
+        }
+        @media (min-width: 1025px) {
+          width: calc((100% / 4) - 2rem);
+        }
 
         &-inner {
           width: 100%;
