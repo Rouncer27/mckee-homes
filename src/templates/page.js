@@ -805,6 +805,8 @@ export const pageTempQuery = graphql`
 
           ... on WpPage_Acfmaintemplatefields_PageComponents_GalleryHomePlan {
             fieldGroupName
+            title
+            subTitle
             images {
               image {
                 altText

@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { medWrapper } from "../../styles/helpers"
+import { B1Black, H2Grey, medWrapper } from "../../styles/helpers"
 
 const GalleryHomePlan = ({ data }) => {
   const [activeCat, setActiveCat] = useState("all")
@@ -34,6 +34,10 @@ const GalleryHomePlan = ({ data }) => {
   return (
     <StyledDiv>
       <div className="wrapper">
+        <div className="main-title">
+          <h2>{data.title}</h2>
+          <p>{data.subTitle}</p>
+        </div>
         <div className="categories-warpper">
           <ul>
             <li>
@@ -140,6 +144,24 @@ const StyledDiv = styled.div`
 
   .wrapper {
     ${medWrapper};
+  }
+
+  .main-title {
+    width: 100%;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 0.1rem solid #000;
+    text-align: center;
+
+    h2 {
+      ${H2Grey};
+    }
+
+    p {
+      ${B1Black};
+      margin-bottom: 0;
+      text-transform: uppercase;
+    }
   }
 
   .categories-warpper {
