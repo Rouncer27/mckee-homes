@@ -221,17 +221,25 @@ const StyledDiv = styled.div`
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 80%;
+      width: 100%;
       height: auto;
       margin: auto;
-      padding: 2rem;
       transform: translate(-50%, -50%);
       z-index: 10;
+
+      @media (min-width: 768px) {
+        width: 80%;
+        padding: 2rem;
+      }
     }
 
     &-image {
       width: 100%;
-      padding: 7rem;
+      padding: 0 1rem;
+
+      @media (min-width: 768px) {
+        padding: 7rem;
+      }
 
       img {
         width: 100% !important;

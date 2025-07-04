@@ -5,6 +5,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { H2Grey, medWrapper } from "../../styles/helpers"
 
 const settings = {
   slidesToShow: 1,
@@ -39,6 +40,11 @@ const settings = {
 const GalleryVideoSlider = ({ data }) => {
   return (
     <StyledDiv>
+      <div className="gallery-wrapper">
+        <div className="gallery-title">
+          <h2>{data.title}</h2>
+        </div>
+      </div>
       <div className="wrapper">
         <Slider className="sliderWarpper" {...settings}>
           {data.sliderVideos.map((gal, index) => {
@@ -62,6 +68,19 @@ const StyledDiv = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
+  }
+
+  .gallery-wrapper {
+    ${medWrapper}
+  }
+
+  .gallery-title {
+    width: 100%;
+    text-align: center;
+
+    h2 {
+      ${H2Grey};
+    }
   }
 
   .sliderWarpper {
