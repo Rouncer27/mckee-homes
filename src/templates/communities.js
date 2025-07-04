@@ -41,8 +41,6 @@ const Communities = props => {
     // })
   }, [])
 
-  console.log("community.acfCommunity", community.acfCommunity)
-
   return (
     <div className="single-community-page">
       <Layout>
