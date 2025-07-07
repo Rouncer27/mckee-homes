@@ -107,12 +107,50 @@ const getData = graphql`
 
 const DisplayShowHomes = props => {
   const allData = useStaticQuery(getData)
+
+  // 👇 Get the city name from the URL, if present
+  const path = props.location.pathname
+  const pathParts = path.split("/").filter(Boolean) // removes empty strings
+  const currentCitySlug = pathParts[1] // ex: 'airdrie' from '/show-homes/airdrie/'
+
   // Plans Post Types
   const showHomes = allData.showHomes.edges
+  let urlBasedShowHomes = []
+
+  if (!currentCitySlug) {
+    // ✅ No city in the path, show all
+    urlBasedShowHomes = showHomes
+  } else {
+    // ✅ Filter by city
+    urlBasedShowHomes = showHomes.filter(showHome => {
+      const communityNodes = showHome.node.communities?.nodes || []
+
+      return communityNodes.some(comm => {
+        const city = comm.acfCommunities?.city
+        return city && city.toLowerCase() === currentCitySlug.toLowerCase()
+      })
+    })
+  }
+
   // Filters Information
   const homeTypes = allData.homeTypes.edges
   const homeStyles = allData.homeStyles.edges
+
+  // NEW WORK STARTS HERE ??
   const communities = allData.communities.edges
+
+  let urlBasedCommunities = []
+
+  if (props.location.pathname === "/show-homes/") {
+    // Grab all communities
+    urlBasedCommunities = communities
+  } else {
+    urlBasedCommunities = communities.filter(community => {
+      const commCity = community.node.acfCommunities.city
+      return commCity.toLowerCase() === currentCitySlug.toLowerCase()
+    })
+  }
+
   // Load up the filters states. //
   const [matchingHomes, setMatchingHomes] = useState([])
   const [filterActive, setFilterActive] = useState("")
@@ -149,7 +187,7 @@ const DisplayShowHomes = props => {
 
   useEffect(() => {
     const matched = []
-    showHomes.map(home => {
+    urlBasedShowHomes.map(home => {
       let typeMatch = true
       let styleMatch = true
       let communityMatch = true
@@ -237,7 +275,7 @@ const DisplayShowHomes = props => {
             homeStylesFilter={homeStylesFilter}
             setHomeStylesFilter={setHomeStylesFilter}
             homeStylesActive={homeStylesFilter.length > 0}
-            communities={communities}
+            communities={urlBasedCommunities}
             communityFilter={communityFilter}
             setCommunityFilter={setCommunityFilter}
             communityActive={communityFilter.length > 0}

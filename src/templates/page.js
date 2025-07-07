@@ -878,6 +878,12 @@ export const pageTempQuery = graphql`
             mapEmbed
             fieldGroupName
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayCitiesShowHomes {
+            displayCitiesShowHomes
+            sectionTitle
+            fieldGroupName
+          }
         }
       }
     }
