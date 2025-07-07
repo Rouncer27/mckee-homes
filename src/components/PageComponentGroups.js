@@ -260,9 +260,7 @@ const PageComponentGroups = props => {
                 return <MapEmbed key={index} data={component} />
 
               default:
-                return (
-                  <p>Cannot find this component {component.fieldGroupName}</p>
-                )
+                return null
             }
           }
         )}
