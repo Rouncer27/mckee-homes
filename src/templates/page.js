@@ -884,6 +884,12 @@ export const pageTempQuery = graphql`
             sectionTitle
             fieldGroupName
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayCitiesQuickPossessions {
+            displayCitiesQuickPossessions
+            sectionTitle
+            fieldGroupName
+          }
         }
       }
     }
