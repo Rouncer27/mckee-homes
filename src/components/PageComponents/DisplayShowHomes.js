@@ -107,6 +107,7 @@ const getData = graphql`
 
 const DisplayShowHomes = props => {
   const allData = useStaticQuery(getData)
+  const cityPage = props.data.showHomeCity
 
   // 👇 Get the city name from the URL, if present
   const path = props.location.pathname
@@ -115,9 +116,10 @@ const DisplayShowHomes = props => {
 
   // Plans Post Types
   const showHomes = allData.showHomes.edges
+  // TODO: NEW!!
   let urlBasedShowHomes = []
 
-  if (!currentCitySlug) {
+  if (!cityPage) {
     // ✅ No city in the path, show all
     urlBasedShowHomes = showHomes
   } else {
@@ -127,29 +129,31 @@ const DisplayShowHomes = props => {
 
       return communityNodes.some(comm => {
         const city = comm.acfCommunities?.city
-        return city && city.toLowerCase() === currentCitySlug.toLowerCase()
+        return city && city.toLowerCase() === cityPage.slug.toLowerCase()
       })
     })
   }
+  // TODO: NEW!!
 
   // Filters Information
   const homeTypes = allData.homeTypes.edges
   const homeStyles = allData.homeStyles.edges
 
-  // NEW WORK STARTS HERE ??
+  // TODO: NEW!!
   const communities = allData.communities.edges
 
   let urlBasedCommunities = []
 
-  if (props.location.pathname === "/show-homes/") {
+  if (!cityPage) {
     // Grab all communities
     urlBasedCommunities = communities
   } else {
     urlBasedCommunities = communities.filter(community => {
       const commCity = community.node.acfCommunities.city
-      return commCity.toLowerCase() === currentCitySlug.toLowerCase()
+      return commCity.toLowerCase() === cityPage.slug.toLowerCase()
     })
   }
+  // TODO: NEW!!
 
   // Load up the filters states. //
   const [matchingHomes, setMatchingHomes] = useState([])

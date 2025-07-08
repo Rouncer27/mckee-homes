@@ -589,6 +589,10 @@ export const pageTempQuery = graphql`
           ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayShowHomes {
             fieldGroupName
             displayShowHomes
+            showHomeCity {
+              name
+              slug
+            }
           }
 
           ... on WpPage_Acfmaintemplatefields_PageComponents_ThreeImagesContent {
