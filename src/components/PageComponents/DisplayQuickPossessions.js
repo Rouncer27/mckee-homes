@@ -99,6 +99,9 @@ const getData = graphql`
           slug
           databaseId
           count
+          acfCommunities {
+            city
+          }
         }
       }
     }
@@ -107,9 +110,29 @@ const getData = graphql`
 
 const DisplayQuickPossessions = props => {
   const allData = useStaticQuery(getData)
+  const cityPage = props.data.quickPossessionCity
+
   // Plans Post Types
   const quickPossessions = allData.quickPossessions.edges
-  const sortedQuickPossessions = quickPossessions.sort(
+  // TODO: New
+  let cityBasedQP = []
+  if (!cityPage) {
+    cityBasedQP = quickPossessions
+  } else {
+    // ✅ Filter by city
+    cityBasedQP = quickPossessions.filter(qp => {
+      const communityNodes = qp.node.communities?.nodes || []
+
+      return communityNodes.some(comm => {
+        const city = comm.acfCommunities?.city
+        return city && city.toLowerCase() === cityPage.slug.toLowerCase()
+      })
+    })
+  }
+
+  // TODO: New
+
+  const sortedQuickPossessions = cityBasedQP.sort(
     (a, b) =>
       Date.parse(
         new Date(
@@ -130,7 +153,21 @@ const DisplayQuickPossessions = props => {
   // Filters Information
   const homeTypes = allData.homeTypes.edges
   const homeStyles = allData.homeStyles.edges
+
+  // TODO: NEW!!
   const communities = allData.communities.edges
+
+  let cityBasedCommunities = []
+  if (!cityPage) {
+    cityBasedCommunities = communities
+  } else {
+    cityBasedCommunities = communities.filter(community => {
+      const commCity = community.node.acfCommunities.city
+      return commCity.toLowerCase() === cityPage.slug.toLowerCase()
+    })
+  }
+  // TODO: NEW!!
+
   // Load up the filters states. //
   const [matchingHomes, setMatchingHomes] = useState([])
   const [filterActive, setFilterActive] = useState("")
@@ -299,8 +336,6 @@ const DisplayQuickPossessions = props => {
 
   if (!props.data.displayQuickPossessions) return null
 
-  console.log("matchingHomes: ", matchingHomes)
-
   return (
     <SectionStyled filteractive={filterActive !== ""}>
       {filterActive !== "" && (
@@ -328,7 +363,7 @@ const DisplayQuickPossessions = props => {
             homeStylesFilter={homeStylesFilter}
             setHomeStylesFilter={setHomeStylesFilter}
             homeStylesActive={homeStylesFilter.length > 0}
-            communities={communities}
+            communities={cityBasedCommunities}
             communityFilter={communityFilter}
             setCommunityFilter={setCommunityFilter}
             communityActive={communityFilter.length > 0}

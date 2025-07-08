@@ -575,6 +575,10 @@ export const pageTempQuery = graphql`
           ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayQuickPossessions {
             fieldGroupName
             displayQuickPossessions
+            quickPossessionCity {
+              name
+              slug
+            }
           }
 
           ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayHomePlans {
