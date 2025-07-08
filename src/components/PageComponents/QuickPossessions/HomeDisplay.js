@@ -380,23 +380,25 @@ const ExternalQuickStyled = styled.a`
 
 const ShowHomeStyled = styled(Link)`
   width: 100%;
+  max-width: 40rem;
+  margin: 1rem;
   margin-bottom: 5rem;
   border: solid 0.3rem #a2a3a5;
   background-color: #efefef;
   transition: all 0.3s ease-out;
 
   @media (min-width: 768px) {
-    width: calc((100% / 2) - 2rem);
+    width: calc((100% / 2));
     margin: 1rem;
   }
 
   @media (min-width: 1025px) {
-    width: calc((100% / 2) - 2rem);
+    width: calc((100% / 2));
     margin: 1rem;
   }
 
   @media (min-width: 1200px) {
-    width: calc((100% / 3) - 2rem);
+    width: calc((100% / 3));
     margin: 1rem;
   }
 
