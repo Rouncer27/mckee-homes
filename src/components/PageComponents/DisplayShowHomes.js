@@ -108,7 +108,7 @@ const getData = graphql`
 const DisplayShowHomes = props => {
   const allData = useStaticQuery(getData)
 
-  const cityPage = props.data.showHomeCity
+  const cityPage = props?.data?.showHomeCity
 
   // 👇 Get the city name from the URL, if present
   const path = props.location.pathname
