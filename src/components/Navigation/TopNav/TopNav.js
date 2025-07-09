@@ -64,7 +64,7 @@ const TopNav = ({ location }) => {
                   ? "active-page"
                   : ""
               }`}
-              to="/airdrie"
+              to="/communities"
             >
               Communities <span className="sub-icon">&#8964;</span>
             </Link>
