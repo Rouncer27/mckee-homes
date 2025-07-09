@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 
 import FilterMain from "./HomePlans/FilterMain"
 import {
@@ -10,12 +9,8 @@ import {
   B2Navy,
   colors,
   Btn1Navy,
-  H2Grey,
-  fontPrimary,
-  colorTertiary,
-  colorPrimary,
 } from "../../styles/helpers"
-import HomeDisplay from "./QuickPossessions/HomeDisplay"
+import Communities from "./QuickPossessions/Communities"
 
 const getData = graphql`
   {
@@ -438,52 +433,8 @@ const DisplayQuickPossessions = props => {
             if (community.homes.length === 0) {
               return null
             }
-            const slider = document.getElementById(`slider-${index}`)
-            const scrollByAmount = amount => {
-              slider?.scrollBy({
-                left: amount,
-                behavior: "smooth",
-              })
-            }
-
             return (
-              <div key={index} className="qp-community">
-                <div className="qp-community-title">
-                  <h2>{community.name}</h2>
-                </div>
-                <div className="qp-community-controls">
-                  <button
-                    className="scroll-btn left"
-                    onClick={() => scrollByAmount(-400)}
-                    aria-label="Scroll left"
-                  >
-                    <ChevronLeft size={24} />
-                  </button>
-                  <button
-                    className="scroll-btn right"
-                    onClick={() => scrollByAmount(400)}
-                    aria-label="Scroll right"
-                  >
-                    <ChevronRight size={24} />
-                  </button>
-                </div>
-                <div className="qp-community-homes" id={`slider-${index}`}>
-                  {community.homes.length > 0 ? (
-                    community.homes.map(home => {
-                      return (
-                        <HomeDisplay key={home.node.slug} home={home.node} />
-                      )
-                    })
-                  ) : (
-                    <div className="no-homes-found">
-                      <p>
-                        Sorry, it doesn’t look like we have any available quick
-                        possession homes at the moment in this community.
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
+              <Communities community={community} index={index} key={index} />
             )
           })
         ) : (
@@ -518,97 +469,6 @@ const SectionStyled = styled.section`
   position: relative;
   min-height: ${props => (props.filteractive ? "175rem" : "auto")};
   overflow: hidden;
-
-  .qp-community {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 0.5rem solid ${colorTertiary};
-    width: 100%;
-
-    &-controls {
-      .scroll-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        z-index: 2;
-        top: 50%;
-        width: 4rem;
-        height: 6rem;
-        transition: all 0.3s ease-in;
-        transform: translateY(-50%);
-        background: #fff;
-        border: 1px solid #000;
-        border-radius: 0;
-        padding: 0.5rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        opacity: 0.9;
-
-        &:hover {
-          opacity: 1;
-          color: #fff;
-          background: ${colorPrimary};
-        }
-
-        &.left {
-          left: 0rem;
-        }
-
-        &.right {
-          right: 0rem;
-        }
-      }
-    }
-
-    &-title {
-      width: 100%;
-      padding-left: 1rem;
-
-      h2 {
-        ${H2Grey};
-        font-family: ${fontPrimary};
-        text-transform: uppercase;
-      }
-    }
-
-    &-homes {
-      position: relative;
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      width: 100%;
-
-      &::-webkit-scrollbar {
-        height: 0.7rem;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: none;
-        border-radius: 1rem;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: ${colorPrimary};
-        border-radius: 1rem;
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background: ${colorTertiary};
-        border-radius: 1rem;
-        cursor: pointer;
-      }
-    }
-
-    .no-homes-found {
-      padding-left: 1rem;
-    }
-  }
 
   .close-filter {
     ${B2Navy};

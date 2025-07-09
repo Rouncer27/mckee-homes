@@ -142,7 +142,10 @@ const HomeDisplay = ({ home, externalLink }) => {
           </div>
         </ExternalQuickStyled>
       ) : (
-        <ShowHomeStyled to={`/quick-possessions/${home.slug}`}>
+        <ShowHomeStyled
+          className="qp-home-card"
+          to={`/quick-possessions/${home.slug}`}
+        >
           <div className="image">
             <div className="image__wrap">
               <GatsbyImage
@@ -379,7 +382,7 @@ const ExternalQuickStyled = styled.a`
 `
 
 const ShowHomeStyled = styled(Link)`
-  width: 100%;
+  width: calc(100% - 2rem);
   max-width: 40rem;
   margin: 1rem;
   margin-bottom: 5rem;
@@ -388,17 +391,17 @@ const ShowHomeStyled = styled(Link)`
   transition: all 0.3s ease-out;
 
   @media (min-width: 768px) {
-    width: calc((100% / 2));
+    width: calc((100% / 2) - 2rem);
     margin: 1rem;
   }
 
   @media (min-width: 1025px) {
-    width: calc((100% / 2));
+    width: calc((100% / 2) - 2rem);
     margin: 1rem;
   }
 
   @media (min-width: 1200px) {
-    width: calc((100% / 3));
+    width: calc((100% / 3) - 2rem);
     margin: 1rem;
   }
 
