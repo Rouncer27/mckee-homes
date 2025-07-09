@@ -107,6 +107,7 @@ const getData = graphql`
 
 const DisplayShowHomes = props => {
   const allData = useStaticQuery(getData)
+
   const cityPage = props.data.showHomeCity
 
   // 👇 Get the city name from the URL, if present
@@ -251,6 +252,8 @@ const DisplayShowHomes = props => {
     sqftFilter,
     bedroomFilter,
   ])
+
+  if (!props.data.displayShowHomes) return null
 
   return (
     <SectionStyled filteractive={filterActive !== ""}>
