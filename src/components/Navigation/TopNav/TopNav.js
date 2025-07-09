@@ -66,9 +66,10 @@ const TopNav = ({ location }) => {
               }`}
               to="/communities"
             >
-              Communities <span className="sub-icon">&#8964;</span>
+              Communities
+              {/* <span className="sub-icon">&#8964;</span> */}
             </Link>
-            <Communities activesubstate={communitiesSubActive} />
+            {/* <Communities activesubstate={communitiesSubActive} /> */}
           </li>
           <li
             onMouseEnter={() => setBuildSubActive(true)}
