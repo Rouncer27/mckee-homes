@@ -10,6 +10,7 @@ import {
   B2Black,
   H4Navy,
 } from "../../styles/helpers"
+import SpinnerAnimation from "../Animations/SpinnerAnimation"
 
 const getData = graphql`
   {
@@ -54,6 +55,7 @@ const getData = graphql`
 const RelatedPosts = ({ communitySlug, communityTitle }) => {
   const postsData = useStaticQuery(getData)
   const community = postsData.community.edges
+  const DISPLAY_NUMBER = 3
   const relatedPosts = community.find(com => {
     return com.node.slug === communitySlug
   })?.node?.posts?.nodes
@@ -62,18 +64,63 @@ const RelatedPosts = ({ communitySlug, communityTitle }) => {
       })?.node?.posts?.nodes
     : []
 
+  const [postsStore, setPostsStoreStore] = useState({
+    max: 0,
+    current: 0,
+    display: [],
+    more: false,
+    loading: false,
+  })
+
+  useEffect(() => {
+    setPostsStoreStore(prevState => {
+      return {
+        ...prevState,
+        max: relatedPosts?.length,
+        current: DISPLAY_NUMBER,
+        display: relatedPosts.slice(0, DISPLAY_NUMBER),
+        more: relatedPosts?.length > DISPLAY_NUMBER,
+      }
+    })
+  }, [])
+
+  const getMorePosts = () => {
+    setPostsStoreStore(prevState => {
+      return {
+        ...prevState,
+        current: prevState.current + DISPLAY_NUMBER,
+        display: relatedPosts.slice(0, prevState.current + DISPLAY_NUMBER),
+        more: prevState.max > prevState.current + DISPLAY_NUMBER,
+        loading: false,
+      }
+    })
+  }
+
+  const loadMorePostsHandler = () => {
+    setPostsStoreStore(prevState => {
+      return {
+        ...prevState,
+        loading: true,
+      }
+    })
+
+    setTimeout(() => {
+      getMorePosts()
+    }, 2000)
+  }
+
   return (
     <StyledSection>
       <div className="wrapper">
         <div className="title">
           <h2>What's New In This Community</h2>
         </div>
-        {relatedPosts.length <= 0 ? (
+        {postsStore.display.length <= 0 ? (
           <div className="no-news">
             <p>No Community News</p>
           </div>
         ) : (
-          relatedPosts.map(post => {
+          postsStore.display.map(post => {
             const imageDisplay = getImage(
               post.acfPosts.excerptImage.localFile.childImageSharp
                 .gatsbyImageData
@@ -117,7 +164,28 @@ const RelatedPosts = ({ communitySlug, communityTitle }) => {
             )
           })
         )}
+        <div className="wrapper">
+          <div className="moreLink">
+            <button
+              disabled={!postsStore.more}
+              onClick={loadMorePostsHandler}
+              type="button"
+            >
+              {postsStore.more ? `LOAD MORE POSTS` : `NO MORE POSTS`}
+            </button>
+          </div>
+        </div>
       </div>
+      {postsStore.loading && (
+        <LoadingModal>
+          <div className="innerLoading">
+            <div className="innerLoading__spinner">
+              <SpinnerAnimation />
+            </div>
+            <p>Loading more posts</p>
+          </div>
+        </LoadingModal>
+      )}
     </StyledSection>
   )
 }
@@ -206,6 +274,28 @@ const StyledSection = styled.section`
     justify-content: flex-start;
   }
 
+  .moreLink {
+    position: relative;
+    width: 100%;
+    margin: 2.5rem auto;
+    padding-top: 5rem;
+    border-top: 0.25rem solid ${colors.colorPrimary};
+    text-align: center;
+    z-index: 100;
+
+    button {
+      ${B2Black};
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
   .title {
     width: 100%;
     margin-bottom: 3rem;
@@ -224,6 +314,45 @@ const StyledSection = styled.section`
 
     p {
       ${B1Grey};
+    }
+  }
+`
+
+const LoadingModal = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(21, 66, 144, 0.7);
+  z-index: 999999;
+
+  .innerLoading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+    background-color: ${colors.white};
+    width: 40rem;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
+
+    &__spinner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-self: center;
+      width: 100%;
+      height: 3.5rem;
+      margin: 0 auto;
     }
   }
 `

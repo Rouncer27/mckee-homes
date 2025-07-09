@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, Link, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { BigWrapper, H2Grey } from "../../styles/helpers"
 
@@ -94,26 +94,27 @@ const DisplayCommunityCities = () => {
             <div className="city" key={index}>
               <div className="city-wrapper">
                 <div className="city-main">
-                  <div className="city-main-name">
-                    <p>{city.name}</p>
-                  </div>
-                  <div className="city-main-image">
-                    <div className="city-main-image-inner">
-                      <GatsbyImage
-                        image={
-                          city.CityContent.featuredImage.localFile
-                            .childImageSharp.gatsbyImageData
-                        }
-                        alt={city.CityContent.featuredImage.altText}
-                        layout="fullWidth"
-                        formats={["auto", "webp", "avif"]}
-                      />
+                  <Link to={`/${city.slug}/`}>
+                    <div className="city-main-name">
+                      <p>{city.name}</p>
                     </div>
-                  </div>
+                    <div className="city-main-image">
+                      <div className="city-main-image-inner">
+                        <GatsbyImage
+                          image={
+                            city.CityContent.featuredImage.localFile
+                              .childImageSharp.gatsbyImageData
+                          }
+                          alt={city.CityContent.featuredImage.altText}
+                          layout="fullWidth"
+                          formats={["auto", "webp", "avif"]}
+                        />
+                      </div>
+                    </div>
+                  </Link>
                 </div>
                 <div className="city-communities">
                   {city.communities.map(community => {
-                    console.log("community", community)
                     return (
                       <div
                         className="city-communities-community"
