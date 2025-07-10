@@ -12,6 +12,7 @@ const getData = graphql`
           id
           name
           slug
+          uri
           CityContent {
             featuredImage {
               altText
@@ -56,6 +57,7 @@ const getData = graphql`
             nodes {
               slug
               id
+              uri
             }
           }
         }
@@ -85,16 +87,18 @@ const DisplayCommunityCities = () => {
   })
 
   console.log("citiesWithCommunities", citiesWithCommunities)
+  console.log("cities", cities)
 
   return (
     <StyledSection className="cities">
       <div className="cities-wrapper">
         {citiesWithCommunities.map((city, index) => {
+          console.log("city", city)
           return (
             <div className="city" key={index}>
               <div className="city-wrapper">
                 <div className="city-main">
-                  <Link to={`/${city.slug}/`}>
+                  <Link to={`${city.CityContent.cityPageLink.uri}`}>
                     <div className="city-main-name">
                       <p>{city.name}</p>
                     </div>
