@@ -39,6 +39,10 @@ const getData = graphql`
 const DisplayCities = ({ data }) => {
   const cityData = useStaticQuery(getData)
   const cities = cityData.city.edges
+  const sortedCities = cities.sort((a, b) =>
+    a.node.name.localeCompare(b.node.name)
+  )
+
   if (!data.displayCities) {
     return null
   } else {
@@ -49,7 +53,7 @@ const DisplayCities = ({ data }) => {
             <h2>{data.sectionTitle}</h2>
           </div>
           <div className="cities-links">
-            {cities.map((city, index) => {
+            {sortedCities.map((city, index) => {
               return (
                 <div className="cities-links-city" key={index}>
                   <a href={city.node.CityContent.cityPageLink.uri}>
