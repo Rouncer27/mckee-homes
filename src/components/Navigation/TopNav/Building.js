@@ -10,6 +10,7 @@ import homeLadder from "../../../images/icons/home-ladder.png"
 import homeNews from "../../../images/icons/home-news.png"
 import homeTeam from "../../../images/icons/home-team.png"
 import homeTools from "../../../images/icons/home-tools.png"
+import homeGallery from "../../../images/icons/home-gallery.png"
 
 const Building = ({ activesubstate }) => {
   return (
@@ -80,6 +81,14 @@ const Building = ({ activesubstate }) => {
               <img src={homeLadder} alt="Logo" />
             </span>
             <span className="nav-label">Work With Us</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/gallery">
+            <span className="nav-icon">
+              <img src={homeGallery} alt="Logo" />
+            </span>
+            <span className="nav-label">Gallery</span>
           </Link>
         </li>
       </ul>
