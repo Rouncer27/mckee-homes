@@ -14,6 +14,7 @@ import ShowHours from "../components/Communities/ShowHours"
 import CommunityForm from "../components/PageComponents/Forms/CommunityForm"
 import LotPicker from "../components/Communities/LotPicker"
 import RelatedPosts from "../components/Communities/RelatedPosts"
+import MapEmbed from "../components/Communities/MapEmbed"
 
 const Communities = props => {
   const { community, allWpShowHome, quickPossessions, seoInfo } = props.data
@@ -81,7 +82,7 @@ const Communities = props => {
           url={community.acfCommunity.communityUrl}
           scroll={community.acfCommunity.communityMapScrollButton}
         /> */}
-
+        <MapEmbed data={community.acfCommunity.mapEmbed} />
         <ShowHomes currentSlug={community.slug} showHomes={allWpShowHome} />
         <QuickPosessions
           currentSlug={community.slug}
@@ -143,6 +144,7 @@ export const query = graphql`
         communityMapScrollButton
         communityIntroTitle
         communityIntroContent
+        mapEmbed
         communityIntroBlocks {
           imageText
           imageBigText
