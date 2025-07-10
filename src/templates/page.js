@@ -920,6 +920,11 @@ export const pageTempQuery = graphql`
             sectionTitle
             boxLinks {
               content
+              link {
+                ... on WpPage {
+                  uri
+                }
+              }
               image {
                 altText
                 localFile {
