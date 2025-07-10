@@ -71,6 +71,18 @@ const TopNav = ({ location }) => {
             </Link>
             {/* <Communities activesubstate={communitiesSubActive} /> */}
           </li>
+          <li>
+            <Link
+              className={`top-nav-item__link ${
+                location && location?.pathname === "/cities"
+                  ? "active-page"
+                  : ""
+              }`}
+              to="/cities"
+            >
+              Cities
+            </Link>
+          </li>
           <li
             onMouseEnter={() => setBuildSubActive(true)}
             onMouseLeave={() => setBuildSubActive(false)}
@@ -140,7 +152,7 @@ const TopNavStyled = styled.div`
     }
 
     &--highlight {
-      @media (max-width: 830px) {
+      @media (max-width: 938px) {
         flex-grow: 2;
       }
       @media (min-width: 1100px) {
