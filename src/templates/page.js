@@ -915,6 +915,22 @@ export const pageTempQuery = graphql`
             }
             fieldGroupName
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_BoxImageLinks {
+            sectionTitle
+            boxLinks {
+              content
+              image {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(width: 2000)
+                  }
+                }
+              }
+            }
+            fieldGroupName
+          }
         }
       }
     }
