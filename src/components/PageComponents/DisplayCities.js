@@ -39,7 +39,6 @@ const getData = graphql`
 const DisplayCities = ({ data }) => {
   const cityData = useStaticQuery(getData)
   const cities = cityData.city.edges
-  // Bump
   if (!data.displayCities) {
     return null
   } else {

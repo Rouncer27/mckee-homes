@@ -904,6 +904,17 @@ export const pageTempQuery = graphql`
             sectionTitle
             fieldGroupName
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayCommunities {
+            displayCommunities
+            sectionTitle
+            communitiesFromWhatCity {
+              name
+              slug
+              uri
+            }
+            fieldGroupName
+          }
         }
       }
     }
