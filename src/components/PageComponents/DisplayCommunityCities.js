@@ -86,10 +86,14 @@ const DisplayCommunityCities = () => {
     }
   })
 
+  const sortedCities = citiesWithCommunities.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  )
+
   return (
     <StyledSection className="cities">
       <div className="cities-wrapper">
-        {citiesWithCommunities.map((city, index) => {
+        {sortedCities.map((city, index) => {
           return (
             <div className="city" key={index}>
               <div className="city-wrapper">
