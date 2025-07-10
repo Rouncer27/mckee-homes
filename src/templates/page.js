@@ -898,6 +898,12 @@ export const pageTempQuery = graphql`
             sectionTitle
             fieldGroupName
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_DisplayCities {
+            displayCities
+            sectionTitle
+            fieldGroupName
+          }
         }
       }
     }

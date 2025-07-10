@@ -86,14 +86,10 @@ const DisplayCommunityCities = () => {
     }
   })
 
-  console.log("citiesWithCommunities", citiesWithCommunities)
-  console.log("cities", cities)
-
   return (
     <StyledSection className="cities">
       <div className="cities-wrapper">
         {citiesWithCommunities.map((city, index) => {
-          console.log("city", city)
           return (
             <div className="city" key={index}>
               <div className="city-wrapper">
