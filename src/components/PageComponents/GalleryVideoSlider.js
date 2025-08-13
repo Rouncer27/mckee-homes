@@ -64,6 +64,9 @@ const GalleryVideoSlider = ({ data }) => {
 }
 
 const StyledDiv = styled.div`
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+
   .wrapper {
     display: flex;
     justify-content: center;
@@ -88,7 +91,7 @@ const StyledDiv = styled.div`
 
     .slick-arrow {
       position: absolute !important;
-      top: calc(100% - 5rem);
+      top: calc(100% + 2.5rem);
       width: 5rem;
       height: 5rem;
       z-index: 99999999999;
@@ -111,6 +114,8 @@ const StyledDiv = styled.div`
     }
 
     .slick-dots {
+      bottom: -5rem;
+
       li {
         width: 3rem;
         height: 3rem;
