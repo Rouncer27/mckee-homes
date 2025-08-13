@@ -26,7 +26,7 @@ const Communities = ({ community, index }) => {
 
     // Optional: include spacing/margin if needed
     const gap = 20 // adjust if your cards have margin
-    const totalScroll = (cardWidth + gap) * 1.5 // scroll 1.5 cards at a time
+    const totalScroll = (cardWidth + gap) * 1 // scroll 1.5 cards at a time
 
     scrollRef.current?.scrollBy({
       left: direction * totalScroll,
@@ -77,7 +77,7 @@ const Communities = ({ community, index }) => {
           aria-label="Scroll left"
           disabled={atStart}
         >
-          <ChevronLeft size={24} />
+          <ChevronLeft size={48} />
         </button>
         <button
           className="scroll-btn right"
@@ -85,7 +85,7 @@ const Communities = ({ community, index }) => {
           aria-label="Scroll right"
           disabled={atEnd}
         >
-          <ChevronRight size={24} />
+          <ChevronRight size={48} />
         </button>
       </div>
       <div className="qp-community-homes-wrapper">
@@ -128,13 +128,14 @@ const StyledCommunity = styled.div`
       position: absolute;
       z-index: 2;
       top: 50%;
-      width: 4rem;
-      height: 6rem;
+      width: 6rem;
+      height: 8rem;
       transform: translateY(-50%);
-      background: #fff;
+      background: ${colorPrimary};
       border: 1px solid #000;
       border-radius: 0;
       padding: 0.5rem;
+      color: #fff;
       cursor: pointer;
       opacity: 0.9;
       transition: background-color 0.2s ease, color 0.2s ease,
@@ -142,8 +143,8 @@ const StyledCommunity = styled.div`
 
       &:hover {
         opacity: 1;
-        color: #fff;
-        background: ${colorPrimary};
+        color: ${colorPrimary};
+        background: #fff;
         transform: translateY(-50%) scale(1.05);
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
       }
@@ -161,11 +162,11 @@ const StyledCommunity = styled.div`
       }
 
       &.left {
-        left: 0rem;
+        left: -2rem;
       }
 
       &.right {
-        right: 0rem;
+        right: -2rem;
       }
     }
   }
