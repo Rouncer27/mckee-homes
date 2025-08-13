@@ -9,6 +9,7 @@ import {
   colorAlt,
   colorPrimary,
   H2Grey,
+  colors,
   medWrapper,
 } from "../../styles/helpers"
 
@@ -280,6 +281,43 @@ const StyledDiv = styled.div`
     width: 100%;
     height: 100%;
     z-index: 9999999;
+
+    .slick-arrow {
+      position: absolute !important;
+      width: 5rem;
+      height: 5rem;
+      z-index: 99999999999;
+
+      &::before {
+        opacity: 1;
+        width: 5rem;
+        height: 5rem;
+        font-size: 5rem;
+        color: ${colors.colorPrimary} !important;
+      }
+    }
+
+    .slick-prev {
+    }
+
+    .slick-next {
+    }
+
+    .slick-dots {
+      li {
+        width: 3rem;
+        height: 3rem;
+
+        button {
+          width: 3rem;
+          height: 3rem;
+
+          &::before {
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
 
     &-overlay {
       position: absolute;
