@@ -4,7 +4,13 @@ import styled from "styled-components"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { B1Black, H2Grey, medWrapper } from "../../styles/helpers"
+import {
+  B1Black,
+  colorAlt,
+  colorPrimary,
+  H2Grey,
+  medWrapper,
+} from "../../styles/helpers"
 
 const GalleryHomePlan = ({ data }) => {
   const [activeCat, setActiveCat] = useState("all")
@@ -31,6 +37,29 @@ const GalleryHomePlan = ({ data }) => {
     gal => activeCat === "all" || gal.imageCategory === activeCat
   )
 
+  const categories = [
+    "Front Exterior",
+    "Exterior",
+    "Foyer",
+    "Kitchen",
+    "Prep Kitchen",
+    "Butler Pantry",
+    "Dining Room",
+    "Living Room",
+    "Powder Room",
+    "Bathroom",
+    "Owners Suite",
+    "Bedroom",
+    "Lifestyle Room",
+    "Ensuite",
+    "Laundry Room",
+    "Closet",
+    "Basement Suite",
+    "Office/Den",
+    "Mud Room",
+    "Deck",
+  ]
+
   return (
     <StyledDiv>
       <div className="wrapper">
@@ -40,8 +69,7 @@ const GalleryHomePlan = ({ data }) => {
         </div>
         <div className="categories-warpper">
           <ul>
-            <li>
-              {" "}
+            <li className={activeCat === "all" ? "active" : ""}>
               <button
                 type="button"
                 onClick={() => {
@@ -51,16 +79,16 @@ const GalleryHomePlan = ({ data }) => {
                 All
               </button>
             </li>
-            {data.images.map((gal, index) => {
+            {categories.map((cat, index) => {
               return (
-                <li key={index}>
+                <li key={index} className={activeCat === cat ? "active" : ""}>
                   <button
                     type="button"
                     onClick={() => {
-                      handleCatChange(gal.imageCategory)
+                      handleCatChange(cat)
                     }}
                   >
-                    {gal.imageCategory}
+                    {cat}
                   </button>
                 </li>
               )
@@ -69,29 +97,35 @@ const GalleryHomePlan = ({ data }) => {
         </div>
 
         <div className="gallery-warpper">
-          {filteredImages.map((gal, index) => {
-            const galImg = getImage(
-              gal.image.localFile.childImageSharp.gatsbyImageData
-            )
-            const galImgAlt = gal.image.altText
-            return (
-              <div
-                key={index}
-                className="gallery-image"
-                onClick={() => {
-                  setFirstImage(index)
-                  setActiveSlider(!activeSlider)
-                }}
-              >
-                <GatsbyImage
-                  image={galImg}
-                  alt={galImgAlt}
-                  layout="fullWidth"
-                  formats={["auto", "webp", "avif"]}
-                />
-              </div>
-            )
-          })}
+          {filteredImages.length <= 0 ? (
+            <div className="gallery-no-images">
+              <p>No images for the {activeCat} space</p>
+            </div>
+          ) : (
+            filteredImages.map((gal, index) => {
+              const galImg = getImage(
+                gal.image.localFile.childImageSharp.gatsbyImageData
+              )
+              const galImgAlt = gal.image.altText
+              return (
+                <div
+                  key={index}
+                  className="gallery-image"
+                  onClick={() => {
+                    setFirstImage(index)
+                    setActiveSlider(!activeSlider)
+                  }}
+                >
+                  <GatsbyImage
+                    image={galImg}
+                    alt={galImgAlt}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
+                  />
+                </div>
+              )
+            })
+          )}
         </div>
 
         {activeSlider && (
@@ -146,6 +180,16 @@ const StyledDiv = styled.div`
     ${medWrapper};
   }
 
+  .gallery-no-images {
+    width: 100%;
+    padding: 5rem 0 3rem;
+    text-align: center;
+
+    p {
+      ${H2Grey};
+    }
+  }
+
   .main-title {
     width: 100%;
     margin-bottom: 2rem;
@@ -194,6 +238,14 @@ const StyledDiv = styled.div`
           border: none;
           text-transform: uppercase;
           cursor: pointer;
+        }
+
+        &.active {
+          background-color: ${colorPrimary};
+
+          button {
+            color: #fff;
+          }
         }
       }
     }

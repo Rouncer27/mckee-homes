@@ -27,7 +27,7 @@ const QuickPossesion = ({ home }) => {
           title={`Other features and details to note:`}
         />
       )}
-      <HomePlanBest />
+
       {home.acfQuickPossessions.gallery &&
         home.acfQuickPossessions.gallery.length > 0 && (
           <HomePlanGallery gallery={home.acfQuickPossessions.gallery} />
@@ -41,6 +41,7 @@ const QuickPossesion = ({ home }) => {
         floorPlanPdf={home.acfQuickPossessions.floorPlanPdf.mediaItemUrl}
         appImage={home.acfQuickPossessions.mainImage.mediaItemUrl}
       />
+      <HomePlanBest />
       <QuickConnect
         salesOne={home.acfQuickPossessions.salesPersonOne}
         salesTwo={home.acfQuickPossessions.salesPersonTwo}
