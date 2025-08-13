@@ -8,11 +8,20 @@ import lanedHomes from "../../../images/icons/laned-homes.png"
 import townhomes from "../../../images/icons/townhomes.png"
 import pairedHomes from "../../../images/icons/paired-home.png"
 import allHomes from "../../../images/icons/all-homes.png"
+import estateLanedHomes from "../../../images/icons/estate-landed-homes.png"
 
 const HomeTypes = ({ activesubstate, title, slug }) => {
   return (
     <SubMenu activesub={activesubstate} className="main-sub-nav">
       <p>{title}</p>
+      <li>
+        <Link to={`${slug}?homeType=estate-laned-homes#filters`}>
+          <span className="nav-icon">
+            <img src={estateLanedHomes} alt="Logo" />
+          </span>
+          <span className="nav-label">Estate Landed Homes</span>
+        </Link>
+      </li>
       <li>
         <Link to={`${slug}?homeType=front-drive#filters`}>
           <span className="nav-icon">

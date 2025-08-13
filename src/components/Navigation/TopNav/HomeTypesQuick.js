@@ -8,11 +8,62 @@ import lanedHomes from "../../../images/icons/laned-homes.png"
 import townhomes from "../../../images/icons/townhomes.png"
 import pairedHomes from "../../../images/icons/paired-home.png"
 import allHomes from "../../../images/icons/all-homes.png"
+import estateLanedHomes from "../../../images/icons/estate-landed-homes.png"
 
 const HomeTypesQuick = ({ activesubstate, title, slug }) => {
   return (
     <SubMenu activesub={activesubstate} className="main-sub-nav">
       <p>{title}</p>
+
+      <li>
+        <Link to={`/quick-possessions/airdrie/`}>
+          <span className="nav-icon">
+            <img src={allHomes} alt="Logo" />
+          </span>
+          <span className="nav-label">Airdrie</span>
+        </Link>
+      </li>
+      <li>
+        <Link to={`/quick-possessions/calgary/`}>
+          <span className="nav-icon">
+            <img src={allHomes} alt="Logo" />
+          </span>
+          <span className="nav-label">Calgary</span>
+        </Link>
+      </li>
+      <li>
+        <Link to={`/quick-possessions/carstairs/`}>
+          <span className="nav-icon">
+            <img src={allHomes} alt="Logo" />
+          </span>
+          <span className="nav-label">Carstairs</span>
+        </Link>
+      </li>
+      <li>
+        <Link to={`/quick-possessions/crossfield/`}>
+          <span className="nav-icon">
+            <img src={allHomes} alt="Logo" />
+          </span>
+          <span className="nav-label">Crossfield</span>
+        </Link>
+      </li>
+      <li>
+        <Link to={`/quick-possessions/rockyview/`}>
+          <span className="nav-icon">
+            <img src={allHomes} alt="Logo" />
+          </span>
+          <span className="nav-label">Rockyview</span>
+        </Link>
+      </li>
+
+      {/* <li>
+        <Link to={`${slug}?homeType=estate-laned-homes#filters`}>
+          <span className="nav-icon">
+            <img src={estateLanedHomes} alt="Logo" />
+          </span>
+          <span className="nav-label">Estate Landed Homes</span>
+        </Link>
+      </li>
       <li>
         <Link to={`${slug}?homeType=front-drive#filters`}>
           <span className="nav-icon">
@@ -52,7 +103,7 @@ const HomeTypesQuick = ({ activesubstate, title, slug }) => {
           </span>
           <span className="nav-label">All Homes</span>
         </Link>
-      </li>
+      </li> */}
     </SubMenu>
   )
 }
