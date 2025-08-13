@@ -71,7 +71,7 @@ const TopNav = ({ location }) => {
             </Link>
             {/* <Communities activesubstate={communitiesSubActive} /> */}
           </li>
-          <li>
+          {/* <li>
             <Link
               className={`top-nav-item__link ${
                 location && location?.pathname === "/cities"
@@ -82,7 +82,7 @@ const TopNav = ({ location }) => {
             >
               Cities
             </Link>
-          </li>
+          </li> */}
           <li
             onMouseEnter={() => setBuildSubActive(true)}
             onMouseLeave={() => setBuildSubActive(false)}
