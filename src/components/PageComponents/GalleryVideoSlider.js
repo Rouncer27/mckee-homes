@@ -5,13 +5,13 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { H2Grey, medWrapper } from "../../styles/helpers"
+import { H2Grey, medWrapper, colors } from "../../styles/helpers"
 
 const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   fade: false,
-  draggable: true,
+  draggable: false,
   infinite: true,
   speed: 500,
   autoplay: true,
@@ -19,7 +19,7 @@ const settings = {
   centerPadding: "350px",
   centerMode: true,
   arrows: true,
-  dots: false,
+  dots: true,
 
   responsive: [
     {
@@ -86,6 +86,46 @@ const StyledDiv = styled.div`
   .sliderWarpper {
     width: 100%;
 
+    .slick-arrow {
+      position: absolute !important;
+      top: calc(100% - 5rem);
+      width: 5rem;
+      height: 5rem;
+      z-index: 99999999999;
+
+      &::before {
+        opacity: 1;
+        width: 5rem;
+        height: 5rem;
+        font-size: 5rem;
+        color: ${colors.colorPrimary} !important;
+      }
+    }
+
+    .slick-prev {
+      left: 2rem;
+    }
+
+    .slick-next {
+      right: 2rem;
+    }
+
+    .slick-dots {
+      li {
+        width: 3rem;
+        height: 3rem;
+
+        button {
+          width: 3rem;
+          height: 3rem;
+
+          &::before {
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+
     .slide {
       position: relative;
       height: 40rem;
@@ -117,7 +157,8 @@ const StyledDiv = styled.div`
         right: 3rem;
         left: 3rem;
         height: 100%;
-        width: calc(100% - 6rem);
+        width: calc(100% - 6rem) !important;
+        max-width: calc(100% - 6rem) !important;
       }
     }
   }
