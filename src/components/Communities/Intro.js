@@ -4,6 +4,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import {
   B1Black,
   Btn1Grey,
+  colors,
   H2Grey,
   H2White,
   medWrapper,
@@ -82,32 +83,31 @@ const Intro = ({ logo, title, content, blocks, details, url, scroll }) => {
             )
           })}
         </div>
-
-        <div className="community-details">
-          <div
+      </div>
+      <div className="community-details">
+        {/* <div
             className="community-details-content"
             dangerouslySetInnerHTML={{ __html: details }}
-          />
-          <div className="community-details-buttons">
-            {url && (
-              <div className="logo__btn">
-                <a rel="noopener" target="_blank" href={url}>
-                  Explore Community
-                </a>
-              </div>
-            )}
-            {scroll && (
-              <div className="logo__btn">
-                <button
-                  onClick={() => {
-                    scrollTo("#lot-picker-map")
-                  }}
-                >
-                  Explore Lots
-                </button>
-              </div>
-            )}
-          </div>
+          /> */}
+        <div className="community-details-buttons">
+          {url && (
+            <div className="logo__btn">
+              <a rel="noopener" target="_blank" href={url}>
+                Explore Community
+              </a>
+            </div>
+          )}
+          {scroll && (
+            <div className="logo__btn">
+              <button
+                onClick={() => {
+                  scrollTo("#lot-picker-map")
+                }}
+              >
+                Explore Lots
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </StyledSection>
@@ -274,14 +274,15 @@ const StyledSection = styled.section`
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    margin-top: 5rem;
+    margin-bottom: 3.6rem;
+    padding: 5rem 3rem;
+    background-color: ${colors.colorAlt};
 
     &-content {
       width: calc(100%);
 
       @media (min-width: 768px) {
-        width: calc(60% - 2rem);
-        margin-right: 2rem;
+        width: calc(100%);
       }
 
       p {
@@ -291,10 +292,12 @@ const StyledSection = styled.section`
 
     &-buttons {
       width: calc(100%);
+      text-align: center;
 
       @media (min-width: 768px) {
-        width: calc(40% - 2rem);
-        margin-left: 2rem;
+        display: flex;
+        justify-content: center;
+        width: calc(100%);
         text-align: center;
       }
 
@@ -302,10 +305,7 @@ const StyledSection = styled.section`
       button {
         ${Btn1Grey};
         min-width: 25rem;
-      }
-
-      a {
-        margin-bottom: 1.5rem;
+        margin: 1.5rem;
       }
     }
   }
