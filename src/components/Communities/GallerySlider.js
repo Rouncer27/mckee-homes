@@ -149,11 +149,17 @@ const SectionStyled = styled.div`
 
     .slick-arrow {
       position: absolute !important;
-      top: calc(100% + 2rem);
-      z-index: 100;
+      top: calc(100% + 2.5rem);
+      width: 5rem;
+      height: 5rem;
+      z-index: 99999999999;
 
       &::before {
-        color: ${colors.colorTertiary};
+        opacity: 1;
+        width: 5rem;
+        height: 5rem;
+        font-size: 5rem;
+        color: ${colors.colorPrimary} !important;
       }
     }
 
@@ -161,7 +167,7 @@ const SectionStyled = styled.div`
       left: 5rem;
 
       @media (min-width: 768px) {
-        left: 48%;
+        left: 45%;
       }
     }
 
@@ -169,7 +175,7 @@ const SectionStyled = styled.div`
       right: 5rem;
 
       @media (min-width: 768px) {
-        right: 48%;
+        right: 45%;
       }
     }
   }
