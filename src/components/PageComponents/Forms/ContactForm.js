@@ -110,7 +110,7 @@ const ContactForm = ({ data }) => {
         <form onSubmit={handleOnSubmit}>
           <InputField>
             <label htmlFor="firstName">
-              Frist Name <span className="required">(required)</span>
+              First Name <span className="required">(required)</span>
               <span
                 className={`error-message${
                   formStatus.errors.findIndex(
