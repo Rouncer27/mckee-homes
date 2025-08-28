@@ -61,7 +61,7 @@ const HomeTypesQuick = ({ activesubstate, title, slug }) => {
           <span className="nav-icon">
             <img src={estateLanedHomes} alt="Logo" />
           </span>
-          <span className="nav-label">Estate Landed Homes</span>
+          <span className="nav-label">Estate Laned Homes</span>
         </Link>
       </li>
       <li>
