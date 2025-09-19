@@ -70,10 +70,6 @@ const PageComponentGroups = props => {
       <>
         {components?.acfMainTemplateFields?.pageComponents.map(
           (component, index) => {
-            console.log(
-              "component?.fieldGroupName bump",
-              component?.fieldGroupName
-            )
             switch (component?.fieldGroupName) {
               case "Page_Acfmaintemplatefields_PageComponents_HeroOne":
                 return <HeroOne key={index} data={component} />
