@@ -833,6 +833,7 @@ export const pageTempQuery = graphql`
                 }
               }
               imageCategory
+              tallImage
             }
           }
 

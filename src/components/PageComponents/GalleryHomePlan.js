@@ -104,6 +104,7 @@ const GalleryHomePlan = ({ data }) => {
             </div>
           ) : (
             filteredImages.map((gal, index) => {
+              console.log("gal", gal)
               const galImg = getImage(
                 gal.image.localFile.childImageSharp.gatsbyImageData
               )
@@ -111,7 +112,9 @@ const GalleryHomePlan = ({ data }) => {
               return (
                 <div
                   key={index}
-                  className="gallery-image"
+                  className={`gallery-image${
+                    gal.tallImage ? " image-tall" : ""
+                  }`}
                   onClick={() => {
                     setFirstImage(index)
                     setActiveSlider(!activeSlider)
@@ -138,12 +141,12 @@ const GalleryHomePlan = ({ data }) => {
                     gal.image.localFile.childImageSharp.gatsbyImageData
                   )
                   const galImgAlt = gal.image.altText
-
-                  console.log("TREVOR", galImgAlt)
                   return (
                     <div
                       key={index}
-                      className="gallery-slider-image"
+                      className={`gallery-slider-image${
+                        gal.tallImage ? " image-tall" : ""
+                      }`}
                       onClick={() => {
                         setActiveSlider(!activeSlider)
                       }}
@@ -278,6 +281,15 @@ const StyledDiv = styled.div`
         img {
         }
       }
+
+      &.image-tall {
+        .gatsby-image-wrapper {
+          height: 100% !important;
+
+          img {
+          }
+        }
+      }
     }
   }
 
@@ -398,6 +410,11 @@ const StyledDiv = styled.div`
         width: auto !important;
         height: auto !important;
         object-fit: cover;
+      }
+
+      &.image-tall {
+        width: 44% !important;
+        margin: auto;
       }
     }
   }
