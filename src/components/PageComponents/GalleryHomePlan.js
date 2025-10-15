@@ -26,7 +26,7 @@ const GalleryHomePlan = ({ data }) => {
     infinite: true,
     autoplay: false,
     arrows: true,
-    dots: true,
+    dots: false,
     initialSlide: firstImage || 0,
   }
 
