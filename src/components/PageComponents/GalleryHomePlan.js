@@ -271,6 +271,13 @@ const StyledDiv = styled.div`
         width: calc((100% / 3) - 3rem);
         margin: 1.5rem;
       }
+
+      .gatsby-image-wrapper {
+        height: 25rem !important;
+
+        img {
+        }
+      }
     }
   }
 
@@ -281,6 +288,28 @@ const StyledDiv = styled.div`
     width: 100%;
     height: 100%;
     z-index: 9999999;
+
+    .slick-slider {
+      height: 100% !important;
+
+      .slick-list {
+        height: 100% !important;
+
+        .slick-track {
+          height: 100% !important;
+
+          .slick-slide {
+            height: 100% !important;
+            overflow: hidden;
+
+            div {
+              height: 100% !important;
+              max-width: 100% !important;
+            }
+          }
+        }
+      }
+    }
 
     .slick-arrow {
       position: absolute !important;
@@ -304,6 +333,8 @@ const StyledDiv = styled.div`
     }
 
     .slick-dots {
+      bottom: -3.5rem;
+
       li {
         width: 3rem;
         height: 3rem;
@@ -334,7 +365,7 @@ const StyledDiv = styled.div`
       top: 50%;
       left: 50%;
       width: 100%;
-      height: auto;
+      height: 80vh;
       margin: auto;
       transform: translate(-50%, -50%);
       z-index: 10;
@@ -346,15 +377,27 @@ const StyledDiv = styled.div`
     }
 
     &-image {
+      display: block !important;
+      position: relative;
       width: 100%;
+      height: 100%;
       padding: 0 1rem;
+      overflow: hidden;
 
       @media (min-width: 768px) {
-        padding: 7rem;
+        padding: 0rem;
       }
 
       img {
-        width: 100% !important;
+        display: block;
+        position: absolute !important;
+        top: -5rem;
+        right: 2rem;
+        bottom: 2rem;
+        left: 2rem;
+        width: auto !important;
+        height: auto !important;
+        object-fit: cover;
       }
     }
   }
