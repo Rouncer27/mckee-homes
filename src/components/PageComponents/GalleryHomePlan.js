@@ -18,6 +18,9 @@ const GalleryHomePlan = ({ data }) => {
   const [activeSlider, setActiveSlider] = useState(false)
   const [firstImage, setFirstImage] = useState(null)
 
+  // 🆕 Added states for pagination
+  const [visibleCount, setVisibleCount] = useState(24)
+
   const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -32,11 +35,19 @@ const GalleryHomePlan = ({ data }) => {
 
   const handleCatChange = cat => {
     setActiveCat(cat)
+    setVisibleCount(24) // 🆕 reset visible images when category changes
   }
 
   const filteredImages = data.images.filter(
     gal => activeCat === "all" || gal.imageCategory === activeCat
   )
+
+  // 🆕 Determine which images to show
+  const visibleImages = filteredImages.slice(0, visibleCount)
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + 24)
+  }
 
   const categories = [
     "Front Exterior",
@@ -98,12 +109,13 @@ const GalleryHomePlan = ({ data }) => {
         </div>
 
         <div className="gallery-warpper">
-          {filteredImages.length <= 0 ? (
+          {/* filteredImages */}
+          {visibleImages.length <= 0 ? (
             <div className="gallery-no-images">
               <p>No images for the {activeCat} space</p>
             </div>
           ) : (
-            filteredImages.map((gal, index) => {
+            visibleImages.map((gal, index) => {
               console.log("gal", gal)
               const galImg = getImage(
                 gal.image.localFile.childImageSharp.gatsbyImageData
@@ -131,6 +143,57 @@ const GalleryHomePlan = ({ data }) => {
             })
           )}
         </div>
+
+        {/* 🆕 Load More Button */}
+        {filteredImages.length > visibleImages.length && (
+          <div
+            className="load-more-wrapper"
+            style={{ textAlign: "center", marginTop: "2rem" }}
+          >
+            <button
+              type="button"
+              onClick={handleLoadMore}
+              style={{
+                backgroundColor: colorPrimary,
+                color: "#fff",
+                border: "none",
+                padding: "1rem 2rem",
+                borderRadius: "4px",
+                cursor: "pointer",
+                fontWeight: "600",
+                textTransform: "uppercase",
+              }}
+            >
+              Load More
+            </button>
+          </div>
+        )}
+
+        {/* 🆕 No more images message */}
+        {filteredImages.length <= visibleImages.length &&
+          filteredImages.length > 0 && (
+            <div
+              className="load-more-wrapper"
+              style={{ textAlign: "center", marginTop: "2rem" }}
+            >
+              <button
+                type="button"
+                disabled
+                style={{
+                  backgroundColor: "#ccc",
+                  color: "#666",
+                  border: "none",
+                  padding: "1rem 2rem",
+                  borderRadius: "4px",
+                  fontWeight: "600",
+                  textTransform: "uppercase",
+                  cursor: "not-allowed",
+                }}
+              >
+                No more images
+              </button>
+            </div>
+          )}
 
         {activeSlider && (
           <div className="gallery-slider">
