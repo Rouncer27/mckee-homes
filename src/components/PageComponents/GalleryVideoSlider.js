@@ -38,6 +38,15 @@ const settings = {
 }
 
 const GalleryVideoSlider = ({ data }) => {
+  // 🔹 Step 1️⃣ Track the currently active slide index
+  const [activeSlide, setActiveSlide] = useState(0)
+
+  // 🔹 Step 2️⃣ Add beforeChange event to update activeSlide
+  const sliderSettings = {
+    ...settings,
+    beforeChange: (oldIndex, newIndex) => setActiveSlide(newIndex),
+  }
+
   return (
     <StyledDiv>
       <div className="gallery-wrapper">
@@ -46,14 +55,30 @@ const GalleryVideoSlider = ({ data }) => {
         </div>
       </div>
       <div className="wrapper">
-        <Slider className="sliderWarpper" {...settings}>
+        <Slider className="sliderWarpper" {...sliderSettings}>
           {data.sliderVideos.map((gal, index) => {
+            // 🔹 Step 4️⃣ Extract YouTube src safely from HTML string
+            const tempDiv = document.createElement("div")
+            tempDiv.innerHTML = gal.video
+            const iframe = tempDiv.querySelector("iframe")
+            const src = iframe ? iframe.src : ""
+
             return (
               <div key={index} className="slide">
-                <div
-                  className="slide-inner"
-                  dangerouslySetInnerHTML={{ __html: gal.video }}
-                />
+                <div className="slide-inner">
+                  {/* 🔹 Step 5️⃣ Only render the iframe when slide is active */}
+                  {index === activeSlide ? (
+                    <iframe
+                      title={`YouTube video ${index}`}
+                      src={src}
+                      frameBorder="0"
+                      allowFullScreen
+                      loading="lazy"
+                    ></iframe>
+                  ) : (
+                    <div className="video-placeholder"></div>
+                  )}
+                </div>
               </div>
             )
           })}
