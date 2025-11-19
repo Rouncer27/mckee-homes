@@ -62,6 +62,7 @@ import DisplayCitiesQuickPossessions from "./PageComponents/DisplayCitiesQuickPo
 import DisplayCities from "./PageComponents/DisplayCities"
 import DisplayCommunities from "./PageComponents/DisplayCommunities"
 import BoxImageLinks from "./PageComponents/BoxImageLinks"
+import FaqsPageLinks from "./PageComponents/FaqsPageLinks"
 
 const PageComponentGroups = props => {
   const { components, location } = props
@@ -276,6 +277,9 @@ const PageComponentGroups = props => {
 
               case "Page_Acfmaintemplatefields_PageComponents_BoxImageLinks":
                 return <BoxImageLinks key={index} data={component} />
+
+              case "Page_Acfmaintemplatefields_PageComponents_FaqsPageLinks":
+                return <FaqsPageLinks key={index} data={component} />
 
               default:
                 return null

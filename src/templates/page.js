@@ -937,6 +937,30 @@ export const pageTempQuery = graphql`
             }
             fieldGroupName
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_FaqsPageLinks {
+            fieldGroupName
+            displayFaqPageLinks
+            faqPageLinks {
+              title
+              intro
+              buttonText
+              buttonLink {
+                ... on WpPage {
+                  uri
+                }
+              }
+              image {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(width: 2000)
+                  }
+                }
+              }
+              imageTitle
+            }
+          }
         }
       }
     }
