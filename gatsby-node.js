@@ -65,6 +65,16 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
 
+        faqs: allWpFaq {
+          edges {
+            node {
+              id
+              slug
+              uri
+            }
+          }
+        }
+
         posts: allWpPost {
           edges {
             node {
@@ -176,6 +186,20 @@ exports.createPages = async ({ graphql, actions }) => {
             index === communities.length - 1
               ? null
               : communities[index + 1].node.slug,
+        },
+      })
+    })
+
+    const faqs = data.faqs.edges
+    faqs.forEach(({ node }, index) => {
+      createPage({
+        path: `/faqs/${node.slug}/`,
+        component: path.resolve("./src/templates/faq.js"),
+        context: {
+          id: node.id,
+          slug: node.slug,
+          next: index === 0 ? null : faqs[index - 1].node.slug,
+          prev: index === faqs.length - 1 ? null : faqs[index + 1].node.slug,
         },
       })
     })

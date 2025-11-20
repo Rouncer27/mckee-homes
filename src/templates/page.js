@@ -946,8 +946,9 @@ export const pageTempQuery = graphql`
               intro
               buttonText
               buttonLink {
-                ... on WpPage {
+                ... on WpFAQ {
                   uri
+                  slug
                 }
               }
               image {

@@ -49,7 +49,9 @@ const FaqsPageLinks = ({ data }) => {
                   </div>
                   <div dangerouslySetInnerHTML={{ __html: faq.intro }} />
                   <div className="button">
-                    <a href={faq.buttonLink.uri}>{faq.buttonText}</a>
+                    <a href={`/faqs/${faq.buttonLink.slug}`}>
+                      {faq.buttonText}
+                    </a>
                   </div>
                 </div>
               </div>
