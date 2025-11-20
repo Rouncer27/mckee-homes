@@ -11,6 +11,7 @@ import homeNews from "../../../images/icons/home-news.png"
 import homeTeam from "../../../images/icons/home-team.png"
 import homeTools from "../../../images/icons/home-tools.png"
 import homeGallery from "../../../images/icons/home-gallery.png"
+import homeFaqs from "../../../images/icons/home-faqicon.png"
 
 const Building = ({ activesubstate }) => {
   return (
@@ -47,6 +48,15 @@ const Building = ({ activesubstate }) => {
               <img src={homeNews} alt="Logo" />
             </span>
             <span className="nav-label">News + Promotions</span>
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/faqs">
+            <span className="nav-icon">
+              <img src={homeFaqs} alt="Logo" />
+            </span>
+            <span className="nav-label">Frequently Asked Questions</span>
           </Link>
         </li>
       </ul>
