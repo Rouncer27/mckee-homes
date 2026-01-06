@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
 import { B2Black, Btn1Navy, colors, H3Navy } from "../../../styles/helpers"
 import submitToServer from "../../FormParts/functions/submitToServer"
@@ -6,12 +6,20 @@ import FormSuccess from "../../FormParts/formModals/FormSuccess"
 import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
 
+// ✅ reCAPTCHA
+import ReCAPTCHA from "react-google-recaptcha"
+
 const Form = ({
   selectedPlans,
   setPlansBackToStart,
   isActive,
   setIsActive,
 }) => {
+  // ✅ reCAPTCHA
+  const recaptchaRef = useRef(null)
+  // ✅ reCAPTCHA
+  const [isCaptchaVerified, setIsCaptchaVerified] = useState(false)
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -26,11 +34,13 @@ const Form = ({
     send: false,
   })
 
+  // ✅ reCAPTCHA
   const [formStatus, setFormStatus] = useState({
     submitting: false,
     errorWarnDisplay: false,
     success: false,
     errors: [],
+    captachError: false,
   })
 
   const createNewUrl = baseUrl => {
@@ -65,6 +75,16 @@ const Form = ({
     })
   }, [selectedPlans])
 
+  // ✅ reCAPTCHA
+  const onChangeRecaptcha = value => {
+    setIsCaptchaVerified(!!value)
+
+    setFormStatus(prev => ({
+      ...prev,
+      captachError: false,
+    }))
+  }
+
   const handleOnChange = event => {
     setFormData({
       ...formData,
@@ -81,6 +101,7 @@ const Form = ({
     })
   }
 
+  // ✅ reCAPTCHA
   const handleSuccessModalClose = () => {
     setFormStatus({
       ...formStatus,
@@ -88,6 +109,7 @@ const Form = ({
       errorWarnDisplay: false,
       success: false,
       errors: [],
+      captachError: false,
     })
 
     setFormData({
@@ -107,6 +129,18 @@ const Form = ({
 
   const handleOnSubmit = async event => {
     event.preventDefault()
+
+    // ✅ reCAPTCHA
+    const recaptchaValue = recaptchaRef.current.getValue()
+    // ✅ reCAPTCHA
+    if (recaptchaValue === "") {
+      setFormStatus({
+        ...formStatus,
+        captachError: true,
+      })
+      return
+    }
+
     setFormStatus({
       ...formStatus,
       submitting: true,
@@ -120,22 +154,32 @@ const Form = ({
     const response = await submitToServer(11435, bodyFormData)
 
     if (!response.errors) {
+      // ✅ Reset reCAPTCHA
       setFormStatus({
         ...formStatus,
         submitting: false,
         errorWarnDisplay: false,
         success: true,
         errors: [],
+        captachError: false,
       })
+      // ✅ Reset reCAPTCHA
+      recaptchaRef.current.reset()
+      setIsCaptchaVerified(false)
       setPlansBackToStart()
     } else {
+      // ✅ Reset reCAPTCHA
       setFormStatus({
         ...formStatus,
         submitting: false,
         errorWarnDisplay: true,
         success: false,
         errors: response.errorMessages,
+        captachError: false,
       })
+      // ✅ Reset reCAPTCHA
+      recaptchaRef.current.reset()
+      setIsCaptchaVerified(false)
     }
   }
 
@@ -262,8 +306,27 @@ const Form = ({
               </select>
             </label>
           </InputField>
+          {/*  ✅ reCAPTCHA */}
+          <div className="captcha-container">
+            {formStatus.captachError && (
+              <p>
+                The form will not submit until you have checked the reCAPCHA.
+              </p>
+            )}
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
+              onChange={onChangeRecaptcha}
+              onExpired={() => setIsCaptchaVerified(false)}
+            />
+          </div>
           <div className="btn-submit">
-            <button type="submit">Receive my customized floorplan</button>
+            <button
+              disabled={!isCaptchaVerified || formStatus.submitting}
+              type="submit"
+            >
+              Receive my customized floorplan
+            </button>
             <p>
               &#42; Disclaimer: selected upgrades may change the price of the
               home.
@@ -319,6 +382,19 @@ const StyledSection = styled.section`
     form {
       display: flex;
       flex-wrap: wrap;
+
+      //  ✅ reCAPTCHA //
+      .captcha-container {
+        width: 100%;
+        padding-left: 2rem;
+
+        p {
+          ${B2Black};
+          margin: 0;
+          margin-bottom: 0.75rem;
+          color: red;
+        }
+      }
 
       .btn-submit {
         margin-top: 5rem;
