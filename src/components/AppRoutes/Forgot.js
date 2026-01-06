@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useRef } from "react"
 import { Link, navigate } from "gatsby"
 import styled from "styled-components"
 import axios from "axios"
@@ -6,9 +6,23 @@ import axios from "axios"
 import { UserContext } from "../../context/UserContext"
 import { AlertContext } from "../../context/AlertContext"
 import Input from "./Input"
-import { B1Black, Btn1Navy, colors, H3Navy } from "../../styles/helpers"
+import {
+  B1Black,
+  B2Black,
+  Btn1Navy,
+  colors,
+  H3Navy,
+} from "../../styles/helpers"
+
+// ✅ reCAPTCHA
+import ReCAPTCHA from "react-google-recaptcha"
 
 const Forgot = () => {
+  // ✅ reCAPTCHA
+  const recaptchaRef = useRef(null)
+  // ✅ reCAPTCHA
+  const [isCaptchaVerified, setIsCaptchaVerified] = useState(false)
+
   const [, dispatch] = useContext(UserContext)
   const [, alertDispatch] = useContext(AlertContext)
 
@@ -22,6 +36,11 @@ const Forgot = () => {
     })
   }
 
+  // ✅ reCAPTCHA
+  const onChangeRecaptcha = value => {
+    setIsCaptchaVerified(!!value)
+  }
+
   const handleOnChange = event => {
     setFormData({
       ...formData,
@@ -31,6 +50,14 @@ const Forgot = () => {
 
   const handleOnSubmit = async event => {
     event.preventDefault()
+
+    // ✅ reCAPTCHA
+    const recaptchaValue = recaptchaRef.current.getValue()
+    // ✅ reCAPTCHA
+    if (recaptchaValue === "") {
+      return
+    }
+
     dispatch({
       type: "USER_LOADING",
       payload: { loading: true },
@@ -104,8 +131,19 @@ const Forgot = () => {
                 size="full"
                 theme="dark"
               />
+              {/*  ✅ reCAPTCHA */}
+              <div className="captcha-container">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
+                  onChange={onChangeRecaptcha}
+                  onExpired={() => setIsCaptchaVerified(false)}
+                />
+              </div>
               <div className="submitButton">
-                <button type="submit">Submit</button>
+                <button disabled={!isCaptchaVerified} type="submit">
+                  Submit
+                </button>
               </div>
             </fieldset>
           </form>
@@ -145,6 +183,19 @@ const DivStyled = styled.div`
 
   .mainForm {
     width: 100%;
+
+    //  ✅ reCAPTCHA //
+    .captcha-container {
+      width: 100%;
+      margin-top: 2.5rem;
+
+      p {
+        ${B2Black};
+        margin: 0;
+        margin-bottom: 0.75rem;
+        color: red;
+      }
+    }
 
     fieldset {
       border: none;
