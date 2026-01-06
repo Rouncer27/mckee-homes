@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import {
@@ -15,7 +15,15 @@ import FormSuccess from "../../FormParts/formModals/FormSuccess"
 import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
 
+// ✅ reCAPTCHA
+import ReCAPTCHA from "react-google-recaptcha"
+
 const QuickPossesionsForm = ({ homeSlug, title, community }) => {
+  // ✅ reCAPTCHA
+  const recaptchaRef = useRef(null)
+  // ✅ reCAPTCHA
+  const [isCaptchaVerified, setIsCaptchaVerified] = useState(false)
+
   const [formData, setFormData] = useState({
     yourname: "",
     email: "",
@@ -29,11 +37,13 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
     type: "Quick Possessions",
   })
 
+  // ✅ reCAPTCHA
   const [formStatus, setFormStatus] = useState({
     submitting: false,
     errorWarnDisplay: false,
     success: false,
     errors: [],
+    captachError: false,
   })
 
   useEffect(() => {
@@ -59,6 +69,16 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
       ...formData,
       realtor: value,
     })
+  }
+
+  // ✅ reCAPTCHA
+  const onChangeRecaptcha = value => {
+    setIsCaptchaVerified(!!value)
+
+    setFormStatus(prev => ({
+      ...prev,
+      captachError: false,
+    }))
   }
 
   const handleOnChange = event => {
@@ -99,8 +119,22 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
     }
   }
 
+  console.log("community", community)
+
   const handleOnSubmit = async event => {
     event.preventDefault()
+
+    // ✅ reCAPTCHA
+    const recaptchaValue = recaptchaRef.current.getValue()
+    // ✅ reCAPTCHA
+    if (recaptchaValue === "") {
+      setFormStatus({
+        ...formStatus,
+        captachError: true,
+      })
+      return
+    }
+
     const formId = getFormId(community)
 
     setFormStatus({
@@ -116,21 +150,31 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
     const response = await submitToServer(formId, bodyFormData)
 
     if (!response.errors) {
+      // ✅ Reset reCAPTCHA
       setFormStatus({
         ...formStatus,
         submitting: false,
         errorWarnDisplay: false,
         success: true,
         errors: [],
+        captachError: false,
       })
+      // ✅ Reset reCAPTCHA
+      recaptchaRef.current.reset()
+      setIsCaptchaVerified(false)
     } else {
+      // ✅ Reset reCAPTCHA
       setFormStatus({
         ...formStatus,
         submitting: false,
         errorWarnDisplay: true,
         success: false,
         errors: response.errorMessages,
+        captachError: false,
       })
+      // ✅ Reset reCAPTCHA
+      recaptchaRef.current.reset()
+      setIsCaptchaVerified(false)
     }
   }
 
@@ -144,12 +188,14 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
   }
 
   const handleSuccessModalClose = () => {
+    // ✅ Reset reCAPTCHA
     setFormStatus({
       ...formStatus,
       submitting: false,
       errorWarnDisplay: false,
       success: false,
       errors: [],
+      captachError: false,
     })
 
     setFormData({
@@ -291,8 +337,28 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
               </label>
             </CheckboxField>
 
+            {/*  ✅ reCAPTCHA */}
+            <div className="captcha-container">
+              {formStatus.captachError && (
+                <p>
+                  The form will not submit until you have checked the reCAPCHA.
+                </p>
+              )}
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
+                onChange={onChangeRecaptcha}
+                onExpired={() => setIsCaptchaVerified(false)}
+              />
+            </div>
+
             <div className="btn-submit">
-              <button type="submit">Send Me More Info</button>
+              <button
+                disabled={!isCaptchaVerified || formStatus.submitting}
+                type="submit"
+              >
+                Send Me More Info
+              </button>
             </div>
           </form>
         </div>
@@ -361,6 +427,21 @@ const SectionStyled = styled.div`
       @media (min-width: 768px) {
         width: calc(100% - 4rem);
         margin: 2rem;
+      }
+    }
+
+    //  ✅ reCAPTCHA //
+    .captcha-container {
+      width: 100%;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      padding-left: 2rem;
+
+      p {
+        ${B1White};
+        margin: 0;
+        margin-bottom: 0.75rem;
+        color: red;
       }
     }
 

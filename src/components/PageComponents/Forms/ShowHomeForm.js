@@ -37,6 +37,7 @@ const ShowHomeForm = ({ homeSlug, showHome, community }) => {
     type: "Show Home",
   })
 
+  // ✅ reCAPTCHA
   const [formStatus, setFormStatus] = useState({
     submitting: false,
     errorWarnDisplay: false,
@@ -131,9 +132,8 @@ const ShowHomeForm = ({ homeSlug, showHome, community }) => {
       })
       return
     }
-    console.log("community", community)
+
     const formId = getFormId(community)
-    console.log("formId", formId)
 
     setFormStatus({
       ...formStatus,
