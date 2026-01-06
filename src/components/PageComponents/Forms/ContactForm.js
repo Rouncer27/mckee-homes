@@ -287,15 +287,13 @@ const ContactForm = ({ data }) => {
             <ReCAPTCHA
               ref={recaptchaRef}
               onChange={onChangeRecaptcha}
-              sitekey="6Le4J0IsAAAAAPx4tiIUpAhr1pGZbuQPJduFlZdV"
+              sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
             />
           </div>
 
           <div className="btn-submit">
             <button
-              disabled={
-                formStatus.captachError || formStatus.captachValue === ""
-              }
+              disabled={formStatus.captachValue === "" || formStatus.submitting}
               type="submit"
             >
               Submit
