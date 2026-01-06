@@ -92,6 +92,7 @@ const ContactForm = ({ data }) => {
       })
       // ✅ Reset reCAPTCHA
       recaptchaRef.current.reset()
+      setIsCaptchaVerified(false)
     } else {
       setFormStatus({
         ...formStatus,
@@ -101,6 +102,9 @@ const ContactForm = ({ data }) => {
         errors: response.errorMessages,
         captachError: false,
       })
+      // ✅ Reset reCAPTCHA
+      recaptchaRef.current.reset()
+      setIsCaptchaVerified(false)
     }
   }
 
@@ -287,6 +291,7 @@ const ContactForm = ({ data }) => {
               ref={recaptchaRef}
               onChange={onChangeRecaptcha}
               sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
+              onExpired={() => setIsCaptchaVerified(false)}
             />
           </div>
 
