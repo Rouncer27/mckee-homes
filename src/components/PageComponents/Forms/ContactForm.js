@@ -11,12 +11,15 @@ import submitToServer from "../../FormParts/functions/submitToServer"
 import FormSuccess from "../../FormParts/formModals/FormSuccess"
 import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
-
+// ✅ reCAPTCHA
 import ReCAPTCHA from "react-google-recaptcha"
 
 const ContactForm = ({ data }) => {
+  // ✅ reCAPTCHA
   const recaptchaRef = useRef(null)
+  // ✅ reCAPTCHA
   const [isCaptchaVerified, setIsCaptchaVerified] = useState(false)
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -25,7 +28,7 @@ const ContactForm = ({ data }) => {
     message: "",
     send: false,
   })
-
+  // ✅ reCAPTCHA
   const [formStatus, setFormStatus] = useState({
     submitting: false,
     errorWarnDisplay: false,
@@ -59,8 +62,9 @@ const ContactForm = ({ data }) => {
 
   const handleOnSubmit = async event => {
     event.preventDefault()
+    // ✅ reCAPTCHA
     const recaptchaValue = recaptchaRef.current.getValue()
-
+    // ✅ reCAPTCHA
     if (recaptchaValue === "") {
       setFormStatus({
         ...formStatus,
@@ -82,6 +86,7 @@ const ContactForm = ({ data }) => {
     const response = await submitToServer(1892, bodyFormData)
 
     if (!response.errors) {
+      // ✅ Reset reCAPTCHA
       setFormStatus({
         ...formStatus,
         submitting: false,
@@ -118,6 +123,7 @@ const ContactForm = ({ data }) => {
   }
 
   const handleSuccessModalClose = () => {
+    // ✅ Reset reCAPTCHA
     setFormStatus({
       ...formStatus,
       submitting: false,
@@ -280,7 +286,7 @@ const ContactForm = ({ data }) => {
               Send me monthly news, promotions and updates
             </label>
           </CheckboxField>
-
+          {/*  ✅ reCAPTCHA */}
           <div className="captcha-container">
             {formStatus.captachError && (
               <p>
@@ -289,12 +295,12 @@ const ContactForm = ({ data }) => {
             )}
             <ReCAPTCHA
               ref={recaptchaRef}
-              onChange={onChangeRecaptcha}
               sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
+              onChange={onChangeRecaptcha}
               onExpired={() => setIsCaptchaVerified(false)}
             />
           </div>
-
+          {/*  ✅ reCAPTCHA */}
           <div className="btn-submit">
             <button
               disabled={!isCaptchaVerified || formStatus.submitting}
@@ -385,6 +391,7 @@ const SectionStyled = styled.div`
     justify-content: flex-start;
     width: 100%;
 
+    //  ✅ reCAPTCHA //
     .captcha-container {
       width: 100%;
       margin-top: 1rem;
