@@ -16,6 +16,7 @@ import ReCAPTCHA from "react-google-recaptcha"
 
 const ContactForm = ({ data }) => {
   const recaptchaRef = useRef(null)
+  const [isCaptchaVerified, setIsCaptchaVerified] = useState(false)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -30,15 +31,16 @@ const ContactForm = ({ data }) => {
     errorWarnDisplay: false,
     success: false,
     errors: [],
-    captachValue: "",
     captachError: false,
   })
 
   const onChangeRecaptcha = value => {
-    setFormStatus({
-      ...formStatus,
-      captachValue: value,
-    })
+    setIsCaptchaVerified(!!value)
+
+    setFormStatus(prev => ({
+      ...prev,
+      captachError: false,
+    }))
   }
 
   const handleOnChange = event => {
@@ -86,7 +88,6 @@ const ContactForm = ({ data }) => {
         errorWarnDisplay: false,
         success: true,
         errors: [],
-        captachValue: "",
         captachError: false,
       })
       // ✅ Reset reCAPTCHA
@@ -98,7 +99,6 @@ const ContactForm = ({ data }) => {
         errorWarnDisplay: true,
         success: false,
         errors: response.errorMessages,
-        captachValue: "",
         captachError: false,
       })
     }
@@ -120,7 +120,6 @@ const ContactForm = ({ data }) => {
       errorWarnDisplay: false,
       success: false,
       errors: [],
-      captachValue: "",
       captachError: false,
     })
 
@@ -293,7 +292,7 @@ const ContactForm = ({ data }) => {
 
           <div className="btn-submit">
             <button
-              disabled={formStatus.captachValue === "" || formStatus.submitting}
+              disabled={!isCaptchaVerified || formStatus.submitting}
               type="submit"
             >
               Submit
