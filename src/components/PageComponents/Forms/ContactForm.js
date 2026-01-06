@@ -36,7 +36,7 @@ const ContactForm = ({ data }) => {
     errors: [],
     captachError: false,
   })
-
+  // ✅ reCAPTCHA
   const onChangeRecaptcha = value => {
     setIsCaptchaVerified(!!value)
 

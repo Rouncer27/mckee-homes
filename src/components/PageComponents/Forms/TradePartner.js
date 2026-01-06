@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import styled from "styled-components"
 import {
   B1White,
@@ -13,8 +13,15 @@ import submitToServer from "../../FormParts/functions/submitToServer"
 import FormSuccess from "../../FormParts/formModals/FormSuccess"
 import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
+// ✅ reCAPTCHA
+import ReCAPTCHA from "react-google-recaptcha"
 
 const TradePartner = ({ data }) => {
+  // ✅ reCAPTCHA
+  const recaptchaRef = useRef(null)
+  // ✅ reCAPTCHA
+  const [isCaptchaVerified, setIsCaptchaVerified] = useState(false)
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -22,13 +29,23 @@ const TradePartner = ({ data }) => {
     phone: "",
     help: "",
   })
-
+  // ✅ reCAPTCHA
   const [formStatus, setFormStatus] = useState({
     submitting: false,
     errorWarnDisplay: false,
     success: false,
     errors: [],
+    captachError: false,
   })
+  // ✅ reCAPTCHA
+  const onChangeRecaptcha = value => {
+    setIsCaptchaVerified(!!value)
+
+    setFormStatus(prev => ({
+      ...prev,
+      captachError: false,
+    }))
+  }
 
   const handleOnChange = event => {
     setFormData({
@@ -39,6 +56,18 @@ const TradePartner = ({ data }) => {
 
   const handleOnSubmit = async event => {
     event.preventDefault()
+
+    // ✅ reCAPTCHA
+    const recaptchaValue = recaptchaRef.current.getValue()
+    // ✅ reCAPTCHA
+    if (recaptchaValue === "") {
+      setFormStatus({
+        ...formStatus,
+        captachError: true,
+      })
+      return
+    }
+
     setFormStatus({
       ...formStatus,
       submitting: true,
@@ -52,13 +81,18 @@ const TradePartner = ({ data }) => {
     const response = await submitToServer(1896, bodyFormData)
 
     if (!response.errors) {
+      // ✅ Reset reCAPTCHA
       setFormStatus({
         ...formStatus,
         submitting: false,
         errorWarnDisplay: false,
         success: true,
         errors: [],
+        captachError: false,
       })
+      // ✅ Reset reCAPTCHA
+      recaptchaRef.current.reset()
+      setIsCaptchaVerified(false)
     } else {
       setFormStatus({
         ...formStatus,
@@ -66,7 +100,11 @@ const TradePartner = ({ data }) => {
         errorWarnDisplay: true,
         success: false,
         errors: response.errorMessages,
+        captachError: false,
       })
+      // ✅ Reset reCAPTCHA
+      recaptchaRef.current.reset()
+      setIsCaptchaVerified(false)
     }
   }
 
@@ -80,12 +118,14 @@ const TradePartner = ({ data }) => {
   }
 
   const handleSuccessModalClose = () => {
+    // ✅ Reset reCAPTCHA
     setFormStatus({
       ...formStatus,
       submitting: false,
       errorWarnDisplay: false,
       success: false,
       errors: [],
+      captachError: false,
     })
 
     setFormData({
@@ -235,8 +275,27 @@ const TradePartner = ({ data }) => {
               />
             </label>
           </InputField>
+          {/*  ✅ reCAPTCHA */}
+          <div className="captcha-container">
+            {formStatus.captachError && (
+              <p>
+                The form will not submit until you have checked the reCAPCHA.
+              </p>
+            )}
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
+              onChange={onChangeRecaptcha}
+              onExpired={() => setIsCaptchaVerified(false)}
+            />
+          </div>
           <div className="btn-submit">
-            <button type="submit">Send</button>
+            <button
+              disabled={!isCaptchaVerified || formStatus.submitting}
+              type="submit"
+            >
+              Send
+            </button>
           </div>
         </form>
       </div>
@@ -281,6 +340,21 @@ const SectionStyled = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
     width: 100%;
+
+    //  ✅ reCAPTCHA //
+    .captcha-container {
+      width: 100%;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      padding-left: 2rem;
+
+      p {
+        ${B2White};
+        margin: 0;
+        margin-bottom: 0.75rem;
+        color: red;
+      }
+    }
 
     .btn-submit {
       margin-top: 5rem;
