@@ -119,8 +119,6 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
     }
   }
 
-  console.log("community", community)
-
   const handleOnSubmit = async event => {
     event.preventDefault()
 
