@@ -89,6 +89,8 @@ const ContactForm = ({ data }) => {
         captachValue: "",
         captachError: false,
       })
+      // ✅ Reset reCAPTCHA
+      recaptchaRef.current.reset()
     } else {
       setFormStatus({
         ...formStatus,
