@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import styled from "styled-components"
 import {
   B2Black,
@@ -12,7 +12,10 @@ import FormSuccess from "../../FormParts/formModals/FormSuccess"
 import FormSubmit from "../../FormParts/formModals/FormSubmit"
 import FormErrors from "../../FormParts/formModals/FormErrors"
 
+import ReCAPTCHA from "react-google-recaptcha"
+
 const ContactForm = ({ data }) => {
+  const recaptchaRef = useRef(null)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,7 +30,16 @@ const ContactForm = ({ data }) => {
     errorWarnDisplay: false,
     success: false,
     errors: [],
+    captachValue: "",
+    captachError: false,
   })
+
+  const onChangeRecaptcha = value => {
+    setFormStatus({
+      ...formStatus,
+      captachValue: value,
+    })
+  }
 
   const handleOnChange = event => {
     setFormData({
@@ -45,6 +57,16 @@ const ContactForm = ({ data }) => {
 
   const handleOnSubmit = async event => {
     event.preventDefault()
+    const recaptchaValue = recaptchaRef.current.getValue()
+
+    if (recaptchaValue === "") {
+      setFormStatus({
+        ...formStatus,
+        captachError: true,
+      })
+      return
+    }
+
     setFormStatus({
       ...formStatus,
       submitting: true,
@@ -64,6 +86,8 @@ const ContactForm = ({ data }) => {
         errorWarnDisplay: false,
         success: true,
         errors: [],
+        captachValue: "",
+        captachError: false,
       })
     } else {
       setFormStatus({
@@ -72,6 +96,8 @@ const ContactForm = ({ data }) => {
         errorWarnDisplay: true,
         success: false,
         errors: response.errorMessages,
+        captachValue: "",
+        captachError: false,
       })
     }
   }
@@ -92,6 +118,8 @@ const ContactForm = ({ data }) => {
       errorWarnDisplay: false,
       success: false,
       errors: [],
+      captachValue: "",
+      captachError: false,
     })
 
     setFormData({
@@ -247,8 +275,29 @@ const ContactForm = ({ data }) => {
               Send me monthly news, promotions and updates
             </label>
           </CheckboxField>
+
+          <div className="captcha-container">
+            {formStatus.captachError && (
+              <p>
+                The form will not submit until you have checked the reCAPCHA.
+              </p>
+            )}
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              onChange={onChangeRecaptcha}
+              sitekey="6Le4J0IsAAAAAPx4tiIUpAhr1pGZbuQPJduFlZdV"
+            />
+          </div>
+
           <div className="btn-submit">
-            <button type="submit">Submit</button>
+            <button
+              disabled={
+                formStatus.captachError || formStatus.captachValue === ""
+              }
+              type="submit"
+            >
+              Submit
+            </button>
           </div>
         </form>
       </div>
@@ -331,6 +380,20 @@ const SectionStyled = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
     width: 100%;
+
+    .captcha-container {
+      width: 100%;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      padding-left: 2rem;
+
+      p {
+        ${B2Black};
+        margin: 0;
+        margin-bottom: 0.75rem;
+        color: red;
+      }
+    }
 
     .btn-submit {
       margin-top: 2rem;
