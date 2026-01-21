@@ -4,7 +4,6 @@ import {
   Btn1Navy,
   Btn1Secondary,
   H2Navy,
-  colors,
   medWrapper,
 } from "../../styles/helpers"
 import Timeline from "../buildingFutures/Timeline"
@@ -22,7 +21,7 @@ const BuildingFuturesTimeline = ({ data }) => {
         <div className="years">
           {data.classYear.map((year, index) => {
             return (
-              <div key={index}>
+              <div className="years-year" key={index}>
                 <button
                   className={`${index > 0 ? "btn-spacer" : ""}${
                     yearActive === index ? " btn-active" : ""
@@ -64,9 +63,15 @@ const StyledSection = styled.section`
 
   .years {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
+
+    &-year {
+      margin-bottom: 2.5rem;
+    }
 
     button {
       ${Btn1Secondary};

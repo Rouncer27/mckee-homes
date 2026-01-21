@@ -179,6 +179,7 @@ const Step = styled.div`
     margin-left: 2rem;
     padding: 2rem 1.5rem;
     background-color: #fff;
+    transition: all 0.3s ease-in;
 
     @media (min-width: 768px) {
       padding: 3rem 5.2rem;
@@ -194,11 +195,14 @@ const Step = styled.div`
         cursor: pointer;
         text-transform: uppercase;
         transition: all 0.3s ease-in;
+      }
+    }
 
-        &:hover {
-          color: ${colors.colorPrimary};
-          background-color: ${colors.colorAlt};
-        }
+    &:hover {
+      background-color: ${colors.colorAlt};
+
+      h3 {
+        color: ${colors.colorPrimary};
       }
     }
 
