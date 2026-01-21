@@ -51,6 +51,15 @@ const getData = graphql`
                 }
               }
             }
+
+            heroImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 1000)
+                }
+              }
+            }
           }
 
           cities {
@@ -132,6 +141,17 @@ const DisplayCommunityCities = () => {
                                   .childImageSharp.gatsbyImageData
                               }
                               alt={community.acfCommunity.logo.altText}
+                              layout="fullWidth"
+                              formats={["auto", "webp", "avif"]}
+                            />
+                          </div>
+                          <div className="city-communities-community-inner-rollover">
+                            <GatsbyImage
+                              image={
+                                community.acfCommunity.heroImage.localFile
+                                  .childImageSharp.gatsbyImageData
+                              }
+                              alt={community.acfCommunity.heroImage.altText}
                               layout="fullWidth"
                               formats={["auto", "webp", "avif"]}
                             />
@@ -238,6 +258,7 @@ const StyledSection = styled.section`
       }
 
       &-community {
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -254,7 +275,37 @@ const StyledSection = styled.section`
         }
 
         &-inner {
+          position: relative;
           width: 100%;
+          z-index: 10;
+        }
+
+        &-inner-rollover {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          transition: all 0.3s ease-in-out;
+          opacity: 0;
+          visibility: hidden;
+
+          .gatsby-image-wrapper {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+          }
+        }
+
+        &:hover {
+          .city-communities-community-inner-rollover {
+            z-index: 11;
+            opacity: 1;
+            visibility: visible;
+          }
         }
       }
     }
