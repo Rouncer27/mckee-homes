@@ -14,8 +14,35 @@ const FaqItem = ({ question, answer }) => {
       setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
     )
   }
+
+  const stripHtml = html => {
+    return html
+      .replace(/<br\s*\/?>/gi, "\n")
+      .replace(/<\/p>/gi, "\n\n")
+      .replace(/<[^>]+>/g, "") // remove all remaining tags
+      .replace(/\n{3,}/g, "\n\n") // clean extra line breaks
+      .trim()
+  }
+
+  const cleanAnswer = stripHtml(answer)
+
+  // JSON-LD for this FAQ item
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: {
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: cleanAnswer,
+      },
+    },
+  }
+
   return (
     <FaqItemStyled>
+      <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       <button
         type="button"
         className={`faqSingle__question ${setActive}`}
