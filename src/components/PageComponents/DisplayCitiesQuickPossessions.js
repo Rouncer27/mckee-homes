@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { BigWrapper, H2Grey } from "../../styles/helpers"
+import { BigWrapper, colors, H2Grey } from "../../styles/helpers"
 
 const getData = graphql`
   {
@@ -126,6 +126,7 @@ const StyledSection = styled.section`
         right: 0;
         left: 0;
         padding: 3.6rem 2rem;
+        transition: all 0.3s ease-in-out;
         background-color: rgba(255, 255, 255, 0.7);
         transform: translateY(-50%);
         text-align: center;
@@ -133,6 +134,7 @@ const StyledSection = styled.section`
 
         h3 {
           ${H2Grey};
+          transition: all 0.3s ease-in-out;
           margin: 0;
         }
       }
@@ -159,6 +161,15 @@ const StyledSection = styled.section`
           width: 100%;
           height: 100%;
           object-fit: cover;
+        }
+      }
+      &:hover {
+        .cities-links-city-title {
+          background-color: rgba(35, 66, 139, 0.75);
+
+          h3 {
+            color: ${colors.white};
+          }
         }
       }
     }
