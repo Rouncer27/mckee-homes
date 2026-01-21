@@ -962,6 +962,28 @@ export const pageTempQuery = graphql`
               imageTitle
             }
           }
+
+          ... on WpPage_Acfmaintemplatefields_PageComponents_GalleryCategoryLinks {
+            fieldGroupName
+            title
+            images {
+              imageTitle
+              imageCategoryPage {
+                ... on WpGallery {
+                  uri
+                  slug
+                }
+              }
+              image {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(width: 2000)
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

@@ -1,0 +1,397 @@
+import React, { useState, useEffect } from "react"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import styled from "styled-components"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import {
+  B1Black,
+  colorAlt,
+  colorPrimary,
+  H2Grey,
+  colors,
+  medWrapper,
+  Btn1Primary,
+} from "../../../styles/helpers"
+import { Link } from "gatsby"
+
+const GalleryHomePlan = ({ data }) => {
+  console.log("data", data)
+  const [activeCat, setActiveCat] = useState("all")
+  const [activeSlider, setActiveSlider] = useState(false)
+  const [firstImage, setFirstImage] = useState(null)
+
+  // 🆕 Added states for pagination
+  const [visibleCount, setVisibleCount] = useState(24)
+
+  const settings = {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    fade: false,
+    draggable: true,
+    infinite: true,
+    autoplay: false,
+    arrows: true,
+    dots: false,
+    initialSlide: firstImage || 0,
+  }
+
+  const filteredImages = data.galleryPost.images
+
+  // 🆕 Determine which images to show
+  const visibleImages = filteredImages.slice(0, visibleCount)
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + 24)
+  }
+
+  return (
+    <StyledDiv>
+      <div className="wrapper">
+        <div className="main-title">
+          <h2>Gallery</h2>
+          <p>{data.title}</p>
+        </div>
+        <div className="gallery-warpper">
+          {/* filteredImages */}
+          {visibleImages.length <= 0 ? (
+            <div className="gallery-no-images">
+              <p>No images for the {activeCat} space</p>
+            </div>
+          ) : (
+            visibleImages.map((gal, index) => {
+              console.log("gal", gal)
+              const galImg = getImage(
+                gal.image.localFile.childImageSharp.gatsbyImageData
+              )
+              const galImgAlt = gal.image.altText
+              return (
+                <div
+                  key={index}
+                  className={`gallery-image${
+                    gal.tallImage ? " image-tall" : ""
+                  }`}
+                  onClick={() => {
+                    setFirstImage(index)
+                    setActiveSlider(!activeSlider)
+                  }}
+                >
+                  <GatsbyImage
+                    image={galImg}
+                    alt={galImgAlt}
+                    layout="fullWidth"
+                    formats={["auto", "webp", "avif"]}
+                  />
+                </div>
+              )
+            })
+          )}
+        </div>
+
+        {/* 🆕 Load More Button */}
+        {filteredImages.length > visibleImages.length && (
+          <div
+            className="load-more-wrapper"
+            style={{ textAlign: "center", marginTop: "2rem" }}
+          >
+            <button
+              type="button"
+              onClick={handleLoadMore}
+              style={{
+                backgroundColor: colorPrimary,
+                color: "#fff",
+                border: "none",
+                padding: "1rem 2rem",
+                borderRadius: "4px",
+                cursor: "pointer",
+                fontWeight: "600",
+                textTransform: "uppercase",
+              }}
+            >
+              Load More
+            </button>
+          </div>
+        )}
+
+        {/* 🆕 No more images message */}
+        {filteredImages.length <= visibleImages.length &&
+          filteredImages.length > 0 && (
+            <div
+              className="load-more-wrapper"
+              style={{ textAlign: "center", marginTop: "2rem" }}
+            >
+              <button
+                type="button"
+                disabled
+                style={{
+                  backgroundColor: "#ccc",
+                  color: "#666",
+                  border: "none",
+                  padding: "1rem 2rem",
+                  borderRadius: "4px",
+                  fontWeight: "600",
+                  textTransform: "uppercase",
+                  cursor: "not-allowed",
+                }}
+              >
+                No more images
+              </button>
+            </div>
+          )}
+
+        <div className="back-home-wrapper">
+          <Link to="/gallery" type="button">
+            Gallery Page
+          </Link>
+        </div>
+
+        {activeSlider && (
+          <div className="gallery-slider">
+            <div className="gallery-slider-container">
+              <Slider {...settings}>
+                {filteredImages.map((gal, index) => {
+                  const galImg = getImage(
+                    gal.image.localFile.childImageSharp.gatsbyImageData
+                  )
+                  const galImgAlt = gal.image.altText
+                  return (
+                    <div
+                      key={index}
+                      className={`gallery-slider-image${
+                        gal.tallImage ? " image-tall" : ""
+                      }`}
+                      onClick={() => {
+                        setActiveSlider(!activeSlider)
+                      }}
+                    >
+                      <img src={galImg.images.fallback.src} alt={galImgAlt} />
+                    </div>
+                  )
+                })}
+              </Slider>
+            </div>
+            <div
+              className="gallery-slider-overlay"
+              onClick={() => {
+                setActiveSlider(!activeSlider)
+              }}
+            />
+          </div>
+        )}
+      </div>
+    </StyledDiv>
+  )
+}
+
+const StyledDiv = styled.div`
+  position: relative;
+  padding: 5rem 0;
+
+  .wrapper {
+    ${medWrapper};
+  }
+
+  .gallery-no-images {
+    width: 100%;
+    padding: 5rem 0 3rem;
+    text-align: center;
+
+    p {
+      ${H2Grey};
+    }
+  }
+
+  .back-home-wrapper {
+    width: 100%;
+    margin-top: 2.5rem;
+    text-align: center;
+
+    a {
+      ${Btn1Primary};
+    }
+  }
+
+  .main-title {
+    width: 100%;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 0.1rem solid #000;
+    text-align: center;
+
+    h2 {
+      ${H2Grey};
+    }
+
+    p {
+      ${B1Black};
+      margin-bottom: 0;
+      text-transform: uppercase;
+    }
+  }
+
+  .gallery-warpper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+
+    .gallery-image {
+      width: calc((100% / 1) - 3rem);
+      margin: 1.5rem;
+
+      @media (min-width: 768px) {
+        width: calc((100% / 2) - 3rem);
+        margin: 1.5rem;
+      }
+
+      @media (min-width: 1025px) {
+        width: calc((100% / 3) - 3rem);
+        margin: 1.5rem;
+      }
+
+      .gatsby-image-wrapper {
+        height: 25rem !important;
+
+        img {
+        }
+      }
+
+      &.image-tall {
+        .gatsby-image-wrapper {
+          height: 100% !important;
+
+          img {
+          }
+        }
+      }
+    }
+  }
+
+  .gallery-slider {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999;
+
+    .slick-slider {
+      height: 100% !important;
+
+      .slick-list {
+        height: 100% !important;
+
+        .slick-track {
+          height: 100% !important;
+
+          .slick-slide {
+            height: 100% !important;
+            overflow: hidden;
+
+            div {
+              height: 100% !important;
+              max-width: 100% !important;
+            }
+          }
+        }
+      }
+    }
+
+    .slick-arrow {
+      position: absolute !important;
+      width: 5rem;
+      height: 5rem;
+      z-index: 99999999999;
+
+      &::before {
+        opacity: 1;
+        width: 5rem;
+        height: 5rem;
+        font-size: 5rem;
+        color: ${colors.colorPrimary} !important;
+      }
+    }
+
+    .slick-prev {
+    }
+
+    .slick-next {
+    }
+
+    .slick-dots {
+      bottom: -3.5rem;
+
+      li {
+        width: 3rem;
+        height: 3rem;
+
+        button {
+          width: 3rem;
+          height: 3rem;
+
+          &::before {
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+
+    &-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      z-index: 1;
+    }
+
+    &-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 80vh;
+      margin: auto;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+
+      @media (min-width: 768px) {
+        width: 80%;
+        padding: 2rem;
+      }
+    }
+
+    &-image {
+      display: block !important;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 0 1rem;
+      overflow: hidden;
+
+      @media (min-width: 768px) {
+        padding: 0rem;
+      }
+
+      img {
+        display: block;
+        position: absolute !important;
+        top: -5rem;
+        right: 2rem;
+        bottom: 2rem;
+        left: 2rem;
+        width: auto !important;
+        height: auto !important;
+        object-fit: cover;
+      }
+
+      &.image-tall {
+        width: 44% !important;
+        margin: auto;
+      }
+    }
+  }
+`
+
+export default GalleryHomePlan

@@ -75,6 +75,16 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
 
+        galleries: allWpGallery {
+          edges {
+            node {
+              id
+              slug
+              uri
+            }
+          }
+        }
+
         posts: allWpPost {
           edges {
             node {
@@ -200,6 +210,23 @@ exports.createPages = async ({ graphql, actions }) => {
           slug: node.slug,
           next: index === 0 ? null : faqs[index - 1].node.slug,
           prev: index === faqs.length - 1 ? null : faqs[index + 1].node.slug,
+        },
+      })
+    })
+
+    const galleries = data.galleries.edges
+    galleries.forEach(({ node }, index) => {
+      createPage({
+        path: `/galleries/${node.slug}/`,
+        component: path.resolve("./src/templates/galleries.js"),
+        context: {
+          id: node.id,
+          slug: node.slug,
+          next: index === 0 ? null : galleries[index - 1].node.slug,
+          prev:
+            index === galleries.length - 1
+              ? null
+              : galleries[index + 1].node.slug,
         },
       })
     })
