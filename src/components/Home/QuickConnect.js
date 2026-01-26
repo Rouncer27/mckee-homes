@@ -38,12 +38,14 @@ const QuickConnect = ({ salesOne, salesTwo }) => {
                       {salesOne.acfSalesTeam.email}
                     </a>
                   </p>
-                  <p>
-                    T:{" "}
-                    <a href={`tel:+1${salesOne.acfSalesTeam.phone}`}>
-                      {salesOne.acfSalesTeam.phone}
-                    </a>
-                  </p>
+                  {salesOne.acfSalesTeam.phone ? (
+                    <p>
+                      T:{" "}
+                      <a href={`tel:+1${salesOne.acfSalesTeam.phone}`}>
+                        {salesOne.acfSalesTeam.phone}
+                      </a>
+                    </p>
+                  ) : null}
                   <p>
                     C:{" "}
                     <a href={`tel:+1${salesOne.acfSalesTeam.cell}`}>
@@ -79,12 +81,15 @@ const QuickConnect = ({ salesOne, salesTwo }) => {
                       {salesTwo.acfSalesTeam.email}
                     </a>
                   </p>
-                  <p>
-                    T:{" "}
-                    <a href={`tel:+1${salesTwo.acfSalesTeam.phone}`}>
-                      {salesTwo.acfSalesTeam.phone}
-                    </a>
-                  </p>
+                  {salesTwo.acfSalesTeam.phone ? (
+                    <p>
+                      T:{" "}
+                      <a href={`tel:+1${salesTwo.acfSalesTeam.phone}`}>
+                        {salesTwo.acfSalesTeam.phone}
+                      </a>
+                    </p>
+                  ) : null}
+
                   <p>
                     C:{" "}
                     <a href={`tel:+1${salesTwo.acfSalesTeam.cell}`}>
