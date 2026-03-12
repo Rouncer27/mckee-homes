@@ -25,7 +25,9 @@ const QuickPosessions = ({ currentSlug, quickPossessions }) => {
   const currentCommunityQP = quickPossessions.edges.filter(home => {
     const displayHere =
       home?.node?.communities?.nodes?.filter(community => {
-        return community.slug === currentSlug
+        const comSlug =
+          community.slug === "sawgrass" ? "sawgrass-park" : community.slug
+        return comSlug === currentSlug
       }).length > 0
 
     return displayHere
