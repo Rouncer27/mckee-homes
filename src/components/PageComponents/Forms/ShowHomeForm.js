@@ -94,6 +94,8 @@ const ShowHomeForm = ({ homeSlug, showHome, community }) => {
     })
   }
 
+  /* bayview, kitstone, mandalay-estates, sawgrass-park, vantage-rise */
+
   const getFormId = community => {
     switch (community) {
       case "bayside-estates":

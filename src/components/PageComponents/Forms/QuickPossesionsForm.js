@@ -94,10 +94,14 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
     })
   }
 
+  /* bayview, kitstone, mandalay-estates, sawgrass-park, vantage-rise */
+  console.log("community", community)
   const getFormId = community => {
     switch (community) {
       case "bayside-estates":
         return 2198
+      case "bayview":
+        return 23842
       case "chinook-gate":
         return 2199
       case "coopers-crossing":
@@ -106,12 +110,20 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
         return 8564
       case "kings-heights":
         return 2201
+      case "kitstone":
+        return 23843
       case "lanark-landing":
         return 2202
       case "lewiston":
         return 8565
+      case "mandalay-estates":
+        return 23844
       case "ravenswood":
         return 2203
+      case "sawgrass":
+        return 23845
+      case "vantage-rise":
+        return 23846
       case "vista-crossing":
         return 2204
       default:
