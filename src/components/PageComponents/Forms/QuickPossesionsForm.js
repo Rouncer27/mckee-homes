@@ -94,7 +94,7 @@ const QuickPossesionsForm = ({ homeSlug, title, community }) => {
     })
   }
 
-  /* bayview, kitstone, mandalay-estates, sawgrass-park, vantage-rise */
+  /* bayview, kitstone, mandalay-estates, sawgrass, vantage-rise */
   console.log("community", community)
   const getFormId = community => {
     switch (community) {

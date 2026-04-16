@@ -94,12 +94,14 @@ const ShowHomeForm = ({ homeSlug, showHome, community }) => {
     })
   }
 
-  /* bayview, kitstone, mandalay-estates, sawgrass-park, vantage-rise */
-
+  /* bayview, kitstone, mandalay-estates, sawgrass, vantage-rise */
+  console.log("community: ", community)
   const getFormId = community => {
     switch (community) {
       case "bayside-estates":
         return 2206
+      case "bayview":
+        return 23847
       case "chinook-gate":
         return 2207
       case "coopers-crossing":
@@ -108,12 +110,20 @@ const ShowHomeForm = ({ homeSlug, showHome, community }) => {
         return 8566
       case "kings-heights":
         return 2209
+      case "kitstone":
+        return 23848
       case "lanark-landing":
         return 2210
       case "lewiston":
         return 8567
+      case "mandalay-estates":
+        return 23849
       case "ravenswood":
         return 2211
+      case "sawgrass":
+        return 23850
+      case "vantage-rise":
+        return 23851
       case "vista-crossing":
         return 2212
       default:
