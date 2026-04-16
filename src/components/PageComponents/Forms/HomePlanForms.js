@@ -94,10 +94,14 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
     })
   }
 
+  /* bayview, kitstone, mandalay-estates, sawgrass-park, vantage-rise */
+
   const getFormId = community => {
     switch (community) {
       case "bayside-estates":
         return 2190
+      case "bayview":
+        return 23837
       case "goldwyn":
         return 8556
       case "chinook-gate":
@@ -106,12 +110,20 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
         return 2192
       case "kings-heights":
         return 2193
+      case "kitstone":
+        return 23838
       case "lanark-landing":
         return 2194
       case "lewiston":
         return 8557
+      case "mandalay-estates":
+        return 23839
+      case "sawgrass-park":
+        return 23840
       case "ravenswood":
         return 2195
+      case "vantage-rise":
+        return 23841
       case "vista-crossing":
         return 2196
       default:
@@ -301,14 +313,14 @@ const HomePlanForms = ({ homeSlug, homePlan }) => {
                   <option value="coopers-crossing">Coopers Crossing</option>
                   <option value="goldwyn">Goldwyn</option>
                   {/* <option value="kings-heights">King's Heights</option> */}
+                  <option value="kitstone">Kitstone</option>
                   <option value="lanark-landing">Lanark Landing</option>
                   <option value="lewiston">Lewiston</option>
-                  <option value="kitstone">Kitstone</option>
                   {/* <option value="ravenswood">Ravenswood</option> */}
-                  <option value="vantage-rise">Vantage Rise</option>
-                  <option value="vista-crossing">Vista Crossing</option>
                   <option value="mandalay-estates">Mandalay Estates</option>
                   <option value="sawgrass-park">Sawgrass Park</option>
+                  <option value="vantage-rise">Vantage Rise</option>
+                  <option value="vista-crossing">Vista Crossing</option>
                 </select>
               </label>
             </InputField>
