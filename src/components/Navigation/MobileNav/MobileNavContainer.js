@@ -32,7 +32,7 @@ const MobileNavContainer = ({ navitems }) => {
           <MobileNavItem key={item.id} item={item} />
         ))}
 
-        <li>
+        {/* <li>
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -40,7 +40,7 @@ const MobileNavContainer = ({ navitems }) => {
           >
             <span></span>Homeowner Portal
           </a>
-        </li>
+        </li> */}
         {Object.keys(userState.user).length === 0 ? (
           <li>
             <Link to={`/login`}>My Favourites</Link>

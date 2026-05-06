@@ -28,7 +28,7 @@ const Login = () => {
             </button>
           </li>
         )}
-        <li>
+        {/* <li>
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -36,7 +36,7 @@ const Login = () => {
           >
             Homeowner Portal
           </a>
-        </li>
+        </li> */}
       </ul>
     </LoginStyled>
   )
